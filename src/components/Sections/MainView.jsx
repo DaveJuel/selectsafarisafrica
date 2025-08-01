@@ -1,0 +1,186 @@
+// MainView.js
+import React, { useState } from "react";
+import styled from "styled-components";
+// import ItineraryView from "./ItineraryView";
+import { fetchEntityData } from "../../utils/RequestHandler";
+import LoadingSpinner from "../Elements/LoadingSpinner";
+import BookTripModal from "../Elements/BookTripModal";
+import TravelPlanViewModal from "../Elements/TravelPlanViewModal";
+import SidebarView from "./SidebarView";
+import MainSectionView from "./MainSectionView";
+
+export default function MainView() {
+  const [itineraries, setItineraries] = useState(null);
+  const [selectedItinerary, setSelectedItinerary] = useState(null);
+  const [selectedItineraryActivities, setSelectedItiniraryActivities] =
+    useState(null);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    country: null,
+    days: 3,
+    activities: [],
+  });
+  const [bookingData, setBookingData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [currentView, setCurrentView] = useState("itiniraries");
+
+  const fetchItineraries = async () => {
+    setLoading(true);
+    try {
+      const response = await fetchEntityData("itineraries");
+      if (response.success) {
+        const results = response.result?.filter(
+          (item) =>
+            item.country === formData.country &&
+            parseInt(item.days) === formData.days
+        );
+        return results;
+      }
+      return [];
+    } catch (error) {
+      console.error(`Failed to load itineraries`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleItineraryFiltering = async () => {
+    try {
+      toggleView("itiniraries");
+      const itineraries = await fetchItineraries();
+      setItineraries(itineraries);
+    } catch (error) {
+      console.error(`Failed to handle form submit`);
+    }
+  };
+
+  const toggleView = (view) => {
+    setCurrentView(view);
+    if (view === "itiniraries") {
+      setFormData({
+        country: null,
+        days: 3,
+        activities: [],
+      });
+      setItineraries(null);
+    }
+  };
+
+  const onBookItinerary = (itinerary, itiniraryActivities) => {
+    setSelectedItinerary(itinerary);
+    setSelectedItiniraryActivities(itiniraryActivities);
+    setIsModalOpen(true);
+  };
+
+  const handlePreviewPlan = () => {
+    setIsPreviewModalOpen(true);
+  };
+
+  const closePreviewPlan = () => {
+    setIsPreviewModalOpen(false);
+  };
+
+  return (
+    <MainWrapper>
+      <ContentContainer>
+        <SidebarView
+          formData={formData}
+          setFormData={setFormData}
+          handleItineraryFiltering={handleItineraryFiltering}
+          toggleView={toggleView}
+          loading={loading}
+          currentView={currentView}
+        />
+        <ViewSection>
+          {loading && <LoadingSpinner />}
+          {!loading && (
+            <MainSectionView
+              currentView={currentView}
+              formData={formData}
+              itineraries={itineraries}
+              openBookTripModal={onBookItinerary}
+              toggleView={toggleView}
+            />
+          )}
+        </ViewSection>
+      </ContentContainer>
+      <BookTripModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        itinerary={selectedItinerary}
+        handlePreview={() => handlePreviewPlan()}
+        bookingData={bookingData}
+        setBookingData={setBookingData}
+      />
+      <TravelPlanViewModal
+        isOpen={isPreviewModalOpen}
+        onClose={() => closePreviewPlan()}
+        itinerary={selectedItinerary}
+        itiniraryActivities={selectedItineraryActivities}
+        bookingData={bookingData}
+      />
+    </MainWrapper>
+  );
+}
+
+// Styled Components for MainView
+
+const MainWrapper = styled.div`
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  background-image: url("/landing_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+`;
+
+const ContentContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+  height: calc(100vh - 40px); /* Fixed height instead of min-height */
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    height: auto; /* Allow natural height on mobile */
+  }
+`;
+
+const ViewSection = styled.div`
+  background: rgba(248, 247, 247, 0.8);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  height: 100%; /* Take full height of grid cell */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal overflow */
+
+  /* Custom scrollbar styling (optional) */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 1024px) {
+    height: auto; /* Natural height on mobile */
+    overflow-y: visible; /* Disable scroll on mobile */
+  }
+`;
