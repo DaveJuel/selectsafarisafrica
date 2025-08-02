@@ -6,6 +6,7 @@ import { fetchEntityData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import ItinerariesListView from "./ItinerariesListView";
 import AdventuresView from "./AdventuresView";
+import { useTranslation } from "react-i18next";
 
 export default function ItineraryView({
   formData,
@@ -14,6 +15,7 @@ export default function ItineraryView({
 }) {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation("itineraries");
 
   useEffect(() => {
     const fetchItineraryActivities = async () => {
@@ -48,9 +50,11 @@ export default function ItineraryView({
   return (
     <ViewWrapper>
       <Header>
-        <HeaderTitle>Let's Go to {formData.country}!</HeaderTitle>
+        <HeaderTitle>
+          {t("lets_go_to")} {formData.country}!
+        </HeaderTitle>
         <HeaderSubtitle>
-          {formData.days} incredible days planned just for you
+          {formData.days} {t("incredible_days")}
         </HeaderSubtitle>
       </Header>
       {itineraries?.length > 0 && (

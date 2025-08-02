@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { sortItineraryActivities } from "../../utils/DataHandler";
+import { useTranslation } from "react-i18next";
 
 const ItinerariesListView = ({
   itineraries,
   itinerariesActivities,
   openBookTripModal,
 }) => {
+  const { t } = useTranslation("itineraries");
   return (
     <ItinerariesGrid>
       {itineraries?.map((itinerary) => {
@@ -19,17 +21,17 @@ const ItinerariesListView = ({
 
             <DurationInfo>
               <DurationIcon>📅</DurationIcon>
-              <DurationText>{itinerary.days} Days</DurationText>
+              <DurationText>{itinerary.days} {t("days")}</DurationText>
             </DurationInfo>
 
             <ActivitiesSection>
-              <ActivitiesTitle>What You'll Do</ActivitiesTitle>
+              <ActivitiesTitle>{t("what_you_will_do")}</ActivitiesTitle>
               <ActivitiesList>
                 {activities.map((item, index) => (
                   <ActivityItem key={index}>
                     <ActivityContent>
                       <ActivityHeader>
-                        <DayBadge>Day {item.day}</DayBadge>
+                        <DayBadge>{t("day")} {item.day}</DayBadge>
                         <TimeTag>{item.time}</TimeTag>
                       </ActivityHeader>
                       <ActivityDescription>{item.activity}</ActivityDescription>
@@ -40,7 +42,7 @@ const ItinerariesListView = ({
             </ActivitiesSection>
 
             <CardFooter onClick={() => openBookTripModal(itinerary, activities)}>
-              <ActionBtn>BOOK NOW</ActionBtn>
+              <ActionBtn>{t("book_now")}</ActionBtn>
             </CardFooter>
           </ItineraryCard>
         );
