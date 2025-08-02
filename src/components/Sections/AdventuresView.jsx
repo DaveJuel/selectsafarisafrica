@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { adventuresVideos } from "../../data/adventures.videos";
 import LoadingSpinner from "../Elements/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 export default function AdventuresView({ formData }) {
   const [currentLayout, setCurrentLayout] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [videos, setVideos] = useState([]);
+  const { t } = useTranslation("adventures");
 
   useEffect(() => {
     const fetchVideos = () => {
@@ -21,7 +23,10 @@ export default function AdventuresView({ formData }) {
     if (formData.country) {
       setHasLoaded(false);
       const videosList = adventuresVideos
-        .filter((item) => item.country.toLowerCase() === formData.country.toLowerCase())
+        .filter(
+          (item) =>
+            item.country.toLowerCase() === formData.country.toLowerCase()
+        )
         ?.flatMap((item) => item?.videos);
       setVideos(videosList);
       setHasLoaded(true);
@@ -50,37 +55,34 @@ export default function AdventuresView({ formData }) {
     <ViewWrapper>
       <Header>
         <HeaderContent animate={hasLoaded}>
-          <HeaderTitle> Elevate Your Travel Experience</HeaderTitle>
-          <HeaderSubtitle>
-            Step beyond the ordinary and discover destinations that inspire.
-          </HeaderSubtitle>
+          <HeaderTitle>{t("elevate_experience")}</HeaderTitle>
+          <HeaderSubtitle>{t("elevate_experience_message")}</HeaderSubtitle>
         </HeaderContent>
       </Header>
       {!hasLoaded && <LoadingSpinner />}
       {hasLoaded && (
         <VideoGrid>
-          {videoOrder?.length > 1 && videoOrder?.map((videoIndex, position) => (
-            <VideoColumn
-              key={`${videoIndex}-${position}`}
-              position={position}
-              animate={hasLoaded}
-            >
-              <VideoContainer>
-                <StyledVideo
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  src={videos[videoIndex]?.video}
-                />
-                <CaptionOverlay>
-                  <CaptionText>
-                    {videos[videoIndex]?.caption}
-                  </CaptionText>
-                </CaptionOverlay>
-              </VideoContainer>
-            </VideoColumn>
-          ))}
+          {videoOrder?.length > 1 &&
+            videoOrder?.map((videoIndex, position) => (
+              <VideoColumn
+                key={`${videoIndex}-${position}`}
+                position={position}
+                animate={hasLoaded}
+              >
+                <VideoContainer>
+                  <StyledVideo
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    src={videos[videoIndex]?.video}
+                  />
+                  <CaptionOverlay>
+                    <CaptionText>{videos[videoIndex]?.caption}</CaptionText>
+                  </CaptionOverlay>
+                </VideoContainer>
+              </VideoColumn>
+            ))}
         </VideoGrid>
       )}
     </ViewWrapper>
@@ -221,12 +223,6 @@ const CaptionOverlay = styled.div`
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   padding: 2rem 1rem 1rem;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-
-  ${VideoContainer}:hover & {
-    transform: translateY(0);
-  }
 `;
 
 const CaptionText = styled.p`
@@ -236,12 +232,4 @@ const CaptionText = styled.p`
   margin: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   line-height: 1.4;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-
-  ${VideoContainer}:hover & {
-    opacity: 1;
-    transform: translateY(0);
-  }
 `;
