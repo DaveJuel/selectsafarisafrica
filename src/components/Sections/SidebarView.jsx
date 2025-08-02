@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TouristForm from "./TouristForm";
 import LogoComponent from "../../assets/svg/Logo";
 import LoadingSpinner from "../Elements/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 export default function SidebarView({
   formData,
@@ -11,20 +12,23 @@ export default function SidebarView({
   currentView,
   loading,
 }) {
+  const { t } = useTranslation("common");
+
   const menuItems = [
     {
-      menu: "Home",
+      menuKey: "home",
       key: "itiniraries",
     },
     {
-      menu: "About Us",
+      menuKey: "about_us",
       key: "about-us",
     },
     {
-      menu: "Contact Us",
+      menuKey: "contact_us",
       key: "contact-us",
     },
   ];
+
   return (
     <SidebarSection>
       <SidebarHeaderSection>
@@ -33,21 +37,15 @@ export default function SidebarView({
         </LogoContainer>
         <SidebarTitle>SELECT SAFARIS AFRICA</SidebarTitle>
         <NavigationLinks>
-          {menuItems.map((menuItem) => {
-            if (menuItem.key === currentView) {
-              return (
-                <NavLink onClick={() => toggleView(menuItem.key)} active>
-                  {menuItem.menu}
-                </NavLink>
-              );
-            } else {
-              return (
-                <NavLink onClick={() => toggleView(menuItem.key)}>
-                  {menuItem.menu}
-                </NavLink>
-              );
-            }
-          })}
+          {menuItems.map((item) => (
+            <NavLink
+              key={item.key}
+              onClick={() => toggleView(item.key)}
+              active={item.key === currentView}
+            >
+              {t(item.menuKey)}
+            </NavLink>
+          ))}
         </NavigationLinks>
       </SidebarHeaderSection>
       {loading && <LoadingSpinner />}
