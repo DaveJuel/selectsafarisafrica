@@ -78,7 +78,7 @@ export default function AdventuresView({ formData }) {
                     src={videos[videoIndex]?.video}
                   />
                   <CaptionOverlay>
-                    <CaptionText>{videos[videoIndex]?.caption}</CaptionText>
+                    <CaptionText>{t(videos[videoIndex]?.caption)}</CaptionText>
                   </CaptionOverlay>
                 </VideoContainer>
               </VideoColumn>

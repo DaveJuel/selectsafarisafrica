@@ -1,4 +1,39 @@
 {
   "elevate_experience": "Élevez votre expérience de voyage",
-  "elevate_experience_message": "Allez au-delà de l’ordinaire et découvrez des destinations qui inspirent."
+  "elevate_experience_message": "Allez au-delà de l’ordinaire et découvrez des destinations inspirantes.",
+  "rw_local_markets": "Marchés locaux - Expérience authentique du marché de Kimironko",
+  "rw_kings_palace": "Palais royal - Héritage royal à Nyanza",
+  "rw_mountain_gorillas": "Gorilles de montagne - Rencontres proches au parc national des Volcans",
+  "rw_lakes": "Lacs - Eaux sereines du lac Muhazi",
+  "rw_memorial_sites": "Sites commémoratifs - Souvenir et réflexion",
+  "rw_inyambo": "Visites culturelles - Expérience sacrée du bétail Inyambo",
+  "rw_canopy_walk": "Promenade dans la canopée - Aventure aérienne dans la forêt de Nyungwe",
+  "rw_safari_game_drive": "Safari - Rencontres sauvages à Akagera",
+
+  "tz_hot_air_balloon": "Safari en montgolfière - Vues aériennes sur les plaines du Serengeti",
+  "tz_canoeing": "Canoë - Exploration paisible sur le lac Duluti",
+  "tz_stone_town": "Stone Town - Promenade culturelle à travers l'historique Zanzibar",
+  "tz_ngorongoro": "Cratère de Ngorongoro - Refuge de faune dans une caldeira volcanique",
+  "tz_snorkeling": "Plongée en apnée - Aventures sur les récifs à Zanzibar",
+  "tz_maasai_village": "Visites culturelles - Vie dans un village Maasai traditionnel",
+  "tz_kilimanjaro": "Mont Kilimandjaro - Gravir le sommet le plus haut d’Afrique",
+  "tz_serengeti": "Moments sauvages - Observations rares au Serengeti",
+
+  "ug_rafting": "Rafting en eaux vives - Sensations sur le Nil",
+  "ug_bird_watching": "Observation d’oiseaux - Bec-en-sabot dans les marais de Mabamba",
+  "ug_gorilla_trekking": "Gorilles de montagne - Randonnée dans la forêt de Bwindi",
+  "ug_city_center": "Visite de la ville - Au cœur de l’animation de Kampala",
+  "ug_nile_source": "Fleuve Nil - À la découverte de la source à Jinja",
+  "ug_local_market": "Marchés locaux - Expérience animée du marché Owino",
+  "ug_tree_lions": "Lions perchés - Observation rare au parc Queen Elizabeth",
+  "ug_dance_experience": "Danse culturelle - Rythmes du patrimoine ougandais",
+
+  "bi_saga_beach": "Lac Tanganyika - Détente sur la plage de Saga",
+  "bi_gishora_drums": "Tambours de Gishora - Son sacré du Burundi",
+  "bi_karera_waterfalls": "Chutes de Karera - Randonnée pittoresque à travers les cascades",
+  "bi_nile_source_monument": "Source du Nil - Monument dans les hautes terres du Burundi",
+  "bi_kibira_trek": "Forêt de Kibira - Randonnée avec les primates en pleine nature",
+  "bi_rwihinda_birdwatch": "Lac Rwihinda - Observation d’oiseaux dans les zones humides de Kirundo",
+  "bi_rusizi_boat": "Rivière Rusizi - Safari en bateau parmi les hippopotames et les oiseaux",
+  "bi_ruvubu_park": "Parc de la Ruvubu - Safari animalier dans l’est du Burundi"
 }

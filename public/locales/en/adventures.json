@@ -1,4 +1,39 @@
 {
   "elevate_experience": "Elevate Your Travel Experience",
-  "elevate_experience_message": "Step beyond the ordinary and discover destinations that inspire."
+  "elevate_experience_message": "Step beyond the ordinary and discover destinations that inspire.",
+  "rw_local_markets": "Local Markets - Authentic Kimironko Market Experience",
+  "rw_kings_palace": "King's Palace - Royal Heritage in Nyanza",
+  "rw_mountain_gorillas": "Mountain Gorillas - Close Encounters in Volcanoes National Park",
+  "rw_lakes": "Lakes - Serene Waters of Lake Muhazi",
+  "rw_memorial_sites": "Memorial Sites - Remembrance and Reflection",
+  "rw_inyambo": "Cultural Visits - Sacred Inyambo Cattle Experience",
+  "rw_canopy_walk": "Canopy Walk - Aerial Adventure in Nyungwe Forest",
+  "rw_safari_game_drive": "Safari Game Drive - Wild Encounters in Akagera",
+
+  "tz_hot_air_balloon": "Balloon Safari - Aerial Views Over Serengeti Plains",
+  "tz_canoeing": "Canoeing - Tranquil Exploration on Lake Duluti",
+  "tz_stone_town": "Stone Town - Cultural Stroll Through Historic Zanzibar",
+  "tz_ngorongoro": "Ngorongoro Crater - Wildlife Haven in a Volcanic Caldera",
+  "tz_snorkeling": "Snorkeling - Coral Adventures on Zanzibar Beaches",
+  "tz_maasai_village": "Cultural Visits - Life in a Traditional Maasai Village",
+  "tz_kilimanjaro": "Mount Kilimanjaro - Climb Africa’s Tallest Peak",
+  "tz_serengeti": "Wildlife Moments - Rare Sightings in Serengeti",
+
+  "ug_rafting": "White Water Rafting - Thrills on the Nile River",
+  "ug_bird_watching": "Bird Watching - Shoebills in Mabamba Swamp",
+  "ug_gorilla_trekking": "Mountain Gorillas - Trekking in Bwindi Forest",
+  "ug_city_center": "City Tour - Urban Pulse of Kampala",
+  "ug_nile_source": "Nile River - Exploring the Source in Jinja",
+  "ug_local_market": "Local Markets - Bustling Owino Shopping Experience",
+  "ug_tree_lions": "Tree-Climbing Lions - Rare Sighting in Queen Elizabeth Park",
+  "ug_dance_experience": "Cultural Dance - Rhythms of Ugandan Heritage",
+
+  "bi_saga_beach":  "Lake Tanganyika - Relax on Saga Beach",
+  "bi_gishora_drums": "Gishora Drums - Sacred Sound of Burundi",
+  "bi_karera_waterfalls": "Karera Waterfalls - Scenic Hike Through Cascades",
+  "bi_nile_source_monument": "Nile Source - Monument at Burundi’s Highlands",
+  "bi_kibira_trek": "Kibira Forest - Primate Trek in Lush Wilderness",
+  "bi_rwihinda_birdwatch": "Lake Rwihinda - Birdwatching in Kirundo Wetlands",
+  "bi_rusizi_boat": "Rusizi River - Boat Safari Among Hippos and Birds",
+  "bi_ruvubu_park": "Ruvubu Park - Wildlife Safari in Eastern Burundi"
 }
