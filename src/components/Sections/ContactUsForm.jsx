@@ -1,6 +1,58 @@
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "react-i18next";
 
-// Animations
+
+// Usage Example Component
+const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
+  const { t } = useTranslation("contact_us");
+
+  return (
+    <FormSection>
+      <ContactForm onSubmit={onSubmit}>
+        <InputGroup>
+          <InputLabel htmlFor="name">{t("full_name")}</InputLabel>
+          <Input
+            id="name"
+            name="name"
+            placeholder={t("enter_full_name")}
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <InputLabel htmlFor="email">{t("email_address")}</InputLabel>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder={t("enter_email_address")}
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <InputLabel htmlFor="message">{t("message")}</InputLabel>
+          <TextArea
+            id="message"
+            name="message"
+            placeholder={t("message_placeholder")}
+            value={formData.message}
+            onChange={handleInputChange}
+            rows="4"
+            required
+          />
+        </InputGroup>
+
+        <SubmitButton type="submit">{t("send_message")}</SubmitButton>
+      </ContactForm>
+    </FormSection>
+  );
+};
+
 const fadeInUp = keyframes`
   from {
     opacity: 0;
@@ -200,54 +252,5 @@ const SubmitButton = styled.button`
     animation: none;
   }
 `;
-
-// Usage Example Component
-const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
-  return (
-    <FormSection>
-      <ContactForm onSubmit={onSubmit}>
-        <InputGroup>
-          <InputLabel htmlFor="name">Full Name</InputLabel>
-          <Input
-            id="name"
-            name="name"
-            placeholder="Enter your full name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </InputGroup>
-
-        <InputGroup>
-          <InputLabel htmlFor="email">Email Address</InputLabel>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter your email address"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </InputGroup>
-
-        <InputGroup>
-          <InputLabel htmlFor="message">Message</InputLabel>
-          <TextArea
-            id="message"
-            name="message"
-            placeholder="Tell us what's on your mind..."
-            value={formData.message}
-            onChange={handleInputChange}
-            rows="4"
-            required
-          />
-        </InputGroup>
-
-        <SubmitButton type="submit">Send Message</SubmitButton>
-      </ContactForm>
-    </FormSection>
-  );
-};
 
 export default ContactUsForm;

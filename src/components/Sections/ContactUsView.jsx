@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import ContactUsForm from "./ContactUsForm";
 import ContactInfoSection from "./ContactInfoSection";
+import { useTranslation } from "react-i18next";
 
 export default function ContactUsView() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ export default function ContactUsView() {
     email: "",
     message: "",
   });
+  const { t } = useTranslation("contact_us");
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,11 +24,8 @@ export default function ContactUsView() {
   return (
     <ViewWrapper>
       <Header>
-        <HeaderTitle>Reach Out to Us</HeaderTitle>
-        <HeaderSubtitle>
-          We'd love to hear from you. Send us a message and we'll respond as
-          soon as possible.
-        </HeaderSubtitle>
+        <HeaderTitle>{t("reach_out")}</HeaderTitle>
+        <HeaderSubtitle>{t("reach_out_message")}</HeaderSubtitle>
       </Header>
 
       <Content>
@@ -77,4 +76,3 @@ const Content = styled.div`
     gap: 30px;
   }
 `;
-
