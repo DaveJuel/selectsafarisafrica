@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { fetchEntityData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import PaginatedActivities from "../Elements/PaginatedActivities";
+import { useTranslation } from "react-i18next";
 
 export default function TouristForm({
   formData,
@@ -12,6 +13,7 @@ export default function TouristForm({
 }) {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -69,13 +71,13 @@ export default function TouristForm({
       {!loading && (
         <Form>
           <FormGroup>
-            <Label>Where to?</Label>
+            <Label>{t("where_to")}</Label>
             <Select
               value={formData.country}
               onChange={handleCountryChange}
               required
             >
-              <option value="">Select a country</option>
+              <option value="">{t("select_country")}</option>
               {countries.map((country) => (
                 <option key={country.id} value={country.name}>
                   {country.name}
@@ -85,7 +87,7 @@ export default function TouristForm({
           </FormGroup>
 
           <FormGroup>
-            <Label>Days Away</Label>
+            <Label>{t("days_away")}</Label>
             <DaysContainer>
               <DaysInput
                 type="range"
@@ -95,14 +97,15 @@ export default function TouristForm({
                 onChange={handleDaysChange}
               />
               <DaysDisplay>
-                {formData.days} {formData.days === 1 ? "day" : "days"}
+                {formData.days} {formData.days === 1 ? t("day") : t("days")}
               </DaysDisplay>
             </DaysContainer>
           </FormGroup>
 
           <FormGroup>
             <Label>
-              Choose Your Adventures ({formData.activities?.length} selected)
+              {t("choose_adventure")} ({formData.activities?.length}{" "}
+              {t("selected")})
             </Label>
             <PaginatedActivities
               formData={formData}
@@ -116,7 +119,7 @@ export default function TouristForm({
             valid={isFormValid}
             onClick={handleSubmit}
           >
-            Make It Happen
+            {t("make_it_happen")}
           </SubmitButton>
         </Form>
       )}

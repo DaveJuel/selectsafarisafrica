@@ -3,7 +3,11 @@
   "about_us": "À propos de nous",
   "contact_us": "Contactez-nous",
   "where_to": "Où aller ?",
+  "select_country": "Choisissez un pays",
   "days_away": "Jours restants",
   "choose_adventure": "Choisissez votre aventure",
-  "selected": "Sélectionné"
+  "selected": "Sélectionné",
+  "make_it_happen": "Lancer",
+  "day": "Jour",
+  "days": "Jours"
 }

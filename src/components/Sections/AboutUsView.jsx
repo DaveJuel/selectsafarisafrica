@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 export default function AboutUsView({ toggleView }) {
+  const { t } = useTranslation("about_us");
+
   const partners = [
     {
       id: 1,
@@ -52,28 +55,14 @@ export default function AboutUsView({ toggleView }) {
   return (
     <ViewWrapper>
       <Header>
-        <HeaderTitle>Who We Are</HeaderTitle>
-        <HeaderSubtitle>
-          Get to know: Our Story, Principles and Partners.
-        </HeaderSubtitle>
+        <HeaderTitle>{t("who_we_are")}</HeaderTitle>
+        <HeaderSubtitle>{t("get_to_know_us")}</HeaderSubtitle>
       </Header>
 
       <Content>
         <Section>
-          <SectionTitle>
-            Unforgettable Adventures & Empowering in East Africa (Since 2018)
-          </SectionTitle>
-          <SectionText>
-            Born from a passion for service and a love for East Africa, Select
-            Safaris Africa was founded in 2018 by its founder. Recognizing a
-            talent for creating exceptional experiences for international
-            travelers, the founder envisioned a company that not only crafted
-            unforgettable adventures but also served back to the communities.
-            This is why 20% of the company profits directly support vulnerable
-            mothers struggling financially across East Africa. We believe in
-            sustainable tourism that enriches both travelers and the local
-            people.
-          </SectionText>
+          <SectionTitle>{t("unforgetable_adventures")}</SectionTitle>
+          <SectionText>{t("our_story")}</SectionText>
         </Section>
 
         <GridSection>
@@ -81,82 +70,55 @@ export default function AboutUsView({ toggleView }) {
             <CardIcon>
               <img src="/icons/mountain.png" alt="Mountain" />
             </CardIcon>
-            <CardTitle>Our mission</CardTitle>
-            <CardText>
-              We purpose to design and deliver unforgettable adventures that
-              immerse our guests in local cultures, and create memories that
-              last a lifetime.
-            </CardText>
+            <CardTitle>{t("our_mission")}</CardTitle>
+            <CardText>{t("mission")}</CardText>
           </Card>
 
           <Card>
             <CardIcon>
               <img src="/icons/vision.png" alt="Vision" />
             </CardIcon>
-            <CardTitle>Our vision</CardTitle>
-            <CardText>
-              We aim to be the leading force in crafting transformative travel
-              experiences that ignite a passion for exploration of Africa's
-              mysterious nature.
-            </CardText>
+            <CardTitle>{t("our_vision")}</CardTitle>
+            <CardText>{t("vision")}</CardText>
           </Card>
 
           <Card>
             <CardIcon>
               <img src="/icons/values.png" alt="Values" />
             </CardIcon>
-            <CardTitle>Our values</CardTitle>
-            <CardText>
-              Building success and trust starts with our core values which are:
-              Guest Centricity, Authenticity, Integrity, and Sustainability.
-            </CardText>
+            <CardTitle>{t("our_values")}</CardTitle>
+            <CardText>{t("values")}</CardText>
           </Card>
         </GridSection>
         <Section>
-          <SectionTitle>Our Impact</SectionTitle>
+          <SectionTitle>{t("our_impact")}</SectionTitle>
           <GridSection>
-            
             <Card>
               <CardIcon>
                 <img src="/icons/mother.png" alt="Community Support" />
               </CardIcon>
-              <CardTitle>Empowering Mothers</CardTitle>
-              <CardText>
-                Through our 20% profit commitment, we provide microfinance
-                support and skills training to vulnerable mothers across East
-                Africa, helping them establish sustainable income-generating
-                activities and achieve financial independence.
-              </CardText>
+              <CardTitle>{t("empower_mothers")}</CardTitle>
+              <CardText>{t("empower_mothers_impact")}</CardText>
             </Card>
             <Card>
               <CardIcon>
                 <img src="/icons/literature.png" alt="Education" />
               </CardIcon>
-              <CardTitle>Education for All</CardTitle>
-              <CardText>
-                We fund basic education programs for children in underserved
-                communities, providing school supplies, uniforms, and learning
-                materials to ensure every child has access to quality education
-                and brighter future opportunities.
-              </CardText>
+              <CardTitle>{t("education_for_all")}</CardTitle>
+              <CardText>{t("education_for_all_impact")}</CardText>
             </Card>
             <Card>
               <CardIcon>
                 <img src="/icons/stats.png" alt="Impact" />
               </CardIcon>
-              <CardTitle>Measurable Change</CardTitle>
-              <CardText>
-                Since 2018, we have supported over 500 mothers in starting small
-                businesses and sponsored education for 1,200+ children, creating
-                lasting positive change in East African communities through
-                sustainable tourism.
-              </CardText>
+              <CardTitle>{t("measurable_change")}</CardTitle>
+              <CardText>{t("measurable_change_impact")}</CardText>
             </Card>
           </GridSection>
         </Section>
 
         <PartnersSection>
-          <SectionTitle>Our Partners</SectionTitle>
+          <SectionTitle>{t("our_partners")}</SectionTitle>
           <PartnerGrid>
             {partners.map((partner) => (
               <Partner key={partner.id}>
@@ -167,7 +129,7 @@ export default function AboutUsView({ toggleView }) {
         </PartnersSection>
         <Section>
           <ReachOutBtn onClick={() => toggleView("contact-us")}>
-            Contact Us
+            {t("contact_us")}
           </ReachOutBtn>
         </Section>
       </Content>
