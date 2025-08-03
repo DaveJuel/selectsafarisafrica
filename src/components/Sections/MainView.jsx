@@ -1,19 +1,16 @@
 // MainView.js
 import React, { useState } from "react";
 import styled from "styled-components";
-// import ItineraryView from "./ItineraryView";
 import { fetchEntityData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import BookTripModal from "../Elements/BookTripModal";
-import TravelPlanViewModal from "../Elements/TravelPlanViewModal";
 import SidebarView from "./SidebarView";
 import MainSectionView from "./MainSectionView";
+import ConfirmBookingModal from "../Elements/ConfirmBookingModal";
 
 export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
   const [selectedItinerary, setSelectedItinerary] = useState(null);
-  const [selectedItineraryActivities, setSelectedItiniraryActivities] =
-    useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     country: null,
@@ -22,7 +19,7 @@ export default function MainView() {
   });
   const [bookingData, setBookingData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState("itiniraries");
 
   const fetchItineraries = async () => {
@@ -69,16 +66,11 @@ export default function MainView() {
 
   const onBookItinerary = (itinerary, itiniraryActivities) => {
     setSelectedItinerary(itinerary);
-    setSelectedItiniraryActivities(itiniraryActivities);
     setIsModalOpen(true);
   };
 
-  const handlePreviewPlan = () => {
-    setIsPreviewModalOpen(true);
-  };
-
-  const closePreviewPlan = () => {
-    setIsPreviewModalOpen(false);
+  const handleConfirm = () => {
+    setIsConfirmModalOpen(true);
   };
 
   return (
@@ -109,15 +101,14 @@ export default function MainView() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         itinerary={selectedItinerary}
-        handlePreview={() => handlePreviewPlan()}
+        handlePreview={() => handleConfirm()}
         bookingData={bookingData}
         setBookingData={setBookingData}
       />
-      <TravelPlanViewModal
-        isOpen={isPreviewModalOpen}
-        onClose={() => closePreviewPlan()}
+      <ConfirmBookingModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
         itinerary={selectedItinerary}
-        itiniraryActivities={selectedItineraryActivities}
         bookingData={bookingData}
       />
     </MainWrapper>

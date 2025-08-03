@@ -114,14 +114,15 @@ const BookTripModal = ({
       if (validateForm()) {
         setIsSubmitting(true);
         await loginUser(publicUser, publicPass);
-        const response = await saveEntityData("bookings", {
+        const requestBody = {
           ...formData,
           status: defaultBookingStatus.id,
           itinerary: itinerary.id,
           booking_code: generateBookingCode(formData),
-        });
+        };
+        const response = await saveEntityData("bookings", requestBody);
         if (response.success) {
-          setBookingData(formData);
+          setBookingData(requestBody);
           setFormData({
             client_name: "",
             client_email: "",
@@ -209,9 +210,11 @@ const BookTripModal = ({
                       value={formData.client_name}
                       onChange={handleInputChange}
                       placeholder="Enter your full name"
-                      hasError={!!errors.name}
+                      hasError={!!errors.client_name}
                     />
-                    {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+                    {errors.client_name && (
+                      <ErrorMessage>{errors.client_name}</ErrorMessage>
+                    )}
                   </FormGroup>
                   <FormGroup>
                     <LabelWithIcon>
