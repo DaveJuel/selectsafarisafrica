@@ -120,10 +120,11 @@ export default function MainView() {
 const MainWrapper = styled.div`
   min-height: 100vh;
   background: rgba(0, 0, 0, 0.3);
-  background-image: url("/landing_bg.jpg");
+  background-image: url("/bg_image2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+   background-attachment: fixed;
   padding: 20px;
 `;
 
@@ -132,18 +133,17 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 400px 1fr;
-  gap: 30px;
-  height: calc(100vh - 40px); /* Fixed height instead of min-height */
+  gap: 10px;
+  height: calc(80vh - 20px);
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     gap: 20px;
-    height: auto; /* Allow natural height on mobile */
+    height: auto;
   }
 `;
 
 const ViewSection = styled.div`
-  background: rgba(248, 247, 247, 0.8);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);

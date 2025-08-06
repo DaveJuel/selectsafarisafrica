@@ -135,7 +135,7 @@ const FormWrapper = styled.div`
 const Form = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
 `;
 
 const FormGroup = styled.div`
@@ -145,8 +145,8 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  font-weight: 500;
-  color: #7e5b40;
+  font-weight: 900;
+  color: #ffffffff;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -229,7 +229,7 @@ const DaysDisplay = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  padding: 16px 24px;
+  padding: 14px 24px;
   border: none;
   border-radius: 12px;
   font-size: 16px;

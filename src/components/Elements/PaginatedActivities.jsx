@@ -123,18 +123,18 @@ const PaginatedActivities = ({
 const ActivitiesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 `;
 
 const ActivitiesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  min-height: 200px; // Prevents layout shift between pages
+  min-height: 200px;
 `;
 
 const ActivityChip = styled.button`
-  padding: 10px 12px;
+  padding: 5px 6px;
   border: 1px solid ${(props) => (props.selected ? "#7E5B40" : "#e1e8ed")};
   background: ${(props) => (props.selected ? "#7E5B40" : "white")};
   color: ${(props) => (props.selected ? "white" : "#7E5B40")};
@@ -157,7 +157,7 @@ const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 8px;
+  margin-top: 5px;
 `;
 
 const PaginationButton = styled.button`
