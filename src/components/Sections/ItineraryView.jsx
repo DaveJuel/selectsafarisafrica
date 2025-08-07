@@ -78,7 +78,6 @@ const Header = styled.div`
   text-align: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #f0f0f0;
 `;
 
 const HeaderTitle = styled.h2`

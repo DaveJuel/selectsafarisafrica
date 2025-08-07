@@ -187,7 +187,7 @@ const VideoColumn = styled.div`
   ${({ animate, position }) =>
     animate &&
     css`
-      animation: ${slideIn} 0.8s ease-out;
+      animation: ${slideIn} 0.14s ease-out;
       animation-delay: ${position * 0.2}s;
       animation-fill-mode: both;
     `}
