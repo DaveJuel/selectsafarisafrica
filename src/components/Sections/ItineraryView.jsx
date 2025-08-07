@@ -72,6 +72,7 @@ export default function ItineraryView({
 const ViewWrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding: 20px;
 `;
 
 const Header = styled.div`
@@ -85,9 +86,15 @@ const HeaderTitle = styled.h2`
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 8px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e4bc87;
 `;
 
 const HeaderSubtitle = styled.p`
-  color: #0e5033;
+  color: #e4bc87;
   font-size: 16px;
 `;

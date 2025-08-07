@@ -55,11 +55,6 @@ export default function MainView() {
   const toggleView = (view) => {
     setCurrentView(view);
     if (view === "itiniraries") {
-      setFormData({
-        country: null,
-        days: 3,
-        activities: [],
-      });
       setItineraries(null);
     }
   };
