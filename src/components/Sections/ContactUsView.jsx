@@ -25,7 +25,6 @@ export default function ContactUsView() {
     <ViewWrapper>
       <Header>
         <HeaderTitle>{t("reach_out")}</HeaderTitle>
-        <HeaderSubtitle>{t("reach_out_message")}</HeaderSubtitle>
       </Header>
 
       <Content>
@@ -49,19 +48,19 @@ const Header = styled.div`
   text-align: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #f0f0f0;
 `;
 
 const HeaderTitle = styled.h2`
   color: #0e5033;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: 700;
   margin-bottom: 8px;
-`;
-
-const HeaderSubtitle = styled.p`
-  color: #0e5033;
-  font-size: 16px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e4bc87;
 `;
 
 const Content = styled.div`

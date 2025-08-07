@@ -61,9 +61,8 @@ export default function SidebarView({
 }
 
 const SidebarSection = styled.div`
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
   border-radius: 16px;
-  padding: 21px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   height: 100%;
 `;
@@ -81,6 +80,8 @@ const SidebarHeaderSection = styled.div`
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 2px solid #0e5033;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -103,6 +104,7 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  margin-top: 21px;
 `;
 
 const NavigationLinks = styled.nav`
@@ -139,7 +141,7 @@ const NavLink = styled.a`
     props.active &&
     `
     background: rgba(18, 45, 34, 0.15);
-    color: #0e5033;
+    color: #e4bc87;
     font-weight: 600;
   `}
 

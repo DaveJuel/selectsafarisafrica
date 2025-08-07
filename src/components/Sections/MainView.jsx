@@ -145,7 +145,6 @@ const ContentContainer = styled.div`
 const ViewSection = styled.div`
   backdrop-filter: blur(5px);
   border-radius: 20px;
-  padding: 30px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   height: 100%; /* Take full height of grid cell */
   overflow-y: auto; /* Enable vertical scrolling */

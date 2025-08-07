@@ -121,7 +121,7 @@ const Header = styled.header`
     rgba(14, 80, 51, 0.08)
   );
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(16, 169, 105, 0.2);
+  border-bottom: 2px solid rgba(16, 169, 105, 0.2);
 `;
 
 const HeaderContent = styled.div`
@@ -142,6 +142,8 @@ const HeaderTitle = styled.h1`
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e4bc87;
   animation: ${shimmer} 3s ease-in-out infinite;
 
   @media (max-width: 768px) {
@@ -150,7 +152,7 @@ const HeaderTitle = styled.h1`
 `;
 
 const HeaderSubtitle = styled.p`
-  color: #0e5033;
+  color: #e4bc87;
   opacity: 0.8;
   font-size: 20px;
   font-weight: 300;

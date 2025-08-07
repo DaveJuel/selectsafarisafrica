@@ -130,6 +130,7 @@ export default function TouristForm({
 // Styled Components for TouristForm
 const FormWrapper = styled.div`
   width: 100%;
+  padding: 12px 21px;
 `;
 
 const Form = styled.div`
@@ -145,7 +146,7 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  font-weight: 900;
+  font-weight: 500;
   color: #ffffffff;
   font-size: 14px;
   text-transform: uppercase;

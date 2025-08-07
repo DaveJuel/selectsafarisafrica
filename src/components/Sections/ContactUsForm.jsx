@@ -127,8 +127,8 @@ const InputGroup = styled.div`
 
 const InputLabel = styled.label`
   font-size: 14px;
-  font-weight: 600;
-  color: #374151;
+  font-weight: 400;
+  color: #ffffffff;
   margin-bottom: 8px;
   transition: color 0.2s ease;
 `;

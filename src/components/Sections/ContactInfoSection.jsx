@@ -157,12 +157,12 @@ const SocialLink = styled.a`
     rgba(14, 80, 51, 0.1),
     rgba(22, 160, 133, 0.1)
   );
-  color: #0e5033;
+  color: #ffffffff;
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(14, 80, 51, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.33);
 
   &:hover {
     background: linear-gradient(135deg, #0e5033, #16a085);

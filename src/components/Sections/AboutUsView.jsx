@@ -56,7 +56,6 @@ export default function AboutUsView({ toggleView }) {
     <ViewWrapper>
       <Header>
         <HeaderTitle>{t("who_we_are")}</HeaderTitle>
-        <HeaderSubtitle>{t("get_to_know_us")}</HeaderSubtitle>
       </Header>
 
       <Content>
@@ -146,19 +145,19 @@ const Header = styled.div`
   text-align: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #f0f0f0;
 `;
 
 const HeaderTitle = styled.h2`
   color: #0e5033;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: 700;
   margin-bottom: 8px;
-`;
-
-const HeaderSubtitle = styled.p`
-  color: #0e5033;
-  font-size: 16px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e4bc87;
 `;
 
 const Content = styled.div`
@@ -171,15 +170,16 @@ const Section = styled.div`
 `;
 
 const SectionTitle = styled.h3`
-  color: #0e5033;
+  color: #E4BC87;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 15px;
   text-align: center;
+
 `;
 
 const SectionText = styled.p`
-  color: #666;
+  color: #E4BC87;
   font-size: 16px;
   line-height: 1.6;
   text-align: center;
@@ -192,6 +192,10 @@ const GridSection = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   margin-bottom: 40px;
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Card = styled.div`
@@ -265,7 +269,7 @@ const PartnerLogo = styled.img`
 `;
 
 const ReachOutBtn = styled.h3`
-  color: #0e5033;
+  color: #e4bc87;
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 15px;
@@ -276,7 +280,7 @@ const ReachOutBtn = styled.h3`
   &:hover {
     font-size: 22px;
     font-weight: 600;
-    color: #0b3e29;
+    color: #e4bc87;
     text-decoration: underline;
   }
 `;
