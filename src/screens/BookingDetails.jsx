@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { fetchEntityData } from "../utils/RequestHandler";
@@ -11,6 +11,8 @@ import LoadingSpinner from "../components/Elements/LoadingSpinner";
 import LogoComponent from "../assets/svg/Logo";
 import { emergencyContacts } from "../data/emergency.contacts";
 import StyledLongText from "../components/Inputs/StyledLongText";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -19,8 +21,8 @@ export default function BookingDetails() {
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-
   const { bookingCode } = useParams();
+  const printRef = useRef();
 
   useEffect(() => {
     const fetchBookingData = async () => {
@@ -105,6 +107,48 @@ export default function BookingDetails() {
 
   const renderedDays = [];
 
+  const handleDownloadPDF = async () => {
+    const element = printRef.current;
+
+    // Scroll to top so all elements render
+    window.scrollTo(0, 0);
+
+    // Capture element
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      ignoreElements: (el) => el.classList.contains("no-pdf")
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+
+    // PDF setup
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Image dimensions in PDF
+    const imgWidth = pdfWidth;
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // Add first page
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    // Add extra pages if content is longer
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    pdf.save("booking.pdf");
+  };
+
   return (
     <>
       {loading && <LoadingSpinner />}
@@ -112,7 +156,7 @@ export default function BookingDetails() {
         <EmptyStateView message={"Invalid booking code"} />
       )}
       {!loading && bookingData && (
-        <ContentContainer>
+        <ContentContainer ref={printRef}>
           {/* Header Section */}
           <HeaderSection>
             <CompanyCard>
@@ -167,7 +211,7 @@ export default function BookingDetails() {
                         <ContactIcon>
                           <img src="/icons/planet.png" alt="Email" />
                         </ContactIcon>
-                        {bookingData?.country_of_origin	 || ""}
+                        {bookingData?.country_of_origin || ""}
                       </TravelerEmail>
                     </TravelerDetails>
                   </TravelerInfo>
@@ -268,6 +312,7 @@ export default function BookingDetails() {
               </EmergencyGrid>
             </FooterContent>
           </FooterSection>
+          <ExportButton className="no-pdf" onClick={handleDownloadPDF}>Export as PDF</ExportButton>
         </ContentContainer>
       )}
     </>
@@ -712,7 +757,7 @@ const ActivityName = styled.h4`
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #2d3748;
+  color: #000000ff;
   flex: 1;
 `;
 
@@ -793,4 +838,26 @@ const EmergencyNumber = styled.div`
   color: #10a969;
   font-weight: 600;
   font-size: 16px;
+`;
+
+const ExportButton = styled.button`
+  background: #0e5435;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 auto 20px auto;
+  display: block;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #10a969;
+  }
+
+  @media print {
+    display: none;
+  }
 `;
