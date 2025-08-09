@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
-  console.log("=====================");
-  console.log(bookingData);
-  
   if (!isOpen) return null;
-  
+
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
@@ -18,16 +15,19 @@ const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
             <SuccessIcon>✓</SuccessIcon>
             <SuccessMessage>Booking confirmed successfully!</SuccessMessage>
           </SuccessContainer>
-          
+
           <InfoSection>
             <InfoText>
-              Our team will reach out to you shortly. Please save your booking reference for future correspondence.
+              Our team will reach out to you shortly. Please save your booking
+              reference for future correspondence.
             </InfoText>
-            
+
             <BookingCodeContainer>
               <BookingCodeLabel>Your Booking Code</BookingCodeLabel>
               <BookingCodeValue>{bookingData.booking_code}</BookingCodeValue>
-              <BookingCodeNote>Use this code for any follow-up inquiries</BookingCodeNote>
+              <BookingCodeNote>
+                Use this code for any follow-up inquiries
+              </BookingCodeNote>
             </BookingCodeContainer>
           </InfoSection>
         </ModalBody>
@@ -51,10 +51,14 @@ const ModalOverlay = styled.div`
   z-index: 1000;
   padding: 20px;
   animation: fadeIn 0.3s ease-out;
-  
+
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 `;
 
@@ -68,13 +72,13 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   animation: slideUp 0.3s ease-out;
-  
+
   @keyframes slideUp {
-    from { 
+    from {
       transform: translateY(20px);
       opacity: 0;
     }
-    to { 
+    to {
       transform: translateY(0);
       opacity: 1;
     }
@@ -111,7 +115,7 @@ const CloseButton = styled.button`
   justify-content: center;
   border-radius: 10px;
   transition: all 0.2s ease;
-  
+
   &:hover {
     background: #f8fafc;
     color: #475569;
@@ -126,16 +130,16 @@ const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  
+
   &::-webkit-scrollbar {
     width: 6px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: #f8f9fa;
     border-radius: 3px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, #10a969 0%, #0e5033 100%);
     border-radius: 3px;
@@ -164,9 +168,13 @@ const SuccessIcon = styled.div`
   margin-bottom: 16px;
   box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
   animation: bounce 0.6s ease-in-out;
-  
+
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
       transform: translateY(0);
     }
     40% {
@@ -208,9 +216,9 @@ const BookingCodeContainer = styled.div`
   text-align: center;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -233,7 +241,7 @@ const BookingCodeValue = styled.div`
   color: #1e293b;
   font-size: 28px;
   font-weight: 800;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   letter-spacing: 0.1em;
   margin-bottom: 8px;
   background: linear-gradient(135deg, #10a969 0%, #059669 100%);

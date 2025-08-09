@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
+  apiKey,
   fetchEntityData,
+  makeApiRequest,
   publicPass,
   publicUser,
   saveEntityData,
@@ -108,6 +110,24 @@ const BookTripModal = ({
     return Object.keys(newErrors).length === 0;
   };
 
+  const notifyCustomerSuccess = async (booking) => {
+    const bookingRequest = {
+      booking_code: booking.booking_code,
+      itinerary: itinerary.name,
+      contact: `Names: ${booking.client_name}, contact: ${booking.client_email}`,
+      preview_link: `https://selectsafarisafrica.com`,
+    };
+
+    const requestData = {
+      chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
+      api_key: apiKey,
+      message: {
+        booking: bookingRequest,
+      },
+    };
+    await makeApiRequest("/notification/notify/telegram", "POST", requestData);
+  };
+
   const handleBookTrip = async (e) => {
     e.preventDefault();
     try {
@@ -123,6 +143,7 @@ const BookTripModal = ({
         const response = await saveEntityData("bookings", requestBody);
         if (response.success) {
           setBookingData(requestBody);
+          await notifyCustomerSuccess(requestBody);
           setFormData({
             client_name: "",
             client_email: "",
