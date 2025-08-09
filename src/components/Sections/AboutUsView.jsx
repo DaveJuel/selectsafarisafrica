@@ -4,54 +4,6 @@ import { useTranslation } from "react-i18next";
 export default function AboutUsView({ toggleView }) {
   const { t } = useTranslation("about_us");
 
-  const partners = [
-    {
-      id: 1,
-      name: "BRAC",
-      logo: "/partners/brac.webp",
-    },
-    {
-      id: 2,
-      name: "Alpha Tours",
-      logo: "/partners/alpha-tours.webp",
-    },
-    {
-      id: 3,
-      name: "Clinton Foundation",
-      logo: "/partners/clinton-foundation.webp",
-    },
-    {
-      id: 4,
-      name: "ea-agro",
-      logo: "/partners/ea-agro.webp",
-    },
-    {
-      id: 5,
-      name: "kumudini cares",
-      logo: "/partners/kumudini-cares.webp",
-    },
-    {
-      id: 6,
-      name: "RaahQ",
-      logo: "/partners/raahq.webp",
-    },
-    {
-      id: 7,
-      name: "Satguru",
-      logo: "/partners/satguru.webp",
-    },
-    {
-      id: 8,
-      name: "Practical Action",
-      logo: "/partners/practical-action.webp",
-    },
-    {
-      id: 9,
-      name: "Waheguru",
-      logo: "/partners/waheguru-travels.webp",
-    },
-  ];
-
   return (
     <ViewWrapper>
       <Header>
@@ -115,17 +67,6 @@ export default function AboutUsView({ toggleView }) {
             </Card>
           </GridSection>
         </Section>
-
-        <PartnersSection>
-          <SectionTitle>{t("our_partners")}</SectionTitle>
-          <PartnerGrid>
-            {partners.map((partner) => (
-              <Partner key={partner.id}>
-                <PartnerLogo src={partner.logo} alt={`${partner.name} logo`} />
-              </Partner>
-            ))}
-          </PartnerGrid>
-        </PartnersSection>
         <Section>
           <ReachOutBtn onClick={() => toggleView("contact-us")}>
             {t("contact_us")}
@@ -226,46 +167,6 @@ const CardText = styled.p`
   color: #666;
   font-size: 14px;
   line-height: 1.5;
-`;
-
-const PartnersSection = styled.div`
-  margin: 50px 0;
-`;
-
-const PartnerGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const Partner = styled.div`
-  padding: 30px 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const PartnerLogo = styled.img`
-  width: 120px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 15px;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-
-  ${Partner}:hover & {
-    filter: grayscale(0%);
-  }
 `;
 
 const ReachOutBtn = styled.h3`
