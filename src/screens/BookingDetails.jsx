@@ -1,27 +1,56 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import LogoComponent from "../../assets/svg/Logo";
-import {
-  getFormattedTripDate,
-  sortItineraryActivities,
-} from "../../utils/DataHandler";
-import LoadingSpinner from "./LoadingSpinner";
-import { fetchEntityData } from "../../utils/RequestHandler";
-import StyledLongText from "../Inputs/StyledLongText";
-import { emergencyContacts } from "../../data/emergency.contacts";
+import { useParams } from "react-router-dom";
+import { fetchEntityData } from "../utils/RequestHandler";
+import { getFormattedTripDate, sortItineraryActivities } from "../utils/DataHandler";
+import EmptyStateView from "../components/Elements/EmptyStateView";
+import LoadingSpinner from "../components/Elements/LoadingSpinner";
+import LogoComponent from "../assets/svg/Logo";
+import { emergencyContacts } from "../data/emergency.contacts";
+import StyledLongText from "../components/Inputs/StyledLongText";
 
-export default function TravelPlanViewModal({
-  isOpen,
-  onClose,
-  itinerary,
-  itiniraryActivities,
-  bookingData,
-}) {
+export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
+  const [itinerary, setItinerary] = useState(null);
+  const [itiniraryActivities, setItineraryActivities] = useState([]);
+  const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
 
+  const { bookingCode } = useParams();
+
   useEffect(() => {
+    const fetchBookingData = async () => {
+      const response = await fetchEntityData("bookings");
+      if (response.success) {
+        const bookingDetails = response.result?.find(
+          (item) => item.booking_code === bookingCode
+        );
+        setBookingData(bookingDetails);
+        return bookingDetails;
+      }
+    };
+
+    const fetchItineraryData = async (itineraryName) => {
+      const response = await fetchEntityData("itineraries");
+      if (response.success) {
+        const itineraryData = response.result?.find(
+          (item) => item.name === itineraryName
+        );
+        setItinerary(itineraryData);
+      }
+    };
+
+    const fetchItineraryActivities = async (itineraryName) => {
+      const response = await fetchEntityData("itinirary_activities");
+      if (response.success) {
+        const itineraryActivitiesData = response.result?.filter(
+          (item) => item.itinerary === itineraryName
+        );
+        setItineraryActivities(itineraryActivitiesData);
+      }
+    };
+
     const fetchActivitiesDetails = async () => {
       try {
         setLoading(true);
@@ -36,8 +65,21 @@ export default function TravelPlanViewModal({
       }
     };
 
-    fetchActivitiesDetails();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const booking = await fetchBookingData();
+        await fetchItineraryData(booking.itinerary);
+        await fetchItineraryActivities(booking.itinerary);
+        await fetchActivitiesDetails();
+      } catch (error) {
+        console.error(`Failed fetching data`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [bookingCode]);
 
   useEffect(() => {
     if (activitiesDetails.length > 0) {
@@ -56,232 +98,158 @@ export default function TravelPlanViewModal({
     }
   }, [activitiesDetails, itiniraryActivities]);
 
-  const handleBackdropClick = (e) => {
-    onClose();
-  };
-
   const activities = sortItineraryActivities(itinerary, itiniraryActivities);
 
   const renderedDays = [];
 
-  if (!isOpen) return null;
+  if (!bookingData) return <EmptyStateView />;
 
   return (
-    <ModalOverlay onClick={handleBackdropClick}>
-      <ModalContainer>
-        <BackgroundOverlay />
-        {loading && <LoadingSpinner />}
-        {!loading && (
-          <ContentContainer>
-            {/* Header Section */}
-            <HeaderSection>
-              <CompanyCard>
-                <CompanySection>
-                  <CompanyLogo>
-                    <LogoComponent />
-                  </CompanyLogo>
-                  <CompanyInfo>
-                    <CompanyName>SELECT SAFARIS AFRICA</CompanyName>
-                    <ContactInfo>
-                      <ContactItem>
-                        <ContactIcon>📞</ContactIcon>
-                        <ContactText>+250 788 995 497</ContactText>
-                      </ContactItem>
-                      <ContactItem>
-                        <ContactIcon>✉️</ContactIcon>
-                        <ContactText>info@selectsafarisafrica.com</ContactText>
-                      </ContactItem>
-                      <ContactItem>
-                        <ContactIcon>🌐</ContactIcon>
-                        <ContactText>selectsafarisafrica.com</ContactText>
-                      </ContactItem>
-                    </ContactInfo>
-                  </CompanyInfo>
-                </CompanySection>
-              </CompanyCard>
+    <>
+      {loading && <LoadingSpinner />}
+      {!loading && (
+        <ContentContainer>
+          {/* Header Section */}
+          <HeaderSection>
+            <CompanyCard>
+              <CompanySection>
+                <CompanyLogo>
+                  <LogoComponent />
+                </CompanyLogo>
+                <CompanyInfo>
+                  <CompanyName>SELECT SAFARIS AFRICA</CompanyName>
+                  <ContactInfo>
+                    <ContactItem>
+                      <ContactIcon>📞</ContactIcon>
+                      <ContactText>+250 788 995 497</ContactText>
+                    </ContactItem>
+                    <ContactItem>
+                      <ContactIcon>✉️</ContactIcon>
+                      <ContactText>info@selectsafarisafrica.com</ContactText>
+                    </ContactItem>
+                    <ContactItem>
+                      <ContactIcon>🌐</ContactIcon>
+                      <ContactText>selectsafarisafrica.com</ContactText>
+                    </ContactItem>
+                  </ContactInfo>
+                </CompanyInfo>
+              </CompanySection>
+            </CompanyCard>
 
-              <TravelerCard>
-                <TravelerSection>
-                  <SectionHeader>
-                    <TravelerIcon>👤</TravelerIcon>
-                    <SectionTitle>TOURIST</SectionTitle>
-                  </SectionHeader>
-                  <TravelerContent>
-                    <TravelerInfo>
-                      <TravelerAvatar>
-                        {(bookingData?.client_name || "")
-                          ?.charAt(0)
-                          ?.toUpperCase()}
-                      </TravelerAvatar>
-                      <TravelerDetails>
-                        <TravelerName>
-                          {bookingData?.client_name || ""}
-                        </TravelerName>
-                        <TravelerEmail>
-                          <EmailIcon>✉️</EmailIcon>
-                          {bookingData?.client_email || ""}
-                        </TravelerEmail>
-                      </TravelerDetails>
-                    </TravelerInfo>
-                  </TravelerContent>
-                </TravelerSection>
-              </TravelerCard>
-            </HeaderSection>
+            <TravelerCard>
+              <TravelerSection>
+                <SectionHeader>
+                  <TravelerIcon>👤</TravelerIcon>
+                  <SectionTitle>TOURIST</SectionTitle>
+                </SectionHeader>
+                <TravelerContent>
+                  <TravelerInfo>
+                    <TravelerAvatar>
+                      {(bookingData?.client_name || "")
+                        ?.charAt(0)
+                        ?.toUpperCase()}
+                    </TravelerAvatar>
+                    <TravelerDetails>
+                      <TravelerName>
+                        {bookingData?.client_name || ""}
+                      </TravelerName>
+                      <TravelerEmail>
+                        <EmailIcon>✉️</EmailIcon>
+                        {bookingData?.client_email || ""}
+                      </TravelerEmail>
+                    </TravelerDetails>
+                  </TravelerInfo>
+                </TravelerContent>
+              </TravelerSection>
+            </TravelerCard>
+          </HeaderSection>
 
-            {/* Body Section - Itinerary */}
-            <BodySection>
-              <ItineraryHeader>
-                <ItineraryTitle>{itinerary.name}</ItineraryTitle>
-                <TotalCost>Complete package: ${totalCost}</TotalCost>
-              </ItineraryHeader>
+          {/* Body Section - Itinerary */}
+          <BodySection>
+            <ItineraryHeader>
+              <ItineraryTitle>{itinerary?.name}</ItineraryTitle>
+              <TotalCost>Complete package: ${totalCost}</TotalCost>
+            </ItineraryHeader>
 
-              <DaysContainer>
-                {activities?.map((activity, index) => {
-                  if (renderedDays.includes(activity.day)) return null;
-                  renderedDays.push(activity.day);
-                  const dailyActivities = activities?.filter(
-                    (item) => item.day === activity.day
-                  );
+            <DaysContainer>
+              {activities?.map((activity, index) => {
+                if (renderedDays.includes(activity.day)) return null;
+                renderedDays.push(activity.day);
+                const dailyActivities = activities?.filter(
+                  (item) => item.day === activity.day
+                );
 
-                  return (
-                    <DayCard key={index}>
-                      <DayHeader>
-                        <DayNumber>Day {activity.day}</DayNumber>
-                        <DayDate>
-                          {getFormattedTripDate(
-                            bookingData.trip_start_date,
-                            activity.day
-                          )}
-                        </DayDate>
-                      </DayHeader>
-
-                      <ActivitiesContainer>
-                        {dailyActivities.map(
-                          (dailyActivity, dailyActivityIndex) => {
-                            const activityInfo = activitiesDetails?.find(
-                              (item) => item.name === dailyActivity.activity
-                            );
-                            return (
-                              <ActivityCard key={dailyActivityIndex}>
-                                <ActivityHeader>
-                                  <ActivityName>
-                                    {activityInfo.name}
-                                  </ActivityName>
-                                  <ActivityCost>
-                                    ${activityInfo.estimated_cost}
-                                  </ActivityCost>
-                                </ActivityHeader>
-
-                                <ActivityDetails>
-                                  <ActivityDescription>
-                                    <StyledLongText
-                                      value={activityInfo.description}
-                                      maxLength={2000}
-                                    />
-                                  </ActivityDescription>
-                                  <ActivityMeta>
-                                    <MetaItem>
-                                      🕐 Starts: {dailyActivity.time}
-                                    </MetaItem>
-                                    <MetaItem>
-                                      ⏱️ Lasts about {dailyActivity.duration}
-                                    </MetaItem>
-                                  </ActivityMeta>
-                                </ActivityDetails>
-                              </ActivityCard>
-                            );
-                          }
+                return (
+                  <DayCard key={index}>
+                    <DayHeader>
+                      <DayNumber>Day {activity.day}</DayNumber>
+                      <DayDate>
+                        {getFormattedTripDate(
+                          bookingData.trip_start_date,
+                          activity.day
                         )}
-                      </ActivitiesContainer>
-                    </DayCard>
-                  );
-                })}
-              </DaysContainer>
-            </BodySection>
+                      </DayDate>
+                    </DayHeader>
 
-            {/* Footer Section */}
-            <FooterSection>
-              <FooterTitle>Emergency Contacts</FooterTitle>
-              <EmergencyGrid>
-                {emergencyContacts.map((contact, index) => (
-                  <EmergencyCard key={index}>
-                    <EmergencyService>{contact.service}</EmergencyService>
-                    <EmergencyNumber>{contact.number}</EmergencyNumber>
-                  </EmergencyCard>
-                ))}
-              </EmergencyGrid>
-            </FooterSection>
-          </ContentContainer>
-        )}
-      </ModalContainer>
-    </ModalOverlay>
+                    <ActivitiesContainer>
+                      {dailyActivities.map(
+                        (dailyActivity, dailyActivityIndex) => {
+                          const activityInfo = activitiesDetails?.find(
+                            (item) => item.name === dailyActivity.activity
+                          );
+                          return (
+                            <ActivityCard key={dailyActivityIndex}>
+                              <ActivityHeader>
+                                <ActivityName>{activityInfo.name}</ActivityName>
+                                <ActivityCost>
+                                  ${activityInfo.estimated_cost}
+                                </ActivityCost>
+                              </ActivityHeader>
+
+                              <ActivityDetails>
+                                <ActivityDescription>
+                                  <StyledLongText
+                                    value={activityInfo.description}
+                                    maxLength={2000}
+                                  />
+                                </ActivityDescription>
+                                <ActivityMeta>
+                                  <MetaItem>
+                                    🕐 Starts: {dailyActivity.time}
+                                  </MetaItem>
+                                  <MetaItem>
+                                    ⏱️ Lasts about {dailyActivity.duration}
+                                  </MetaItem>
+                                </ActivityMeta>
+                              </ActivityDetails>
+                            </ActivityCard>
+                          );
+                        }
+                      )}
+                    </ActivitiesContainer>
+                  </DayCard>
+                );
+              })}
+            </DaysContainer>
+          </BodySection>
+
+          {/* Footer Section */}
+          <FooterSection>
+            <FooterTitle>Emergency Contacts</FooterTitle>
+            <EmergencyGrid>
+              {emergencyContacts?.map((contact, index) => (
+                <EmergencyCard key={index}>
+                  <EmergencyService>{contact.service}</EmergencyService>
+                  <EmergencyNumber>{contact.number}</EmergencyNumber>
+                </EmergencyCard>
+              ))}
+            </EmergencyGrid>
+          </FooterSection>
+        </ContentContainer>
+      )}
+    </>
   );
 }
-
-// Styled Components
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-  overflow: auto;
-  backdrop-filter: blur(4px);
-`;
-
-const ModalContainer = styled.div`
-  background: rgba(0, 0, 0, 0.3);
-  background-image: url("/plan_bg_image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 16px;
-  width: 95%;
-  max-width: 1200px;
-  max-height: 95vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  animation: modalSlideIn 0.3s ease-out;
-
-  @keyframes modalSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  @media print {
-    max-width: 100%;
-    max-height: none;
-    overflow: visible;
-    box-shadow: none;
-    padding: 0;
-  }
-`;
-
-const BackgroundOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(179, 175, 175, 0);
-  z-index: -1;
-
-  @media print {
-    display: none;
-  }
-`;
 
 const ContentContainer = styled.div`
   max-width: 1200px;
@@ -743,7 +711,7 @@ const ActivityMeta = styled.div`
 
 const MetaItem = styled.div`
   font-size: 14px;
-  color: #0E5134;
+  color: #0e5134;
   font-weight: 500;
   display: flex;
   align-items: center;

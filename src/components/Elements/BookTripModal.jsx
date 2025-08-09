@@ -111,11 +111,13 @@ const BookTripModal = ({
   };
 
   const notifyCustomerSuccess = async (booking) => {
+    const appUrl = process.env.REACT_APP_APP_URL;
     const bookingRequest = {
       booking_code: booking.booking_code,
       itinerary: itinerary.name,
-      contact: `Names: ${booking.client_name}, contact: ${booking.client_email}`,
-      preview_link: `https://selectsafarisafrica.com`,
+      names: booking.client_name,
+      contact: booking.client_email,
+      preview_link: `${appUrl}/booking/${booking.booking_code}`,
     };
 
     const requestData = {

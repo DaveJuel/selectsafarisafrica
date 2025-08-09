@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import MainLayout from "./components/Layouts/MainLayout.js";
 // Screens
 import Landing from "./screens/Landing.jsx";
+import BookingDetails from "./screens/BookingDetails.jsx";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Landing />} />
           <Route path="/home" element={<Landing />} />
+          <Route path="/booking/:bookingCode" element={<BookingDetails />} />
         </Route>
       </Routes>
     </>
