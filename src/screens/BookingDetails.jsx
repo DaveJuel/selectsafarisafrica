@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { fetchEntityData } from "../utils/RequestHandler";
-import { getFormattedTripDate, sortItineraryActivities } from "../utils/DataHandler";
+import {
+  getFormattedTripDate,
+  sortItineraryActivities,
+} from "../utils/DataHandler";
 import EmptyStateView from "../components/Elements/EmptyStateView";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
 import LogoComponent from "../assets/svg/Logo";
@@ -102,12 +105,13 @@ export default function BookingDetails() {
 
   const renderedDays = [];
 
-  if (!bookingData) return <EmptyStateView />;
-
   return (
     <>
       {loading && <LoadingSpinner />}
-      {!loading && (
+      {!loading && !bookingData && (
+        <EmptyStateView message={"Invalid booking code"} />
+      )}
+      {!loading && bookingData && (
         <ContentContainer>
           {/* Header Section */}
           <HeaderSection>
@@ -120,15 +124,21 @@ export default function BookingDetails() {
                   <CompanyName>SELECT SAFARIS AFRICA</CompanyName>
                   <ContactInfo>
                     <ContactItem>
-                      <ContactIcon>📞</ContactIcon>
+                      <ContactIcon>
+                        <img src="/icons/smartphone.png" alt="Contact" />
+                      </ContactIcon>
                       <ContactText>+250 788 995 497</ContactText>
                     </ContactItem>
                     <ContactItem>
-                      <ContactIcon>✉️</ContactIcon>
+                      <ContactIcon>
+                        <img src="/icons/mail2.png" alt="Email" />
+                      </ContactIcon>
                       <ContactText>info@selectsafarisafrica.com</ContactText>
                     </ContactItem>
                     <ContactItem>
-                      <ContactIcon>🌐</ContactIcon>
+                      <ContactIcon>
+                        <img src="/icons/world-wide-web.png" alt="Email" />
+                      </ContactIcon>
                       <ContactText>selectsafarisafrica.com</ContactText>
                     </ContactItem>
                   </ContactInfo>
@@ -139,23 +149,25 @@ export default function BookingDetails() {
             <TravelerCard>
               <TravelerSection>
                 <SectionHeader>
-                  <TravelerIcon>👤</TravelerIcon>
-                  <SectionTitle>TOURIST</SectionTitle>
+                  <TravelerIcon>
+                    <img src="/icons/traveler.png" alt="Email" />
+                  </TravelerIcon>
+                  <SectionTitle>{bookingData?.client_name || ""}</SectionTitle>
                 </SectionHeader>
                 <TravelerContent>
                   <TravelerInfo>
-                    <TravelerAvatar>
-                      {(bookingData?.client_name || "")
-                        ?.charAt(0)
-                        ?.toUpperCase()}
-                    </TravelerAvatar>
                     <TravelerDetails>
-                      <TravelerName>
-                        {bookingData?.client_name || ""}
-                      </TravelerName>
                       <TravelerEmail>
-                        <EmailIcon>✉️</EmailIcon>
+                        <ContactIcon>
+                          <img src="/icons/contact-book.png" alt="Email" />
+                        </ContactIcon>
                         {bookingData?.client_email || ""}
+                      </TravelerEmail>
+                      <TravelerEmail>
+                        <ContactIcon>
+                          <img src="/icons/planet.png" alt="Email" />
+                        </ContactIcon>
+                        {bookingData?.country_of_origin	 || ""}
                       </TravelerEmail>
                     </TravelerDetails>
                   </TravelerInfo>
@@ -199,29 +211,38 @@ export default function BookingDetails() {
                           );
                           return (
                             <ActivityCard key={dailyActivityIndex}>
-                              <ActivityHeader>
-                                <ActivityName>{activityInfo.name}</ActivityName>
-                                <ActivityCost>
-                                  ${activityInfo.estimated_cost}
-                                </ActivityCost>
-                              </ActivityHeader>
-
-                              <ActivityDetails>
-                                <ActivityDescription>
-                                  <StyledLongText
-                                    value={activityInfo.description}
-                                    maxLength={2000}
-                                  />
-                                </ActivityDescription>
-                                <ActivityMeta>
-                                  <MetaItem>
-                                    🕐 Starts: {dailyActivity.time}
-                                  </MetaItem>
-                                  <MetaItem>
-                                    ⏱️ Lasts about {dailyActivity.duration}
-                                  </MetaItem>
-                                </ActivityMeta>
-                              </ActivityDetails>
+                              <ActivityImageContainer>
+                                <ActivityImage
+                                  src={activityInfo.image}
+                                  alt={activityInfo.name}
+                                />
+                              </ActivityImageContainer>
+                              <ActivityContent>
+                                <ActivityHeader>
+                                  <ActivityName>
+                                    {activityInfo.name}
+                                  </ActivityName>
+                                  <ActivityCost>
+                                    ${activityInfo.estimated_cost}
+                                  </ActivityCost>
+                                </ActivityHeader>
+                                <ActivityDetails>
+                                  <ActivityDescription>
+                                    <StyledLongText
+                                      value={activityInfo.description}
+                                      maxLength={2000}
+                                    />
+                                  </ActivityDescription>
+                                  <ActivityMeta>
+                                    <MetaItem>
+                                      🕐 Starts: {dailyActivity.time}
+                                    </MetaItem>
+                                    <MetaItem>
+                                      ⏱️ Lasts about {dailyActivity.duration}
+                                    </MetaItem>
+                                  </ActivityMeta>
+                                </ActivityDetails>
+                              </ActivityContent>
                             </ActivityCard>
                           );
                         }
@@ -235,15 +256,17 @@ export default function BookingDetails() {
 
           {/* Footer Section */}
           <FooterSection>
-            <FooterTitle>Emergency Contacts</FooterTitle>
-            <EmergencyGrid>
-              {emergencyContacts?.map((contact, index) => (
-                <EmergencyCard key={index}>
-                  <EmergencyService>{contact.service}</EmergencyService>
-                  <EmergencyNumber>{contact.number}</EmergencyNumber>
-                </EmergencyCard>
-              ))}
-            </EmergencyGrid>
+            <FooterContent>
+              <FooterTitle>Emergency Contacts</FooterTitle>
+              <EmergencyGrid>
+                {emergencyContacts?.map((contact, index) => (
+                  <EmergencyCard key={index}>
+                    <EmergencyService>{contact.service}</EmergencyService>
+                    <EmergencyNumber>{contact.number}</EmergencyNumber>
+                  </EmergencyCard>
+                ))}
+              </EmergencyGrid>
+            </FooterContent>
           </FooterSection>
         </ContentContainer>
       )}
@@ -252,10 +275,13 @@ export default function BookingDetails() {
 }
 
 const ContentContainer = styled.div`
-  max-width: 1200px;
+  padding: 40px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0);
-  border-radius: 20px;
+  background-image: url("/bg_image2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 
@@ -342,7 +368,7 @@ const ContactItem = styled.div`
 
 const ContactText = styled.span`
   font-size: 16px;
-  color: #4a5568;
+  color: #e4bc87;
   font-weight: 500;
   transition: color 0.2s ease;
 
@@ -354,12 +380,6 @@ const ContactText = styled.span`
 const CompanyCard = styled.div`
   padding: 24px;
   transition: all 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
-  }
 
   @media (max-width: 768px) {
     padding: 20px;
@@ -400,9 +420,13 @@ const ContactIcon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  background: linear-gradient(135deg, #e4bc87 0%, #e4bc87 100%);
   border-radius: 8px;
   flex-shrink: 0;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const TravelerSection = styled.div`
@@ -431,6 +455,10 @@ const TravelerIcon = styled.div`
   border-radius: 10px;
   color: white;
   box-shadow: 0 2px 8px rgba(115, 72, 44, 0.2);
+  img {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -511,13 +539,9 @@ const TravelerEmail = styled.div`
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #4a5568;
+  color: #e4bc87;
   font-weight: 500;
   transition: color 0.2s ease;
-
-  ${TravelerInfo}:hover & {
-    color: #73482c;
-  }
 `;
 
 const TravelerCard = styled.div`
@@ -528,12 +552,6 @@ const TravelerCard = styled.div`
   min-height: 168px;
   background: rgba(248, 247, 247, 0.25);
   backdrop-filter: blur(15px);
-
-  &:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
-  }
 
   @media (max-width: 768px) {
     padding: 20px;
@@ -572,18 +590,6 @@ const TravelerCard = styled.div`
   }
 `;
 
-const EmailIcon = styled.span`
-  font-size: 16px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(115, 72, 44, 0.1);
-  border-radius: 6px;
-  flex-shrink: 0;
-`;
-
 const BodySection = styled.div`
   padding: 30px;
 `;
@@ -601,19 +607,21 @@ const ItineraryTitle = styled.h1`
   margin: 0 0 10px 0;
   font-size: 36px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffffff 0%, #ffffffff 100%);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e4bc87;
 `;
 
 const TotalCost = styled.div`
   display: inline-block;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #10a969 0%, #0e5033 100%);
-  color: white;
-  border-radius: 25px;
-  font-weight: 600;
+  color: #e4bc87;
+  font-weight: 500;
   font-size: 18px;
+  text-transform: uppercase;
 `;
 
 const DaysContainer = styled.div`
@@ -657,16 +665,39 @@ const ActivitiesContainer = styled.div`
 `;
 
 const ActivityCard = styled.div`
+  display: flex;
+  gap: 16px;
   padding: 20px;
   background: rgba(102, 126, 234, 0.02);
   border-radius: 12px;
   border: 1px solid rgba(102, 126, 234, 0.1);
   transition: all 0.3s ease;
-
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.1);
   }
+`;
+
+const ActivityImageContainer = styled.div`
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const ActivityImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+const ActivityContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const ActivityHeader = styled.div`
@@ -719,6 +750,11 @@ const MetaItem = styled.div`
 `;
 
 const FooterSection = styled.div`
+  padding: 30px;
+`;
+
+const FooterContent = styled.div`
+  border-radius: 16px;
   padding: 30px;
   background: rgba(248, 247, 247, 0.33);
   backdrop-filter: blur(30px);
