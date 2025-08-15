@@ -2,7 +2,12 @@ export const adventuresVideos = [
   {
     country: "Rwanda",
     videos: [
-      { video: "/videos/rw/safari_localmarket.mp4", caption: "rw_local_markets" },
+      { video: "/videos/rw/safari_localmarket.mp4", 
+        caption: "rw_local_markets", 
+        country: "Rwanda", 
+        city: "Kigali",
+        description: "<section class='market'>\n  <h2>Kimironko Market, Kigali</h2>\n  <p>Step into Kigali’s most buzzing marketplace, where color spills from every stall and friendly greetings echo through the aisles. Kimironko is where everyday Kigali life unfolds—ripe fruit stacked like artwork, tailors measuring fabric against shoulders, and the scent of fresh herbs drifting past handwoven baskets.</p>\n  <div class='highlights'>\n    <h3>Why you’ll love it</h3>\n    <ul>\n      <li><strong>Textiles & tailors:</strong> Pick vibrant kitenge prints and ask on-site tailors to turn them into custom pieces—often fast enough to wear on your trip.</li>\n      <li><strong>Handcrafted souvenirs:</strong> Find iconic <em>agaseke</em> peace baskets, pottery, wooden carvings, and jewelry that carry Rwanda’s craft heritage home with you.</li>\n      <li><strong>Fresh flavors:</strong> Mingle with locals as you sample tropical fruit, vegetables, coffee beans, and spices—perfect for a picnic or gifts.</li>\n      <li><strong>Everyday Kigali:</strong> This is the city’s heartbeat—lively, organized, and warmly welcoming to visitors.</li>\n    </ul>\n  </div>\n  <div class='tips'>\n    <h3>Quick tips</h3>\n    <ul>\n      <li>Bring cash (RWF); many stalls don’t take cards.</li>\n      <li>Friendly bargaining is normal—start low, smile, and enjoy the exchange.</li>\n      <li>Ask before taking photos of people or their stalls.</li>\n      <li>Wear comfy shoes; it can get lively and you’ll want to explore every corner.</li>\n    </ul>\n  </div>\n  <p class='cta'><em>Give yourself an hour or two. You’ll leave with something beautiful—and a story stitched into every thread.</em></p>\n</section>"
+      },
       { video: "/videos/rw/safari_kingpalce.mp4", caption: "rw_kings_palace" },
       { video: "/videos/rw/safari_gorilla2.mp4", caption: "rw_mountain_gorillas" },
       { video: "/videos/rw/safari_lakes2.mp4", caption: "rw_lakes" },
