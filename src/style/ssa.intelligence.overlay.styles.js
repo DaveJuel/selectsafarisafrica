@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 
-export const OverlayBody = styled.div`
+export const EmptyState = styled.div`
   flex: 1;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(228, 188, 135, 0.8);
+  font-size: 0.95rem;
+  font-style: italic;
+`;
+
+// Only these two components need to change:
+
+export const ChatHistory = styled.div`
+  max-height: 300px;
+  overflow-y: auto;display: flex;
   flex-direction: column;
-  padding: 1.5rem 2rem;
-  overflow-y: auto;
-  
+  gap: 0.75rem;
+  /* Your existing scrollbar styles */
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -23,28 +34,13 @@ export const OverlayBody = styled.div`
   }
 `;
 
-export const EmptyState = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(228, 188, 135, 0.8);
-  font-size: 0.95rem;
-  font-style: italic;
-`;
-
-export const ChatHistory = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-`;
 
 export const MessageBubble = styled.div`
   max-width: 70%;
   padding: 0.75rem 1rem;
   border-radius: 12px;
   background: ${({ isUser }) => (isUser ? '#0D482E' : 'rgba(228, 188, 135, 0.2)')};
-  color: ${({ isUser }) => (isUser ? '#fff' : '#0D482E')};
+  color: ${({ isUser }) => (isUser ? '#fff' : '#e4bc87')};
   align-self: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
   word-wrap: break-word;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);

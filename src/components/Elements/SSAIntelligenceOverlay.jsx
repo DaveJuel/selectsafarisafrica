@@ -1,12 +1,11 @@
-import { useTranslation } from "react-i18next";
 import {
   CloseButton,
   HeaderTitle,
-  OverlayBody,
   OverlayFooter,
   OverlayHeader,
   SidePanelContent,
   SidePanelOverlay,
+  OverlayBody
 } from "../../style/video.detail.overlay.styles";
 import {
   ChatHistory,
@@ -26,7 +25,6 @@ const SSAIntelligenceOverlay = ({
   onClose,
   videoPosition,
 }) => {
-  const { t } = useTranslation("adventures");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [awaitingReply, setAwaitingReply] = useState(false);
@@ -39,22 +37,41 @@ const SSAIntelligenceOverlay = ({
 
   if (!isVisible || !videoPosition) return null;
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!message.trim()) return;
 
-    // Add user message
     setMessages((prev) => [...prev, { sender: "user", content: message }]);
     setMessage("");
-
-    // Simulate AI response
     setAwaitingReply(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/chat/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, video }),
+      });
+
+      const data = await response.json();
+
+      let aiReply = data.reply;
+      try {
+        const parsed = JSON.parse(data.reply);
+        if (parsed.reply) {
+          aiReply = parsed.reply;
+        }
+      } catch (e) {
+        aiReply = data.reply;
+      }
+
+      setMessages((prev) => [...prev, { sender: "ai", content: aiReply }]);
+    } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { sender: "ai", content: "This is a response from the expert." },
+        { sender: "ai", content: `⚠️ Network error: ${err.message}` },
       ]);
+    } finally {
       setAwaitingReply(false);
-    }, 1000);
+    }
   };
 
   const isLeftSide = videoIndex >= 2;
@@ -63,7 +80,7 @@ const SSAIntelligenceOverlay = ({
     <SidePanelOverlay isLeftSide={isLeftSide}>
       <SidePanelContent>
         <OverlayHeader>
-          <HeaderTitle>{t(video?.caption)}</HeaderTitle>
+          <HeaderTitle>EXPERT'S GUIDANCE</HeaderTitle>
           <CloseButton onClick={onClose}>
             <svg
               width="16"
@@ -103,7 +120,7 @@ const SSAIntelligenceOverlay = ({
           <InputContainer>
             <TextInput
               type="text"
-              placeholder="Type here..."
+              placeholder="Ask here..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
