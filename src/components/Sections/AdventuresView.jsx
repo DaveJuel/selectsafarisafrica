@@ -94,65 +94,71 @@ export default function AdventuresView({ formData }) {
           <HeaderSubtitle>{t("elevate_experience_message")}</HeaderSubtitle>
         </HeaderContent>
       </Header>
+
       {!hasLoaded && <LoadingSpinner />}
+
       {hasLoaded && (
         <VideoGrid>
           {videoOrder?.length > 1 &&
-            videoOrder?.map((videoIndex, position) => (
-              <>
-                <VideoColumn
-                  key={`${videoIndex}-${position}`}
-                  position={position}
-                  animate={hasLoaded}
-                >
-                  <VideoContainer>
-                    <StyledVideo
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      src={videos[videoIndex]?.video}
-                    />
-                    <CaptionOverlay
-                      onMouseEnter={(event) => {
-                        if (!overlayLocked) {
-                          setHoveredVideo(videos[videoIndex]);
-                          setHoveredVideoIndex(videoIndex);
-                          setVideoPosition(getVideoPosition(event));
-                          setOverlayLocked(true);
-                          setActiveOverlay("videoDetail");
-                        }
-                      }}
-                    >
-                      <CaptionText>
-                        {t(videos[videoIndex]?.caption)}
-                      </CaptionText>
-                    </CaptionOverlay>
-                  </VideoContainer>
-                </VideoColumn>
-                <VideoDetailOverlay
-                  video={hoveredVideo}
-                  isVisible={activeOverlay === "videoDetail"}
-                  videoIndex={hoveredVideoIndex}
-                  videoPosition={videoPosition}
-                  onClose={() => {
-                    setHoveredVideo(null);
-                    setHoveredVideoIndex(null);
-                    setVideoPosition(null);
-                    setOverlayLocked(false);
-                    setActiveOverlay(null);
-                  }}
-                  onTalkToExpert={() => setActiveOverlay("expert")}
-                />
-                <SSAIntelligenceOverlay
-                  video={hoveredVideo}
-                  isVisible={activeOverlay === "expert"}
-                  videoIndex={hoveredVideoIndex}
-                  onClose={() => setActiveOverlay("videoDetail")}
-                  videoPosition={videoPosition}
-                />
-              </>
+            videoOrder.map((videoIndex, position) => (
+              <VideoColumn
+                key={`${videoIndex}-${position}`}
+                position={position}
+                animate={hasLoaded}
+              >
+                <VideoContainer>
+                  <StyledVideo
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    src={videos[videoIndex]?.video}
+                  />
+                  <CaptionOverlay
+                    onMouseEnter={(event) => {
+                      if (!overlayLocked) {
+                        setHoveredVideo(videos[videoIndex]);
+                        setHoveredVideoIndex(videoIndex);
+                        setVideoPosition(getVideoPosition(event));
+                        setOverlayLocked(true);
+                        setActiveOverlay("videoDetail");
+                      }
+                    }}
+                  >
+                    <CaptionText>{t(videos[videoIndex]?.caption)}</CaptionText>
+                  </CaptionOverlay>
+                </VideoContainer>
+              </VideoColumn>
             ))}
+
+          <VideoDetailOverlay
+            video={hoveredVideo}
+            isVisible={activeOverlay === "videoDetail"}
+            videoIndex={hoveredVideoIndex}
+            videoPosition={videoPosition}
+            onClose={() => {
+              setHoveredVideo(null);
+              setHoveredVideoIndex(null);
+              setVideoPosition(null);
+              setOverlayLocked(false);
+              setActiveOverlay(null);
+            }}
+            onTalkToExpert={() => setActiveOverlay("expert")}
+          />
+
+          <SSAIntelligenceOverlay
+            video={hoveredVideo}
+            isVisible={activeOverlay === "expert"}
+            videoIndex={hoveredVideoIndex}
+            onClose={() => {
+              setHoveredVideo(null);
+              setHoveredVideoIndex(null);
+              setVideoPosition(null);
+              setOverlayLocked(false);
+              setActiveOverlay(null);
+            }}
+            videoPosition={videoPosition}
+          />
         </VideoGrid>
       )}
     </ViewWrapper>
