@@ -136,10 +136,7 @@ const SSAIntelligenceOverlay = ({
     const initiateConversation = async () => {
       try {
         setAwaitingReply(true);
-
         const { caption, country, city } = video;
-        console.log("------------------");
-        console.log(video);
         const greetingMessage = `Hello! I'd like to know about ${t(
           caption
         )} in ${country}. details I want: budget, recommended visit time, what I need to carry and other details you find relevant.`;
@@ -165,7 +162,7 @@ const SSAIntelligenceOverlay = ({
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, awaitingReply]);
+  }, [isVisible, messages, awaitingReply]);
 
   if (!isVisible || !videoPosition) return null;
 

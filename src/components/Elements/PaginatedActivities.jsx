@@ -40,8 +40,6 @@ const PaginatedActivities = ({
   useEffect(() => {
     const filterCountryActivities = () => {
       if (formData.country) {
-        console.log("===============");
-        console.log(formData);
         setActivities(
           allActivities.filter(
             (activity) => activity.country === formData.country

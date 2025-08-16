@@ -116,10 +116,11 @@ export default function AdventuresView({ formData }) {
                   />
                   <CaptionOverlay
                     onMouseEnter={(event) => {
+                      if (activeOverlay) return;
+                      setHoveredVideo(videos[videoIndex]);
+                      setHoveredVideoIndex(videoIndex);
+                      setVideoPosition(getVideoPosition(event));
                       if (!overlayLocked) {
-                        setHoveredVideo(videos[videoIndex]);
-                        setHoveredVideoIndex(videoIndex);
-                        setVideoPosition(getVideoPosition(event));
                         setOverlayLocked(true);
                         setActiveOverlay("videoDetail");
                       }

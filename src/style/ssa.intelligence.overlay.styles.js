@@ -44,6 +44,7 @@ export const MessageBubble = styled.div`
   align-self: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
   word-wrap: break-word;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  white-space: pre-wrap;
 `;
 
 export const TypingIndicator = styled.div`
