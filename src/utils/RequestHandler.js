@@ -2,6 +2,7 @@ import { isUserLoggedIn, loginUser } from "./AuthHandler";
 
 export const apiKey = process.env.REACT_APP_API_KEY;
 export const appUrl = process.env.REACT_APP_API_URL;
+export const intelligenceUrl = process.env.REACT_APP_INTELLIGENCE_URL;
 export const publicUser = process.env.REACT_APP_PUBLIC_USERNAME;
 export const publicPass = process.env.REACT_APP_PUBLIC_USERPASS;
 

@@ -22,6 +22,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   apiKey,
+  intelligenceUrl,
   fetchEntityData,
   makeApiRequest,
 } from "../../utils/RequestHandler";
@@ -95,7 +96,7 @@ const SSAIntelligenceOverlay = ({
     userReplyType,
   }) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/chat/", {
+      const response = await fetch(`${intelligenceUrl}/api/chat/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -134,6 +135,14 @@ const SSAIntelligenceOverlay = ({
       setUser(getLoggedInUser());
     }
   }, []);
+
+  useEffect(() => {
+    const loginStatus = isUserLoggedIn();
+    if (loginStatus) {
+      setIsLoggedIn(true);
+      setUser(getLoggedInUser());
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -247,7 +256,7 @@ const SSAIntelligenceOverlay = ({
         { sender: "user", content: message },
       ].slice(-12);
 
-      const response = await fetch("http://127.0.0.1:8000/api/chat/summary/", {
+      const response = await fetch(`${intelligenceUrl}/api/chat/summary/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -255,10 +264,7 @@ const SSAIntelligenceOverlay = ({
           topic: t(video?.caption),
         }),
       });
-
       const data = await response.json();
-      console.log("---------------- PARSED");
-      console.log(data);
       if (data && data.message_count) {
         await notifyChatSummary(data.message_count, data.itineraries || []);
       }
