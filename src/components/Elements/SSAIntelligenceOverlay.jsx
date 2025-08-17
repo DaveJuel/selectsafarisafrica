@@ -6,6 +6,8 @@ import {
   SidePanelContent,
   SidePanelOverlay,
   OverlayBody,
+  ButtonContainer,
+  Spinner,
 } from "../../style/video.detail.overlay.styles";
 import {
   ChatHistory,
@@ -18,7 +20,13 @@ import {
 } from "../../style/ssa.intelligence.overlay.styles";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { fetchEntityData } from "../../utils/RequestHandler";
+import {
+  apiKey,
+  fetchEntityData,
+  makeApiRequest,
+} from "../../utils/RequestHandler";
+import UserAuthPrompt from "../Sections/UserAuthPrompt";
+import { getLoggedInUser, isUserLoggedIn } from "../../utils/AuthHandler";
 
 const SSAIntelligenceOverlay = ({
   video,
@@ -31,6 +39,9 @@ const SSAIntelligenceOverlay = ({
   const [messages, setMessages] = useState([]);
   const [awaitingReply, setAwaitingReply] = useState(false);
   const [activities, setActivities] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   const { t } = useTranslation("adventures");
   const SHORT_YES = new Set([
@@ -97,6 +108,7 @@ const SSAIntelligenceOverlay = ({
           last_ai_question: lastAiQuestion,
           user_reply_type: userReplyType,
           activities: activities,
+          sender_names: user?.user_names,
         }),
       });
 
@@ -114,6 +126,14 @@ const SSAIntelligenceOverlay = ({
       return `⚠️ Network error: ${err.message}`;
     }
   };
+
+  useEffect(() => {
+    const loginStatus = isUserLoggedIn();
+    if (loginStatus) {
+      setIsLoggedIn(true);
+      setUser(getLoggedInUser());
+    }
+  }, []);
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -137,7 +157,9 @@ const SSAIntelligenceOverlay = ({
       try {
         setAwaitingReply(true);
         const { caption, country, city } = video;
-        const greetingMessage = `Hello! I'd like to know about ${t(
+        const greetingMessage = `Hello! I'm ${
+          user?.user_names || "a traveler"
+        } and I'd like to know about ${t(
           caption
         )} in ${country}. details I want: budget, recommended visit time, what I need to carry and other details you find relevant.`;
         const aiReply = await sendMessageToAgent({
@@ -155,10 +177,9 @@ const SSAIntelligenceOverlay = ({
         setAwaitingReply(false);
       }
     };
-
-    initiateConversation();
+    if (isLoggedIn) initiateConversation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [t, video]);
+  }, [isLoggedIn, t, video]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -198,58 +219,131 @@ const SSAIntelligenceOverlay = ({
   };
   const isLeftSide = videoIndex >= 2;
 
+  const notifyChatSummary = async (messageCount, itineraries) => {
+    const { caption } = video;
+    const chatSummaryRequest = {
+      names: user?.user_names,
+      email: user?.username,
+      topic: t(caption),
+      message_count: messageCount,
+      itineraries,
+    };
+
+    const requestData = {
+      chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
+      api_key: apiKey,
+      message: {
+        chat_summary: chatSummaryRequest,
+      },
+    };
+    await makeApiRequest("/notification/notify/telegram", "POST", requestData);
+  };
+
+  const handleCloseChat = async () => {
+    try {
+      setIsClosing(true);
+      const recentHistory = [
+        ...messages,
+        { sender: "user", content: message },
+      ].slice(-12);
+
+      const response = await fetch("http://127.0.0.1:8000/api/chat/summary/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          history: recentHistory,
+          topic: t(video?.caption),
+        }),
+      });
+
+      const data = await response.json();
+      console.log("---------------- PARSED");
+      console.log(data);
+      if (data && data.message_count) {
+        await notifyChatSummary(data.message_count, data.itineraries || []);
+      }
+    } catch (e) {
+      console.log(`Something went wrong ${e}`);
+    } finally {
+      onClose();
+    }
+  };
+
   return (
     <SidePanelOverlay isLeftSide={isLeftSide}>
       <SidePanelContent>
         <OverlayHeader>
           <HeaderTitle>EXPERT'S GUIDANCE</HeaderTitle>
-          <CloseButton onClick={onClose}>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </CloseButton>
+          {isClosing ? (
+            <ButtonContainer>
+              <Spinner />
+            </ButtonContainer>
+          ) : (
+            <CloseButton onClick={handleCloseChat}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </CloseButton>
+          )}
         </OverlayHeader>
 
-        <OverlayBody>
-          {!awaitingReply && messages.length === 0 ? (
-            <EmptyState>No messages yet. Start the conversation!</EmptyState>
-          ) : (
-            <ChatHistory>
-              {messages.map((msg, index) => (
-                <MessageBubble key={index} isUser={msg.sender === "user"}>
-                  {msg.content}
-                </MessageBubble>
-              ))}
-              {awaitingReply && (
-                <TypingIndicator>Expert typing...</TypingIndicator>
+        {!isLoggedIn && <UserAuthPrompt setIsLoggedIn={setIsLoggedIn} />}
+        {isLoggedIn && (
+          <>
+            <OverlayBody>
+              {!awaitingReply && messages.length === 0 ? (
+                <EmptyState>
+                  No messages yet. Start the conversation!
+                </EmptyState>
+              ) : (
+                <ChatHistory>
+                  {messages.map((msg, index) => (
+                    <MessageBubble key={index} isUser={msg.sender === "user"}>
+                      {msg.content}
+                    </MessageBubble>
+                  ))}
+                  {awaitingReply && (
+                    <TypingIndicator>Expert typing...</TypingIndicator>
+                  )}
+                  <div ref={chatEndRef} />
+                </ChatHistory>
               )}
-              <div ref={chatEndRef} />
-            </ChatHistory>
-          )}
-        </OverlayBody>
+            </OverlayBody>
 
-        <OverlayFooter>
-          <InputContainer>
-            <TextInput
-              type="text"
-              placeholder="Ask here..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            />
-            <SendButton onClick={handleSend}>Send</SendButton>
-          </InputContainer>
-        </OverlayFooter>
+            <OverlayFooter>
+              <InputContainer>
+                <TextInput
+                  type="text"
+                  placeholder="Ask here..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) =>
+                    e.key === "Enter" &&
+                    !awaitingReply &&
+                    !isClosing &&
+                    handleSend()
+                  }
+                />
+                <SendButton
+                  onClick={handleSend}
+                  disabled={awaitingReply || isClosing}
+                >
+                  {awaitingReply ? "Waiting..." : "Send"}
+                </SendButton>
+              </InputContainer>
+            </OverlayFooter>
+          </>
+        )}
       </SidePanelContent>
     </SidePanelOverlay>
   );

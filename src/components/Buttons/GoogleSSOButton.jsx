@@ -95,7 +95,7 @@ const GoogleSSOButton = ({
     if (buttonText) return buttonText;
     return authType === "register"
       ? "Register with Google"
-      : "Login with Google";
+      : "Continue with Google";
   };
 
   return (

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled , { keyframes } from 'styled-components';
 
 // Styled Components for VideoDetailOverlay
 export const SidePanelOverlay = styled.div`
@@ -214,4 +214,35 @@ export const ExpertButton = styled.button`
   &:active {
     transform: translateY(0);
   }
+`;
+
+// Spinner animation
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+// Styled spinner component
+export const Spinner = styled.div`
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(228, 188, 135, 0.3);
+  border-top: 2px solid #e4bc87;
+  border-radius: 50%;
+  animation: ${spin} 1s linear infinite;
+`;
+
+// Container to maintain consistent sizing
+export const ButtonContainer = styled.div`
+  background: rgba(228, 188, 135, 0.1);
+  border: 1px solid rgba(228, 188, 135, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: #e4bc87;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 40px;
+  min-height: 40px;
 `;

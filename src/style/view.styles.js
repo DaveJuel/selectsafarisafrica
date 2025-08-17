@@ -432,9 +432,9 @@ export const GoogleButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: white;
-  color: #4a4a4a;
-  border: 1px solid #A2A3B0;
+  background: rgba(228, 188, 135, 0.1);
+  color: rgba(228, 188, 135, 1);
+  border: 2px solid rgba(228, 188, 135, 0.3);
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 500;
@@ -442,8 +442,9 @@ export const GoogleButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: #f8f8f8;
-    border-color: #9facb3;
+    background: rgba(228, 188, 135, 0.2);
+    border-color: rgba(228, 188, 135, 0.5);
+    transform: translateY(-2px);
   }
 
   &:focus {
