@@ -252,26 +252,28 @@ const SSAIntelligenceOverlay = ({
   const handleCloseChat = async () => {
     try {
       setIsClosing(true);
-      const recentHistory = [
-        ...messages,
-        { sender: "user", content: message },
-      ].slice(-12);
+      if (user && user?.username) {
+        const recentHistory = [
+          ...messages,
+          { sender: "user", content: message },
+        ].slice(-12);
 
-      const response = await fetch(`${intelligenceUrl}/api/chat/summary/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          history: recentHistory,
-          topic: t(video?.caption),
-        }),
-      });
-      const data = await response.json();
-      if (data && data.message_count) {
-        await notifyChatSummary(
-          data.message_count,
-          data.itineraries || [],
-          data.average_total_cost_usd || 0
-        );
+        const response = await fetch(`${intelligenceUrl}/api/chat/summary/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            history: recentHistory,
+            topic: t(video?.caption),
+          }),
+        });
+        const data = await response.json();
+        if (data && data?.message_count) {
+          await notifyChatSummary(
+            data.message_count,
+            data.itineraries || [],
+            data.average_total_cost_usd || 0
+          );
+        }
       }
     } catch (e) {
       console.log(`Something went wrong ${e}`);
