@@ -228,7 +228,7 @@ const SSAIntelligenceOverlay = ({
   };
   const isLeftSide = videoIndex >= 2;
 
-  const notifyChatSummary = async (messageCount, itineraries) => {
+  const notifyChatSummary = async (messageCount, itineraries, amount) => {
     const { caption } = video;
     const chatSummaryRequest = {
       names: user?.user_names,
@@ -236,6 +236,7 @@ const SSAIntelligenceOverlay = ({
       topic: t(caption),
       message_count: messageCount,
       itineraries,
+      budget: `${amount} USD`,
     };
 
     const requestData = {
@@ -266,11 +267,16 @@ const SSAIntelligenceOverlay = ({
       });
       const data = await response.json();
       if (data && data.message_count) {
-        await notifyChatSummary(data.message_count, data.itineraries || []);
+        await notifyChatSummary(
+          data.message_count,
+          data.itineraries || [],
+          data.average_total_cost_usd || 0
+        );
       }
     } catch (e) {
       console.log(`Something went wrong ${e}`);
     } finally {
+      setIsClosing(false);
       onClose();
     }
   };
