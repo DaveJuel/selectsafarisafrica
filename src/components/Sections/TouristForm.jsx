@@ -14,9 +14,10 @@ export default function TouristForm({
   setAllActivities,
   activities,
   setActivities,
+  loadingSidebar,
+  setLoadingSidebar
 }) {
   const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { t } = useTranslation("common");
 
   useEffect(() => {
@@ -37,10 +38,11 @@ export default function TouristForm({
       } catch (error) {
         console.error(`Failed to fetch countries`, error);
       } finally {
-        setLoading(false);
+        setLoadingSidebar(false);
       }
     };
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCountryChange = (e) => {
@@ -71,8 +73,8 @@ export default function TouristForm({
 
   return (
     <FormWrapper>
-      {loading && <LoadingSpinner />}
-      {!loading && (
+      {loadingSidebar && <LoadingSpinner />}
+      {!loadingSidebar && (
         <Form>
           <FormGroup>
             <Label>{t("where_to")}</Label>

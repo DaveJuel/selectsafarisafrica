@@ -22,6 +22,8 @@ export default function SidebarView({
   setAllActivities,
   activities,
   setActivities,
+  loadingSidebar,
+  setLoadingSidebar,
 }) {
   const { t } = useTranslation("common");
 
@@ -69,6 +71,8 @@ export default function SidebarView({
           setAllActivities={setAllActivities}
           activities={activities}
           setActivities={setActivities}
+          loadingSidebar={loadingSidebar}
+          setLoadingSidebar={setLoadingSidebar}
         />
       )}
     </SidebarSection>

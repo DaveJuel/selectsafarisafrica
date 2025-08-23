@@ -17,7 +17,8 @@ export default function MainView() {
   const [allActivities, setAllActivities] = useState([]);
   const [activities, setActivities] = useState([]);
   const [selectedItinerary, setSelectedItinerary] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loadingMainView, setLoadingMainView] = useState(false);
+  const [loadingSidebar, setLoadingSidebar] = useState(true);
   const [formData, setFormData] = useState({
     country: null,
     days: 3,
@@ -29,18 +30,14 @@ export default function MainView() {
   const [currentView, setCurrentView] = useState("itiniraries");
 
   const handleItineraryFiltering = async () => {
-    try {
-      toggleView("itiniraries");
-      const itineraries = await filterItineraries(
-        formData.country,
-        formData.days,
-        formData.activities,
-        setLoading
-      );
-      setItineraries(itineraries);
-    } catch (error) {
-      console.error(`Failed to handle form submit`);
-    }
+    toggleView("itiniraries");
+    const itineraries = await filterItineraries(
+      formData.country,
+      formData.days,
+      formData.activities,
+      setLoadingMainView
+    );
+    setItineraries(itineraries);
   };
 
   const toggleView = (view) => {
@@ -50,7 +47,7 @@ export default function MainView() {
     }
   };
 
-  const onBookItinerary = (itinerary, itiniraryActivities) => {
+  const onBookItinerary = (itinerary) => {
     setSelectedItinerary(itinerary);
     setIsModalOpen(true);
   };
@@ -67,7 +64,8 @@ export default function MainView() {
           setFormData={setFormData}
           handleItineraryFiltering={handleItineraryFiltering}
           toggleView={toggleView}
-          loading={loading}
+          loadingSidebar={loadingSidebar}
+          setLoadingSidebar={setLoadingSidebar}
           currentView={currentView}
           allActivities={allActivities}
           setAllActivities={setAllActivities}
@@ -75,8 +73,8 @@ export default function MainView() {
           setActivities={setActivities}
         />
         <ViewSection>
-          {loading && <LoadingSpinner />}
-          {!loading && (
+          {loadingMainView && <LoadingSpinner />}
+          {!loadingMainView && (
             <MainSectionView
               currentView={currentView}
               formData={formData}

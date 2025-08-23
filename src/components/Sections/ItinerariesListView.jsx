@@ -41,7 +41,7 @@ const ItinerariesListView = ({
               </ActivitiesList>
             </ActivitiesSection>
 
-            <CardFooter onClick={() => openBookTripModal(itinerary, activities)}>
+            <CardFooter onClick={() => openBookTripModal(itinerary)}>
               <ActionBtn>{t("book_now")}</ActionBtn>
             </CardFooter>
           </ItineraryCard>
