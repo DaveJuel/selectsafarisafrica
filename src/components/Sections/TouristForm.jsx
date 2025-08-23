@@ -64,12 +64,12 @@ export default function TouristForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.country && formData.activities?.length > 0) {
+    if (formData.country && formData.days) {
       onFilterItineraries(formData);
     }
   };
 
-  const isFormValid = formData.country && formData.activities?.length > 0;
+  const isFormValid = formData.country && formData.days;
 
   return (
     <FormWrapper>

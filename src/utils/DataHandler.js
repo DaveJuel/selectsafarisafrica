@@ -14,7 +14,7 @@ export const filterItineraries = async (country, days, activities = [], setLoadi
 
     if (itineraries.length === 0) return [];
     const itineraryActivitiesResponse = await fetchEntityData("itinirary_activities");
-    if (!itineraryActivitiesResponse.success) {
+    if (!itineraryActivitiesResponse.success || activities.length === 0) {
       return itineraries;
     }
     const itineraryActivities = itineraryActivitiesResponse.result;

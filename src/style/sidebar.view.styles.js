@@ -62,7 +62,7 @@ export const NavigationLinks = styled.nav`
 `;
 
 export const NavLink = styled.a`
-  color: #0e5033;
+  color: #e4bc87;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -73,16 +73,17 @@ export const NavLink = styled.a`
   cursor: pointer;
 
   &:hover {
-    background: rgba(14, 80, 51, 0.1);
-    color: #0e5033;
+    background: rgba(126, 91, 64, 0.789);
+    color: #e4bc87;
   }
 
   ${(props) =>
     props.active &&
     `
-    background: rgba(18, 45, 34, 0.15);
+    background: rgba(126, 91, 64, 0.789);
     color: #e4bc87;
     font-weight: 600;
+    text-decoration: underline;
   `}
 
   @media (max-width: 768px) {
