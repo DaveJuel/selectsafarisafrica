@@ -10,6 +10,10 @@ export default function TouristForm({
   formData,
   setFormData,
   onFilterItineraries,
+  allActivities,
+  setAllActivities,
+  activities,
+  setActivities,
 }) {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -111,6 +115,10 @@ export default function TouristForm({
               formData={formData}
               setFormData={setFormData}
               handleActivityToggle={handleActivityToggle}
+              allActivities={allActivities}
+              setAllActivities={setAllActivities}
+              activities={activities}
+              setActivities={setActivities}
             />
           </FormGroup>
 

@@ -2,7 +2,14 @@ import TouristForm from "./TouristForm";
 import LogoComponent from "../../assets/svg/Logo";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import { useTranslation } from "react-i18next";
-import { LogoContainer, NavigationLinks, NavLink, SidebarHeaderSection, SidebarSection, SidebarTitle } from "../../style/sidebar.view.styles";
+import {
+  LogoContainer,
+  NavigationLinks,
+  NavLink,
+  SidebarHeaderSection,
+  SidebarSection,
+  SidebarTitle,
+} from "../../style/sidebar.view.styles";
 
 export default function SidebarView({
   formData,
@@ -11,6 +18,10 @@ export default function SidebarView({
   toggleView,
   currentView,
   loading,
+  allActivities,
+  setAllActivities,
+  activities,
+  setActivities,
 }) {
   const { t } = useTranslation("common");
 
@@ -54,6 +65,10 @@ export default function SidebarView({
           formData={formData}
           setFormData={setFormData}
           onFilterItineraries={handleItineraryFiltering}
+          allActivities={allActivities}
+          setAllActivities={setAllActivities}
+          activities={activities}
+          setActivities={setActivities}
         />
       )}
     </SidebarSection>
