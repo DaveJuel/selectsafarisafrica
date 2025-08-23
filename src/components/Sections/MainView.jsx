@@ -1,4 +1,3 @@
-// MainView.js
 import { useState } from "react";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import BookTripModal from "../Elements/BookTripModal";
