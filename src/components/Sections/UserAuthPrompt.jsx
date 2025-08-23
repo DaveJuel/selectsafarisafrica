@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { makeApiRequest } from "../../utils/RequestHandler";
+import { apiKey, makeApiRequest } from "../../utils/RequestHandler";
 import { StatusMessage } from "../../style/view.styles";
 import GoogleSSOButton from "../Buttons/GoogleSSOButton";
 
@@ -34,6 +34,7 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
     await handleAuth(async () => {
       const response = await makeApiRequest("/google/sso/login/", "POST", {
         token: credential,
+        api_key: apiKey
       });
       return response.success ? response.result : null;
     }, "Google authentication successful, redirecting...");
