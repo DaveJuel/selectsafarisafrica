@@ -23,6 +23,7 @@ export default function MainSectionView({
           itineraries={itineraries}
           openBookTripModal={openBookTripModal}
           allActivities={allActivities}
+          toggleView={toggleView}
         />
       );
   }

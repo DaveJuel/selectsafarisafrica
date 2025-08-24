@@ -19,6 +19,7 @@ export default function ItineraryView({
   itineraries,
   openBookTripModal,
   allActivities,
+  toggleView
 }) {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -70,6 +71,7 @@ export default function ItineraryView({
         openBookTripModal={openBookTripModal}
         formData={formData}
         allActivities={allActivities}
+        toggleView={toggleView}
       />
     </ViewWrapper>
   );

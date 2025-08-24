@@ -452,3 +452,16 @@ export const GoogleButton = styled.button`
     border-color: #49cb86;
   }
 `;
+
+export const ContactSupportButton = styled(GoogleButton)`
+  background: rgba(100, 200, 255, 0.2);
+  border-color: rgba(100, 200, 255, 0.3);
+
+  &:hover {
+    border-color: rgba(100, 200, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: #00aaff;
+  }
+`;

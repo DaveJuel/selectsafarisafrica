@@ -34,6 +34,7 @@ const ItinerariesListView = ({
   openBookTripModal,
   formData,
   allActivities,
+  toggleView
 }) => {
   const { t } = useTranslation("itineraries");
   const [itineraries, setItineraries] = useState(inItineraries);
@@ -42,6 +43,8 @@ const ItinerariesListView = ({
   );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAskingAgent, setIsAskingAgent] = useState(false);
+  const [errorOccured, setErrorOccured] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [needToAskAgent, setNeedToAskAgent] = useState(
     itineraries?.length === 0
   );
@@ -63,7 +66,7 @@ const ItinerariesListView = ({
         );
         logger.info(`selected activities`, formData?.activities);
         logger.info(`all activities`, countryActivities);
-        
+
         const response = await fetch(
           `${intelligenceUrl}/api/generate/itinerary/`,
           {
@@ -91,9 +94,13 @@ const ItinerariesListView = ({
           setItineraryActivities(data.itinerariesActivities);
           setNeedToAskAgent(false);
         } else {
+          setErrorOccured(true);
+          setErrorMessage("We couldn't make any itineraries at the moment. Please reach out to us for further inquiry.");
           logger.warn("Agent returned no itineraries", data);
         }
       } catch (error) {
+        setErrorOccured(true);
+        setErrorMessage("Something went wrong during the planning process, please reach out to us we shall get back to you in time.");
         logger.error("Failed to ask agent", error);
       } finally {
         setIsAskingAgent(false);
@@ -105,12 +112,15 @@ const ItinerariesListView = ({
     }
   }, [isLoggedIn, needToAskAgent, formData, allActivities]);
 
-  if (itineraries?.length === 0 && !isLoggedIn) {
+  if ((itineraries?.length === 0 && !isLoggedIn) || errorOccured) {
     return (
       <NoItinerariesPrompt
         formData={formData}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        errorOccured={errorOccured}
+        errorMessage={errorMessage}
+        toggleView={toggleView}
       />
     );
   }
