@@ -36,6 +36,8 @@ import {
   ToggleButton,
   ToggleContainer,
 } from "../../style/book.trip.modal.styles";
+import { logger } from "../../utils/logger";
+import { persistItinerary } from "../../utils/DataPersistenceHandler";
 
 const BookTripModal = ({
   isOpen,
@@ -43,12 +45,36 @@ const BookTripModal = ({
   itinerary,
   handlePreview,
   setBookingData,
+  tripData,
 }) => {
   const [loading, setLoading] = useState(true);
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
   const [defaultBookingStatus, setDefaultBookingStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [contactMethod, setContactMethod] = useState("email");
+  const [isPersisting, setIsPersisting] = useState(false);
+  const [persistedItinerary, setPersistedItinerary] = useState(itinerary);
+
+  useEffect(() => {
+    const persistData = async () => {
+      try {
+        setIsPersisting(true);
+        const persisted = await persistItinerary({
+          ...itinerary,
+          country: tripData.country,
+        });
+        setPersistedItinerary(persisted);
+      } catch (error) {
+        logger.error(`Failed to persist itinerary`, error);
+      } finally {
+        setIsPersisting(false);
+      }
+    };
+    if (!itinerary?.id && isOpen) {
+      persistData();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itinerary]);
 
   useEffect(() => {
     const setBookingStatus = async () => {
@@ -172,10 +198,11 @@ const BookTripModal = ({
       if (validateForm()) {
         setIsSubmitting(true);
         await loginUser(publicUser, publicPass);
+        const tripItinerary = itinerary?.id ? itinerary: persistedItinerary;
         const requestBody = {
           ...formData,
           status: defaultBookingStatus.id,
-          itinerary: itinerary.id,
+          itinerary: tripItinerary.id,
           booking_code: generateBookingCode(formData),
         };
         const response = await saveEntityData("bookings", requestBody);
@@ -387,7 +414,10 @@ const BookTripModal = ({
                     <CancelButton type="button" onClick={onClose}>
                       Cancel
                     </CancelButton>
-                    <SubmitButton type="submit" disabled={isSubmitting}>
+                    <SubmitButton
+                      type="submit"
+                      disabled={isPersisting || isSubmitting}
+                    >
                       {isSubmitting ? (
                         <>
                           <Loader />

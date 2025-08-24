@@ -92,6 +92,7 @@ export default function MainView() {
         handlePreview={() => handleConfirm()}
         bookingData={bookingData}
         setBookingData={setBookingData}
+        tripData={formData}
       />
       <ConfirmBookingModal
         isOpen={isConfirmModalOpen}
