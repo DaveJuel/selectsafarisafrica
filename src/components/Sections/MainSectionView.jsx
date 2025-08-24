@@ -7,7 +7,8 @@ export default function MainSectionView({
   formData,
   itineraries,
   openBookTripModal,
-  toggleView
+  toggleView,
+  allActivities
 }) {
   switch (currentView) {
     case "contact-us":
@@ -21,6 +22,7 @@ export default function MainSectionView({
           formData={formData}
           itineraries={itineraries}
           openBookTripModal={openBookTripModal}
+          allActivities={allActivities}
         />
       );
   }

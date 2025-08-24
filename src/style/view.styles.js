@@ -432,8 +432,8 @@ export const GoogleButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: rgba(228, 188, 135, 0.1);
-  color: rgba(228, 188, 135, 1);
+  background: rgba(228, 188, 135, 0.2);
+  color: #666;
   border: 2px solid rgba(228, 188, 135, 0.3);
   border-radius: 8px;
   font-size: 1rem;

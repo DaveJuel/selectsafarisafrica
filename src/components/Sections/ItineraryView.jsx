@@ -6,12 +6,19 @@ import LoadingSpinner from "../Elements/LoadingSpinner";
 import ItinerariesListView from "./ItinerariesListView";
 import AdventuresView from "./AdventuresView";
 import { useTranslation } from "react-i18next";
-import { Header, HeaderSubtitle, HeaderTitle, ViewWrapper } from "../../style/itinerary.view.styles";
+import {
+  Header,
+  HeaderSubtitle,
+  HeaderTitle,
+  ViewWrapper,
+} from "../../style/itinerary.view.styles";
+import { logger } from "../../utils/logger";
 
 export default function ItineraryView({
   formData,
   itineraries,
   openBookTripModal,
+  allActivities,
 }) {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +32,7 @@ export default function ItineraryView({
           setItineraryActivities(response.result);
         }
       } catch (error) {
-        console.error(`Failed to fetch itinerary activities`, error);
+        logger.error(`Failed ItineraryView`, error);
       }
     };
 
@@ -57,14 +64,13 @@ export default function ItineraryView({
           {formData.days} {t("incredible_days")}
         </HeaderSubtitle>
       </Header>
-      {itineraries?.length > 0 && (
-        <ItinerariesListView
-          itineraries={itineraries}
-          itinerariesActivities={itineraryActivities}
-          openBookTripModal={openBookTripModal}
-        />
-      )}
+      <ItinerariesListView
+        itineraries={itineraries}
+        itinerariesActivities={itineraryActivities}
+        openBookTripModal={openBookTripModal}
+        formData={formData}
+        allActivities={allActivities}
+      />
     </ViewWrapper>
   );
 }
-

@@ -80,6 +80,7 @@ export default function MainView() {
               itineraries={itineraries}
               openBookTripModal={onBookItinerary}
               toggleView={toggleView}
+              allActivities={allActivities}
             />
           )}
         </ViewSection>
