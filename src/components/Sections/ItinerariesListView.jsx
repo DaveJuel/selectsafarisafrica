@@ -34,7 +34,7 @@ const ItinerariesListView = ({
   openBookTripModal,
   formData,
   allActivities,
-  toggleView
+  toggleView,
 }) => {
   const { t } = useTranslation("itineraries");
   const [itineraries, setItineraries] = useState(inItineraries);
@@ -64,9 +64,6 @@ const ItinerariesListView = ({
           (item) =>
             item.country.toLowerCase() === formData.country.toLowerCase()
         );
-        logger.info(`selected activities`, formData?.activities);
-        logger.info(`all activities`, countryActivities);
-
         const response = await fetch(
           `${intelligenceUrl}/api/generate/itinerary/`,
           {
@@ -86,21 +83,37 @@ const ItinerariesListView = ({
         if (!response.ok) {
           throw new Error(`Agent request failed: ${response.status}`);
         }
-
         const data = await response.json();
-
         if (data?.itineraries?.length > 0) {
-          setItineraries(data.itineraries);
-          setItineraryActivities(data.itinerariesActivities);
+          setItineraries(
+            data?.itineraries?.map((item) => {
+              return {
+                id: 1,
+                name: item.name,
+                season: item.season,
+                days: item.days,
+              };
+            })
+          );
+          const itinerary = data?.itineraries[0];
+          setItineraryActivities(
+            itinerary?.activities?.map((item) => {
+              return { ...item, itinerary: itinerary.name };
+            })
+          );
           setNeedToAskAgent(false);
         } else {
           setErrorOccured(true);
-          setErrorMessage("We couldn't make any itineraries at the moment. Please reach out to us for further inquiry.");
+          setErrorMessage(
+            "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry."
+          );
           logger.warn("Agent returned no itineraries", data);
         }
       } catch (error) {
         setErrorOccured(true);
-        setErrorMessage("Something went wrong during the planning process, please reach out to us we shall get back to you in time.");
+        setErrorMessage(
+          "Something went wrong during the planning process, please reach out to us we shall get back to you in time."
+        );
         logger.error("Failed to ask agent", error);
       } finally {
         setIsAskingAgent(false);
@@ -137,7 +150,7 @@ const ItinerariesListView = ({
           itinerariesActivities
         );
         return (
-          <ItineraryCard key={itinerary.id}>
+          <ItineraryCard key={itinerary?.id}>
             <CardHeader>
               <ItineraryName>{itinerary.name}</ItineraryName>
               <SeasonBadge>{itinerary.season}</SeasonBadge>
@@ -153,16 +166,18 @@ const ItinerariesListView = ({
             <ActivitiesSection>
               <ActivitiesTitle>{t("what_you_will_do")}</ActivitiesTitle>
               <ActivitiesList>
-                {activities.map((item, index) => (
+                {activities?.map((item, index) => (
                   <ActivityItem key={index}>
                     <ActivityContent>
                       <ActivityHeader>
                         <DayBadge>
-                          {t("day")} {item.day}
+                          {t("day")} {item?.day}
                         </DayBadge>
-                        <TimeTag>{item.time}</TimeTag>
+                        <TimeTag>{item?.time}</TimeTag>
                       </ActivityHeader>
-                      <ActivityDescription>{item.activity}</ActivityDescription>
+                      <ActivityDescription>
+                        {item?.activity}
+                      </ActivityDescription>
                     </ActivityContent>
                   </ActivityItem>
                 ))}
