@@ -88,7 +88,6 @@ const ItinerariesListView = ({
           setItineraries(
             data?.itineraries?.map((item) => {
               return {
-                id: 1,
                 name: item.name,
                 season: item.season,
                 days: item.days,
