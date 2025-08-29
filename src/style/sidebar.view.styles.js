@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 export const SidebarSection = styled.div`
   backdrop-filter: blur(3px);
@@ -30,15 +30,49 @@ export const SidebarHeaderSection = styled.div`
   }
 `;
 
+const gradientWave = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  62% { /* forward journey (61.8% of cycle) */
+    background-position: 200% 50%;
+  }
+  100% { /* return faster (38.2%) */
+    background-position: 0% 50%;
+  }
+`;
+
 export const SidebarTitle = styled.h2`
-  color: #0e5033;
   font-size: 22px;
   font-weight: 600;
+
+  background: linear-gradient(
+    45deg,
+    #0e5033 0%,
+    #e4bc87 38.2%,
+    #7e5b40 61.8%,
+    #0e5033 85%,
+    #e4bc87 100%
+  );
+  background-size: 250% 250%; /* smaller = smoother movement */
+  
+  animation: ${gradientWave} 30s infinite;
+  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @supports not (background-clip: text) {
+    color: #0e5033;
+  }
 
   @media (max-width: 768px) {
     font-size: 18px;
   }
 `;
+
+
 
 export const LogoContainer = styled.div`
   display: flex;
