@@ -13,6 +13,7 @@ import { emergencyContacts } from "../data/emergency.contacts";
 import StyledLongText from "../components/Inputs/StyledLongText";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { SidebarTitle } from "../style/sidebar.view.styles";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -165,7 +166,7 @@ export default function BookingDetails() {
                   <LogoComponent />
                 </CompanyLogo>
                 <CompanyInfo>
-                  <CompanyName>SELECT SAFARIS AFRICA</CompanyName>
+                  <SidebarTitle>SELECT SAFARIS AFRICA</SidebarTitle>
                   <ContactInfo>
                     <ContactItem>
                       <ContactIcon>
@@ -205,7 +206,7 @@ export default function BookingDetails() {
                         <ContactIcon>
                           <img src="/icons/contact-book.png" alt="Email" />
                         </ContactIcon>
-                        {bookingData?.client_email || ""}
+                        {bookingData?.client_contact || ""}
                       </TravelerEmail>
                       <TravelerEmail>
                         <ContactIcon>

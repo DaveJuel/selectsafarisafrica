@@ -43,6 +43,8 @@ const BookTripModal = ({
   isOpen,
   onClose,
   itinerary,
+  itineraryActivities,
+  allActivities,
   handlePreview,
   setBookingData,
   tripData,
@@ -59,10 +61,14 @@ const BookTripModal = ({
     const persistData = async () => {
       try {
         setIsPersisting(true);
-        const persisted = await persistItinerary({
-          ...itinerary,
-          country: tripData.country,
-        });
+        const persisted = await persistItinerary(
+          {
+            ...itinerary,
+            country: tripData.country,
+          },
+          itineraryActivities,
+          allActivities
+        );
         setPersistedItinerary(persisted);
       } catch (error) {
         logger.error(`Failed to persist itinerary`, error);
@@ -73,7 +79,7 @@ const BookTripModal = ({
     if (!itinerary?.id && isOpen) {
       persistData();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itinerary]);
 
   useEffect(() => {
@@ -198,7 +204,7 @@ const BookTripModal = ({
       if (validateForm()) {
         setIsSubmitting(true);
         await loginUser(publicUser, publicPass);
-        const tripItinerary = itinerary?.id ? itinerary: persistedItinerary;
+        const tripItinerary = itinerary?.id ? itinerary : persistedItinerary;
         const requestBody = {
           ...formData,
           status: defaultBookingStatus.id,

@@ -15,7 +15,8 @@ export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
   const [allActivities, setAllActivities] = useState([]);
   const [activities, setActivities] = useState([]);
-  const [selectedItinerary, setSelectedItinerary] = useState(null);
+  const [itinerary, setItinerary] = useState(null);
+  const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loadingMainView, setLoadingMainView] = useState(false);
   const [loadingSidebar, setLoadingSidebar] = useState(true);
   const [formData, setFormData] = useState({
@@ -46,8 +47,9 @@ export default function MainView() {
     }
   };
 
-  const onBookItinerary = (itinerary) => {
-    setSelectedItinerary(itinerary);
+  const onBookItinerary = (selectedItinerary, selectedItineraryActivities) => {
+    setItinerary(selectedItinerary);
+    setItineraryActivities(selectedItineraryActivities);
     setIsModalOpen(true);
   };
 
@@ -88,7 +90,9 @@ export default function MainView() {
       <BookTripModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        itinerary={selectedItinerary}
+        itinerary={itinerary}
+        itineraryActivities={itineraryActivities}
+        allActivities={allActivities}
         handlePreview={() => handleConfirm()}
         bookingData={bookingData}
         setBookingData={setBookingData}
@@ -97,7 +101,7 @@ export default function MainView() {
       <ConfirmBookingModal
         isOpen={isConfirmModalOpen}
         onClose={() => setIsConfirmModalOpen(false)}
-        itinerary={selectedItinerary}
+        itinerary={itinerary}
         bookingData={bookingData}
       />
     </MainWrapper>
