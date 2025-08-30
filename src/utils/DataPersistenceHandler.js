@@ -108,9 +108,6 @@ export const persistItineraryActivities = async (itinerary, itineraryActivities,
         more_information: "",
       };
     });
-
-    logger.info("Persisting itinerary activities", itineraryActivitiesData);
-
     await ssaBulkSaveEntityData("itinirary_activities", itineraryActivitiesData);
   }catch(error){
     logger.error(`Failed to persist itinerary activities`, error);
