@@ -51,6 +51,14 @@ export const HeaderContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 `;
 
 export const ModalTitle = styled.h2`
@@ -62,6 +70,16 @@ export const ModalTitle = styled.h2`
   align-items: center;
   gap: 8px;
   line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    gap: 4px;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -80,12 +98,31 @@ export const CloseButton = styled.button`
     background: #f0f2f5;
     color: #333;
   }
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    padding: 3px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    padding: 2px;
+  }
 `;
+
 
 export const ModalContent = styled.div`
   padding: 24px;
   max-height: calc(90vh - 100px);
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
 `;
 
 export const StatusMessage = styled.div`
@@ -129,6 +166,18 @@ export const StatusMessage = styled.div`
     color: #975a16;
     border: 1px solid #fbd38d;
   `}
+
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 10px;
+    gap: 4px;
+    font-size: 11px;
+  }
 `;
 
 export const StatusIcon = styled.span`
@@ -159,10 +208,26 @@ export const StatusIcon = styled.span`
     `
     color: #d69e2e;
   `}
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 export const FormGroup = styled.div`
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const Input = styled.input`
@@ -185,6 +250,16 @@ export const Input = styled.input`
   &::placeholder {
     color: #999;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 12px;
+  }
 `;
 
 export const ToggleContainer = styled.div`
@@ -194,6 +269,14 @@ export const ToggleContainer = styled.div`
   background-color: #f8f9fa;
   border-radius: 12px;
   border: 1px solid #e8eaed;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+  }
 `;
 
 export const ToggleButton = styled.button`
@@ -228,6 +311,16 @@ export const ToggleButton = styled.button`
     background-color: ${(props) =>
       !props.active ? "#f0f0f0" : props.backgroundColor};
   }
+
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -242,7 +335,18 @@ export const LabelWithIcon = styled.label`
   font-weight: 500;
   color: #333;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
+    font-size: 12px;
+  }
 `;
+
 
 export const Select = styled.select`
   width: 100%;
@@ -262,6 +366,16 @@ export const Select = styled.select`
       ${(props) =>
         props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(102, 126, 234, 0.1)"};
   }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 12px;
+  }
 `;
 
 export const ErrorMessage = styled.span`
@@ -270,12 +384,20 @@ export const ErrorMessage = styled.span`
   margin-top: 4px;
   display: block;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 32px;
+
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
 `;
 
 export const CancelButton = styled.button`
@@ -293,6 +415,16 @@ export const CancelButton = styled.button`
   &:hover {
     background: #f0f2f5;
     border-color: #dadce0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 12px;
   }
 `;
 
@@ -329,6 +461,18 @@ export const SubmitButton = styled.button`
     box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
     transform: none;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 12px;
+    gap: 4px;
+  }
 `;
 
 export const Loader = styled.div`
@@ -346,5 +490,17 @@ export const Loader = styled.div`
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+    border-width: 1.5px;
+  }
+
+  @media (max-width: 480px) {
+    width: 12px;
+    height: 12px;
+    border-width: 1.2px;
   }
 `;

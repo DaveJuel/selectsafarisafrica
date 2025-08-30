@@ -8,7 +8,12 @@ import {
   saveEntityData,
 } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
-import { loginUser, logoutUser } from "../../utils/AuthHandler";
+import {
+  getLoggedInUser,
+  isUserLoggedIn,
+  loginUser,
+  logoutUser,
+} from "../../utils/AuthHandler";
 import EmptyStateView from "./EmptyStateView";
 import { getTodayDateISO } from "../../utils/DataHandler";
 import { FiCalendar, FiMail, FiMap, FiUser } from "react-icons/fi";
@@ -56,53 +61,6 @@ const BookTripModal = ({
   const [contactMethod, setContactMethod] = useState("email");
   const [isPersisting, setIsPersisting] = useState(false);
   const [persistedItinerary, setPersistedItinerary] = useState(itinerary);
-
-  useEffect(() => {
-    const persistData = async () => {
-      try {
-        setIsPersisting(true);
-        const persisted = await persistItinerary(
-          {
-            ...itinerary,
-            country: tripData.country,
-          },
-          itineraryActivities,
-          allActivities
-        );
-        setPersistedItinerary(persisted);
-      } catch (error) {
-        logger.error(`Failed to persist itinerary`, error);
-      } finally {
-        setIsPersisting(false);
-      }
-    };
-    if (!itinerary?.id && isOpen) {
-      persistData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itinerary]);
-
-  useEffect(() => {
-    const setBookingStatus = async () => {
-      try {
-        const response = await fetchEntityData("booking_statuses");
-        if (response.success) {
-          const defaultStatus = response.result?.find(
-            (item) => item.status.toLowerCase() === "pending"
-          );
-          setDefaultBookingStatus(defaultStatus);
-        }
-      } catch (error) {
-        console.error(`Failed to set default booking status`);
-      } finally {
-        setLoading(false);
-      }
-    };
-    setFormStatus({ message: "", type: "" });
-
-    setBookingStatus();
-  }, []);
-
   const [formData, setFormData] = useState({
     client_name: "",
     client_contact: "",
@@ -112,6 +70,61 @@ const BookTripModal = ({
     notes: "",
     booking_code: "",
   });
+
+  useEffect(() => {
+    const loginStatus = isUserLoggedIn();
+    if (loginStatus) {
+      const currentUser = getLoggedInUser();
+      setFormData((prev) => ({
+        ...prev,
+        client_contact: currentUser.username || "",
+        client_name: currentUser.user_names || "",
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!itinerary?.id && isOpen) {
+      const persistData = async () => {
+        try {
+          setIsPersisting(true);
+          const persisted = await persistItinerary(
+            { ...itinerary, country: tripData.country },
+            itineraryActivities,
+            allActivities
+          );
+          setPersistedItinerary(persisted);
+        } catch (error) {
+          logger.error("Failed to persist itinerary", error);
+        } finally {
+          setIsPersisting(false);
+        }
+      };
+      persistData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itinerary]);
+
+  useEffect(() => {
+    const fetchBookingStatus = async () => {
+      try {
+        const response = await fetchEntityData("booking_statuses");
+        if (response.success) {
+          const defaultStatus = response.result?.find(
+            (item) => item.status.toLowerCase() === "pending"
+          );
+          setDefaultBookingStatus(defaultStatus);
+        }
+      } catch (error) {
+        console.error("Failed to fetch default booking status", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    setFormStatus({ message: "", type: "" });
+    fetchBookingStatus();
+  }, []);
 
   const [errors, setErrors] = useState({});
 
