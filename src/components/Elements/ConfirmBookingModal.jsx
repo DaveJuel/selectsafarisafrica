@@ -91,6 +91,14 @@ const ModalHeader = styled.div`
   align-items: center;
   padding: 28px 28px 20px 28px;
   border-bottom: 1px solid #f1f5f9;
+
+  @media (max-width: 768px) {
+    padding: 24px 20px 16px 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 16px 12px 16px;
+  }
 `;
 
 const ModalTitle = styled.h2`
@@ -99,6 +107,14 @@ const ModalTitle = styled.h2`
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.025em;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -120,6 +136,18 @@ const CloseButton = styled.button`
     background: #f8fafc;
     color: #475569;
     transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+  }
+
+  @media (max-width: 480px) {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
   }
 `;
 
@@ -144,6 +172,16 @@ const ModalBody = styled.div`
     background: linear-gradient(135deg, #10a969 0%, #0e5033 100%);
     border-radius: 3px;
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+    gap: 16px;
+  }
 `;
 
 const SuccessContainer = styled.div`
@@ -152,6 +190,14 @@ const SuccessContainer = styled.div`
   align-items: center;
   text-align: center;
   padding: 20px 0;
+
+  @media (max-width: 768px) {
+    padding: 16px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 0;
+  }
 `;
 
 const SuccessIcon = styled.div`
@@ -170,19 +216,23 @@ const SuccessIcon = styled.div`
   animation: bounce 0.6s ease-in-out;
 
   @keyframes bounce {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-8px);
-    }
-    60% {
-      transform: translateY(-4px);
-    }
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+  }
+
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 480px) {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -192,12 +242,28 @@ const SuccessMessage = styled.h3`
   font-weight: 600;
   margin: 0;
   letter-spacing: -0.025em;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
 `;
 
 const InfoText = styled.p`
@@ -206,7 +272,16 @@ const InfoText = styled.p`
   line-height: 1.6;
   margin: 0;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
+
 
 const BookingCodeContainer = styled.div`
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -226,6 +301,14 @@ const BookingCodeContainer = styled.div`
     height: 3px;
     background: linear-gradient(90deg, #10a969 0%, #059669 50%, #10a969 100%);
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
 `;
 
 const BookingCodeLabel = styled.div`
@@ -235,6 +318,14 @@ const BookingCodeLabel = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const BookingCodeValue = styled.div`
@@ -248,12 +339,31 @@ const BookingCodeValue = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    letter-spacing: 0.06em;
+  }
 `;
 
 const BookingCodeNote = styled.div`
   color: #64748b;
   font-size: 13px;
   font-style: italic;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `;
+
 
 export default ConfirmBookingModal;
