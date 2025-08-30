@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import styled from "styled-components";
 import { fetchEntityData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import PaginatedActivities from "../Elements/PaginatedActivities";
 import { useTranslation } from "react-i18next";
+import {
+  DaysContainer,
+  DaysDisplay,
+  DaysInput,
+  Form,
+  FormGroup,
+  FormWrapper,
+  Label,
+  Select,
+  SubmitButton,
+} from "../../style/tourism.form.styles";
 
 export default function TouristForm({
   formData,
@@ -15,7 +25,7 @@ export default function TouristForm({
   activities,
   setActivities,
   loadingSidebar,
-  setLoadingSidebar
+  setLoadingSidebar,
 }) {
   const [countries, setCountries] = useState([]);
   const { t } = useTranslation("common");
@@ -42,7 +52,7 @@ export default function TouristForm({
       }
     };
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCountryChange = (e) => {
@@ -136,124 +146,3 @@ export default function TouristForm({
     </FormWrapper>
   );
 }
-
-// Styled Components for TouristForm
-const FormWrapper = styled.div`
-  width: 100%;
-  padding: 12px 21px;
-`;
-
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const FormGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const Label = styled.label`
-  font-weight: 500;
-  color: #ffffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-`;
-
-const Select = styled.select`
-  padding: 12px 16px;
-  border: 1px solid #e1e8ed;
-  border-radius: 12px;
-  font-size: 16px;
-  background: white;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #7e5b40;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-`;
-
-const DaysContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-`;
-
-const DaysInput = styled.input`
-  flex: 1;
-  height: 6px;
-  border-radius: 3px;
-  background: #e1e8ed;
-  outline: none;
-
-  /* WebKit browsers (Chrome, Safari, Edge) */
-  &::-webkit-slider-track {
-    height: 6px;
-    border-radius: 3px;
-    background: #7e5b40;
-  }
-
-  /* Firefox */
-  &::-moz-range-track {
-    height: 6px;
-    border-radius: 3px;
-    background: #7e5b40;
-    border: none;
-  }
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #7e5b40;
-    cursor: pointer;
-    border: 3px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Firefox thumb */
-  &::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #7e5b40;
-    cursor: pointer;
-    border: 3px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const DaysDisplay = styled.div`
-  background: #7e5b40;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 500;
-  min-width: 80px;
-  text-align: center;
-`;
-
-const SubmitButton = styled.button`
-  padding: 14px 24px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: ${(props) => (props.valid ? "pointer" : "not-allowed")};
-  background: ${(props) =>
-    props.valid ? "linear-gradient(135deg, #10A969 0%, #0E5033 100%)" : "#ccc"};
-  color: white;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: ${(props) => (props.valid ? "translateY(-2px)" : "none")};
-    box-shadow: ${(props) =>
-      props.valid ? "0 8px 25px rgba(234, 177, 102, 0.3)" : "none"};
-  }
-`;
