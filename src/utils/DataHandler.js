@@ -8,13 +8,13 @@ export const filterItineraries = async (country, days, activities = [], setLoadi
     setLoading(true);
     const response = await fetchEntityData("itineraries");
     if (!response.success) return data;
-    const itineraries = response.result?.filter(
+    const results = response.result;
+    const itineraries = results?.filter(
       (item) => item.country === country && parseInt(item.days, 10) === days
     ) || [];
-
     if (itineraries.length === 0) return [];
     const itineraryActivitiesResponse = await fetchEntityData("itinirary_activities");
-    if (!itineraryActivitiesResponse.success || activities.length === 0) {
+    if (activities.length === 0 || !itineraryActivitiesResponse.success) {
       return itineraries;
     }
     const itineraryActivities = itineraryActivitiesResponse.result;
