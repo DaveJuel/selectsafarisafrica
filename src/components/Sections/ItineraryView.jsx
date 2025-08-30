@@ -66,8 +66,8 @@ export default function ItineraryView({
         </HeaderSubtitle>
       </Header>
       <ItinerariesListView
-        itineraries={itineraries}
-        itinerariesActivities={itineraryActivities}
+        inItineraries={itineraries}
+        inItinerariesActivities={itineraryActivities}
         openBookTripModal={openBookTripModal}
         formData={formData}
         allActivities={allActivities}
