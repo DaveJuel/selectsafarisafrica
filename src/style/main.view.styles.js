@@ -8,8 +8,11 @@ export const MainWrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-   background-attachment: fixed;
+  background-attachment: fixed;
   padding: 20px;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -30,11 +33,10 @@ export const ViewSection = styled.div`
   backdrop-filter: blur(5px);
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  height: 100%; /* Take full height of grid cell */
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Hide horizontal overflow */
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  /* Custom scrollbar styling (optional) */
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -54,7 +56,7 @@ export const ViewSection = styled.div`
   }
 
   @media (max-width: 1024px) {
-    height: auto; /* Natural height on mobile */
-    overflow-y: visible; /* Disable scroll on mobile */
+    height: auto;
+    overflow-y: visible;
   }
 `;

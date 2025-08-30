@@ -72,13 +72,26 @@ export const SidebarTitle = styled.h2`
   }
 `;
 
-
-
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center; /* center on small screens */
   flex-shrink: 0;
   margin-top: 21px;
+
+  @media (max-width: 1024px) {
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    justify-content: flex-start; /* or center if navbar collapses */
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 8px;
+    justify-content: center; /* often best for tiny screens */
+  }
 `;
 
 export const NavigationLinks = styled.nav`
@@ -120,9 +133,21 @@ export const NavLink = styled.a`
     text-decoration: underline;
   `}
 
+  @media (max-width: 1024px) {
+    font-size: 15px;
+    padding: 6px 12px;
+  }
+
   @media (max-width: 768px) {
     flex: 1;
     min-width: 0;
     text-align: center;
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    padding: 4px 6px;
   }
 `;
