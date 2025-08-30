@@ -33,6 +33,9 @@ export const Header = styled.header`
   );
   backdrop-filter: blur(10px);
   border-bottom: 2px solid rgba(16, 169, 105, 0.2);
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const HeaderContent = styled.div`
@@ -86,8 +89,10 @@ export const VideoGrid = styled.div`
   }
 
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    height: calc(100vh - 200px);
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+    gap: 3px;
+    padding: 20px 10px;
+    height: auto; /* let it grow naturally */
   }
 `;
 
@@ -116,6 +121,14 @@ export const VideoContainer = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   background: #000;
+
+  @media (max-width: 768px) {
+    height: 180px; /* smaller on tablets */
+  }
+
+  @media (max-width: 480px) {
+    height: 140px; /* smaller on mobile */
+  }
 `;
 
 export const StyledVideo = styled.video`
@@ -136,6 +149,14 @@ export const CaptionOverlay = styled.div`
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   padding: 2rem 1rem 1rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 0.75rem 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 0.5rem 0.5rem;
+  }
 `;
 
 export const CaptionText = styled.p`
@@ -145,4 +166,14 @@ export const CaptionText = styled.p`
   margin: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
 `;

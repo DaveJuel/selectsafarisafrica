@@ -23,6 +23,13 @@ export const Form = styled.div`
   }
 `;
 
+export const ActivitiesFormGroupWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -191,5 +198,17 @@ export const SubmitButton = styled.button`
     transform: ${(props) => (props.valid ? "translateY(-2px)" : "none")};
     box-shadow: ${(props) =>
       props.valid ? "0 8px 25px rgba(234, 177, 102, 0.3)" : "none"};
+  }
+
+  /* Medium screens */
+  @media (max-width: 768px) {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  /* Small screens */
+  @media (max-width: 480px) {
+    padding: 10px 16px;
+    font-size: 14px;
   }
 `;

@@ -451,7 +451,22 @@ export const GoogleButton = styled.button`
     outline: none;
     border-color: #49cb86;
   }
+
+  /* Medium screens */
+  @media (max-width: 768px) {
+    padding: 12px;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+
+  /* Small screens */
+  @media (max-width: 480px) {
+    padding: 10px;
+    font-size: 0.9rem;
+    gap: 6px;
+  }
 `;
+
 
 export const ContactSupportButton = styled(GoogleButton)`
   background: rgba(100, 200, 255, 0.2);

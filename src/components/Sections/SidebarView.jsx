@@ -10,6 +10,7 @@ import {
   SidebarSection,
   SidebarTitle,
 } from "../../style/sidebar.view.styles";
+import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
 
 export default function SidebarView({
   formData,
@@ -24,8 +25,12 @@ export default function SidebarView({
   setActivities,
   loadingSidebar,
   setLoadingSidebar,
+  hidePlanForm,
 }) {
   const { t } = useTranslation("common");
+
+  const isSmallScreen = useIsSmallScreen();
+  const shouldHideForm = isSmallScreen && hidePlanForm;
 
   const menuItems = [
     {
@@ -62,7 +67,7 @@ export default function SidebarView({
         </NavigationLinks>
       </SidebarHeaderSection>
       {loading && <LoadingSpinner />}
-      {!loading && (
+      {!loading && !shouldHideForm && (
         <TouristForm
           formData={formData}
           setFormData={setFormData}

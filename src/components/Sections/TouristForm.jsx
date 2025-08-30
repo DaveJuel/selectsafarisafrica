@@ -5,6 +5,7 @@ import LoadingSpinner from "../Elements/LoadingSpinner";
 import PaginatedActivities from "../Elements/PaginatedActivities";
 import { useTranslation } from "react-i18next";
 import {
+  ActivitiesFormGroupWrapper,
   DaysContainer,
   DaysDisplay,
   DaysInput,
@@ -117,23 +118,23 @@ export default function TouristForm({
               </DaysDisplay>
             </DaysContainer>
           </FormGroup>
-
-          <FormGroup>
-            <Label>
-              {t("choose_adventure")} ({formData.activities?.length}{" "}
-              {t("selected")})
-            </Label>
-            <PaginatedActivities
-              formData={formData}
-              setFormData={setFormData}
-              handleActivityToggle={handleActivityToggle}
-              allActivities={allActivities}
-              setAllActivities={setAllActivities}
-              activities={activities}
-              setActivities={setActivities}
-            />
-          </FormGroup>
-
+          <ActivitiesFormGroupWrapper>
+            <FormGroup>
+              <Label>
+                {t("choose_adventure")} ({formData.activities?.length}{" "}
+                {t("selected")})
+              </Label>
+              <PaginatedActivities
+                formData={formData}
+                setFormData={setFormData}
+                handleActivityToggle={handleActivityToggle}
+                allActivities={allActivities}
+                setAllActivities={setAllActivities}
+                activities={activities}
+                setActivities={setActivities}
+              />
+            </FormGroup>
+          </ActivitiesFormGroupWrapper>
           <SubmitButton
             disabled={!isFormValid}
             valid={isFormValid}

@@ -28,9 +28,11 @@ export default function MainView() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState("itiniraries");
+  const [hidePlanForm, setHidePlanForm] = useState(false);
 
   const handleItineraryFiltering = async () => {
     toggleView("itiniraries");
+    setHidePlanForm(true);
     const itineraries = await filterItineraries(
       formData.country,
       formData.days,
@@ -44,6 +46,7 @@ export default function MainView() {
     setCurrentView(view);
     if (view === "itiniraries") {
       setItineraries(null);
+      setHidePlanForm(false);
     }
   };
 
@@ -72,6 +75,7 @@ export default function MainView() {
           setAllActivities={setAllActivities}
           activities={activities}
           setActivities={setActivities}
+          hidePlanForm={hidePlanForm}
         />
         <ViewSection>
           {loadingMainView && <LoadingSpinner />}

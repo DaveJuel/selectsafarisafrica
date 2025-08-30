@@ -22,12 +22,21 @@ export const ContentContainer = styled.div`
   grid-template-columns: 400px 1fr;
   gap: 10px;
   height: calc(80vh - 20px);
-  @media (max-width: 1024px) {
+
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 5px;
+    height: auto;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 0 8px;
     height: auto;
   }
 `;
+
 
 export const ViewSection = styled.div`
   backdrop-filter: blur(5px);
