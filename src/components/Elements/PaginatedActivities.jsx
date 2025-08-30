@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchEntityData } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
 import { ActivitiesContainer, ActivitiesGrid, ActivityChip, PageDot, PageIndicators, PaginationButton, PaginationContainer } from "../../style/paginated.activities.styles";
+import useItemsPerPage from "../../utils/UserItemsPerPage";
 
 const PaginatedActivities = ({
   formData,
@@ -14,7 +15,7 @@ const PaginatedActivities = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = useItemsPerPage();
 
   // Calculate pagination
   const totalPages = Math.ceil(activities.length / itemsPerPage);

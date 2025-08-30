@@ -24,6 +24,7 @@ export const SidebarHeaderSection = styled.div`
   border-top-right-radius: 20px;
 
   @media (max-width: 768px) {
+    position: relative;
     flex-direction: column;
     gap: 15px;
     text-align: center;

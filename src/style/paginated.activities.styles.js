@@ -5,6 +5,14 @@ export const ActivitiesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+  }
 `;
 
 export const ActivitiesGrid = styled.div`
@@ -12,10 +20,15 @@ export const ActivitiesGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   min-height: 200px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* stack activities vertically */
+    gap: 8px;
+    min-height: auto;
+  }
 `;
 
 export const ActivityChip = styled.button`
-  padding: 5px 6px;
   border: 1px solid ${(props) => (props.selected ? "#7E5B40" : "#e1e8ed")};
   background: ${(props) => (props.selected ? "#7E5B40" : "white")};
   color: ${(props) => (props.selected ? "white" : "#7E5B40")};
@@ -31,6 +44,17 @@ export const ActivityChip = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(234, 177, 102, 0.3);
   }
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 16px;
+  }
 `;
 
 export const PaginationContainer = styled.div`
@@ -39,6 +63,15 @@ export const PaginationContainer = styled.div`
   justify-content: center;
   gap: 16px;
   margin-top: 5px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+    margin-top: 3px;
+  }
 `;
 
 export const PaginationButton = styled.button`
@@ -66,12 +99,32 @@ export const PaginationButton = styled.button`
     opacity: 0.3;
     cursor: not-allowed;
   }
+  
+  @media (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
 `;
 
 export const PageIndicators = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
+  }
 `;
 
 export const PageDot = styled.button`
@@ -86,5 +139,15 @@ export const PageDot = styled.button`
   &:hover {
     background: #7e5b40;
     transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    width: 7px;
+    height: 7px;
+  }
+
+  @media (max-width: 480px) {
+    width: 6px;
+    height: 6px;
   }
 `;

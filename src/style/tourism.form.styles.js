@@ -17,7 +17,7 @@ export const FormWrapper = styled.div`
 export const Form = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   @media (max-width: 768px) {
     gap: 8px;
   }
@@ -26,7 +26,7 @@ export const Form = styled.div`
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   @media (max-width: 768px) {
     gap: 6px;
   }
@@ -35,21 +35,17 @@ export const FormGroup = styled.div`
 export const Label = styled.label`
   font-weight: 500;
   color: #ffffffff;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  @media (max-width: 768px) {
-    font-size: 13px;
-  }
 
   @media (max-width: 480px) {
-    font-size: 12px;
     letter-spacing: 0.3px;
   }
 `;
 
 export const Select = styled.select`
-  padding: 12px 16px;
+  padding: 6px 6px;
   border: 1px solid #e1e8ed;
   border-radius: 12px;
   font-size: 16px;
