@@ -8,11 +8,21 @@ export const ItinerariesGrid = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
+  @media (max-width: 480px) {
+    gap: 15px;
+  }
 `;
+
 
 export const ItineraryCard = styled.div`
   background: white;
@@ -26,13 +36,36 @@ export const ItineraryCard = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    border-radius: 12px;
+  }
 `;
+
 
 export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 6px;
+  }
 `;
 
 export const ItineraryName = styled.h2`
@@ -41,6 +74,14 @@ export const ItineraryName = styled.h2`
   font-weight: 600;
   margin: 0;
   flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 export const SeasonBadge = styled.span`
@@ -52,7 +93,18 @@ export const SeasonBadge = styled.span`
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+
+  @media (max-width: 768px) {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
 `;
+
 
 export const DurationInfo = styled.div`
   display: flex;
@@ -63,17 +115,50 @@ export const DurationInfo = styled.div`
   background: #f8f9ff;
   border-radius: 8px;
   border-left: 4px solid #10A969;
+
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 10px;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
 `;
 
-export const DurationIcon = styled.span`
-  font-size: 18px;
+export const DurationIcon = styled.img`
+  width: 18px;
+  height: 18px;
+
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 480px) {
+    width: 14px;
+    height: 14px;
+  }
 `;
+
 
 export const DurationText = styled.span`
   color: #333;
   font-size: 16px;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
+
 
 export const ActivitiesSection = styled.div`
   margin-bottom: 20px;

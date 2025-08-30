@@ -26,59 +26,51 @@ export default function BookingDetails() {
   const printRef = useRef();
 
   useEffect(() => {
-    const fetchBookingData = async () => {
-      const response = await fetchEntityData("bookings");
-      if (response.success) {
-        const bookingDetails = response.result?.find(
-          (item) => item.booking_code === bookingCode
-        );
-        setBookingData(bookingDetails);
-        return bookingDetails;
-      }
-    };
-
-    const fetchItineraryData = async (itineraryName) => {
-      const response = await fetchEntityData("itineraries");
-      if (response.success) {
-        const itineraryData = response.result?.find(
-          (item) => item.name === itineraryName
-        );
-        setItinerary(itineraryData);
-      }
-    };
-
-    const fetchItineraryActivities = async (itineraryName) => {
-      const response = await fetchEntityData("itinirary_activities");
-      if (response.success) {
-        const itineraryActivitiesData = response.result?.filter(
-          (item) => item.itinerary === itineraryName
-        );
-        setItineraryActivities(itineraryActivitiesData);
-      }
-    };
-
-    const fetchActivitiesDetails = async () => {
-      try {
-        setLoading(true);
-        const response = await fetchEntityData("activities");
-        if (response.success) {
-          setActivitiesDetails(response.result);
-        }
-      } catch (error) {
-        console.error("Failed to load activitied");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     const fetchData = async () => {
       try {
-        const booking = await fetchBookingData();
-        await fetchItineraryData(booking.itinerary);
-        await fetchItineraryActivities(booking.itinerary);
-        await fetchActivitiesDetails();
+        setLoading(true);
+        const bookingResponse = await fetchEntityData("bookings");
+        if (!bookingResponse.success) return;
+
+        const booking = bookingResponse.result?.find(
+          (b) => b.booking_code === bookingCode
+        );
+        if (!booking) return;
+
+        setBookingData(booking);
+
+        const itineraryName = booking.itinerary;
+
+        const [
+          itineraryResponse,
+          itineraryActivitiesResponse,
+          activitiesResponse,
+        ] = await Promise.all([
+          fetchEntityData("itineraries"),
+          fetchEntityData("itinirary_activities"),
+          fetchEntityData("activities"),
+        ]);
+
+        if (itineraryResponse.success) {
+          const itineraryData = itineraryResponse.result?.find(
+            (item) => item.name === itineraryName
+          );
+          setItinerary(itineraryData);
+        }
+
+        if (itineraryActivitiesResponse.success) {
+          const itineraryActivitiesData =
+            itineraryActivitiesResponse.result?.filter(
+              (item) => item.itinerary === itineraryName
+            );
+          setItineraryActivities(itineraryActivitiesData);
+        }
+
+        if (activitiesResponse.success) {
+          setActivitiesDetails(activitiesResponse.result);
+        }
       } catch (error) {
-        console.error(`Failed fetching data`);
+        console.error("Failed fetching booking or itinerary data:", error);
       } finally {
         setLoading(false);
       }
@@ -118,7 +110,7 @@ export default function BookingDetails() {
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
-      ignoreElements: (el) => el.classList.contains("no-pdf")
+      ignoreElements: (el) => el.classList.contains("no-pdf"),
     });
 
     const imgData = canvas.toDataURL("image/png");
@@ -313,7 +305,9 @@ export default function BookingDetails() {
               </EmergencyGrid>
             </FooterContent>
           </FooterSection>
-          <ExportButton className="no-pdf" onClick={handleDownloadPDF}>Export as PDF</ExportButton>
+          <ExportButton className="no-pdf" onClick={handleDownloadPDF}>
+            Export as PDF
+          </ExportButton>
         </ContentContainer>
       )}
     </>

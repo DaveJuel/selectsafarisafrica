@@ -2,36 +2,58 @@ import { parseISO, addDays, format } from 'date-fns';
 import { fetchEntityData } from './RequestHandler';
 import { logger } from './logger';
 
-export const filterItineraries = async (country, days, activities = [], setLoading) => {
+export const filterItineraries = async (
+  country,
+  days,
+  activities = [],
+  setLoading
+) => {
   let data = [];
   try {
     setLoading(true);
     const response = await fetchEntityData("itineraries");
-    if (!response.success) return data;
-    const results = response.result;
-    const itineraries = results?.filter(
+    if (!response.success) return { itineraries: data, itineraryActivities: [] };
+
+    const itineraries = response.result?.filter(
       (item) => item.country === country && parseInt(item.days, 10) === days
     ) || [];
-    if (itineraries.length === 0) return [];
     const itineraryActivitiesResponse = await fetchEntityData("itinirary_activities");
-    if (activities.length === 0 || !itineraryActivitiesResponse.success) {
-      return itineraries;
+    const itineraryActivities = itineraryActivitiesResponse.success
+      ? itineraryActivitiesResponse.result
+      : [];
+
+    if (!activities.length) {
+      return { itineraries, itineraryActivities };
     }
-    const itineraryActivities = itineraryActivitiesResponse.result;
+
+    const itineraryMap = new Map();
+    itineraryActivities.forEach((ia) => {
+      if (!itineraryMap.has(ia.itinerary)) {
+        itineraryMap.set(ia.itinerary, new Set());
+      }
+      itineraryMap.get(ia.itinerary).add(ia.activity);
+    });
+
     const activityNamesSet = new Set(activities.map((a) => a.name));
-    const filteredItineraries = itineraries.filter((itinerary) =>
-      itineraryActivities.some(
-        (ia) => ia.itinerary === itinerary.name && activityNamesSet.has(ia.activity)
-      )
-    );
-    return filteredItineraries;
+
+    const filteredItineraries = itineraries.filter((itinerary) => {
+      const activitiesSet = itineraryMap.get(itinerary.name);
+      if (!activitiesSet) return false;
+      return [...activityNamesSet].some((act) => activitiesSet.has(act));
+    });
+
+    return { itineraries: filteredItineraries, itineraryActivities };
   } catch (error) {
-    logger.error("Failed to filter itineraries", { error: error.message, stack: error.stack });
-    return data;
+    logger.error("Failed to filter itineraries", {
+      error: error.message,
+      stack: error.stack,
+    });
+    return { itineraries: data, itineraryActivities: [] };
   } finally {
     setLoading(false);
   }
 };
+
 
 
 export const fetchData = async (entityName, setLoading) => {

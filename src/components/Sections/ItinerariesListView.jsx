@@ -156,7 +156,7 @@ const ItinerariesListView = ({
             </CardHeader>
 
             <DurationInfo>
-              <DurationIcon>📅</DurationIcon>
+              <DurationIcon src="/icons/day-mode.png" alt="Duration" />
               <DurationText>
                 {itinerary.days} {t("days")}
               </DurationText>
@@ -183,7 +183,9 @@ const ItinerariesListView = ({
               </ActivitiesList>
             </ActivitiesSection>
 
-            <CardFooter onClick={() => openBookTripModal(itinerary, activities)}>
+            <CardFooter
+              onClick={() => openBookTripModal(itinerary, activities)}
+            >
               <ActionBtn>{t("book_now")}</ActionBtn>
             </CardFooter>
           </ItineraryCard>

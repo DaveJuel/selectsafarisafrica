@@ -6,6 +6,7 @@ export default function MainSectionView({
   currentView,
   formData,
   itineraries,
+  itineraryActivities,
   openBookTripModal,
   toggleView,
   allActivities
@@ -21,6 +22,7 @@ export default function MainSectionView({
         <ItineraryView
           formData={formData}
           itineraries={itineraries}
+          itineraryActivities={itineraryActivities}
           openBookTripModal={openBookTripModal}
           allActivities={allActivities}
           toggleView={toggleView}

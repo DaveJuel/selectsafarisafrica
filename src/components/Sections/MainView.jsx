@@ -33,13 +33,14 @@ export default function MainView() {
   const handleItineraryFiltering = async () => {
     toggleView("itiniraries");
     setHidePlanForm(true);
-    const itineraries = await filterItineraries(
+    const { itineraries, itineraryActivities } = await filterItineraries(
       formData.country,
       formData.days,
       formData.activities,
       setLoadingMainView
     );
     setItineraries(itineraries);
+    setItineraryActivities(itineraryActivities);
   };
 
   const toggleView = (view) => {
@@ -84,6 +85,7 @@ export default function MainView() {
               currentView={currentView}
               formData={formData}
               itineraries={itineraries}
+              itineraryActivities={itineraryActivities}
               openBookTripModal={onBookItinerary}
               toggleView={toggleView}
               allActivities={allActivities}
