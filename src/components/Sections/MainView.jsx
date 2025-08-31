@@ -48,6 +48,8 @@ export default function MainView() {
     if (view === "itiniraries") {
       setItineraries(null);
       setHidePlanForm(false);
+    }else{
+      setHidePlanForm(true);
     }
   };
 
