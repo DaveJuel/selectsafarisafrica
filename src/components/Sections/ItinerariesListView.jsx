@@ -57,6 +57,14 @@ const ItinerariesListView = ({
   }, []);
 
   useEffect(() => {
+    setItineraries(inItineraries);
+  }, [inItineraries]);
+
+  useEffect(() => {
+    setItineraryActivities(inItinerariesActivities);
+  }, [inItinerariesActivities]);
+
+  useEffect(() => {
     const askAgent = async () => {
       try {
         setIsAskingAgent(true);
