@@ -108,8 +108,7 @@ const FormSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin: 20px;
-    padding: 30px 20px;
+    display: none;
   }
 `;
 
@@ -117,6 +116,10 @@ const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 480px) {
+    gap: 16px;
+  }
 `;
 
 const InputGroup = styled.div`
@@ -128,9 +131,14 @@ const InputGroup = styled.div`
 const InputLabel = styled.label`
   font-size: 14px;
   font-weight: 400;
-  color: #ffffffff;
+  color: #fff;
   margin-bottom: 8px;
   transition: color 0.2s ease;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
 `;
 
 const Input = styled.input`
@@ -162,6 +170,17 @@ const Input = styled.input`
 
   &:focus::placeholder {
     opacity: 0.6;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 12px;
   }
 `;
 
@@ -196,6 +215,19 @@ const TextArea = styled.textarea`
 
   &:focus::placeholder {
     opacity: 0.6;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 18px;
+    font-size: 15px;
+    min-height: 100px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 12px;
+    min-height: 90px;
   }
 `;
 
@@ -250,6 +282,19 @@ const SubmitButton = styled.button`
     cursor: not-allowed;
     transform: none;
     animation: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 28px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px 22px;
+    font-size: 14px;
+    border-radius: 12px;
+    width: 100%; // full width on small screens
   }
 `;
 

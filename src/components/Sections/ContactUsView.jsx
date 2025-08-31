@@ -41,7 +41,15 @@ export default function ContactUsView() {
 
 const ViewWrapper = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 40px 20px;
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 10px;
+  }
 `;
 
 const Header = styled.div`
@@ -61,17 +69,46 @@ const HeaderTitle = styled.h2`
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #e4bc87;
+
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 26px;
+  }
 `;
 
 const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    gap: 30px;
+    max-width: 850px;
+  }
 
   @media (max-width: 768px) {
+    flex-direction: column;
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 25px;
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  & > * {
+    width: 100%; // ensures form and info section take full width
   }
 `;

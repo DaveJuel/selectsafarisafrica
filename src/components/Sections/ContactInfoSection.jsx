@@ -55,6 +55,12 @@ const InfoSection = styled.div`
     padding: 30px 20px;
     gap: 20px;
   }
+
+  @media (max-width: 480px) {
+    padding: 20px 15px;
+    gap: 16px;
+    border-radius: 16px;
+  }
 `;
 
 const ContactCard = styled.div`
@@ -91,12 +97,21 @@ const ContactCard = styled.div`
   &:hover::before {
     opacity: 1;
   }
+
+  @media (max-width: 480px) {
+    border-radius: 12px;
+    padding: 4px;
+  }
 `;
 
 const CardHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 `;
 
 const CardIcon = styled.div`
@@ -114,6 +129,26 @@ const CardIcon = styled.div`
     height: 24px;
     filter: brightness(0) invert(1); // Makes icons white
   }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
 `;
 
 const CardText = styled.p`
@@ -121,6 +156,14 @@ const CardText = styled.p`
   margin: 0;
   font-size: 16px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const ContactLink = styled.a`
@@ -134,6 +177,10 @@ const ContactLink = styled.a`
     color: #16a085;
     transform: translateX(2px);
   }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -143,6 +190,12 @@ const SocialLinks = styled.div`
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(14, 80, 51, 0.1);
+
+  @media (max-width: 480px) {
+    gap: 12px;
+    margin-top: 15px;
+    padding-top: 15px;
+  }
 `;
 
 const SocialLink = styled.a`
@@ -169,6 +222,18 @@ const SocialLink = styled.a`
     color: white;
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 16px rgba(14, 80, 51, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
   }
 `;
 
