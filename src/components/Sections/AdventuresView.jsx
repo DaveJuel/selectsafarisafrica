@@ -17,6 +17,7 @@ import {
 } from "../../style/adventures.view.styles";
 import VideoDetailOverlay from "../Elements/VideoDetailOverlay";
 import SSAIntelligenceOverlay from "../Elements/SSAIntelligenceOverlay";
+import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
 
 export default function AdventuresView({ formData }) {
   const [currentLayout, setCurrentLayout] = useState(0);
@@ -27,6 +28,8 @@ export default function AdventuresView({ formData }) {
   const [overlayLocked, setOverlayLocked] = useState(false);
   const [videoPosition, setVideoPosition] = useState(null);
   const [activeOverlay, setActiveOverlay] = useState(null);
+
+  const isSmallScreen = useIsSmallScreen();
 
   const { t } = useTranslation("adventures");
 
@@ -116,7 +119,7 @@ export default function AdventuresView({ formData }) {
                   />
                   <CaptionOverlay
                     onMouseEnter={(event) => {
-                      if (activeOverlay) return;
+                      if (isSmallScreen || activeOverlay) return;
                       setHoveredVideo(videos[videoIndex]);
                       setHoveredVideoIndex(videoIndex);
                       setVideoPosition(getVideoPosition(event));

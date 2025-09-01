@@ -37,6 +37,15 @@ export default function TouristForm({
         const response = await fetchEntityData("countries");
         if (response.success) {
           setCountries(response.result);
+          const defaultCountry = response.result.find(
+            (country) => country.name.toLowerCase() === "rwanda"
+          );
+          if (defaultCountry) {
+            setFormData((prev) => ({
+              ...prev,
+              country: defaultCountry.name,
+            }));
+          }
         }
       } catch (error) {
         console.error(`Failed to fetch countries`, error);
