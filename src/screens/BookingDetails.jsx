@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchEntityData } from "../utils/RequestHandler";
 import {
   getFormattedTripDate,
@@ -13,7 +13,57 @@ import StyledLongText from "../components/Inputs/StyledLongText";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { SidebarTitle } from "../style/sidebar.view.styles";
-import { ActivitiesContainer, ActivityCard, ActivityContent, ActivityCost, ActivityDescription, ActivityDetails, ActivityHeader, ActivityImage, ActivityImageContainer, ActivityMeta, ActivityName, BodySection, CompanyCard, CompanyInfo, CompanyLogo, CompanySection, ContactIcon, ContactInfo, ContactItem, ContactText, ContentContainer, DayCard, DayDate, DayHeader, DayNumber, DaysContainer, EmergencyCard, EmergencyGrid, EmergencyNumber, EmergencyService, ExportButton, FooterContent, FooterSection, FooterTitle, HeaderSection, ItineraryHeader, ItineraryTitle, MetaItem, SectionHeader, SectionTitle, TotalCost, TravelerCard, TravelerContent, TravelerDetails, TravelerEmail, TravelerIcon, TravelerInfo, TravelerSection } from "../style/booking.details.styles";
+import {
+  ActivitiesContainer,
+  ActivityCard,
+  ActivityContent,
+  ActivityCost,
+  ActivityDescription,
+  ActivityDetails,
+  ActivityHeader,
+  ActivityImage,
+  ActivityImageContainer,
+  ActivityMeta,
+  ActivityName,
+  BodySection,
+  CompanyCard,
+  CompanyInfo,
+  CompanyLogo,
+  CompanySection,
+  ContactIcon,
+  ContactInfo,
+  ContactItem,
+  ContactText,
+  ContentContainer,
+  DayCard,
+  DayDate,
+  DayHeader,
+  DayNumber,
+  DaysContainer,
+  EmergencyCard,
+  EmergencyGrid,
+  EmergencyNumber,
+  EmergencyService,
+  ExportButton,
+  FooterContent,
+  FooterSection,
+  FooterTitle,
+  HeaderSection,
+  ItineraryHeader,
+  ItineraryTitle,
+  MetaIcon,
+  MetaItem,
+  SectionHeader,
+  SectionTitle,
+  TotalCost,
+  TravelerCard,
+  TravelerContent,
+  TravelerDetails,
+  TravelerEmail,
+  TravelerIcon,
+  TravelerInfo,
+  TravelerSection,
+} from "../style/booking.details.styles";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -24,6 +74,11 @@ export default function BookingDetails() {
   const [totalCost, setTotalCost] = useState(0);
   const { bookingCode } = useParams();
   const printRef = useRef();
+  const navigate = useNavigate();
+
+  const goHome = ()=>{
+    navigate("/");
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -154,11 +209,11 @@ export default function BookingDetails() {
           <HeaderSection>
             <CompanyCard>
               <CompanySection>
-                <CompanyLogo>
+                <CompanyLogo onClick={goHome}>
                   <LogoComponent />
                 </CompanyLogo>
-                <CompanyInfo>
-                  <SidebarTitle>SELECT SAFARIS AFRICA</SidebarTitle>
+                <CompanyInfo >
+                  <SidebarTitle onClick={goHome}>SELECT SAFARIS AFRICA</SidebarTitle>
                   <ContactInfo>
                     <ContactItem>
                       <ContactIcon>
@@ -189,7 +244,7 @@ export default function BookingDetails() {
                   <TravelerIcon>
                     <img src="/icons/traveler.png" alt="Email" />
                   </TravelerIcon>
-                  <SectionTitle >{bookingData?.client_name || ""}</SectionTitle>
+                  <SectionTitle>{bookingData?.client_name || ""}</SectionTitle>
                 </SectionHeader>
                 <TravelerContent>
                   <TravelerInfo>
@@ -272,10 +327,21 @@ export default function BookingDetails() {
                                   </ActivityDescription>
                                   <ActivityMeta>
                                     <MetaItem>
-                                      🕐 Starts: {dailyActivity.time}
+                                      <MetaIcon>
+                                        <img
+                                          src="/icons/early-bird.png"
+                                          alt="starts"
+                                        />
+                                      </MetaIcon>{" "}
+                                      Starts: {dailyActivity.time}
                                     </MetaItem>
                                     <MetaItem>
-                                      ⏱️ Lasts about {dailyActivity.duration}
+                                      <MetaIcon>
+                                        <img
+                                          src="/icons/time.png"
+                                          alt="starts"
+                                        />
+                                      </MetaIcon>Lasts about {dailyActivity.duration}
                                     </MetaItem>
                                   </ActivityMeta>
                                 </ActivityDetails>
