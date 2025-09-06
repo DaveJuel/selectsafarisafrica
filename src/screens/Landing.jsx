@@ -5,17 +5,18 @@ export default function Landing() {
     return (
     <>
       <SEO
-        title="Select Safaris | Discover East Africa’s Top Adventures"
-        description="Plan and book unforgettable safaris in Rwanda, Kenya, Uganda and beyond. Choose from gorilla trekking, cultural tours, and luxury lodge experiences."
-        image="https://www.selectsafaris.com/assets/hero.jpg"
-        url="https://www.selectsafaris.com/"
+        title="Select Safaris Africa| Discover East Africa’s Top Adventures"
+        description="Plan and book unforgettable safaris in Rwanda, Tanzania, Uganda and Burundi. Choose from gorilla trekking, cultural tours, and luxury lodge experiences."
+        image="https://www.selectsafarisafrica.com/assets/hero.jpg"
+        url="https://www.selectsafarisafrica.com/"
         schema={{
-          "@context": "https://schema.org",
+          "@context": "https://selectsafarisafrica.com",
           "@type": "TravelAgency",
           "name": "Select Safaris Africa",
-          "url": "https://www.selectsafaris.com/",
-          "logo": "https://www.selectsafaris.com/assets/logo.webp",
+          "url": "https://www.selectsafarisafrica.com/",
+          "logo": "https://www.selectsafarisafrica.com/assets/logo.webp",
           "description": "Your trusted partner for unforgettable African safari experiences.",
+          "address": "Rwanda, Uganda, Tanzania, Burundi"
           // "sameAs": [
           //   "https://www.facebook.com/selectsafaris",
           //   "https://www.instagram.com/selectsafaris"

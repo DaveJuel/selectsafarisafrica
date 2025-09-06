@@ -202,8 +202,8 @@ export default function BookingDetails() {
     <>
      <SEO
         title={`Booking ${bookingCode} | Select Safaris`}
-        description="Review your safari booking details, itinerary, and payment confirmation."
-        url={`https://www.selectsafaris.com/booking/${bookingCode}`}
+        description="Review your safari booking details, itinerary, and  budget."
+        url={`https://www.selectsafarisafrica.com/booking/${bookingCode}`}
       />
       {loading && <LoadingSpinner />}
       {!loading && !bookingData && (
