@@ -8,15 +8,12 @@ import './style/index.css';
 import './i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { CartProvider } from './context/CartProvider';
 import LoadingSpinner from './components/Elements/LoadingSpinner'; 
 
 ReactDOM.render(
   <Suspense fallback={<LoadingSpinner />}>
     <BrowserRouter>
-      <CartProvider>
         <App />
-      </CartProvider>
     </BrowserRouter>
   </Suspense>,
   document.getElementById('root')

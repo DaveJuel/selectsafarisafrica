@@ -101,17 +101,62 @@ export const  CompanyName = styled.h1`
   line-height: 1;
 `;
 
-export const  ContactItem = styled.div`
+export const ContactItem = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 0;
   transition: all 0.2s ease;
+  flex-wrap: wrap; /* allows text to wrap under icon if space is tight */
 
   &:hover {
     transform: translateX(4px);
   }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+    padding: 6px 0;
+  }
 `;
+
+export const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0; /* prevents flex children from overflowing */
+  
+  @media (max-width: 480px) {
+    gap: 4px;
+  }
+`;
+
+export const ContactIcon = styled.span`
+  font-size: 18px;
+  width: 32px;  /* slightly larger tap target */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e4bc87 0%, #e4bc87 100%);
+  border-radius: 8px;
+  flex-shrink: 0;
+  
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 480px) {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+`;
+
 
 export const  ContactText = styled.span`
   font-size: 16px;
@@ -129,7 +174,7 @@ export const  CompanyCard = styled.div`
   transition: all 0.3s ease;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px;
 
     ${CompanySection} {
       flex-direction: column;
@@ -154,33 +199,23 @@ export const  CompanyCard = styled.div`
   }
 `;
 
-export const  ContactInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`;
-
-export const  ContactIcon = styled.span`
-  font-size: 18px;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #e4bc87 0%, #e4bc87 100%);
-  border-radius: 8px;
-  flex-shrink: 0;
-  img {
-    width: 20px;
-    height: 20px;
-  }
-`;
-
-export const  TravelerSection = styled.div`
+export const TravelerSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
   height: 100%;
+  padding: 16px; /* adds breathing room on smaller screens */
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    gap: 16px; /* slightly smaller gaps on tablets */
+    padding: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px; /* tighter spacing for small phones */
+    padding: 8px;
+  }
 `;
 
 export const  SectionHeader = styled.div`
@@ -219,13 +254,23 @@ export const  SectionTitle = styled.h2`
   background-clip: text;
 `;
 
-export const  TravelerContent = styled.div`
+export const TravelerContent = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: space-between; /* distributes children better */
+  flex-wrap: wrap; /* allows wrapping on small screens */
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* stack vertically */
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+  }
 `;
 
-export const  TravelerInfo = styled.div`
+export const TravelerInfo = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -234,6 +279,8 @@ export const  TravelerInfo = styled.div`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  border-radius: 12px; /* keeps it modern */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 
   &::before {
     content: "";
@@ -249,7 +296,20 @@ export const  TravelerInfo = styled.div`
     transform: translateX(4px);
     border-color: rgba(115, 72, 44, 0.2);
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* stack content */
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+    padding: 12px;
+  }
 `;
+
 
 export const  TravelerAvatar = styled.div`
   width: 56px;
@@ -301,7 +361,7 @@ export const  TravelerCard = styled.div`
   backdrop-filter: blur(15px);
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px;
     min-height: auto;
 
     ${SectionHeader} {

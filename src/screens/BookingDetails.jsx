@@ -251,6 +251,12 @@ export default function BookingDetails() {
                     <TravelerDetails>
                       <TravelerEmail>
                         <ContactIcon>
+                          <img src="/icons/promo.png" alt="Email" />
+                        </ContactIcon>
+                        {bookingData?.booking_code || ""}
+                      </TravelerEmail>
+                      <TravelerEmail>
+                        <ContactIcon>
                           <img src="/icons/contact-book.png" alt="Email" />
                         </ContactIcon>
                         {bookingData?.client_contact || ""}
