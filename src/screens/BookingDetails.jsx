@@ -64,6 +64,7 @@ import {
   TravelerInfo,
   TravelerSection,
 } from "../style/booking.details.styles";
+import SEO from "../components/Elements/SEO";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -199,6 +200,11 @@ export default function BookingDetails() {
 
   return (
     <>
+     <SEO
+        title={`Booking ${bookingCode} | Select Safaris`}
+        description="Review your safari booking details, itinerary, and payment confirmation."
+        url={`https://www.selectsafaris.com/booking/${bookingCode}`}
+      />
       {loading && <LoadingSpinner />}
       {!loading && !bookingData && (
         <EmptyStateView message={"Invalid booking code"} />
