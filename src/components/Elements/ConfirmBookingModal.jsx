@@ -1,6 +1,9 @@
+// import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
+  // const navigate = useNavigate();
+
   if (!isOpen) return null;
 
   return (
@@ -24,7 +27,7 @@ const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
 
             <BookingCodeContainer>
               <BookingCodeLabel>Your Booking Code</BookingCodeLabel>
-              <BookingCodeValue>{bookingData.booking_code}</BookingCodeValue>
+              <BookingCodeValue  onClick={() => window.open(`/booking/${bookingData.booking_code}`, "_blank")}>{bookingData.booking_code}</BookingCodeValue>
               <BookingCodeNote>
                 Use this code for any follow-up inquiries
               </BookingCodeNote>
@@ -339,6 +342,14 @@ const BookingCodeValue = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+    transition: all 0.2s ease-in-out;
+  }
 
   @media (max-width: 768px) {
     font-size: 24px;
