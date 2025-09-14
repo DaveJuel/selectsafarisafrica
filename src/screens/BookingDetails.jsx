@@ -17,7 +17,6 @@ import {
   ActivitiesContainer,
   ActivityCard,
   ActivityContent,
-  ActivityCost,
   ActivityDescription,
   ActivityDetails,
   ActivityHeader,
@@ -55,7 +54,6 @@ import {
   MetaItem,
   SectionHeader,
   SectionTitle,
-  TotalCost,
   TravelerCard,
   TravelerContent,
   TravelerDetails,
@@ -71,7 +69,6 @@ export default function BookingDetails() {
   const [itiniraryActivities, setItineraryActivities] = useState([]);
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
   const { bookingCode } = useParams();
   const printRef = useRef();
   const navigate = useNavigate();
@@ -133,23 +130,6 @@ export default function BookingDetails() {
 
     fetchData();
   }, [bookingCode]);
-
-  useEffect(() => {
-    if (activitiesDetails.length > 0) {
-      const calculateTotalCost = () => {
-        const totalAmount = itiniraryActivities?.reduce((sum, activity) => {
-          const activityInfo = activitiesDetails?.find(
-            (item) => item.name === activity.activity
-          );
-          return sum + parseFloat(activityInfo.estimated_cost || 0);
-        }, 0);
-
-        setTotalCost(totalAmount);
-      };
-
-      calculateTotalCost();
-    }
-  }, [activitiesDetails, itiniraryActivities]);
 
   const activities = sortItineraryActivities(itinerary, itiniraryActivities);
 
@@ -278,7 +258,6 @@ export default function BookingDetails() {
           <BodySection>
             <ItineraryHeader>
               <ItineraryTitle>{itinerary?.name}</ItineraryTitle>
-              <TotalCost>Complete package: ${totalCost}</TotalCost>
             </ItineraryHeader>
 
             <DaysContainer>
@@ -320,9 +299,6 @@ export default function BookingDetails() {
                                   <ActivityName>
                                     {activityInfo.name}
                                   </ActivityName>
-                                  <ActivityCost>
-                                    ${activityInfo.estimated_cost}
-                                  </ActivityCost>
                                 </ActivityHeader>
                                 <ActivityDetails>
                                   <ActivityDescription>
