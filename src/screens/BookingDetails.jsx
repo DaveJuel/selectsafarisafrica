@@ -7,60 +7,16 @@ import {
 } from "../utils/DataHandler";
 import EmptyStateView from "../components/Elements/EmptyStateView";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
-import LogoComponent from "../assets/svg/Logo";
 import { getEmergencyContacts } from "../data/emergency.contacts";
-import StyledLongText from "../components/Inputs/StyledLongText";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { SidebarTitle } from "../style/sidebar.view.styles";
 import {
-  ActivitiesContainer,
-  ActivityCard,
-  ActivityContent,
-  ActivityDescription,
-  ActivityDetails,
-  ActivityHeader,
-  ActivityImage,
-  ActivityImageContainer,
-  ActivityMeta,
-  ActivityName,
-  BodySection,
-  CompanyCard,
-  CompanyInfo,
-  CompanyLogo,
-  CompanySection,
-  ContactIcon,
-  ContactInfo,
-  ContactItem,
-  ContactText,
   ContentContainer,
-  DayCard,
-  DayDate,
-  DayHeader,
-  DayNumber,
-  DaysContainer,
-  EmergencyCard,
-  EmergencyGrid,
-  EmergencyNumber,
-  EmergencyService,
   ExportButton,
-  FooterContent,
-  FooterSection,
-  FooterTitle,
-  HeaderSection,
-  ItineraryHeader,
-  ItineraryTitle,
-  MetaIcon,
-  MetaItem,
-  SectionHeader,
-  SectionTitle,
-  TravelerCard,
-  TravelerContent,
-  TravelerDetails,
-  TravelerEmail,
-  TravelerIcon,
-  TravelerSection,
 } from "../style/booking.details.styles";
+import HeaderSectionView from "../components/Sections/BookingDetails.js/HeaderSectionView";
+import BodySectionView from "../components/Sections/BookingDetails.js/BodySectionView";
+import FooterSectionView from "../components/Sections/BookingDetails.js/FooterSection";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -137,10 +93,8 @@ export default function BookingDetails() {
   const handleDownloadPDF = async () => {
     const element = printRef.current;
 
-    // Scroll to top so all elements render
     window.scrollTo(0, 0);
 
-    // Capture element
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
@@ -154,18 +108,24 @@ export default function BookingDetails() {
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
-    // Image dimensions in PDF
+    // Original canvas dimensions
+    const imgProps = {
+      width: canvas.width,
+      height: canvas.height,
+    };
+
+    // Always fit by width, keep aspect ratio
     const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    let heightLeft = imgHeight;
     let position = 0;
+    let heightLeft = imgHeight;
 
-    // Add first page
+    // First page
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pdfHeight;
 
-    // Add extra pages if content is longer
+    // Additional pages if needed
     while (heightLeft > 0) {
       position = heightLeft - imgHeight;
       pdf.addPage();
@@ -185,176 +145,22 @@ export default function BookingDetails() {
       {!loading && bookingData && (
         <ContentContainer ref={printRef}>
           {/* Header Section */}
-          <HeaderSection>
-            <CompanyCard>
-              <CompanySection>
-                <CompanyLogo onClick={goHome}>
-                  <LogoComponent />
-                </CompanyLogo>
-                <CompanyInfo>
-                  <SidebarTitle onClick={goHome}>
-                    SELECT SAFARIS AFRICA
-                  </SidebarTitle>
-                  <ContactInfo>
-                    <ContactItem>
-                      <ContactIcon>
-                        <img src="/icons/smartphone.png" alt="Contact" />
-                      </ContactIcon>
-                      <ContactText>+250 788 995 497</ContactText>
-                    </ContactItem>
-                    <ContactItem>
-                      <ContactIcon>
-                        <img src="/icons/mail2.png" alt="Email" />
-                      </ContactIcon>
-                      <ContactText>info@selectsafarisafrica.com</ContactText>
-                    </ContactItem>
-                    <ContactItem>
-                      <ContactIcon>
-                        <img src="/icons/world-wide-web.png" alt="Email" />
-                      </ContactIcon>
-                      <ContactText>selectsafarisafrica.com</ContactText>
-                    </ContactItem>
-                  </ContactInfo>
-                </CompanyInfo>
-              </CompanySection>
-            </CompanyCard>
-
-            <TravelerCard>
-              <TravelerSection>
-                <SectionHeader>
-                  <TravelerIcon>
-                    <img src="/icons/tourist2.png" alt="Email" />
-                  </TravelerIcon>
-                  <SectionTitle>{bookingData?.client_name || ""}</SectionTitle>
-                </SectionHeader>
-                <TravelerContent>
-                  <TravelerDetails>
-                    <TravelerEmail>
-                      <ContactIcon>
-                        <img src="/icons/promo.png" alt="Email" />
-                      </ContactIcon>
-                      {bookingData?.booking_code || ""}
-                    </TravelerEmail>
-                    <TravelerEmail>
-                      <ContactIcon>
-                        <img src="/icons/contact-book.png" alt="Email" />
-                      </ContactIcon>
-                      {bookingData?.client_contact || ""}
-                    </TravelerEmail>
-                    <TravelerEmail>
-                      <ContactIcon>
-                        <img src="/icons/planet.png" alt="Email" />
-                      </ContactIcon>
-                      {bookingData?.country_of_origin || ""}
-                    </TravelerEmail>
-                  </TravelerDetails>
-                </TravelerContent>
-              </TravelerSection>
-            </TravelerCard>
-          </HeaderSection>
-
+          <HeaderSectionView goHome={goHome} bookingData={bookingData} />
           {/* Body Section - Itinerary */}
-          <BodySection>
-            <ItineraryHeader>
-              <ItineraryTitle>{itinerary?.name}</ItineraryTitle>
-            </ItineraryHeader>
-
-            <DaysContainer>
-              {activities?.map((activity, index) => {
-                if (renderedDays.includes(activity.day)) return null;
-                renderedDays.push(activity.day);
-                const dailyActivities = activities?.filter(
-                  (item) => item.day === activity.day
-                );
-
-                return (
-                  <DayCard key={index}>
-                    <DayHeader>
-                      <DayNumber>Day {activity.day}</DayNumber>
-                      <DayDate>
-                        {getFormattedTripDate(
-                          bookingData.trip_start_date,
-                          activity.day
-                        )}
-                      </DayDate>
-                    </DayHeader>
-
-                    <ActivitiesContainer>
-                      {dailyActivities.map(
-                        (dailyActivity, dailyActivityIndex) => {
-                          const activityInfo = activitiesDetails?.find(
-                            (item) => item.name === dailyActivity.activity
-                          );
-                          return (
-                            <ActivityCard key={dailyActivityIndex}>
-                              <ActivityImageContainer>
-                                <ActivityImage
-                                  src={activityInfo.image}
-                                  alt={activityInfo.name}
-                                />
-                              </ActivityImageContainer>
-                              <ActivityContent>
-                                <ActivityHeader>
-                                  <ActivityName>
-                                    {activityInfo.name}
-                                  </ActivityName>
-                                </ActivityHeader>
-                                <ActivityDetails>
-                                  <ActivityDescription>
-                                    <StyledLongText
-                                      value={activityInfo.description}
-                                      maxLength={2000}
-                                    />
-                                  </ActivityDescription>
-                                  <ActivityMeta>
-                                    <MetaItem>
-                                      <MetaIcon>
-                                        <img
-                                          src="/icons/early-bird.png"
-                                          alt="starts"
-                                        />
-                                      </MetaIcon>{" "}
-                                      Starts: {dailyActivity.time}
-                                    </MetaItem>
-                                    <MetaItem>
-                                      <MetaIcon>
-                                        <img
-                                          src="/icons/time.png"
-                                          alt="starts"
-                                        />
-                                      </MetaIcon>
-                                      Lasts about {dailyActivity.duration}
-                                    </MetaItem>
-                                  </ActivityMeta>
-                                </ActivityDetails>
-                              </ActivityContent>
-                            </ActivityCard>
-                          );
-                        }
-                      )}
-                    </ActivitiesContainer>
-                  </DayCard>
-                );
-              })}
-            </DaysContainer>
-          </BodySection>
+          <BodySectionView
+            itinerary={itinerary}
+            activities={activities}
+            activitiesDetails={activitiesDetails}
+            renderedDays={renderedDays}
+            getFormattedTripDate={getFormattedTripDate}
+            bookingData={bookingData}
+          />
 
           {/* Footer Section */}
-          <FooterSection>
-            <FooterContent>
-              <FooterTitle>Emergency Contacts</FooterTitle>
-              <EmergencyGrid>
-                {getEmergencyContacts(itinerary.country)?.map(
-                  (contact, index) => (
-                    <EmergencyCard key={index}>
-                      <EmergencyService>{contact.service}</EmergencyService>
-                      <EmergencyNumber>{contact.number}</EmergencyNumber>
-                    </EmergencyCard>
-                  )
-                )}
-              </EmergencyGrid>
-            </FooterContent>
-          </FooterSection>
+          <FooterSectionView
+            itinerary={itinerary}
+            getEmergencyContacts={getEmergencyContacts}
+          />
           <ExportButton className="no-pdf" onClick={handleDownloadPDF}>
             Export as PDF
           </ExportButton>

@@ -1,54 +1,107 @@
 import styled from "styled-components";
 
 
-export const  ContentContainer = styled.div`
-  padding: 40px;
-  margin: 0 auto;
+// export const  ContentContainer = styled.div`
+//   padding: 40px;
+//   margin: 0 auto;
+//   background: rgba(255, 255, 255, 0);
+//   background-image: url("/bg_image2.jpg");
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+//   overflow: hidden;
+
+//   @media (max-width: 1024px) {
+//     padding: 15px;
+//     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+//   }
+
+//   @media (max-width: 768px) {
+//     padding: 15px;
+//     background-position: top center; // keep important parts of image visible
+//     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+//   }
+
+//   @media (max-width: 480px) {
+//     padding: 5px 0px;
+//     background-position: top center;
+//     background-size: cover;
+//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+//   }
+
+//   @media print {
+//     border-radius: 0;
+//     box-shadow: none;
+//     backdrop-filter: none;
+//   }
+// `;
+
+export const ContentContainer = styled.div`
+  width: 100%;
+  min-height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   background: rgba(255, 255, 255, 0);
   background-image: url("/bg_image2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  padding: 40px;
+  margin: 0 auto;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
 
   @media (max-width: 1024px) {
     padding: 15px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   }
 
   @media (max-width: 768px) {
     padding: 15px;
-    background-position: top center; // keep important parts of image visible
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    background-position: top center;
   }
 
   @media (max-width: 480px) {
-    padding: 5px 0px;
+    padding: 5px 0;
     background-position: top center;
-    background-size: cover;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
   }
 
   @media print {
+    width: 100%;
+    height: 100%;
     border-radius: 0;
     box-shadow: none;
-    backdrop-filter: none;
   }
 `;
 
 
-export const  HeaderSection = styled.div`
+// export const  HeaderSection = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 15px;
+//   padding: 30px;
+//   border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+
+//   @media (max-width: 768px) {
+//     padding: 10px;
+//     grid-template-columns: 1fr;
+//     gap: 10px;
+//   }
+// `;
+
+export const HeaderSection = styled.div`
+  flex: 0 0 auto; /* fixed height (content based) */
+  padding: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  padding: 30px;
   border-bottom: 2px solid rgba(102, 126, 234, 0.1);
 
   @media (max-width: 768px) {
-    padding: 10px;
     grid-template-columns: 1fr;
-    gap: 10px;
+    padding: 10px;
   }
 `;
 
@@ -382,20 +435,26 @@ export const  TravelerCard = styled.div`
   }
 `;
 
+// export const BodySection = styled.div`
+//   padding: 30px;
+
+//   @media (max-width: 1024px) {
+//     padding: 25px;
+//   }
+
+//   @media (max-width: 768px) {
+//     padding: 10px;
+//   }
+
+//   @media (max-width: 480px) {
+//     padding: 10px;
+//   }
+// `;
+
 export const BodySection = styled.div`
+  flex: 1; /* takes all remaining space */
   padding: 30px;
-
-  @media (max-width: 1024px) {
-    padding: 25px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px;
-  }
+  overflow-y: auto; /* prevents content cutting */
 `;
 
 export const ItineraryHeader = styled.div`
@@ -461,19 +520,56 @@ export const TotalCost = styled.div`
   }
 `;
 
-
-export const  DaysContainer = styled.div`
+export const DaysContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  &.print-mode {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0; /* avoid accidental spacing across pages */
+  }
 `;
+
+
+// export const  DaysContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 30px;
+
+//   &.print-mode {
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     gap: 0; /* avoid accidental spacing across pages */
+//   }
+// `;
 
 export const DayCard = styled.div`
   border-radius: 16px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(10px);
+
+  &.print-mode & {
+    width: 50%;             /* 2 cards per row */
+    box-sizing: border-box;
+    page-break-inside: avoid;
+  }
+
+  /* Every 2nd card triggers page break */
+  &.print-mode &:nth-of-type(2n) {
+    page-break-after: always;
+  }
 `;
+
+
+// export const DayCard = styled.div`
+//   border-radius: 16px;
+//   overflow: hidden;
+//   background: rgba(255, 255, 255, 0.68);
+//   backdrop-filter: blur(10px);
+// `;
 
 export const DayHeader = styled.div`
   padding: 20px 30px;
@@ -659,12 +755,17 @@ export const  MetaIcon = styled.span`
   }
 `;
 
-export const FooterSection = styled.div`
-  padding: 20px;
+// export const FooterSection = styled.div`
+//   padding: 20px;
 
-  @media (min-width: 768px) {
-    padding: 30px; /* restore default padding on medium+ screens */
-  }
+//   @media (min-width: 768px) {
+//     padding: 30px; /* restore default padding on medium+ screens */
+//   }
+// `;
+
+export const FooterSection = styled.div`
+  flex: 0 0 auto; /* sticks footer at bottom */
+  padding: 30px;
 `;
 
 export const FooterContent = styled.div`
