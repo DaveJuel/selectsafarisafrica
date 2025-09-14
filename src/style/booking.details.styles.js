@@ -423,10 +423,11 @@ export const ItineraryTitle = styled.h1`
   margin: 0 0 10px 0;
   font-size: 36px;
   font-weight: 700;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
+  color: #e4bc87;
+  // text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  // background: linear-gradient(45deg, #0e5033, #0e5033, #0e5033);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #e4bc87;
 
@@ -475,8 +476,6 @@ export const DayCard = styled.div`
 `;
 
 export const DayHeader = styled.div`
-  background: linear-gradient(135deg, #10a969 0%, #0e5033 100%);
-  color: white;
   padding: 20px 30px;
   display: flex;
   justify-content: space-between;
@@ -671,8 +670,8 @@ export const FooterSection = styled.div`
 export const FooterContent = styled.div`
   border-radius: 16px;
   padding: 20px;
-  background: rgba(248, 247, 247, 0.33);
-  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(10px);
   border-top: 2px solid rgba(102, 126, 234, 0.1);
 
   @media (min-width: 768px) {
@@ -685,7 +684,7 @@ export const FooterTitle = styled.h2`
   font-size: 20px;
   font-weight: 600;
   color: #2d3748;
-  text-align: center;
+  text-align: left;
 
   @media (min-width: 768px) {
     font-size: 24px; /* bigger headline on larger screens */
@@ -705,7 +704,6 @@ export const EmergencyGrid = styled.div`
 
 export const EmergencyCard = styled.div`
   padding: 12px;
-  background: white;
   border-radius: 12px;
   border: 1px solid rgba(102, 126, 234, 0.1);
   text-align: center;
