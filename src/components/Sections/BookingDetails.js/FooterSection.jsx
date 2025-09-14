@@ -5,7 +5,7 @@ export default function FooterSectionView({
     getEmergencyContacts
 }) {
   return (
-    <FooterSection >
+    <FooterSection id="footer-section">
       <FooterContent>
         <FooterTitle >Emergency Contacts</FooterTitle>
         <EmergencyGrid>

@@ -4,7 +4,7 @@ import { SidebarTitle } from "../../../style/sidebar.view.styles";
 
 export default function HeaderSectionView({ goHome, bookingData }) {
   return (
-    <HeaderSection>
+    <HeaderSection id="header-section">
       <CompanyCard >
         <CompanySection >
           <CompanyLogo onClick={goHome}>

@@ -10,7 +10,7 @@ export default function BodySectionView({
   bookingData
 }) {
   return (
-    <BodySection>
+    <BodySection  id="body-section">
       <ItineraryHeader>
         <ItineraryTitle>{itinerary?.name}</ItineraryTitle>
       </ItineraryHeader>
