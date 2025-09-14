@@ -2,10 +2,11 @@ import { EmergencyCard, EmergencyGrid, EmergencyNumber, EmergencyService, Footer
 
 export default function FooterSectionView({
     itinerary,
-    getEmergencyContacts
+    getEmergencyContacts,
+    id
 }) {
   return (
-    <FooterSection id="footer-section">
+    <FooterSection id={id}>
       <FooterContent>
         <FooterTitle >Emergency Contacts</FooterTitle>
         <EmergencyGrid>

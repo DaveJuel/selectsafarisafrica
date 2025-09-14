@@ -1,42 +1,5 @@
 import styled from "styled-components";
 
-
-// export const  ContentContainer = styled.div`
-//   padding: 40px;
-//   margin: 0 auto;
-//   background: rgba(255, 255, 255, 0);
-//   background-image: url("/bg_image2.jpg");
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-//   overflow: hidden;
-
-//   @media (max-width: 1024px) {
-//     padding: 15px;
-//     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-//   }
-
-//   @media (max-width: 768px) {
-//     padding: 15px;
-//     background-position: top center; // keep important parts of image visible
-//     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-//   }
-
-//   @media (max-width: 480px) {
-//     padding: 5px 0px;
-//     background-position: top center;
-//     background-size: cover;
-//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-//   }
-
-//   @media print {
-//     border-radius: 0;
-//     box-shadow: none;
-//     backdrop-filter: none;
-//   }
-// `;
-
 export const ContentContainer = styled.div`
   width: 100%;
   min-height: 100vh; /* full viewport height */
@@ -435,26 +398,15 @@ export const  TravelerCard = styled.div`
   }
 `;
 
-// export const BodySection = styled.div`
-//   padding: 30px;
-
-//   @media (max-width: 1024px) {
-//     padding: 25px;
-//   }
-
-//   @media (max-width: 768px) {
-//     padding: 10px;
-//   }
-
-//   @media (max-width: 480px) {
-//     padding: 10px;
-//   }
-// `;
-
 export const BodySection = styled.div`
   flex: 1; /* takes all remaining space */
   padding: 30px;
   overflow-y: auto; /* prevents content cutting */
+`;
+
+export const HeaderSubSection = styled.div`
+  flex: 1; /* takes all remaining space */
+  padding: 30px;
 `;
 
 export const ItineraryHeader = styled.div`
@@ -550,6 +502,7 @@ export const DayCard = styled.div`
   overflow: hidden;
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(10px);
+  page-break-after: always;
 
   &.print-mode & {
     width: 50%;             /* 2 cards per row */
@@ -617,6 +570,23 @@ export const ActivitiesContainer = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
   }
+`;
+
+export const NotesSection = styled.div`
+  margin-top: 20px;
+  display: ${({ $visible }) => ($visible ? "flex" : "none")};
+  flex-direction: column;
+  flex-grow: 1;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+`;
+
+export const NotesBox = styled.div`
+  flex: 1;
+  min-height: 300px; /* Adjust to fill remaining page */
 `;
 
 export const ActivityCard = styled.div`

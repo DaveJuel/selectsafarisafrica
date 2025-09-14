@@ -1,20 +1,38 @@
-import { ActivitiesContainer, ActivityCard, ActivityContent, ActivityDescription, ActivityDetails, ActivityHeader, ActivityImage, ActivityImageContainer, ActivityMeta, ActivityName, BodySection, DayCard, DayDate, DayHeader, DayNumber, DaysContainer, ItineraryHeader, ItineraryTitle, MetaIcon, MetaItem } from "../../../style/booking.details.styles";
+import {
+  ActivitiesContainer,
+  ActivityCard,
+  ActivityContent,
+  ActivityDescription,
+  ActivityDetails,
+  ActivityHeader,
+  ActivityImage,
+  ActivityImageContainer,
+  ActivityMeta,
+  ActivityName,
+  BodySection,
+  DayCard,
+  DayDate,
+  DayHeader,
+  DayNumber,
+  DaysContainer,
+  MetaIcon,
+  MetaItem,
+  NotesBox,
+  NotesSection,
+} from "../../../style/booking.details.styles";
 import StyledLongText from "../../Inputs/StyledLongText";
 
 export default function BodySectionView({
-  itinerary,
   activities,
   activitiesDetails,
   renderedDays,
   getFormattedTripDate,
-  bookingData
+  bookingData,
+  id,
+  showNotes
 }) {
   return (
-    <BodySection  id="body-section">
-      <ItineraryHeader>
-        <ItineraryTitle>{itinerary?.name}</ItineraryTitle>
-      </ItineraryHeader>
-
+    <BodySection id={id}>
       <DaysContainer>
         {activities?.map((activity, index) => {
           if (renderedDays.includes(activity.day)) return null;
@@ -24,7 +42,7 @@ export default function BodySectionView({
           );
 
           return (
-            <DayCard key={index}>
+            <DayCard key={index} className="day-card">
               <DayHeader>
                 <DayNumber>Day {activity.day}</DayNumber>
                 <DayDate>
@@ -78,6 +96,10 @@ export default function BodySectionView({
                     </ActivityCard>
                   );
                 })}
+                <NotesSection isVisible={showNotes} className="pdf-notes">
+                  <h3>Notes:</h3>
+                  <NotesBox />
+                </NotesSection>
               </ActivitiesContainer>
             </DayCard>
           );

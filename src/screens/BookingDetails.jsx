@@ -25,6 +25,7 @@ export default function BookingDetails() {
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const { bookingCode } = useParams();
+  const [pdfMode, setPdfMode] = useState(false);
   const printRef = useRef();
   const navigate = useNavigate();
 
@@ -90,50 +91,106 @@ export default function BookingDetails() {
 
   const renderedDays = [];
 
+  // const handleDownloadPDF = async () => {
+  //   if (!printRef.current) return;
+  //   setPdfMode(true);
+  //   const pdf = new jsPDF("p", "mm", "a4");
+  //   const pdfWidth = pdf.internal.pageSize.getWidth();
+  //   const addPageWithBg = async (element, isFirstPage = false) => {
+  //     // Render element into canvas
+  //     const canvas = await html2canvas(element, {
+  //       scale: 2,
+  //       useCORS: true,
+  //       ignoreElements: (el) => el.classList.contains("no-pdf"),
+  //     });
+  //     const imgData = canvas.toDataURL("image/png");
+  //     // Then overlay content
+  //     pdf.addImage(
+  //       imgData,
+  //       "PNG",
+  //       0,
+  //       0,
+  //       pdfWidth,
+  //       (canvas.height * pdfWidth) / canvas.width
+  //     );
+
+  //     if (!isFirstPage) pdf.addPage();
+  //   };
+
+  //   // Find sections
+  //   const headerEl = printRef.current.querySelector("#header-section");
+
+  //   // const bodyEl = printRef.current.querySelector("#body-section");
+  //   const footerEl = printRef.current.querySelector("#footer-section");
+
+  //   // Add header page
+  //   if (headerEl) await addPageWithBg(headerEl);
+
+  //   // Add body page
+  //   const dayCards = printRef.current.querySelectorAll(".day-card");
+  //   for (let i = 0; i < dayCards.length; i++) {
+  //     await addPageWithBg(dayCards[i], i === 0 && !headerEl);
+  //   }
+
+  //   // Add footer page
+  //   if (footerEl) await addPageWithBg(footerEl);
+
+  //   pdf.save("booking.pdf");
+  //   setPdfMode(false);
+  // };
+
   const handleDownloadPDF = async () => {
-    const element = printRef.current;
-
-    window.scrollTo(0, 0);
-
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true,
-      ignoreElements: (el) => el.classList.contains("no-pdf"),
-    });
-
-    const imgData = canvas.toDataURL("image/png");
-
-    // PDF setup
+    if (!printRef.current) return;
+    setPdfMode(true);
     const pdf = new jsPDF("p", "mm", "a4");
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
+    let isFirstPage = true;
 
-    // Original canvas dimensions
-    const imgProps = {
-      width: canvas.width,
-      height: canvas.height,
+    const addPageWithBg = async (element) => {
+      // Add new page before content (except for first page)
+      if (!isFirstPage) {
+        pdf.addPage();
+      }
+
+      // Render element into canvas
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        ignoreElements: (el) => el.classList.contains("no-pdf"),
+      });
+      const imgData = canvas.toDataURL("image/png");
+
+      // Add content to current page
+      pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        0,
+        pdfWidth,
+        (canvas.height * pdfWidth) / canvas.width
+      );
+
+      isFirstPage = false;
     };
 
-    // Always fit by width, keep aspect ratio
-    const imgWidth = pdfWidth;
-    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    // Find sections
+    const headerEl = printRef.current.querySelector("#header-section");
+    const footerEl = printRef.current.querySelector("#footer-section");
 
-    let position = 0;
-    let heightLeft = imgHeight;
+    // Add header page
+    if (headerEl) await addPageWithBg(headerEl);
 
-    // First page
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-    heightLeft -= pdfHeight;
-
-    // Additional pages if needed
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pdfHeight;
+    // Add body pages (day cards)
+    const dayCards = printRef.current.querySelectorAll(".day-card");
+    for (let i = 0; i < dayCards.length; i++) {
+      await addPageWithBg(dayCards[i]);
     }
 
+    // Add footer page
+    if (footerEl) await addPageWithBg(footerEl);
+
     pdf.save("booking.pdf");
+    setPdfMode(false);
   };
 
   return (
@@ -145,7 +202,12 @@ export default function BookingDetails() {
       {!loading && bookingData && (
         <ContentContainer ref={printRef}>
           {/* Header Section */}
-          <HeaderSectionView goHome={goHome} bookingData={bookingData} />
+          <HeaderSectionView
+            itinerary={itinerary}
+            goHome={goHome}
+            bookingData={bookingData}
+            id="header-section"
+          />
           {/* Body Section - Itinerary */}
           <BodySectionView
             itinerary={itinerary}
@@ -154,12 +216,15 @@ export default function BookingDetails() {
             renderedDays={renderedDays}
             getFormattedTripDate={getFormattedTripDate}
             bookingData={bookingData}
+            id="body-section"
+            showNotes={pdfMode}
           />
 
           {/* Footer Section */}
           <FooterSectionView
             itinerary={itinerary}
             getEmergencyContacts={getEmergencyContacts}
+            id="footer-section"
           />
           <ExportButton className="no-pdf" onClick={handleDownloadPDF}>
             Export as PDF
