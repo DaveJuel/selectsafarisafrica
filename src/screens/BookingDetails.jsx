@@ -90,55 +90,7 @@ export default function BookingDetails() {
   const activities = sortItineraryActivities(itinerary, itiniraryActivities);
 
   const renderedDays = [];
-
-  // const handleDownloadPDF = async () => {
-  //   if (!printRef.current) return;
-  //   setPdfMode(true);
-  //   const pdf = new jsPDF("p", "mm", "a4");
-  //   const pdfWidth = pdf.internal.pageSize.getWidth();
-  //   const addPageWithBg = async (element, isFirstPage = false) => {
-  //     // Render element into canvas
-  //     const canvas = await html2canvas(element, {
-  //       scale: 2,
-  //       useCORS: true,
-  //       ignoreElements: (el) => el.classList.contains("no-pdf"),
-  //     });
-  //     const imgData = canvas.toDataURL("image/png");
-  //     // Then overlay content
-  //     pdf.addImage(
-  //       imgData,
-  //       "PNG",
-  //       0,
-  //       0,
-  //       pdfWidth,
-  //       (canvas.height * pdfWidth) / canvas.width
-  //     );
-
-  //     if (!isFirstPage) pdf.addPage();
-  //   };
-
-  //   // Find sections
-  //   const headerEl = printRef.current.querySelector("#header-section");
-
-  //   // const bodyEl = printRef.current.querySelector("#body-section");
-  //   const footerEl = printRef.current.querySelector("#footer-section");
-
-  //   // Add header page
-  //   if (headerEl) await addPageWithBg(headerEl);
-
-  //   // Add body page
-  //   const dayCards = printRef.current.querySelectorAll(".day-card");
-  //   for (let i = 0; i < dayCards.length; i++) {
-  //     await addPageWithBg(dayCards[i], i === 0 && !headerEl);
-  //   }
-
-  //   // Add footer page
-  //   if (footerEl) await addPageWithBg(footerEl);
-
-  //   pdf.save("booking.pdf");
-  //   setPdfMode(false);
-  // };
-
+  
   const handleDownloadPDF = async () => {
     if (!printRef.current) return;
     setPdfMode(true);
