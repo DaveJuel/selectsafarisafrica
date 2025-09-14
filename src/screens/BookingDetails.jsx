@@ -8,8 +8,6 @@ import {
 import EmptyStateView from "../components/Elements/EmptyStateView";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
 import { getEmergencyContacts } from "../data/emergency.contacts";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import {
   ContentContainer,
   ExportButton,
@@ -25,7 +23,6 @@ export default function BookingDetails() {
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const { bookingCode } = useParams();
-  const [pdfMode, setPdfMode] = useState(false);
   const printRef = useRef();
   const navigate = useNavigate();
 
@@ -90,59 +87,29 @@ export default function BookingDetails() {
   const activities = sortItineraryActivities(itinerary, itiniraryActivities);
 
   const renderedDays = [];
-  
+
   const handleDownloadPDF = async () => {
-    if (!printRef.current) return;
-    setPdfMode(true);
-    const pdf = new jsPDF("p", "mm", "a4");
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    let isFirstPage = true;
-
-    const addPageWithBg = async (element) => {
-      // Add new page before content (except for first page)
-      if (!isFirstPage) {
-        pdf.addPage();
-      }
-
-      // Render element into canvas
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        ignoreElements: (el) => el.classList.contains("no-pdf"),
-      });
-      const imgData = canvas.toDataURL("image/png");
-
-      // Add content to current page
-      pdf.addImage(
-        imgData,
-        "PNG",
-        0,
-        0,
-        pdfWidth,
-        (canvas.height * pdfWidth) / canvas.width
+    if (!bookingData || !itinerary) return;
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_INTELLIGENCE_URL}/api/reports/generate-pdf/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ bookingData, itinerary }),
+        }
       );
-
-      isFirstPage = false;
-    };
-
-    // Find sections
-    const headerEl = printRef.current.querySelector("#header-section");
-    const footerEl = printRef.current.querySelector("#footer-section");
-
-    // Add header page
-    if (headerEl) await addPageWithBg(headerEl);
-
-    // Add body pages (day cards)
-    const dayCards = printRef.current.querySelectorAll(".day-card");
-    for (let i = 0; i < dayCards.length; i++) {
-      await addPageWithBg(dayCards[i]);
+      if (!response.ok) throw new Error("Failed to generate PDF");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "booking-header.pdf";
+      link.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("PDF generation failed:", error);
     }
-
-    // Add footer page
-    if (footerEl) await addPageWithBg(footerEl);
-
-    pdf.save("booking.pdf");
-    setPdfMode(false);
   };
 
   return (
@@ -169,7 +136,6 @@ export default function BookingDetails() {
             getFormattedTripDate={getFormattedTripDate}
             bookingData={bookingData}
             id="body-section"
-            showNotes={pdfMode}
           />
 
           {/* Footer Section */}
