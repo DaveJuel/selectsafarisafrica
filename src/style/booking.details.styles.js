@@ -172,6 +172,11 @@ export const  ContactText = styled.span`
 export const  CompanyCard = styled.div`
   padding: 24px;
   transition: all 0.3s ease;
+  border-radius: 16px;
+
+  background: rgba(248, 247, 247, 0.24);
+  backdrop-filter: blur(5px);
+
 
   @media (max-width: 768px) {
     padding: 10px;
@@ -222,8 +227,6 @@ export const  SectionHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #f7fafc;
 `;
 
 export const  TravelerIcon = styled.div`
@@ -233,13 +236,13 @@ export const  TravelerIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #10a969 0%, #10a969 100%);
+  background: linear-gradient(135deg, #e4bc87 0%, #e4bc87 100%);
   border-radius: 10px;
-  color: white;
+  color: red;
   box-shadow: 0 2px 8px rgba(115, 72, 44, 0.2);
   img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -247,10 +250,8 @@ export const  SectionTitle = styled.h2`
   margin: 0;
   font-size: 24px;
   font-weight: 700;
-  color: #1a202c;
-  background: linear-gradient(135deg, #10a969 0%, #10a969 100%);
+  color: #e4bc87;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
 `;
 
@@ -280,22 +281,6 @@ export const TravelerInfo = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 12px; /* keeps it modern */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(135deg, #10a969 0%, #10a969 100%);
-  }
-
-  &:hover {
-    transform: translateX(4px);
-    border-color: rgba(115, 72, 44, 0.2);
-  }
 
   @media (max-width: 768px) {
     flex-direction: column; /* stack content */
@@ -357,7 +342,7 @@ export const  TravelerCard = styled.div`
   transition: all 0.3s ease;
   height: fit-content;
   min-height: 168px;
-  background: rgba(248, 247, 247, 0.25);
+  background: rgba(248, 247, 247, 0.24);
   backdrop-filter: blur(15px);
 
   @media (max-width: 768px) {

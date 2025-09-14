@@ -59,7 +59,6 @@ import {
   TravelerDetails,
   TravelerEmail,
   TravelerIcon,
-  TravelerInfo,
   TravelerSection,
 } from "../style/booking.details.styles";
 
@@ -73,9 +72,9 @@ export default function BookingDetails() {
   const printRef = useRef();
   const navigate = useNavigate();
 
-  const goHome = ()=>{
+  const goHome = () => {
     navigate("/");
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -192,8 +191,10 @@ export default function BookingDetails() {
                 <CompanyLogo onClick={goHome}>
                   <LogoComponent />
                 </CompanyLogo>
-                <CompanyInfo >
-                  <SidebarTitle onClick={goHome}>SELECT SAFARIS AFRICA</SidebarTitle>
+                <CompanyInfo>
+                  <SidebarTitle onClick={goHome}>
+                    SELECT SAFARIS AFRICA
+                  </SidebarTitle>
                   <ContactInfo>
                     <ContactItem>
                       <ContactIcon>
@@ -222,33 +223,31 @@ export default function BookingDetails() {
               <TravelerSection>
                 <SectionHeader>
                   <TravelerIcon>
-                    <img src="/icons/traveler.png" alt="Email" />
+                    <img src="/icons/tourist2.png" alt="Email" />
                   </TravelerIcon>
                   <SectionTitle>{bookingData?.client_name || ""}</SectionTitle>
                 </SectionHeader>
                 <TravelerContent>
-                  <TravelerInfo>
-                    <TravelerDetails>
-                      <TravelerEmail>
-                        <ContactIcon>
-                          <img src="/icons/promo.png" alt="Email" />
-                        </ContactIcon>
-                        {bookingData?.booking_code || ""}
-                      </TravelerEmail>
-                      <TravelerEmail>
-                        <ContactIcon>
-                          <img src="/icons/contact-book.png" alt="Email" />
-                        </ContactIcon>
-                        {bookingData?.client_contact || ""}
-                      </TravelerEmail>
-                      <TravelerEmail>
-                        <ContactIcon>
-                          <img src="/icons/planet.png" alt="Email" />
-                        </ContactIcon>
-                        {bookingData?.country_of_origin || ""}
-                      </TravelerEmail>
-                    </TravelerDetails>
-                  </TravelerInfo>
+                  <TravelerDetails>
+                    <TravelerEmail>
+                      <ContactIcon>
+                        <img src="/icons/promo.png" alt="Email" />
+                      </ContactIcon>
+                      {bookingData?.booking_code || ""}
+                    </TravelerEmail>
+                    <TravelerEmail>
+                      <ContactIcon>
+                        <img src="/icons/contact-book.png" alt="Email" />
+                      </ContactIcon>
+                      {bookingData?.client_contact || ""}
+                    </TravelerEmail>
+                    <TravelerEmail>
+                      <ContactIcon>
+                        <img src="/icons/planet.png" alt="Email" />
+                      </ContactIcon>
+                      {bookingData?.country_of_origin || ""}
+                    </TravelerEmail>
+                  </TravelerDetails>
                 </TravelerContent>
               </TravelerSection>
             </TravelerCard>
@@ -323,7 +322,8 @@ export default function BookingDetails() {
                                           src="/icons/time.png"
                                           alt="starts"
                                         />
-                                      </MetaIcon>Lasts about {dailyActivity.duration}
+                                      </MetaIcon>
+                                      Lasts about {dailyActivity.duration}
                                     </MetaItem>
                                   </ActivityMeta>
                                 </ActivityDetails>
@@ -344,12 +344,14 @@ export default function BookingDetails() {
             <FooterContent>
               <FooterTitle>Emergency Contacts</FooterTitle>
               <EmergencyGrid>
-                {getEmergencyContacts(itinerary.country)?.map((contact, index) => (
-                  <EmergencyCard key={index}>
-                    <EmergencyService>{contact.service}</EmergencyService>
-                    <EmergencyNumber>{contact.number}</EmergencyNumber>
-                  </EmergencyCard>
-                ))}
+                {getEmergencyContacts(itinerary.country)?.map(
+                  (contact, index) => (
+                    <EmergencyCard key={index}>
+                      <EmergencyService>{contact.service}</EmergencyService>
+                      <EmergencyNumber>{contact.number}</EmergencyNumber>
+                    </EmergencyCard>
+                  )
+                )}
               </EmergencyGrid>
             </FooterContent>
           </FooterSection>
