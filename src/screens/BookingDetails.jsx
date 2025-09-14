@@ -90,21 +90,32 @@ export default function BookingDetails() {
 
   const handleDownloadPDF = async () => {
     if (!bookingData || !itinerary) return;
+
     try {
+      const payload = {
+        bookingData,
+        itinerary,
+        activities: itiniraryActivities,
+        activitiesDetails,
+        emergencyContacts: getEmergencyContacts(itinerary.country),
+      };
+
       const response = await fetch(
         `${process.env.REACT_APP_INTELLIGENCE_URL}/api/reports/generate-pdf/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ bookingData, itinerary }),
+          body: JSON.stringify(payload),
         }
       );
+
       if (!response.ok) throw new Error("Failed to generate PDF");
+
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "booking-header.pdf";
+      link.download = "booking.pdf";
       link.click();
       window.URL.revokeObjectURL(url);
     } catch (error) {
