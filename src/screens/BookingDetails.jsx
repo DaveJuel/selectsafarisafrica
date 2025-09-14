@@ -8,7 +8,7 @@ import {
 import EmptyStateView from "../components/Elements/EmptyStateView";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
 import LogoComponent from "../assets/svg/Logo";
-import { emergencyContacts } from "../data/emergency.contacts";
+import { getEmergencyContacts } from "../data/emergency.contacts";
 import StyledLongText from "../components/Inputs/StyledLongText";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -64,7 +64,6 @@ import {
   TravelerInfo,
   TravelerSection,
 } from "../style/booking.details.styles";
-import SEO from "../components/Elements/SEO";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -200,11 +199,6 @@ export default function BookingDetails() {
 
   return (
     <>
-     <SEO
-        title={`Booking ${bookingCode} | Select Safaris`}
-        description="Review your safari booking details, itinerary, and  budget."
-        url={`https://www.selectsafarisafrica.com/booking/${bookingCode}`}
-      />
       {loading && <LoadingSpinner />}
       {!loading && !bookingData && (
         <EmptyStateView message={"Invalid booking code"} />
@@ -374,7 +368,7 @@ export default function BookingDetails() {
             <FooterContent>
               <FooterTitle>Emergency Contacts</FooterTitle>
               <EmergencyGrid>
-                {emergencyContacts?.map((contact, index) => (
+                {getEmergencyContacts(itinerary.country)?.map((contact, index) => (
                   <EmergencyCard key={index}>
                     <EmergencyService>{contact.service}</EmergencyService>
                     <EmergencyNumber>{contact.number}</EmergencyNumber>
