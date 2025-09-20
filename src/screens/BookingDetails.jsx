@@ -22,6 +22,7 @@ export default function BookingDetails() {
   const [itiniraryActivities, setItineraryActivities] = useState([]);
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
+  const [isPrinting, setIsPrinting] = useState(false);
   const { bookingCode } = useParams();
   const printRef = useRef();
   const navigate = useNavigate();
@@ -92,6 +93,7 @@ export default function BookingDetails() {
     if (!bookingData || !itinerary) return;
 
     try {
+      setIsPrinting(true);
       const payload = {
         bookingData,
         itinerary,
@@ -120,6 +122,8 @@ export default function BookingDetails() {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("PDF generation failed:", error);
+    }finally{
+      setIsPrinting(false);
     }
   };
 
@@ -155,8 +159,8 @@ export default function BookingDetails() {
             getEmergencyContacts={getEmergencyContacts}
             id="footer-section"
           />
-          <ExportButton className="no-pdf" onClick={handleDownloadPDF}>
-            Export as PDF
+          <ExportButton className="no-pdf" onClick={handleDownloadPDF} disabled={isPrinting}>
+            {isPrinting? `Printing ...`: `Export as PDF`}
           </ExportButton>
         </ContentContainer>
       )}
