@@ -13,16 +13,16 @@ const LoadingSpinner = () => {
           <Latitude tilt={-30} />
         </GlobeSphere>
         <Flag delay="0s" angle={0}>
-          🇷🇼
+          <img src="/icons/rwanda-flag.png" alt="Rwanda Flag" />
         </Flag>
         <Flag delay="0.5s" angle={90}>
-          🇺🇬
+          <img src="/icons/uganda-flag.png" alt="Uganda Flag" />
         </Flag>
         <Flag delay="1s" angle={180}>
-          🇹🇿
+          <img src="/icons/tanzania-flag.png" alt="Tanzania Flag" />
         </Flag>
         <Flag delay="1.5s" angle={270}>
-          🇧🇮
+          <img src="/icons/burundi-flag.png" alt="Burundi Flag" />
         </Flag>
       </Globe>
     </LoadingContainer>
@@ -95,6 +95,13 @@ const Flag = styled.div`
   transform-style: preserve-3d;
   animation: orbit 4s linear infinite;
   animation-delay: ${(props) => props.delay};
+
+  img {
+    width: 28px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
 
   @keyframes orbit {
     0% {
