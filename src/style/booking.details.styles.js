@@ -516,14 +516,6 @@ export const DayCard = styled.div`
   }
 `;
 
-
-// export const DayCard = styled.div`
-//   border-radius: 16px;
-//   overflow: hidden;
-//   background: rgba(255, 255, 255, 0.68);
-//   backdrop-filter: blur(10px);
-// `;
-
 export const DayHeader = styled.div`
   padding: 20px 30px;
   display: flex;
@@ -570,23 +562,6 @@ export const ActivitiesContainer = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
   }
-`;
-
-export const NotesSection = styled.div`
-  margin-top: 20px;
-  display: ${({ $visible }) => ($visible ? "flex" : "none")};
-  flex-direction: column;
-  flex-grow: 1;
-
-  h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-`;
-
-export const NotesBox = styled.div`
-  flex: 1;
-  min-height: 300px; /* Adjust to fill remaining page */
 `;
 
 export const ActivityCard = styled.div`
@@ -724,14 +699,6 @@ export const  MetaIcon = styled.span`
     height: 20px;
   }
 `;
-
-// export const FooterSection = styled.div`
-//   padding: 20px;
-
-//   @media (min-width: 768px) {
-//     padding: 30px; /* restore default padding on medium+ screens */
-//   }
-// `;
 
 export const FooterSection = styled.div`
   flex: 0 0 auto; /* sticks footer at bottom */

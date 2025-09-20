@@ -16,9 +16,7 @@ import {
   DayNumber,
   DaysContainer,
   MetaIcon,
-  MetaItem,
-  NotesBox,
-  NotesSection,
+  MetaItem
 } from "../../../style/booking.details.styles";
 import StyledLongText from "../../Inputs/StyledLongText";
 
@@ -28,8 +26,7 @@ export default function BodySectionView({
   renderedDays,
   getFormattedTripDate,
   bookingData,
-  id,
-  showNotes
+  id
 }) {
   return (
     <BodySection id={id}>
@@ -96,10 +93,6 @@ export default function BodySectionView({
                     </ActivityCard>
                   );
                 })}
-                <NotesSection isVisible={showNotes} className="pdf-notes">
-                  <h3>Notes:</h3>
-                  <NotesBox />
-                </NotesSection>
               </ActivitiesContainer>
             </DayCard>
           );
