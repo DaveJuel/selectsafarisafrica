@@ -1,12 +1,30 @@
-import React from "react";
 import styled from "styled-components";
 
 const LoadingSpinner = () => {
   return (
     <LoadingContainer>
-      <LoadingDot delay="0s" />
-      <LoadingDot delay="0.2s" />
-      <LoadingDot delay="0.4s" />
+      <Globe>
+        <GlobeSphere>
+          <Meridian rotation="0deg" />
+          <Meridian rotation="45deg" />
+          <Meridian rotation="90deg" />
+          <Meridian rotation="135deg" />
+          <Latitude tilt={30} />
+          <Latitude tilt={-30} />
+        </GlobeSphere>
+        <Flag delay="0s" angle={0}>
+          🇷🇼
+        </Flag>
+        <Flag delay="0.5s" angle={90}>
+          🇺🇬
+        </Flag>
+        <Flag delay="1s" angle={180}>
+          🇹🇿
+        </Flag>
+        <Flag delay="1.5s" angle={270}>
+          🇧🇮
+        </Flag>
+      </Globe>
     </LoadingContainer>
   );
 };
@@ -19,25 +37,80 @@ const LoadingContainer = styled.div`
   height: 200px;
   background: rgba(248, 248, 247, 0.82);
   backdrop-filter: blur(15px);
+  perspective: 800px; /* stronger perspective */
 `;
 
-const LoadingDot = styled.div`
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #656565;
-  margin: 0 5px;
-  animation: bounce 1.5s infinite ease-in-out;
-  animation-delay: ${(props) => props.delay || "0s"};
+const Globe = styled.div`
+  position: relative;
+  width: 120px;
+  height: 120px;
+  animation: globeRotate 6s linear infinite;
+  transform-style: preserve-3d;
 
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes globeRotate {
+    0% {
+      transform: rotateY(0deg) rotateX(20deg);
     }
-    50% {
-      transform: translateY(-15px);
+    100% {
+      transform: rotateY(360deg) rotateX(20deg);
     }
   }
 `;
+
+const GlobeSphere = styled.div`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+`;
+
+const Meridian = styled.div`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  transform: rotateY(${(props) => props.rotation});
+  z-index: 1;
+`;
+
+const Latitude = styled.div`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: rotateX(${(props) => props.tilt}deg);
+  z-index: 1;
+`;
+
+const Flag = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 22px;
+  transform-style: preserve-3d;
+  animation: orbit 4s linear infinite;
+  animation-delay: ${(props) => props.delay};
+
+  @keyframes orbit {
+    0% {
+      transform: rotateY(${(props) => props.angle}deg) translateZ(70px)
+        rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(${(props) => props.angle + 180}deg) translateZ(70px)
+        rotateY(180deg);
+      opacity: 0.3;
+    }
+    100% {
+      transform: rotateY(${(props) => props.angle + 360}deg) translateZ(70px)
+        rotateY(360deg);
+    }
+  }
+`;
+
 export default LoadingSpinner;
