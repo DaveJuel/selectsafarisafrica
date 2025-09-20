@@ -10,6 +10,7 @@ import {
   HeaderSubtitle,
   HeaderTitle,
   StyledVideo,
+  ThumbnailImage,
   VideoColumn,
   VideoContainer,
   VideoGrid,
@@ -22,6 +23,7 @@ import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
 export default function AdventuresView({ formData }) {
   const [currentLayout, setCurrentLayout] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(false);
   const [videos, setVideos] = useState([]);
   const [hoveredVideo, setHoveredVideo] = useState(null);
   const [hoveredVideoIndex, setHoveredVideoIndex] = useState(null);
@@ -103,37 +105,47 @@ export default function AdventuresView({ formData }) {
       {hasLoaded && (
         <VideoGrid>
           {videoOrder?.length > 1 &&
-            videoOrder.map((videoIndex, position) => (
-              <VideoColumn
-                key={`${videoIndex}-${position}`}
-                position={position}
-                animate={hasLoaded}
-              >
-                <VideoContainer>
-                  <StyledVideo
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    src={videos[videoIndex]?.video}
-                  />
-                  <CaptionOverlay
-                    onMouseEnter={(event) => {
-                      if (isSmallScreen || activeOverlay) return;
-                      setHoveredVideo(videos[videoIndex]);
-                      setHoveredVideoIndex(videoIndex);
-                      setVideoPosition(getVideoPosition(event));
-                      if (!overlayLocked) {
-                        setOverlayLocked(true);
-                        setActiveOverlay("videoDetail");
-                      }
-                    }}
-                  >
-                    <CaptionText>{t(videos[videoIndex]?.caption)}</CaptionText>
-                  </CaptionOverlay>
-                </VideoContainer>
-              </VideoColumn>
-            ))}
+            videoOrder.map((videoIndex, position) => {
+              const videoData = videos[videoIndex];
+              return (
+                <VideoColumn
+                  key={`${videoIndex}-${position}`}
+                  position={position}
+                  animate={hasLoaded}
+                >
+                  <VideoContainer>
+                    {!isLoaded && (
+                      <ThumbnailImage
+                        src={videoData?.thumbnail}
+                        alt={videoData?.caption}
+                      />
+                    )}
+                    <StyledVideo
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      src={videoData?.video}
+                      onLoadedData={() => setIsLoaded(true)}
+                    />
+                    <CaptionOverlay
+                      onMouseEnter={(event) => {
+                        if (isSmallScreen || activeOverlay) return;
+                        setHoveredVideo(videoData);
+                        setHoveredVideoIndex(videoIndex);
+                        setVideoPosition(getVideoPosition(event));
+                        if (!overlayLocked) {
+                          setOverlayLocked(true);
+                          setActiveOverlay("videoDetail");
+                        }
+                      }}
+                    >
+                      <CaptionText>{t(videoData?.caption)}</CaptionText>
+                    </CaptionOverlay>
+                  </VideoContainer>
+                </VideoColumn>
+              );
+            })}
 
           <VideoDetailOverlay
             video={hoveredVideo}

@@ -120,7 +120,7 @@ export const VideoContainer = styled.div`
   border-radius: 7px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  background: #000;
+  background: rgba(0, 0, 0, 0.4); 
 
   @media (max-width: 768px) {
     height: 180px; /* smaller on tablets */
@@ -140,6 +140,16 @@ export const StyledVideo = styled.video`
   ${VideoContainer}:hover & {
     transform: scale(1.1);
   }
+`;
+
+export const ThumbnailImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  inset: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease;
 `;
 
 export const CaptionOverlay = styled.div`
