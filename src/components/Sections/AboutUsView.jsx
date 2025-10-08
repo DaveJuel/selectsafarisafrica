@@ -41,7 +41,7 @@ export default function AboutUsView({ toggleView }) {
             <CardText>{t("values")}</CardText>
           </Card>
         </GridSection>
-        <Section>
+        {/* <Section>
           <SectionTitle>{t("our_impact")}</SectionTitle>
           <GridSection>
             <Card>
@@ -66,7 +66,7 @@ export default function AboutUsView({ toggleView }) {
               <CardText>{t("measurable_change_impact")}</CardText>
             </Card>
           </GridSection>
-        </Section>
+        </Section> */}
         <Section>
           <ReachOutBtn onClick={() => toggleView("contact-us")}>
             {t("contact_us")}
