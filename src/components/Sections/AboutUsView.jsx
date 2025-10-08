@@ -41,32 +41,6 @@ export default function AboutUsView({ toggleView }) {
             <CardText>{t("values")}</CardText>
           </Card>
         </GridSection>
-        {/* <Section>
-          <SectionTitle>{t("our_impact")}</SectionTitle>
-          <GridSection>
-            <Card>
-              <CardIcon>
-                <img src="/icons/mother.png" alt="Community Support" />
-              </CardIcon>
-              <CardTitle>{t("empower_mothers")}</CardTitle>
-              <CardText>{t("empower_mothers_impact")}</CardText>
-            </Card>
-            <Card>
-              <CardIcon>
-                <img src="/icons/literature.png" alt="Education" />
-              </CardIcon>
-              <CardTitle>{t("education_for_all")}</CardTitle>
-              <CardText>{t("education_for_all_impact")}</CardText>
-            </Card>
-            <Card>
-              <CardIcon>
-                <img src="/icons/stats.png" alt="Impact" />
-              </CardIcon>
-              <CardTitle>{t("measurable_change")}</CardTitle>
-              <CardText>{t("measurable_change_impact")}</CardText>
-            </Card>
-          </GridSection>
-        </Section> */}
         <Section>
           <ReachOutBtn onClick={() => toggleView("contact-us")}>
             {t("contact_us")}

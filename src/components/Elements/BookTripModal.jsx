@@ -199,6 +199,7 @@ const BookTripModal = ({
       names: booking.client_name,
       contact: booking.client_contact,
       preview_link: `${appUrl}/booking/${booking.booking_code}`,
+      invoice_link: `${appUrl}/invoice/${booking.booking_code}`,
     };
 
     const requestData = {
