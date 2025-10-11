@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchEntityData } from "../utils/RequestHandler";
+import { fetchEntityTranslatedData } from "../utils/RequestHandler";
 import {
   getFormattedTripDate,
   sortItineraryActivities,
@@ -35,9 +35,8 @@ export default function BookingDetails() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const bookingResponse = await fetchEntityData("bookings");
+        const bookingResponse = await fetchEntityTranslatedData("bookings");
         if (!bookingResponse.success) return;
-
         const booking = bookingResponse.result?.find(
           (b) => b.booking_code === bookingCode
         );
@@ -52,9 +51,9 @@ export default function BookingDetails() {
           itineraryActivitiesResponse,
           activitiesResponse,
         ] = await Promise.all([
-          fetchEntityData("itineraries"),
-          fetchEntityData("itinirary_activities"),
-          fetchEntityData("activities"),
+          fetchEntityTranslatedData("itineraries"),
+          fetchEntityTranslatedData("itinirary_activities"),
+          fetchEntityTranslatedData("activities"),
         ]);
 
         if (itineraryResponse.success) {

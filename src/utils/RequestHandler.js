@@ -39,6 +39,18 @@ export const makeApiRequest = async (path, method, requestBody, headers = {
   return response.json();
 };
 
+export const makeMiddlewareRequest = async (path, method, headers = {
+  "Content-Type": "application/json",
+}) => {
+  const options = {
+    method,
+    headers,
+  };
+  const response = await fetch(`${intelligenceUrl}${path}`, options);
+  return response.json();
+};
+
+
 /**
  * Fetch entity data from the API
  * @param {string} entityName - Name of the entity to fetch
@@ -57,6 +69,19 @@ export const fetchEntityData = async (entityName, isProtected = false) => {
     headers = { ...headers, "api_key":apiKey};
   }
   return makeApiRequest(path, "GET", null, headers);
+};
+
+/**
+ * Fetch entity data from the API
+ * @param {string} entityName - Name of the entity to fetch
+ * @returns {Promise<any>}
+ */
+export const fetchEntityTranslatedData = async (entityName) => {
+  const path = `/api/entity/data/translate/${entityName}?lang=fr`;
+  let headers = {
+    "Content-Type": "application/json"
+  }
+  return makeMiddlewareRequest (path, "GET", headers);
 };
 
 export const fetchEntityInstance = async (entityName, instanceId, isProtected = false) => {
