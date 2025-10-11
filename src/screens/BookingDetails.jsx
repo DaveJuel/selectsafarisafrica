@@ -160,7 +160,7 @@ export default function BookingDetails() {
             id="footer-section"
           />
           <ExportButton className="no-pdf" onClick={handleDownloadPDF} disabled={isPrinting}>
-            {isPrinting? `Printing ...`: `Export as PDF`}
+            {isPrinting? `Exporting ...`: `Export as PDF`}
           </ExportButton>
         </ContentContainer>
       )}
