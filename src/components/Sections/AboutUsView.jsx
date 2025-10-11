@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Card, CardIcon, CardText, CardTitle, Content, GridSection, Header, HeaderTitle, ReachOutBtn, Section, SectionText, SectionTitle, ViewWrapper } from "../../style/about.us.view.styles";
+import { Card, CardIcon, CardText, CardTitle, Content, GridSection, Header, HeaderTitle, Section, SectionText, SectionTitle, ViewWrapper } from "../../style/about.us.view.styles";
 
 export default function AboutUsView({ toggleView }) {
   const { t } = useTranslation("about_us");
@@ -41,11 +41,6 @@ export default function AboutUsView({ toggleView }) {
             <CardText>{t("values")}</CardText>
           </Card>
         </GridSection>
-        <Section>
-          <ReachOutBtn onClick={() => toggleView("contact-us")}>
-            {t("contact_us")}
-          </ReachOutBtn>
-        </Section>
       </Content>
     </ViewWrapper>
   );
