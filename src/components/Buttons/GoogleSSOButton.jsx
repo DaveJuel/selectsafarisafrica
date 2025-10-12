@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleButton } from "../../style/view.styles";
 import { useTranslation } from "react-i18next";
+import LoadingSpinner from "../Elements/LoadingSpinner";
 
 // Custom button styled to match your application's design
 
@@ -11,6 +12,7 @@ const GoogleSSOButton = ({
   buttonText = null,
 }) => {
   const [isReady, setIsReady] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation("adventures");
 
@@ -19,7 +21,7 @@ const GoogleSSOButton = ({
 
     const initializeGoogleSignIn = () => {
       const handleCredentialResponse = (response) => {
-       const responseWithType = {
+        const responseWithType = {
           ...response,
           authType,
         };
@@ -68,6 +70,7 @@ const GoogleSSOButton = ({
   }, [authType, onSuccess]);
 
   const handleGoogleAuth = () => {
+    setLoading(true);
     if (window.google && isReady) {
       google.accounts.id.prompt((notification) => {
         if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
@@ -88,6 +91,7 @@ const GoogleSSOButton = ({
           google.accounts.id.prompt();
         }
       });
+      setLoading(false);
     } else {
       console.error("Google Identity Services not loaded or initialized yet");
     }
@@ -103,14 +107,17 @@ const GoogleSSOButton = ({
 
   return (
     <div id="google-auth-container">
-      <GoogleButton
-        type="button"
-        onClick={handleGoogleAuth}
-        disabled={!isReady}
-      >
-        <FcGoogle size={20} />
-        {getButtonText()}
-      </GoogleButton>
+      {loading && <LoadingSpinner />}
+      {!loading && (
+        <GoogleButton
+          type="button"
+          onClick={handleGoogleAuth}
+          disabled={!isReady}
+        >
+          <FcGoogle size={20} />
+          {getButtonText()}
+        </GoogleButton>
+      )}
     </div>
   );
 };
