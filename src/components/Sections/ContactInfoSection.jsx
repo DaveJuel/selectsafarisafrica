@@ -263,10 +263,10 @@ const ContactInfoSection = () => {
           </CardIcon>
           <CardText>
             <ContactLink
-              href="https://wa.me/250788123456?text=Hello, I'd like to get in touch with you."
+              href="https://wa.me/250792883548?text=Hello, I'd like to get in touch with you."
               target="_blank"
             >
-              +250 788 373 709
+              +250 792 883 548
             </ContactLink>
           </CardText>
         </CardHeader>
