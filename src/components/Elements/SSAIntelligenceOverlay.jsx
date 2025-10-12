@@ -287,7 +287,7 @@ const SSAIntelligenceOverlay = ({
     <SidePanelOverlay isLeftSide={isLeftSide}>
       <SidePanelContent>
         <OverlayHeader>
-          <HeaderTitle>EXPERT'S GUIDANCE</HeaderTitle>
+          <HeaderTitle>{t("expert_guidance")}</HeaderTitle>
           {isClosing ? (
             <ButtonContainer>
               <Spinner />
@@ -317,7 +317,7 @@ const SSAIntelligenceOverlay = ({
             <OverlayBody>
               {!awaitingReply && messages.length === 0 ? (
                 <EmptyState>
-                  No messages yet. Start the conversation!
+                  {t("no_message")}
                 </EmptyState>
               ) : (
                 <ChatHistory>
@@ -327,7 +327,7 @@ const SSAIntelligenceOverlay = ({
                     </MessageBubble>
                   ))}
                   {awaitingReply && (
-                    <TypingIndicator>Expert typing...</TypingIndicator>
+                    <TypingIndicator>{t("expert_typing")}...</TypingIndicator>
                   )}
                   <div ref={chatEndRef} />
                 </ChatHistory>
@@ -352,7 +352,7 @@ const SSAIntelligenceOverlay = ({
                   onClick={handleSend}
                   disabled={awaitingReply || isClosing}
                 >
-                  {awaitingReply ? "Waiting..." : "Send"}
+                  {awaitingReply ? `${t("waiting")}...` : t("send_button")}
                 </SendButton>
               </InputContainer>
             </OverlayFooter>

@@ -103,5 +103,17 @@
   "talk_to_expert": "Talk to an Expert",
   "country": "Country",
   "city": "City",
-  "description": "Description"
+  "description": "Description",
+
+  "expert_guidance": "EXPERT'S GUIDANCE",
+  "no_message": "No messages yet. Start the conversation!",
+  "expert_typing": "Expert typing",
+  "waiting": "Waiting",
+  "send_button": "Send",
+
+  "error_occurred": "An unexpected error occurred. Please try again.",
+  "google_auth_success": "Google authentication successful, redirecting...",
+  "sign_in_prompt": "Sign in with your Gmail to get personalized travel tips from our tourism experts.",
+  "register_with_google": "Register with Google",
+  "continue_with_google": "Continue with Google"
 }

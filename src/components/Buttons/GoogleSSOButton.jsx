@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleButton } from "../../style/view.styles";
+import { useTranslation } from "react-i18next";
 
 // Custom button styled to match your application's design
 
@@ -10,6 +11,8 @@ const GoogleSSOButton = ({
   buttonText = null,
 }) => {
   const [isReady, setIsReady] = useState(false);
+
+  const { t } = useTranslation("adventures");
 
   useEffect(() => {
     let intervalId = null;
@@ -94,8 +97,8 @@ const GoogleSSOButton = ({
   const getButtonText = () => {
     if (buttonText) return buttonText;
     return authType === "register"
-      ? "Register with Google"
-      : "Continue with Google";
+      ? t("register_with_google")
+      : t("continue_with_google");
   };
 
   return (

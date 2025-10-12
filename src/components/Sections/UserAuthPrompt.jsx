@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { apiKey, makeApiRequest } from "../../utils/RequestHandler";
 import { StatusMessage } from "../../style/view.styles";
 import GoogleSSOButton from "../Buttons/GoogleSSOButton";
+import { useTranslation } from "react-i18next";
 
 const UserAuthPrompt = ({ setIsLoggedIn }) => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
+
+  const { t } = useTranslation("adventures");
 
   const handleGoogleAuthSuccess = async (response) => {
     const { credential } = response;
@@ -18,14 +21,14 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
           setIsLoggedIn(true);
         } else {
           setFormStatus({
-            message: "An unexpected error occurred. Please try again.",
+            message: t("error_occurred"),
             type: "error",
           });
         }
       } catch (error) {
         setFormStatus({
           message:
-            error.message || "Something went wrong. Please contact support.",
+            error.message || t("error_occurred"),
           type: "error",
         });
       }
@@ -37,7 +40,7 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
         api_key: apiKey
       });
       return response.success ? response.result : null;
-    }, "Google authentication successful, redirecting...");
+    }, t("google_auth_success"));
   };
 
   return (
@@ -46,8 +49,7 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
         <img src="/icons/customer-service.png" alt="Mountain" />
       </LoginIcon>
       <LoginMessage>
-        Sign in with your Gmail to get personalized travel tips from our tourism
-        experts.
+       {t("sign_in_prompt")}
       </LoginMessage>
       <GoogleSSOButton onSuccess={handleGoogleAuthSuccess} authType="login" />
       {formStatus.message && (

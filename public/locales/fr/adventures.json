@@ -88,5 +88,17 @@
   "talk_to_expert": "Parler à un expert",
   "country": "Pays",
   "city": "Ville",
-  "description": "Description"
+  "description": "Description",
+
+  "expert_guidance": "GUIDANCE DE L'EXPERT",
+  "no_message": "Pas encore de messages. Commencez la conversation !",
+  "expert_typing": "L'expert écrit",
+  "waiting": "En attente",
+  "send_button": "Envoyer",
+
+  "error_occurred": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+  "google_auth_success": "Authentification Google réussie, redirection en cours...",
+  "sign_in_prompt": "Connectez-vous avec votre Gmail pour obtenir des conseils de voyage personnalisés de nos experts en tourisme.",
+  "register_with_google": "S'inscrire avec Google",
+  "continue_with_google": "Continuer avec Google"
 }
