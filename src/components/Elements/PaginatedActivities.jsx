@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchEntityData } from "../../utils/RequestHandler";
+import { fetchEntityTranslatedData } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
 import { ActivitiesContainer, ActivitiesGrid, ActivityChip, PageDot, PageIndicators, PaginationButton, PaginationContainer } from "../../style/paginated.activities.styles";
 import useItemsPerPage from "../../utils/UserItemsPerPage";
@@ -11,7 +11,8 @@ const PaginatedActivities = ({
   allActivities,
   setAllActivities,
   activities, 
-  setActivities
+  setActivities,
+  language
 }) => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +27,7 @@ const PaginatedActivities = ({
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await fetchEntityData("activities");
+        const response = await fetchEntityTranslatedData("activities", language);
         if (response.success) {
           setActivities(response.result);
           setAllActivities(response.result);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { fetchEntityData } from "../../utils/RequestHandler";
+import { fetchEntityTranslatedData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import PaginatedActivities from "../Elements/PaginatedActivities";
 import { useTranslation } from "react-i18next";
@@ -27,14 +27,16 @@ export default function TouristForm({
   setActivities,
   loadingSidebar,
   setLoadingSidebar,
+  language
 }) {
   const [countries, setCountries] = useState([]);
   const { t } = useTranslation("common");
 
   useEffect(() => {
+    if(!language) return;
     const fetchCollections = async () => {
       try {
-        const response = await fetchEntityData("countries");
+        const response = await fetchEntityTranslatedData("countries", language);
         if (response.success) {
           setCountries(response.result);
           const defaultCountry = response.result.find(
@@ -141,6 +143,7 @@ export default function TouristForm({
                 setAllActivities={setAllActivities}
                 activities={activities}
                 setActivities={setActivities}
+                language={language}
               />
             </FormGroup>
           </ActivitiesFormGroupWrapper>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import BookTripModal from "../Elements/BookTripModal";
 import SidebarView from "./SidebarView";
@@ -10,6 +10,7 @@ import {
   ViewSection,
 } from "../../style/main.view.styles";
 import { filterItineraries } from "../../utils/DataHandler";
+import { useTranslation } from "react-i18next";
 
 export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
@@ -19,6 +20,7 @@ export default function MainView() {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loadingMainView, setLoadingMainView] = useState(false);
   const [loadingSidebar, setLoadingSidebar] = useState(true);
+  const [language, setLanguage] = useState(null);
   const [formData, setFormData] = useState({
     country: null,
     days: 3,
@@ -30,6 +32,20 @@ export default function MainView() {
   const [currentView, setCurrentView] = useState("itiniraries");
   const [hidePlanForm, setHidePlanForm] = useState(false);
 
+  const { i18n } = useTranslation("common");
+
+  useEffect(() => {
+    if (i18n.isInitialized) {
+      const detectedLang = i18n.language || window.navigator.language;
+      setLanguage(detectedLang);
+    } else {
+      i18n.on("initialized", () => {
+        const detectedLang = i18n.language || window.navigator.language;
+        setLanguage(detectedLang);
+      });
+    }
+  }, [i18n]);
+
   const handleItineraryFiltering = async () => {
     toggleView("itiniraries");
     setHidePlanForm(true);
@@ -37,7 +53,8 @@ export default function MainView() {
       formData.country,
       formData.days,
       formData.activities,
-      setLoadingMainView
+      setLoadingMainView,
+      language
     );
     setItineraries(itineraries);
     setItineraryActivities(itineraryActivities);
@@ -48,7 +65,7 @@ export default function MainView() {
     if (view === "itiniraries") {
       setItineraries(null);
       setHidePlanForm(false);
-    }else{
+    } else {
       setHidePlanForm(true);
     }
   };
@@ -79,6 +96,7 @@ export default function MainView() {
           activities={activities}
           setActivities={setActivities}
           hidePlanForm={hidePlanForm}
+          language={language}
         />
         <ViewSection>
           {loadingMainView && <LoadingSpinner />}

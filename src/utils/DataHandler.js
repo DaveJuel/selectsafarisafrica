@@ -1,6 +1,6 @@
 import { parseISO, addDays, format } from 'date-fns';
 import { enUS, fr, es, pt, zhCN } from 'date-fns/locale';
-import { fetchEntityData } from './RequestHandler';
+import { fetchEntityData, fetchEntityTranslatedData } from './RequestHandler';
 import { logger } from './logger';
 
 const localeMap = {
@@ -15,18 +15,19 @@ export const filterItineraries = async (
   country,
   days,
   activities = [],
-  setLoading
+  setLoading,
+  language
 ) => {
   let data = [];
   try {
     setLoading(true);
-    const response = await fetchEntityData("itineraries");
+    const response = await  fetchEntityTranslatedData("itineraries", language);
     if (!response.success) return { itineraries: data, itineraryActivities: [] };
 
     const itineraries = response.result?.filter(
       (item) => item.country === country && parseInt(item.days, 10) === days
     ) || [];
-    const itineraryActivitiesResponse = await fetchEntityData("itinirary_activities");
+    const itineraryActivitiesResponse = await fetchEntityTranslatedData("itinirary_activities", language);
     const itineraryActivities = itineraryActivitiesResponse.success
       ? itineraryActivitiesResponse.result
       : [];

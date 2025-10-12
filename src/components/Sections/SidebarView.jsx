@@ -26,6 +26,7 @@ export default function SidebarView({
   loadingSidebar,
   setLoadingSidebar,
   hidePlanForm,
+  language
 }) {
   const { t } = useTranslation("common");
 
@@ -67,7 +68,7 @@ export default function SidebarView({
         </NavigationLinks>
       </SidebarHeaderSection>
       {loading && <LoadingSpinner />}
-      {!loading && !shouldHideForm && (
+      {!loading && !shouldHideForm && language && (
         <TouristForm
           formData={formData}
           setFormData={setFormData}
@@ -78,6 +79,7 @@ export default function SidebarView({
           setActivities={setActivities}
           loadingSidebar={loadingSidebar}
           setLoadingSidebar={setLoadingSidebar}
+          language={language}
         />
       )}
     </SidebarSection>

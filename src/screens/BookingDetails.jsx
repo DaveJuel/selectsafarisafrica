@@ -35,12 +35,10 @@ export default function BookingDetails() {
     if (i18n.isInitialized) {
       const detectedLang = i18n.language || window.navigator.language;
       setLanguage(detectedLang);
-      console.log(`✅ Detected language: ${detectedLang}`);
     } else {
       i18n.on("initialized", () => {
         const detectedLang = i18n.language || window.navigator.language;
         setLanguage(detectedLang);
-        console.log(`✅ Detected language (on init): ${detectedLang}`);
       });
     }
   }, [i18n]);
