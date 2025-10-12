@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   ActivitiesContainer,
   ActivityCard,
@@ -26,8 +27,11 @@ export default function BodySectionView({
   renderedDays,
   getFormattedTripDate,
   bookingData,
-  id
+  id,
+  language
 }) {
+  const { t } = useTranslation("booking_details");
+
   return (
     <BodySection id={id}>
       <DaysContainer>
@@ -41,11 +45,12 @@ export default function BodySectionView({
           return (
             <DayCard key={index} className="day-card">
               <DayHeader>
-                <DayNumber>Day {activity.day}</DayNumber>
+                <DayNumber>{t("day")} {activity.day}</DayNumber>
                 <DayDate>
                   {getFormattedTripDate(
                     bookingData.trip_start_date,
-                    activity.day
+                    activity.day,
+                    language
                   )}
                 </DayDate>
               </DayHeader>
@@ -79,13 +84,13 @@ export default function BodySectionView({
                               <MetaIcon>
                                 <img src="/icons/early-bird.png" alt="starts" />
                               </MetaIcon>{" "}
-                              Starts: {dailyActivity.time}
+                              {t("start")}: {dailyActivity.time}
                             </MetaItem>
                             <MetaItem>
                               <MetaIcon>
                                 <img src="/icons/time.png" alt="starts" />
                               </MetaIcon>
-                              Lasts about {dailyActivity.duration}
+                              {t("lasts")}: {dailyActivity.duration}
                             </MetaItem>
                           </ActivityMeta>
                         </ActivityDetails>

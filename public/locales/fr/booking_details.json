@@ -1,0 +1,30 @@
+{
+  "day": "Jour",
+  "start": "Commence",
+  "lasts": "Dure environ",
+  "emergency_contact": "Contacts d’urgence",
+  "export_button": "Exporter en PDF",
+  "exporting": "Exportation en cours",
+
+  "national_police_emergency": "Police nationale (urgence)",
+  "ambulance_medical_emergency": "Ambulance / Urgence médicale",
+  "fire_and_rescue_brigade": "Brigade d’incendie et de secours",
+  "tourism_assistance_rdb": "Assistance touristique (Office rwandais du développement - RDB)",
+  "rwanda_biomedical_center": "Centre biomédical du Rwanda (soutien sanitaire)",
+  "kigali_international_airport": "Aéroport international de Kigali – Service d’urgence",
+
+  "police_general_emergency": "Police / Urgence générale",
+  "alternate_national_emergency": "Numéro national d’urgence alternatif",
+  "uganda_tourism_board": "Office du tourisme de l’Ouganda (renseignements généraux / visiteurs)",
+  "ministry_tourism_uganda": "Ministère du Tourisme, de la Faune et des Antiquités",
+
+  "police_tanzania": "Police",
+  "ambulance_medical_emergency_tz": "Ambulance / Urgence médicale",
+  "fire_and_rescue_tz": "Service d’incendie et de secours",
+  "tanapa_hotline": "Parcs nationaux de Tanzanie (TANAPA) – Ligne d’urgence / parcs",
+  "tanzania_tourist_board": "Office du tourisme de Tanzanie",
+
+  "police_ambulance_fire_bi": "Police / Ambulance / Incendie",
+  "burundi_red_cross": "Croix-Rouge du Burundi",
+  "burundi_tourism_office": "Office national du tourisme du Burundi"
+}

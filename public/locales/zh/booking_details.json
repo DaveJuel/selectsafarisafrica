@@ -1,0 +1,30 @@
+{
+  "day": "天",
+  "start": "开始",
+  "lasts": "持续约",
+  "emergency_contact": "紧急联系人",
+  "export_button": "导出为 PDF",
+  "exporting": "正在导出",
+
+  "national_police_emergency": "国家警察（紧急情况）",
+  "ambulance_medical_emergency": "救护车 / 医疗急救",
+  "fire_and_rescue_brigade": "消防与救援队",
+  "tourism_assistance_rdb": "旅游援助（卢旺达发展委员会）",
+  "rwanda_biomedical_center": "卢旺达生物医学中心（健康支持）",
+  "kigali_international_airport": "基加利国际机场 – 紧急服务台",
+
+  "police_general_emergency": "警察 / 一般紧急情况",
+  "alternate_national_emergency": "备用国家紧急短码",
+  "uganda_tourism_board": "乌干达旅游局（一般 / 访客咨询）",
+  "ministry_tourism_uganda": "乌干达旅游、野生动物与文物部",
+
+  "police_tanzania": "警察",
+  "ambulance_medical_emergency_tz": "救护车 / 医疗急救",
+  "fire_and_rescue_tz": "消防与救援",
+  "tanapa_hotline": "坦桑尼亚国家公园（TANAPA）– 热线 / 公园紧急情况",
+  "tanzania_tourist_board": "坦桑尼亚旅游局",
+
+  "police_ambulance_fire_bi": "警察 / 救护车 / 消防",
+  "burundi_red_cross": "布隆迪红十字会",
+  "burundi_tourism_office": "布隆迪国家旅游局"
+}

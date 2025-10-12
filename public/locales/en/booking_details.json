@@ -1,0 +1,30 @@
+{
+  "day": "Day",
+  "start": "Starts",
+  "lasts": "Lasts about",
+  "emergency_contact": "Emergency Contacts",
+  "export_button": "Export as PDF",
+  "exporting": "Exporting",
+
+  "national_police_emergency": "National Police (Emergency)",
+  "ambulance_medical_emergency": "Ambulance / Medical Emergency",
+  "fire_and_rescue_brigade": "Fire and Rescue Brigade",
+  "tourism_assistance_rdb": "Tourism Assistance (Rwanda Development Board)",
+  "rwanda_biomedical_center": "Rwanda Biomedical Center (Health Support)",
+  "kigali_international_airport": "Kigali International Airport – Emergency Desk",
+
+  "police_general_emergency": "Police / General emergency",
+  "alternate_national_emergency": "Alternate national emergency short-code",
+  "uganda_tourism_board": "Uganda Tourism Board (general / visitor enquiries)",
+  "ministry_tourism_uganda": "Ministry of Tourism, Wildlife & Antiquities",
+
+  "police_tanzania": "Police",
+  "ambulance_medical_emergency_tz": "Ambulance / Medical emergency",
+  "fire_and_rescue_tz": "Fire and Rescue",
+  "tanapa_hotline": "Tanzania National Parks (TANAPA) – Hotline / park emergencies",
+  "tanzania_tourist_board": "Tanzania Tourist Board / Tanzania Tourism",
+
+  "police_ambulance_fire_bi": "Police / Ambulance / Fire",
+  "burundi_red_cross": "Burundi Red Cross",
+  "burundi_tourism_office": "Burundi National Office of Tourism"
+}

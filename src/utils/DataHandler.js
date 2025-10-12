@@ -1,6 +1,15 @@
 import { parseISO, addDays, format } from 'date-fns';
+import { enUS, fr, es, pt, zhCN } from 'date-fns/locale';
 import { fetchEntityData } from './RequestHandler';
 import { logger } from './logger';
+
+const localeMap = {
+  en: enUS,
+  fr: fr,
+  es: es,
+  pt: pt,
+  zh: zhCN
+};
 
 export const filterItineraries = async (
   country,
@@ -103,13 +112,23 @@ export const sortItineraryActivities = (itinerary, allActivities) => {
     });
 }
 
-export const getFormattedTripDate = (tripStartDate, day) => {
+/**
+ * Formats a trip date into a human-readable string in the specified language.
+ *
+ * @param {string} tripStartDate - The ISO date string of the trip start date.
+ * @param {number} day - The day number (e.g., 1 = start date, 2 = next day).
+ * @param {string} [lang='en'] - The language code ('en', 'fr', 'es', 'pt', 'zh').
+ * @returns {string} - Formatted date in the specified language.
+ */
+export const getFormattedTripDate = (tripStartDate, day, lang = 'en') => {
   if (!tripStartDate || !day) return '';
 
   const startDate = parseISO(tripStartDate);
   const currentDate = addDays(startDate, day - 1);
 
-  return format(currentDate, 'EEEE, dd MMMM yyyy');
+  const locale = localeMap[lang] || enUS;
+
+  return format(currentDate, 'EEEE, dd MMMM yyyy', { locale });
 };
 
 export const getTodayDateISO = () => {

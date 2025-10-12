@@ -15,6 +15,7 @@ import {
 import HeaderSectionView from "../components/Sections/BookingDetails.js/HeaderSectionView";
 import BodySectionView from "../components/Sections/BookingDetails.js/BodySectionView";
 import FooterSectionView from "../components/Sections/BookingDetails.js/FooterSection";
+import { useTranslation } from "react-i18next";
 
 export default function BookingDetails() {
   const [loading, setLoading] = useState(true);
@@ -23,19 +24,40 @@ export default function BookingDetails() {
   const [bookingData, setBookingData] = useState(null);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const [isPrinting, setIsPrinting] = useState(false);
+  const [language, setLanguage] = useState(null);
   const { bookingCode } = useParams();
   const printRef = useRef();
   const navigate = useNavigate();
+
+  const { t, i18n } = useTranslation("booking_details");
+
+  useEffect(() => {
+    if (i18n.isInitialized) {
+      const detectedLang = i18n.language || window.navigator.language;
+      setLanguage(detectedLang);
+      console.log(`✅ Detected language: ${detectedLang}`);
+    } else {
+      i18n.on("initialized", () => {
+        const detectedLang = i18n.language || window.navigator.language;
+        setLanguage(detectedLang);
+        console.log(`✅ Detected language (on init): ${detectedLang}`);
+      });
+    }
+  }, [i18n]);
 
   const goHome = () => {
     navigate("/");
   };
 
   useEffect(() => {
+    if (!language) return;
     const fetchData = async () => {
       try {
         setLoading(true);
-        const bookingResponse = await fetchEntityTranslatedData("bookings");
+        const bookingResponse = await fetchEntityTranslatedData(
+          "bookings",
+          language
+        );
         if (!bookingResponse.success) return;
         const booking = bookingResponse.result?.find(
           (b) => b.booking_code === bookingCode
@@ -51,9 +73,9 @@ export default function BookingDetails() {
           itineraryActivitiesResponse,
           activitiesResponse,
         ] = await Promise.all([
-          fetchEntityTranslatedData("itineraries"),
-          fetchEntityTranslatedData("itinirary_activities"),
-          fetchEntityTranslatedData("activities"),
+          fetchEntityTranslatedData("itineraries", language),
+          fetchEntityTranslatedData("itinirary_activities", language),
+          fetchEntityTranslatedData("activities", language),
         ]);
 
         if (itineraryResponse.success) {
@@ -82,7 +104,7 @@ export default function BookingDetails() {
     };
 
     fetchData();
-  }, [bookingCode]);
+  }, [bookingCode, language]);
 
   const activities = sortItineraryActivities(itinerary, itiniraryActivities);
 
@@ -121,7 +143,7 @@ export default function BookingDetails() {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("PDF generation failed:", error);
-    }finally{
+    } finally {
       setIsPrinting(false);
     }
   };
@@ -150,6 +172,7 @@ export default function BookingDetails() {
             getFormattedTripDate={getFormattedTripDate}
             bookingData={bookingData}
             id="body-section"
+            language={language}
           />
 
           {/* Footer Section */}
@@ -158,8 +181,12 @@ export default function BookingDetails() {
             getEmergencyContacts={getEmergencyContacts}
             id="footer-section"
           />
-          <ExportButton className="no-pdf" onClick={handleDownloadPDF} disabled={isPrinting}>
-            {isPrinting? `Exporting ...`: `Export as PDF`}
+          <ExportButton
+            className="no-pdf"
+            onClick={handleDownloadPDF}
+            disabled={isPrinting}
+          >
+            {isPrinting ? `${t("exporting")}...` : t("export_button")}
           </ExportButton>
         </ContentContainer>
       )}

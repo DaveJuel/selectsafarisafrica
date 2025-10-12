@@ -76,8 +76,8 @@ export const fetchEntityData = async (entityName, isProtected = false) => {
  * @param {string} entityName - Name of the entity to fetch
  * @returns {Promise<any>}
  */
-export const fetchEntityTranslatedData = async (entityName) => {
-  const path = `/api/entity/data/translate/${entityName}?lang=fr`;
+export const fetchEntityTranslatedData = async (entityName, lang="en") => {
+  const path = `/api/entity/data/translate/${entityName}?lang=${lang}`;
   let headers = {
     "Content-Type": "application/json"
   }
