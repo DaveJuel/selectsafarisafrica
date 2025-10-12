@@ -43,6 +43,7 @@ import {
 } from "../../style/book.trip.modal.styles";
 import { logger } from "../../utils/logger";
 import { persistItinerary } from "../../utils/DataPersistenceHandler";
+import { useTranslation } from "react-i18next";
 
 const BookTripModal = ({
   isOpen,
@@ -70,6 +71,8 @@ const BookTripModal = ({
     notes: "",
     booking_code: "",
   });
+
+  const { t } = useTranslation("booking_form");
 
   useEffect(() => {
     const loginStatus = isUserLoggedIn();
@@ -164,27 +167,27 @@ const BookTripModal = ({
     const newErrors = {};
 
     if (!formData.client_name?.trim()) {
-      newErrors.client_name = "Name is required";
+      newErrors.client_name = "name_required";
     }
 
     if (!formData.client_contact.trim()) {
       newErrors.client_contact =
         contactMethod === "email"
-          ? "Email is required"
-          : "WhatsApp number is required";
+          ? "email_required"
+          : "whatsapp_required";
     } else if (contactMethod === "email") {
       if (!/\S+@\S+\.\S+/.test(formData.client_contact)) {
-        newErrors.client_contact = "Please enter a valid email";
+        newErrors.client_contact = "enter_valid_email";
       }
     } else if (contactMethod === "whatsapp") {
       if (!/^\+?[0-9]{7,15}$/.test(formData.client_contact)) {
         newErrors.client_contact =
-          "Please enter a valid WhatsApp number (e.g. +123456789)";
+          "enter_valid_whatsapp";
       }
     }
 
     if (!formData.trip_start_date) {
-      newErrors.trip_start_date = "Start date is required";
+      newErrors.trip_start_date = "start_date_required";
     }
 
     setErrors(newErrors);
@@ -246,7 +249,7 @@ const BookTripModal = ({
     } catch (error) {
       console.error("Error saving data:", error);
       setFormStatus({
-        message: "An error occurred while booking. Please try again.",
+        message: "booking_error",
         type: "error",
       });
     } finally {
@@ -272,14 +275,14 @@ const BookTripModal = ({
     <ModalOverlay onClick={handleBackdropClick}>
       <ModalContainer>
         {!itinerary && (
-          <EmptyStateView message={"Please select an itinerary"} />
+          <EmptyStateView message={t("select_itinerary")} />
         )}
         {itinerary && (
           <>
             <ModalHeader>
               <HeaderContent>
                 <ModalTitle>
-                  Let's book your {itinerary.name} adventure!
+                  {`${t("form_title")} - ${itinerary.name}`}
                 </ModalTitle>
                 {formStatus.message && (
                   <StatusMessage type={formStatus.type}>
@@ -290,7 +293,7 @@ const BookTripModal = ({
                         ? "⚠"
                         : "ℹ"}
                     </StatusIcon>
-                    {formStatus.message}
+                    {t(formStatus.message)}
                   </StatusMessage>
                 )}
               </HeaderContent>
@@ -304,7 +307,7 @@ const BookTripModal = ({
                     <LabelWithIcon>
                       <>
                         <FiUser size={16} />
-                        What's your name?
+                        {t("your_name")}
                       </>
                     </LabelWithIcon>
                     <Input
@@ -314,18 +317,18 @@ const BookTripModal = ({
                       onChange={handleInputChange}
                       onInput={handleInputChange}
                       onBlur={handleInputChange}
-                      placeholder="Enter your full name"
+                      placeholder={t("enter_fullname")}
                       hasError={!!errors.client_name}
                     />
                     {errors.client_name && (
-                      <ErrorMessage>{errors.client_name}</ErrorMessage>
+                      <ErrorMessage>{t(errors.client_name)}</ErrorMessage>
                     )}
                   </FormGroup>
                   <FormGroup>
                     <LabelWithIcon>
                       <>
                         <FiMail size={16} />
-                        How can we reach out?
+                        {t("reach_out_method")}
                       </>
                     </LabelWithIcon>
                     <ToggleContainer>
@@ -336,7 +339,7 @@ const BookTripModal = ({
                         onClick={() => handleContactMethodChange("email")}
                       >
                         <FiMail size={18} />
-                        Email
+                        {t("email")}
                       </ToggleButton>
 
                       <ToggleButton
@@ -346,7 +349,7 @@ const BookTripModal = ({
                         onClick={() => handleContactMethodChange("whatsapp")}
                       >
                         <BiChat size={18} />
-                        WhatsApp
+                        {t("whatsapp")}
                       </ToggleButton>
                     </ToggleContainer>
                   </FormGroup>
@@ -362,15 +365,15 @@ const BookTripModal = ({
                         onInput={handleInputChange}
                         placeholder={
                           contactMethod === "email"
-                            ? "Enter your email address"
-                            : "Enter your WhatsApp number"
+                            ? t("enter_email")
+                            : t("enter_whatsapp")
                         }
                         hasError={!!errors.client_contact}
                       />
                     </InputWrapper>
 
                     {errors.client_contact && (
-                      <ErrorMessage>⚠️ {errors.client_contact}</ErrorMessage>
+                      <ErrorMessage>⚠️ {t(errors.client_contact)}</ErrorMessage>
                     )}
                   </FormGroup>
 
@@ -378,7 +381,7 @@ const BookTripModal = ({
                     <LabelWithIcon>
                       <>
                         <FiCalendar size={16} />
-                        When does your adventure begin?
+                        {t("start_time")}
                       </>
                     </LabelWithIcon>
                     <Input
@@ -391,7 +394,7 @@ const BookTripModal = ({
                       min={getTodayDateISO()}
                     />
                     {errors.trip_start_date && (
-                      <ErrorMessage>{errors.trip_start_date}</ErrorMessage>
+                      <ErrorMessage>{t(errors.trip_start_date)}</ErrorMessage>
                     )}
                   </FormGroup>
 
@@ -399,7 +402,7 @@ const BookTripModal = ({
                     <LabelWithIcon>
                       <>
                         <FiMap size={16} />
-                        Where are you from? (optional)
+                        {t("origin")}
                       </>
                     </LabelWithIcon>
                     <Select
@@ -409,30 +412,30 @@ const BookTripModal = ({
                       onInput={handleInputChange}
                       hasError={!!errors.country_of_origin}
                     >
-                      <option value="">Select your country</option>
-                      <option value="US">United States</option>
-                      <option value="UK">United Kingdom</option>
-                      <option value="CA">Canada</option>
-                      <option value="AU">Australia</option>
-                      <option value="DE">Germany</option>
-                      <option value="FR">France</option>
-                      <option value="IT">Italy</option>
-                      <option value="ES">Spain</option>
-                      <option value="JP">Japan</option>
-                      <option value="CN">China</option>
-                      <option value="IN">India</option>
-                      <option value="BR">Brazil</option>
-                      <option value="MX">Mexico</option>
-                      <option value="ZA">South Africa</option>
-                      <option value="OTHER">Other</option>
+                      <option value="">{t("select_country")}</option>
+                      <option value="US">{t("country_us")}</option>
+                      <option value="UK">{t("country_uk")}</option>
+                      <option value="CA">{t("country_ca")}</option>
+                      <option value="AU">{t("country_au")}</option>
+                      <option value="DE">{t("country_de")}</option>
+                      <option value="FR">{t("country_fr")}</option>
+                      <option value="IT">{t("country_it")}</option>
+                      <option value="ES">{t("country_es")}</option>
+                      <option value="JP">{t("country_jp")}</option>
+                      <option value="CN">{t("country_cn")}</option>
+                      <option value="IN">{t("country_in")}</option>
+                      <option value="BR">{t("country_br")}</option>
+                      <option value="MX">{t("country_mx")}</option>
+                      <option value="ZA">{t("country_za")}</option>
+                      <option value="OTHER">{t("country_other")}</option>
                     </Select>
                     {errors.country_of_origin && (
-                      <ErrorMessage>{errors.country_of_origin}</ErrorMessage>
+                      <ErrorMessage>{t(errors.country_of_origin)}</ErrorMessage>
                     )}
                   </FormGroup>
                   <ButtonGroup>
                     <CancelButton type="button" onClick={onClose}>
-                      Cancel
+                      {t("cancel_button")}
                     </CancelButton>
                     <SubmitButton
                       type="submit"
@@ -441,10 +444,10 @@ const BookTripModal = ({
                       {isSubmitting ? (
                         <>
                           <Loader />
-                          Booking...
+                          {`${t("booking")}...`}
                         </>
                       ) : (
-                        "Book"
+                        t("book_button")
                       )}
                     </SubmitButton>
                   </ButtonGroup>
