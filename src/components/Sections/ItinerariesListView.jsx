@@ -73,7 +73,7 @@ const ItinerariesListView = ({
             item.country.toLowerCase() === formData.country.toLowerCase()
         );
         const response = await fetch(
-          `${intelligenceUrl}/api/generate/itinerary/`,
+          `${intelligenceUrl}/api/chat/generate/itinerary/`,
           {
             method: "POST",
             headers: {
