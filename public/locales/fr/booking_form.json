@@ -35,5 +35,9 @@
   "country_br": "Brésil",
   "country_mx": "Mexique",
   "country_za": "Afrique du Sud",
-  "country_other": "Autre"
+  "country_other": "Autre",
+  "booking_confirmed": "Réservation confirmée avec succès !",
+  "team_will_reach_out": "Notre équipe vous contactera sous peu. Veuillez conserver votre référence de réservation pour toute correspondance future.",
+  "your_booking_code": "Votre code de réservation",
+  "code_usage": "Utilisez ce code pour toute demande de suivi"
 }

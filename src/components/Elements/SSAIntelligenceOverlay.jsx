@@ -338,7 +338,7 @@ const SSAIntelligenceOverlay = ({
               <InputContainer>
                 <TextInput
                   type="text"
-                  placeholder="Ask here..."
+                  placeholder={t("ask_prompt")}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={(e) =>

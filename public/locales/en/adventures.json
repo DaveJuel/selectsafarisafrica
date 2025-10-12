@@ -115,5 +115,6 @@
   "google_auth_success": "Google authentication successful, redirecting...",
   "sign_in_prompt": "Sign in with your Gmail to get personalized travel tips from our tourism experts.",
   "register_with_google": "Register with Google",
-  "continue_with_google": "Continue with Google"
+  "continue_with_google": "Continue with Google",
+  "ask_prompt": "Ask here"
 }

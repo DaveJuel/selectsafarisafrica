@@ -1,8 +1,10 @@
 // import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
   // const navigate = useNavigate();
+  const { t } = useTranslation("booking_form");
 
   if (!isOpen) return null;
 
@@ -16,20 +18,19 @@ const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
         <ModalBody>
           <SuccessContainer>
             <SuccessIcon>✓</SuccessIcon>
-            <SuccessMessage>Booking confirmed successfully!</SuccessMessage>
+            <SuccessMessage>{t("booking_confirmed")}</SuccessMessage>
           </SuccessContainer>
 
           <InfoSection>
             <InfoText>
-              Our team will reach out to you shortly. Please save your booking
-              reference for future correspondence.
+              {t("team_will_reach_out")}
             </InfoText>
 
             <BookingCodeContainer>
-              <BookingCodeLabel>Your Booking Code</BookingCodeLabel>
+              <BookingCodeLabel>{t("your_booking_code")}</BookingCodeLabel>
               <BookingCodeValue  onClick={() => window.open(`/booking/${bookingData.booking_code}`, "_blank")}>{bookingData.booking_code}</BookingCodeValue>
               <BookingCodeNote>
-                Use this code for any follow-up inquiries
+                {t("code_usage")}
               </BookingCodeNote>
             </BookingCodeContainer>
           </InfoSection>
