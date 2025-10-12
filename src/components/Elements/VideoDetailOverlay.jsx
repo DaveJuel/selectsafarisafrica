@@ -23,7 +23,7 @@ const VideoDetailOverlay = ({
   videoIndex,
   onClose,
   videoPosition,
-  onTalkToExpert
+  onTalkToExpert,
 }) => {
   const { t } = useTranslation("adventures");
   if (!isVisible || !videoPosition) return null;
@@ -55,24 +55,24 @@ const VideoDetailOverlay = ({
 
           <OverlayBody>
             <LocationItem>
-              <LocationLabel>Country:</LocationLabel>
-              <LocationValue>{video?.country || "-"}</LocationValue>
+              <LocationLabel>{t("country")}:</LocationLabel>
+              <LocationValue>{t(video?.country) || "-"}</LocationValue>
             </LocationItem>
             <LocationItem>
-              <LocationLabel>City:</LocationLabel>
+              <LocationLabel>{t("city")}:</LocationLabel>
               <LocationValue>{video?.city || "-"}</LocationValue>
             </LocationItem>
             <DetailItem>
-              <DetailLabel>Description:</DetailLabel>
+              <DetailLabel>{t("description")}:</DetailLabel>
               <ScrollableDetailValue>
-                <HtmlContainerView content={video?.description} />
+                <HtmlContainerView content={t(video?.description)} />
               </ScrollableDetailValue>
             </DetailItem>
           </OverlayBody>
 
           <OverlayFooter>
             <ExpertButton onClick={onTalkToExpert}>
-              Talk to an Expert
+              {t("talk_to_expert")}
             </ExpertButton>
           </OverlayFooter>
         </SidePanelContent>
