@@ -112,5 +112,6 @@
   "register_with_google": "S'inscrire avec Google",
   "continue_with_google": "Continuer avec Google",
 
-  "ask_prompt": "Demande ici"
+  "ask_prompt": "Demande ici",
+  "missing_premade_itineraries": "Nous n'avons pas encore d'itinéraires préétablis pour ce voyage, mais notre accueil est là pour vous aider à créer l'expérience personnalisée parfaite."
 }

@@ -71,17 +71,29 @@ export const fetchEntityData = async (entityName, isProtected = false) => {
   return makeApiRequest(path, "GET", null, headers);
 };
 
+export const normalizeLang = (lang = "en") => {
+  if (!lang) return "en";
+
+  const baseLang = lang.toLowerCase().split("-")[0];
+  const supportedLangs = ["en", "pt", "es", "zh", "ar", "fr"];
+
+  return supportedLangs.includes(baseLang) ? baseLang : "en";
+};
+
 /**
  * Fetch entity data from the API
  * @param {string} entityName - Name of the entity to fetch
  * @returns {Promise<any>}
  */
-export const fetchEntityTranslatedData = async (entityName, lang="en") => {
-  const path = `/api/entity/data/translate/${entityName}?lang=${lang}`;
-  let headers = {
+export const fetchEntityTranslatedData = async (entityName, lang = "en") => {
+  const normalizedLang =normalizeLang(lang);
+
+  const path = `/api/entity/data/translate/${entityName}?lang=${normalizedLang}`;
+  const headers = {
     "Content-Type": "application/json"
-  }
-  return makeMiddlewareRequest (path, "GET", headers);
+  };
+
+  return makeMiddlewareRequest(path, "GET", headers);
 };
 
 export const fetchEntityInstance = async (entityName, instanceId, isProtected = false) => {

@@ -9,5 +9,8 @@
   "selected": "Sélectionné",
   "make_it_happen": "Lancer",
   "day": "Jour",
-  "days": "Jours"
+  "days": "Jours",
+  "invoice_preparing": "Préparation de votre facture en cours",
+  "fetching_booking_details": "Récupération des détails de la réservation en cours",
+  "invoice_downloaded": "Facture téléchargée avec succès. Vous pouvez fermer cette page."
 }
