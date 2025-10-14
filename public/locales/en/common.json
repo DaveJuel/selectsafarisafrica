@@ -9,5 +9,8 @@
   "selected": "Selected",
   "make_it_happen": "Make It Happen",
   "day": "Day",
-  "days": "Days"
+  "days": "Days",
+  "invoice_preparing": "Preparing your invoice",
+  "fetching_booking_details": "Fetching booking details",
+  "invoice_downloaded": "Invoice downloaded successfully. You can close this page."
 }

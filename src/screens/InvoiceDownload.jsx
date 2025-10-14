@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchEntityData } from "../utils/RequestHandler";
 import { getEmergencyContacts } from "../data/emergency.contacts";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 export default function InvoiceDownloadPage() {
   const { bookingCode } = useParams();
@@ -14,6 +15,8 @@ export default function InvoiceDownloadPage() {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const [isDownloading, setIsDownloading] = useState(false);
+
+  const { t } = useTranslation("common");
 
   // 1️⃣ Fetch all required data
   useEffect(() => {
@@ -68,7 +71,7 @@ export default function InvoiceDownloadPage() {
     fetchData();
   }, [bookingCode]);
 
-   // 3️⃣ Handle invoice download
+  // 3️⃣ Handle invoice download
   const handleDownloadInvoice = async () => {
     try {
       setIsDownloading(true);
@@ -114,16 +117,25 @@ export default function InvoiceDownloadPage() {
     if (!loading && bookingData && itinerary) {
       handleDownloadInvoice();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, bookingData, itinerary]);
 
   // 4️⃣ Show loading or downloading state
   if (loading || isDownloading) {
     return (
-      <div style={{ display: "flex", height: "100vh", alignItems: "center", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <LoadingSpinner />
         <p style={{ marginLeft: 10 }}>
-          {isDownloading ? "Preparing your invoice..." : "Fetching booking details..."}
+          {isDownloading
+            ? t("invoice_preparing")
+            : t("fetching_booking_details")}...
         </p>
       </div>
     );
@@ -131,7 +143,7 @@ export default function InvoiceDownloadPage() {
 
   return (
     <div style={{ textAlign: "center", padding: 40 }}>
-      <p>Invoice downloaded successfully. You can close this page.</p>
+      <p>{t("invoice_downloaded")}</p>
     </div>
   );
 }

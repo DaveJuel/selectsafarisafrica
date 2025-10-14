@@ -12,6 +12,7 @@ import {
   PromptMessage,
 } from "../../style/no.itineraries.prompt.styles";
 import { FcOnlineSupport } from "react-icons/fc";
+import { useTranslation } from "react-i18next";
 
 const NoItinerariesPrompt = ({
   formData,
@@ -19,9 +20,11 @@ const NoItinerariesPrompt = ({
   setIsLoggedIn,
   errorOccured,
   errorMessage,
-  toggleView
+  toggleView,
 }) => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
+
+  const { t } = useTranslation("adventures");
 
   const handleGoogleAuthSuccess = async (response) => {
     const { credential } = response;
@@ -35,14 +38,13 @@ const NoItinerariesPrompt = ({
           setIsLoggedIn(true);
         } else {
           setFormStatus({
-            message: "An unexpected error occurred. Please try again.",
+            message: "error_occurred",
             type: "error",
           });
         }
       } catch (error) {
         setFormStatus({
-          message:
-            error.message || "Something went wrong. Please contact support.",
+          message: "error_happened_contact_support",
           type: "error",
         });
       }
@@ -66,12 +68,10 @@ const NoItinerariesPrompt = ({
         </PromptIcon>
         {!isLoggedIn && (
           <PromptMessage>
-            We don't have any pre-made itineraries in {formData.country} for{" "}
-            {formData.days} days at the moment, but our front desk are here to
-            help you create the perfect personalized experience.
+            {t("missing_premade_itineraries")}
           </PromptMessage>
         )}
-        {errorOccured && <PromptMessage>{errorMessage}</PromptMessage>}
+        {errorOccured && <PromptMessage>{t(errorMessage)}</PromptMessage>}
         <ActionSection>
           <AuthPrompt>
             {!isLoggedIn && (
