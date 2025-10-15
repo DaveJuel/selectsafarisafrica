@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaPlus } from "react-icons/fa";
 
 // Styled Components
 export const ItinerariesGrid = styled.div`
@@ -226,8 +227,15 @@ export const ActivityContent = styled.div`
 export const ActivityHeader = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between; // space between day/time and edit icon
   gap: 12px;
   flex-wrap: wrap;
+`;
+
+export const HeaderLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
 `;
 
 export const DayBadge = styled.span`
@@ -252,11 +260,71 @@ export const TimeTag = styled.span`
   border: 1px solid #c8e6c8;
 `;
 
+export const EditIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #2d5a2d;
+  font-size: 16px;
+  position: relative;
+
+  &:hover span {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+export const Tooltip = styled.span`
+  position: absolute;
+  top: -28px;
+  right: 0;
+  background: #333;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  pointer-events: none;
+`;
+
+
 export const ActivityDescription = styled.span`
   color: #333;
   font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
+`;
+
+export const AddActivityItem = styled(ActivityItem)`
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  background: #f8f9fa;
+  color: #2d5a2d;
+  border: 2px dashed #c8e6c8;
+
+  &:hover {
+    background: #f0f2f5;
+    border-color: #10a969;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const AddActivityIcon = styled(FaPlus)`
+  font-size: 24px;
+  margin-bottom: 6px;
+`;
+
+export const AddActivityText = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d5a2d;
 `;
 
 export const CardFooter = styled.div`

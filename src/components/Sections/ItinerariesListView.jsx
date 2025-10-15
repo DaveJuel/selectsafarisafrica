@@ -7,17 +7,23 @@ import {
   ActivityDescription,
   ActivityHeader,
   ActivityItem,
+  AddActivityIcon,
+  AddActivityItem,
+  AddActivityText,
   CardFooter,
   CardHeader,
   DayBadge,
   DurationIcon,
   DurationInfo,
   DurationText,
+  EditIconWrapper,
+  HeaderLeft,
   ItinerariesGrid,
   ItineraryCard,
   ItineraryName,
   SeasonBadge,
   TimeTag,
+  Tooltip,
 } from "../../style/itineraries.list.view.styles";
 import { sortItineraryActivities } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
@@ -27,6 +33,7 @@ import { isUserLoggedIn } from "../../utils/AuthHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import { logger } from "../../utils/logger";
 import { intelligenceUrl } from "../../utils/RequestHandler";
+import { FaEdit } from "react-icons/fa";
 
 const ItinerariesListView = ({
   inItineraries = [],
@@ -177,10 +184,15 @@ const ItinerariesListView = ({
                   <ActivityItem key={index}>
                     <ActivityContent>
                       <ActivityHeader>
-                        <DayBadge>
-                          {t("day")} {item?.day}
-                        </DayBadge>
-                        <TimeTag>{item?.time}</TimeTag>
+                        <HeaderLeft>
+                          <DayBadge>{t("day")} {item?.day}</DayBadge>
+                          <TimeTag>{item?.time}</TimeTag>
+                        </HeaderLeft>
+
+                        <EditIconWrapper onClick={() => console.log("Change activity clicked")}>
+                          <FaEdit />
+                          <Tooltip>Change activity</Tooltip>
+                        </EditIconWrapper>
                       </ActivityHeader>
                       <ActivityDescription>
                         {item?.activity}
@@ -188,6 +200,11 @@ const ItinerariesListView = ({
                     </ActivityContent>
                   </ActivityItem>
                 ))}
+
+                <AddActivityItem onClick={() => console.log("Add Activity clicked")}>
+                  <AddActivityIcon />
+                  <AddActivityText>Add Activity</AddActivityText>
+                </AddActivityItem>
               </ActivitiesList>
             </ActivitiesSection>
 
