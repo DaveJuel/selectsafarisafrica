@@ -211,12 +211,6 @@ export const ActivityItem = styled.div`
   }
 `;
 
-// export const ActivityIcon = styled.span`
-//   font-size: 16px;
-//   flex-shrink: 0;
-//   margin-top: 2px;
-// `;
-
 export const ActivityContent = styled.div`
   flex: 1;
   display: flex;
@@ -263,31 +257,32 @@ export const TimeTag = styled.span`
 export const EditIconWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px; /* Adds space between icons */
+`;
+
+export const IconButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ color }) => color || "#2d5a2d"};
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   cursor: pointer;
-  color: #2d5a2d;
-  font-size: 16px;
+  font-size: 14px;
   position: relative;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
 
   &:hover span {
     opacity: 1;
     visibility: visible;
   }
-`;
-
-export const Tooltip = styled.span`
-  position: absolute;
-  top: -28px;
-  right: 0;
-  background: #333;
-  color: #fff;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s;
-  pointer-events: none;
 `;
 
 

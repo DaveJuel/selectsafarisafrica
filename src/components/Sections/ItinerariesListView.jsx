@@ -18,12 +18,12 @@ import {
   DurationText,
   EditIconWrapper,
   HeaderLeft,
+  IconButton,
   ItinerariesGrid,
   ItineraryCard,
   ItineraryName,
   SeasonBadge,
   TimeTag,
-  Tooltip,
 } from "../../style/itineraries.list.view.styles";
 import { sortItineraryActivities } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
@@ -34,6 +34,7 @@ import LoadingSpinner from "../Elements/LoadingSpinner";
 import { logger } from "../../utils/logger";
 import { intelligenceUrl } from "../../utils/RequestHandler";
 import { FaEdit } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 const ItinerariesListView = ({
   inItineraries = [],
@@ -139,6 +140,15 @@ const ItinerariesListView = ({
     }
   }, [isLoggedIn, needToAskAgent, formData, allActivities]);
 
+  const handleDeleteActivity = (item) => {
+    setItineraryActivities((prev) => prev.filter((activity) => activity.id !== item.id));
+  }
+
+  const handleEditActivity = (activity) => {
+    console.log(activity);
+    alert(`Activity editted ${activity.name}`);
+  }
+
   if ((itineraries?.length === 0 && !isLoggedIn) || errorOccured) {
     return (
       <NoItinerariesPrompt
@@ -189,9 +199,21 @@ const ItinerariesListView = ({
                           <TimeTag>{item?.time}</TimeTag>
                         </HeaderLeft>
 
-                        <EditIconWrapper onClick={() => console.log("Change activity clicked")}>
-                          <FaEdit />
-                          <Tooltip>Change activity</Tooltip>
+
+                        <EditIconWrapper>
+                          <IconButton
+                            color="#2d5a2d"
+                            onClick={() => handleEditActivity(item)}
+                          >
+                            <FaEdit />
+                          </IconButton>
+
+                          <IconButton
+                            color="#c0392b"
+                            onClick={() => handleDeleteActivity(item)}
+                          >
+                            <FaXmark />
+                          </IconButton>
                         </EditIconWrapper>
                       </ActivityHeader>
                       <ActivityDescription>
