@@ -202,6 +202,10 @@ const ItinerariesListView = ({
         ? Math.max(...itineraryActivities.map((a) => a.day)) + 1
         : 1;
 
+    setItineraries((prev) => prev.map((item) =>
+      item.id === itinerary.id ? { ...item, days: nextDay } : item
+    ));
+
     const newActivity = {
       id: Date.now() + Math.floor(Math.random() * 1000),
       itinerary: itinerary.name,
