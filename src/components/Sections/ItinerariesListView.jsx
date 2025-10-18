@@ -47,7 +47,6 @@ const ItinerariesListView = ({
   const [errorMessage, setErrorMessage] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
-  const [newItineraryActivity, setNewItineraryActivity] = useState(null);
   const [activityRecommendedTimes, setActivityRecommendedTimes] = useState([]);
   const [availableActivities, setAvailableActivities] = useState([]);
   const [needToAskAgent, setNeedToAskAgent] = useState(
@@ -69,11 +68,11 @@ const ItinerariesListView = ({
     }
 
     const loadActivities = async () => {
-      try{
+      try {
         const activitiesResponse = await fetchEntityTranslatedData('activities', language);
-        if(!activitiesResponse.success) return;
+        if (!activitiesResponse.success) return;
         setAvailableActivities(activitiesResponse.result.filter((activity) => activity.country.toLowerCase() === formData.country.toLowerCase()));
-      }catch(error){
+      } catch (error) {
         logger.error(error);
       }
     }
@@ -174,7 +173,7 @@ const ItinerariesListView = ({
   }
 
   const confirmEditActivity = () => {
-    console.log(`Confirmed edit activity`);
+    if (isAdding) return confirmAddActivity();
     setEditingId(null);
   }
 
@@ -184,28 +183,34 @@ const ItinerariesListView = ({
     setEditingId(null);
   }
 
+  const confirmAddActivity = () => {
+    setIsAdding(false);
+    setEditingId(null);
+  }
+
   const handleChange = (id, field, value) => {
-    // setActivities((prev) =>
-    //   prev.map((activity) =>
-    //     activity.id === id ? { ...activity, [field]: value } : activity
-    //   )
-    // );
+    setItineraryActivities((prev) =>
+      prev.map((activity) =>
+        activity.id === id ? { ...activity, [field]: value } : activity
+      )
+    );
   };
 
-  const handleAddActivity = (activities) => {
+  const handleAddActivity = (itinerary, itineraryActivities) => {
     const nextDay =
-      activities.length > 0
-        ? Math.max(...activities.map((a) => a.day)) + 1
+      itineraryActivities.length > 0
+        ? Math.max(...itineraryActivities.map((a) => a.day)) + 1
         : 1;
 
     const newActivity = {
-      id: Date.now(),
+      id: Date.now() + Math.floor(Math.random() * 1000),
+      itinerary: itinerary.name,
       day: nextDay,
-      time: activityRecommendedTimes[0],
-      activity: availableActivities[0],
+      time: activityRecommendedTimes[0].time,
+      activity: availableActivities[0].name,
+      duration: `${availableActivities[0].duration_in_hours} hours`
     };
-
-    setNewItineraryActivity(newActivity);
+    setItineraryActivities((prev) => [...prev, newActivity]);
     setEditingId(newActivity.id);
     setIsAdding(true);
   };
@@ -265,26 +270,10 @@ const ItinerariesListView = ({
                     activityOptions={availableActivities}
                   />
                 ))}
-                {isAdding ? (
-                  <ItineraryListViewItem
-                    item={newItineraryActivity}
-                    index={activities.length}
-                    editingId={editingId}
-                    handleChange={handleChange}
-                    timeOptions={activityRecommendedTimes}
-                    confirmEditActivity={confirmEditActivity}
-                    cancelEditActivity={cancelEditActivity}
-                    handleEditActivity={handleEditActivity}
-                    handleDeleteActivity={handleDeleteActivity}
-                    activityOptions={availableActivities}
-                  />
-                ) : (
-                  <AddActivityItem onClick={() => handleAddActivity(activities)}>
-                    <AddActivityIcon />
-                    <AddActivityText>Add Activity</AddActivityText>
-                  </AddActivityItem>
-                )
-                }
+                <AddActivityItem onClick={() => handleAddActivity(itinerary, activities)}>
+                  <AddActivityIcon />
+                  <AddActivityText>Add Activity</AddActivityText>
+                </AddActivityItem>
               </ActivitiesList>
             </ActivitiesSection>
 
