@@ -26,7 +26,8 @@ const ItineraryListViewItem = ({
     cancelEditActivity,
     handleEditActivity,
     handleDeleteActivity,
-    activityOptions
+    activityOptions,
+    itinerary
 }) => {
     const { t } = useTranslation("itineraries");
     return (
@@ -38,7 +39,7 @@ const ItineraryListViewItem = ({
                         {editingId === item.id ? (
                             <Select
                                 value={item.time}
-                                onChange={(e) => handleChange(item.id, "time", e.target.value)}
+                                onChange={(e) => handleChange(itinerary, item.id, "time", e.target.value)}
                             >
                                 {timeOptions.map((opt) => (
                                     <option key={opt.id} value={opt.time}>
@@ -92,7 +93,7 @@ const ItineraryListViewItem = ({
                     <Select
                         value={item.activity}
                         onChange={(e) =>
-                            handleChange(item.id, "activity", e.target.value)
+                            handleChange(itinerary, item.id, "activity", e.target.value)
                         }
                     >
                         {activityOptions.map((opt) => (

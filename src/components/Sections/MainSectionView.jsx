@@ -10,7 +10,9 @@ export default function MainSectionView({
   openBookTripModal,
   toggleView,
   allActivities,
-  language
+  language,
+  setIsPersisting,
+  setItinerary
 }) {
   switch (currentView) {
     case "contact-us":
@@ -28,6 +30,8 @@ export default function MainSectionView({
           allActivities={allActivities}
           toggleView={toggleView}
           language={language}
+          setIsPersisting={setIsPersisting}
+          setItinerary={setItinerary}
         />
       );
   }

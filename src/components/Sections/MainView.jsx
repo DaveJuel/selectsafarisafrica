@@ -31,6 +31,7 @@ export default function MainView() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState("itiniraries");
   const [hidePlanForm, setHidePlanForm] = useState(false);
+  const [isPersisting, setIsPersisting] = useState(false);
 
   const { i18n } = useTranslation("common");
 
@@ -70,11 +71,13 @@ export default function MainView() {
     }
   };
 
-  const onBookItinerary = (selectedItinerary, selectedItineraryActivities) => {
-    setItinerary(selectedItinerary);
+
+
+  const onBookItinerary = (selectedItineraryActivities) => {
     setItineraryActivities(selectedItineraryActivities);
     setIsModalOpen(true);
   };
+
 
   const handleConfirm = () => {
     setIsConfirmModalOpen(true);
@@ -110,6 +113,8 @@ export default function MainView() {
               toggleView={toggleView}
               allActivities={allActivities}
               language={language}
+              setIsPersisting={setIsPersisting}
+              setItinerary={setItinerary}
             />
           )}
         </ViewSection>
@@ -124,6 +129,7 @@ export default function MainView() {
         bookingData={bookingData}
         setBookingData={setBookingData}
         tripData={formData}
+        isPersisting={isPersisting}
       />
       <ConfirmBookingModal
         isOpen={isConfirmModalOpen}

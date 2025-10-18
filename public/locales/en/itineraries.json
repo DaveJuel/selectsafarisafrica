@@ -4,5 +4,8 @@
   "day": "Day",
   "book_now": "BOOK NOW",
   "lets_go_to": "Let's Go to",
-  "incredible_days": "incredible days planned just for you"
+  "incredible_days": "incredible days planned just for you",
+  "unable_to_find_itineraries": "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry.",
+  "planning_process_failed": "Something went wrong during the planning process, please reach out to us we shall get back to you in time.",
+  "add_activity": "Add Activity"
 }

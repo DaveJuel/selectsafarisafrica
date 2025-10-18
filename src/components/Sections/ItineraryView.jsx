@@ -16,7 +16,9 @@ export default function ItineraryView({
   openBookTripModal,
   allActivities,
   toggleView,
-  language
+  language,
+  setIsPersisting,
+  setItinerary
 }) {
   
   const { t } = useTranslation("itineraries");
@@ -43,6 +45,8 @@ export default function ItineraryView({
         allActivities={allActivities}
         toggleView={toggleView}
         language={language}
+        setIsPersisting={setIsPersisting}
+        setItinerary={setItinerary}
       />
     </ViewWrapper>
   );

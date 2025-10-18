@@ -41,27 +41,21 @@ import {
   ToggleButton,
   ToggleContainer,
 } from "../../style/book.trip.modal.styles";
-import { logger } from "../../utils/logger";
-import { persistItinerary } from "../../utils/DataPersistenceHandler";
 import { useTranslation } from "react-i18next";
 
 const BookTripModal = ({
   isOpen,
   onClose,
   itinerary,
-  itineraryActivities,
-  allActivities,
   handlePreview,
   setBookingData,
-  tripData,
+  isPersisting
 }) => {
   const [loading, setLoading] = useState(true);
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
   const [defaultBookingStatus, setDefaultBookingStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [contactMethod, setContactMethod] = useState("email");
-  const [isPersisting, setIsPersisting] = useState(false);
-  const [persistedItinerary, setPersistedItinerary] = useState(itinerary);
   const [formData, setFormData] = useState({
     client_name: "",
     client_contact: "",
@@ -85,28 +79,6 @@ const BookTripModal = ({
       }));
     }
   }, []);
-
-  useEffect(() => {
-    if (!itinerary?.id && isOpen) {
-      const persistData = async () => {
-        try {
-          setIsPersisting(true);
-          const persisted = await persistItinerary(
-            { ...itinerary, country: tripData.country },
-            itineraryActivities,
-            allActivities
-          );
-          setPersistedItinerary(persisted);
-        } catch (error) {
-          logger.error("Failed to persist itinerary", error);
-        } finally {
-          setIsPersisting(false);
-        }
-      };
-      persistData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itinerary]);
 
   useEffect(() => {
     const fetchBookingStatus = async () => {
@@ -221,11 +193,10 @@ const BookTripModal = ({
       if (validateForm()) {
         setIsSubmitting(true);
         await loginUser(publicUser, publicPass);
-        const tripItinerary = itinerary?.id ? itinerary : persistedItinerary;
         const requestBody = {
           ...formData,
           status: defaultBookingStatus.id,
-          itinerary: tripItinerary.id,
+          itinerary: itinerary.id,
           booking_code: generateBookingCode(formData),
         };
         const response = await saveEntityData("bookings", requestBody);
@@ -290,8 +261,8 @@ const BookTripModal = ({
                       {formStatus.type === "success"
                         ? "✓"
                         : formStatus.type === "error"
-                        ? "⚠"
-                        : "ℹ"}
+                          ? "⚠"
+                          : "ℹ"}
                     </StatusIcon>
                     {t(formStatus.message)}
                   </StatusMessage>
@@ -439,7 +410,7 @@ const BookTripModal = ({
                     </CancelButton>
                     <SubmitButton
                       type="submit"
-                      disabled={isPersisting || isSubmitting}
+                      disabled={isPersisting || isSubmitting || !itinerary.id}
                     >
                       {isSubmitting ? (
                         <>

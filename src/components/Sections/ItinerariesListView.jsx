@@ -34,7 +34,9 @@ const ItinerariesListView = ({
   formData,
   allActivities,
   toggleView,
-  language
+  language,
+  setIsPersisting,
+  setItinerary
 }) => {
   const { t } = useTranslation("itineraries");
   const [itineraries, setItineraries] = useState(inItineraries);
@@ -144,14 +146,14 @@ const ItinerariesListView = ({
         } else {
           setErrorOccured(true);
           setErrorMessage(
-            "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry."
+            "unable_to_find_itineraries"
           );
           logger.warn("Agent returned no itineraries", data);
         }
       } catch (error) {
         setErrorOccured(true);
         setErrorMessage(
-          "Something went wrong during the planning process, please reach out to us we shall get back to you in time."
+          "planning_process_failed"
         );
         logger.error("Failed to ask agent", error);
       } finally {
@@ -163,6 +165,46 @@ const ItinerariesListView = ({
       askAgent();
     }
   }, [isLoggedIn, needToAskAgent, formData, allActivities]);
+
+  const persistItineraryDetails = async (itinerary, itineraryActivities) => {
+    try {
+
+      const [countriesResponse, seasonsResponse] = await Promise.all([
+        fetchEntityTranslatedData("countries"),
+        fetchEntityTranslatedData("seasons"),
+      ]);
+      if (!countriesResponse.success || !seasonsResponse.success) {
+        throw new Error("Failed to fetch countries or seasons");
+      }
+
+      const response = await fetch(`${intelligenceUrl}/api/entity/data/itinerary/details/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          itinerary,
+          itinerary_activities: itineraryActivities,
+          activities_recommended_times: activityRecommendedTimes,
+          activities: availableActivities,
+          countries: countriesResponse.result,
+          seasons: seasonsResponse.result
+        }),
+      });
+
+      const data = await response.json();
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+
+  const handleBookTrip = async (itinerary, itineraryActivities) => {
+    setItinerary(itinerary);
+    openBookTripModal(itineraryActivities);
+    if (itinerary?.isModified) {
+      setIsPersisting(true);
+      persistItineraryDetails(itinerary, itineraryActivities)
+        .finally(() => { setIsPersisting(false) });
+    }
+  }
 
   const handleDeleteActivity = (item) => {
     setItineraryActivities((prev) => prev.filter((activity) => activity.id !== item.id));
@@ -178,7 +220,7 @@ const ItinerariesListView = ({
   }
 
   const cancelEditActivity = () => {
-    console.log(`Cancel edit activity`);
+    logger.info(`Cancel edit activity`);
     if (isAdding) setIsAdding(false);
     setEditingId(null);
   }
@@ -188,7 +230,11 @@ const ItinerariesListView = ({
     setEditingId(null);
   }
 
-  const handleChange = (id, field, value) => {
+  const handleChange = (itinerary, id, field, value) => {
+    setItineraries((prev) => prev.map((item) =>
+      item.id === itinerary.id ? { ...item, isModified: true } : item
+    ));
+
     setItineraryActivities((prev) =>
       prev.map((activity) =>
         activity.id === id ? { ...activity, [field]: value } : activity
@@ -203,7 +249,7 @@ const ItinerariesListView = ({
         : 1;
 
     setItineraries((prev) => prev.map((item) =>
-      item.id === itinerary.id ? { ...item, days: nextDay } : item
+      item.id === itinerary.id ? { ...item, days: nextDay, isModified: true } : item
     ));
 
     const newActivity = {
@@ -212,7 +258,8 @@ const ItinerariesListView = ({
       day: nextDay,
       time: activityRecommendedTimes[0].time,
       activity: availableActivities[0].name,
-      duration: `${availableActivities[0].duration_in_hours} hours`
+      duration: `${availableActivities[0].duration_in_hours} hours`,
+      isAdded: true
     };
     setItineraryActivities((prev) => [...prev, newActivity]);
     setEditingId(newActivity.id);
@@ -272,17 +319,18 @@ const ItinerariesListView = ({
                     handleEditActivity={handleEditActivity}
                     handleDeleteActivity={handleDeleteActivity}
                     activityOptions={availableActivities}
+                    itinerary={itinerary}
                   />
                 ))}
                 <AddActivityItem onClick={() => handleAddActivity(itinerary, activities)}>
                   <AddActivityIcon />
-                  <AddActivityText>Add Activity</AddActivityText>
+                  <AddActivityText>{t("add_activity")}</AddActivityText>
                 </AddActivityItem>
               </ActivitiesList>
             </ActivitiesSection>
 
             <CardFooter
-              onClick={() => openBookTripModal(itinerary, activities)}
+              onClick={() => handleBookTrip(itinerary, activities)}
             >
               <ActionBtn>{t("book_now")}</ActionBtn>
             </CardFooter>

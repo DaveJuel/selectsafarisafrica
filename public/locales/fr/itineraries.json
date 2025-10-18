@@ -4,5 +4,8 @@
   "day": "Jour",
   "book_now": "RÉSERVEZ MAINTENANT",
   "lets_go_to": "Allons y - ",
-  "incredible_days": "jours incroyables planifiés rien que pour vous"
+  "incredible_days": "jours incroyables planifiés rien que pour vous",
+  "unable_to_find_itineraries": "Nous n'avons pas pu créer d'itinéraires pour le moment. Veuillez nous contacter pour plus d'informations.",
+  "planning_process_failed": "Une erreur s'est produite lors du processus de planification. Veuillez nous contacter et nous vous répondrons dans les plus brefs délais.",
+  "add_activity": "Ajouter une activité"
 }
