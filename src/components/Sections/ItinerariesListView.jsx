@@ -49,6 +49,7 @@ const ItinerariesListView = ({
   const [isAdding, setIsAdding] = useState(false);
   const [newItineraryActivity, setNewItineraryActivity] = useState(null);
   const [activityRecommendedTimes, setActivityRecommendedTimes] = useState([]);
+  const [availableActivities, setAvailableActivities] = useState([]);
   const [needToAskAgent, setNeedToAskAgent] = useState(
     itineraries?.length === 0
   );
@@ -66,17 +67,20 @@ const ItinerariesListView = ({
         logger.error(error);
       }
     }
-    loadRecommendedTimes();
-  }, [language]);
 
-  // TODO: Need to pull this information from the backend
-  const activityOptions = [
-    "Hiking Bisoke",
-    "Gorilla Trekking",
-    "Late activities",
-    "Nature Walk",
-    "Cultural Dance",
-  ];
+    const loadActivities = async () => {
+      try{
+        const activitiesResponse = await fetchEntityTranslatedData('activities', language);
+        if(!activitiesResponse.success) return;
+        setAvailableActivities(activitiesResponse.result.filter((activity) => activity.country.toLowerCase() === formData.country.toLowerCase()));
+      }catch(error){
+        logger.error(error);
+      }
+    }
+
+    loadActivities();
+    loadRecommendedTimes();
+  }, [language, formData.country]);
 
   useEffect(() => {
     const loginStatus = isUserLoggedIn();
@@ -198,7 +202,7 @@ const ItinerariesListView = ({
       id: Date.now(),
       day: nextDay,
       time: activityRecommendedTimes[0],
-      activity: activityOptions[0],
+      activity: availableActivities[0],
     };
 
     setNewItineraryActivity(newActivity);
@@ -258,7 +262,7 @@ const ItinerariesListView = ({
                     cancelEditActivity={cancelEditActivity}
                     handleEditActivity={handleEditActivity}
                     handleDeleteActivity={handleDeleteActivity}
-                    activityOptions={activityOptions}
+                    activityOptions={availableActivities}
                   />
                 ))}
                 {isAdding ? (
@@ -272,7 +276,7 @@ const ItinerariesListView = ({
                     cancelEditActivity={cancelEditActivity}
                     handleEditActivity={handleEditActivity}
                     handleDeleteActivity={handleDeleteActivity}
-                    activityOptions={activityOptions}
+                    activityOptions={availableActivities}
                   />
                 ) : (
                   <AddActivityItem onClick={() => handleAddActivity(activities)}>

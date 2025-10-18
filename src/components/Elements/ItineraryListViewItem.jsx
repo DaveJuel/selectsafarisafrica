@@ -96,8 +96,8 @@ const ItineraryListViewItem = ({
                         }
                     >
                         {activityOptions.map((opt) => (
-                            <option key={opt} value={opt}>
-                                {opt}
+                            <option key={opt.id} value={opt.name}>
+                                {opt.name}
                             </option>
                         ))}
                     </Select>
