@@ -191,6 +191,10 @@ const ItinerariesListView = ({
       });
 
       const data = await response.json();
+      if (data.success) {
+        return data.result;
+      }
+      return null;
     } catch (error) {
       logger.error(error);
     }
@@ -201,8 +205,12 @@ const ItinerariesListView = ({
     openBookTripModal(itineraryActivities);
     if (itinerary?.isModified) {
       setIsPersisting(true);
-      persistItineraryDetails(itinerary, itineraryActivities)
-        .finally(() => { setIsPersisting(false) });
+      const result = await persistItineraryDetails(itinerary, itineraryActivities);
+      logger.info(result);
+      if (result) {
+        setItinerary(result);
+      }
+      setIsPersisting(false);
     }
   }
 

@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import {
   apiKey,
-  fetchEntityData,
+  fetchEntityTranslatedData,
+  intelligenceUrl,
   makeApiRequest,
-  publicPass,
-  publicUser,
-  saveEntityData,
 } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
-import {
-  getLoggedInUser,
-  isUserLoggedIn,
-  loginUser,
-  logoutUser,
-} from "../../utils/AuthHandler";
 import EmptyStateView from "./EmptyStateView";
 import { getTodayDateISO } from "../../utils/DataHandler";
 import { FiCalendar, FiMail, FiMap, FiUser } from "react-icons/fi";
@@ -69,21 +61,9 @@ const BookTripModal = ({
   const { t } = useTranslation("booking_form");
 
   useEffect(() => {
-    const loginStatus = isUserLoggedIn();
-    if (loginStatus) {
-      const currentUser = getLoggedInUser();
-      setFormData((prev) => ({
-        ...prev,
-        client_contact: currentUser.username || "",
-        client_name: currentUser.user_names || "",
-      }));
-    }
-  }, []);
-
-  useEffect(() => {
     const fetchBookingStatus = async () => {
       try {
-        const response = await fetchEntityData("booking_statuses");
+        const response = await fetchEntityTranslatedData("booking_statuses");
         if (response.success) {
           const defaultStatus = response.result?.find(
             (item) => item.status.toLowerCase() === "pending"
@@ -99,7 +79,7 @@ const BookTripModal = ({
 
     setFormStatus({ message: "", type: "" });
     fetchBookingStatus();
-  }, []);
+  }, [itinerary?.id]);
 
   const [errors, setErrors] = useState({});
 
@@ -192,17 +172,26 @@ const BookTripModal = ({
     try {
       if (validateForm()) {
         setIsSubmitting(true);
-        await loginUser(publicUser, publicPass);
-        const requestBody = {
+        const requestData = {
           ...formData,
           status: defaultBookingStatus.id,
           itinerary: itinerary.id,
           booking_code: generateBookingCode(formData),
         };
-        const response = await saveEntityData("bookings", requestBody);
-        if (response.success) {
-          setBookingData(requestBody);
-          await notifyCustomerSuccess(requestBody);
+
+        const response = await fetch(`${intelligenceUrl}/api/entity/save/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "entity_name": "bookings",
+            "details": requestData
+          }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          setBookingData(requestData);
+          await notifyCustomerSuccess(requestData);
           setFormData({
             client_name: "",
             client_contact: "",
@@ -224,7 +213,6 @@ const BookTripModal = ({
         type: "error",
       });
     } finally {
-      logoutUser();
       setIsSubmitting(false);
     }
   };
@@ -244,189 +232,199 @@ const BookTripModal = ({
 
   return (
     <ModalOverlay onClick={handleBackdropClick}>
+
       <ModalContainer>
-        {!itinerary && (
-          <EmptyStateView message={t("select_itinerary")} />
+        {isPersisting && (
+          <LoadingSpinner />
         )}
-        {itinerary && (
+
+        {!isPersisting && (
           <>
-            <ModalHeader>
-              <HeaderContent>
-                <ModalTitle>
-                  {`${t("form_title")} - ${itinerary.name}`}
-                </ModalTitle>
-                {formStatus.message && (
-                  <StatusMessage type={formStatus.type}>
-                    <StatusIcon type={formStatus.type}>
-                      {formStatus.type === "success"
-                        ? "✓"
-                        : formStatus.type === "error"
-                          ? "⚠"
-                          : "ℹ"}
-                    </StatusIcon>
-                    {t(formStatus.message)}
-                  </StatusMessage>
-                )}
-              </HeaderContent>
-              <CloseButton onClick={onClose}>×</CloseButton>
-            </ModalHeader>
-            <ModalContent>
-              {loading && <LoadingSpinner />}
-              {!loading && (
-                <form onSubmit={handleBookTrip}>
-                  <FormGroup>
-                    <LabelWithIcon>
-                      <>
-                        <FiUser size={16} />
-                        {t("your_name")}
-                      </>
-                    </LabelWithIcon>
-                    <Input
-                      type="text"
-                      name="client_name"
-                      value={formData.client_name}
-                      onChange={handleInputChange}
-                      onInput={handleInputChange}
-                      onBlur={handleInputChange}
-                      placeholder={t("enter_fullname")}
-                      hasError={!!errors.client_name}
-                    />
-                    {errors.client_name && (
-                      <ErrorMessage>{t(errors.client_name)}</ErrorMessage>
+            {!itinerary && (
+              <EmptyStateView message={t("select_itinerary")} />
+            )}
+            {itinerary && (
+              <>
+                <ModalHeader>
+                  <HeaderContent>
+                    <ModalTitle>
+                      {`${t("form_title")} - ${itinerary.name}`}
+                    </ModalTitle>
+                    {formStatus.message && (
+                      <StatusMessage type={formStatus.type}>
+                        <StatusIcon type={formStatus.type}>
+                          {formStatus.type === "success"
+                            ? "✓"
+                            : formStatus.type === "error"
+                              ? "⚠"
+                              : "ℹ"}
+                        </StatusIcon>
+                        {t(formStatus.message)}
+                      </StatusMessage>
                     )}
-                  </FormGroup>
-                  <FormGroup>
-                    <LabelWithIcon>
-                      <>
-                        <FiMail size={16} />
-                        {t("reach_out_method")}
-                      </>
-                    </LabelWithIcon>
-                    <ToggleContainer>
-                      <ToggleButton
-                        type="button"
-                        active={contactMethod === "email"}
-                        method="email"
-                        onClick={() => handleContactMethodChange("email")}
-                      >
-                        <FiMail size={18} />
-                        {t("email")}
-                      </ToggleButton>
+                  </HeaderContent>
+                  <CloseButton onClick={onClose}>×</CloseButton>
+                </ModalHeader>
+                <ModalContent>
+                  {loading && <LoadingSpinner />}
+                  {!loading && (
+                    <form onSubmit={handleBookTrip}>
+                      <FormGroup>
+                        <LabelWithIcon>
+                          <>
+                            <FiUser size={16} />
+                            {t("your_name")}
+                          </>
+                        </LabelWithIcon>
+                        <Input
+                          type="text"
+                          name="client_name"
+                          value={formData.client_name}
+                          onChange={handleInputChange}
+                          onInput={handleInputChange}
+                          onBlur={handleInputChange}
+                          placeholder={t("enter_fullname")}
+                          hasError={!!errors.client_name}
+                        />
+                        {errors.client_name && (
+                          <ErrorMessage>{t(errors.client_name)}</ErrorMessage>
+                        )}
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelWithIcon>
+                          <>
+                            <FiMail size={16} />
+                            {t("reach_out_method")}
+                          </>
+                        </LabelWithIcon>
+                        <ToggleContainer>
+                          <ToggleButton
+                            type="button"
+                            active={contactMethod === "email"}
+                            method="email"
+                            onClick={() => handleContactMethodChange("email")}
+                          >
+                            <FiMail size={18} />
+                            {t("email")}
+                          </ToggleButton>
 
-                      <ToggleButton
-                        type="button"
-                        active={contactMethod === "whatsapp"}
-                        method="whatsapp"
-                        onClick={() => handleContactMethodChange("whatsapp")}
-                      >
-                        <BiChat size={18} />
-                        {t("whatsapp")}
-                      </ToggleButton>
-                    </ToggleContainer>
-                  </FormGroup>
+                          <ToggleButton
+                            type="button"
+                            active={contactMethod === "whatsapp"}
+                            method="whatsapp"
+                            onClick={() => handleContactMethodChange("whatsapp")}
+                          >
+                            <BiChat size={18} />
+                            {t("whatsapp")}
+                          </ToggleButton>
+                        </ToggleContainer>
+                      </FormGroup>
 
-                  {/* Input Field */}
-                  <FormGroup>
-                    <InputWrapper>
-                      <Input
-                        type={contactMethod === "email" ? "email" : "tel"}
-                        name="client_contact"
-                        value={formData.client_contact}
-                        onChange={handleInputChange}
-                        onInput={handleInputChange}
-                        placeholder={
-                          contactMethod === "email"
-                            ? t("enter_email")
-                            : t("enter_whatsapp")
-                        }
-                        hasError={!!errors.client_contact}
-                      />
-                    </InputWrapper>
+                      {/* Input Field */}
+                      <FormGroup>
+                        <InputWrapper>
+                          <Input
+                            type={contactMethod === "email" ? "email" : "tel"}
+                            name="client_contact"
+                            value={formData.client_contact}
+                            onChange={handleInputChange}
+                            onInput={handleInputChange}
+                            placeholder={
+                              contactMethod === "email"
+                                ? t("enter_email")
+                                : t("enter_whatsapp")
+                            }
+                            hasError={!!errors.client_contact}
+                          />
+                        </InputWrapper>
 
-                    {errors.client_contact && (
-                      <ErrorMessage>⚠️ {t(errors.client_contact)}</ErrorMessage>
-                    )}
-                  </FormGroup>
+                        {errors.client_contact && (
+                          <ErrorMessage>⚠️ {t(errors.client_contact)}</ErrorMessage>
+                        )}
+                      </FormGroup>
 
-                  <FormGroup>
-                    <LabelWithIcon>
-                      <>
-                        <FiCalendar size={16} />
-                        {t("start_time")}
-                      </>
-                    </LabelWithIcon>
-                    <Input
-                      type="date"
-                      name="trip_start_date"
-                      value={formData.trip_start_date}
-                      onChange={handleInputChange}
-                      onInput={handleInputChange}
-                      hasError={!!errors.trip_start_date}
-                      min={getTodayDateISO()}
-                    />
-                    {errors.trip_start_date && (
-                      <ErrorMessage>{t(errors.trip_start_date)}</ErrorMessage>
-                    )}
-                  </FormGroup>
+                      <FormGroup>
+                        <LabelWithIcon>
+                          <>
+                            <FiCalendar size={16} />
+                            {t("start_time")}
+                          </>
+                        </LabelWithIcon>
+                        <Input
+                          type="date"
+                          name="trip_start_date"
+                          value={formData.trip_start_date}
+                          onChange={handleInputChange}
+                          onInput={handleInputChange}
+                          hasError={!!errors.trip_start_date}
+                          min={getTodayDateISO()}
+                        />
+                        {errors.trip_start_date && (
+                          <ErrorMessage>{t(errors.trip_start_date)}</ErrorMessage>
+                        )}
+                      </FormGroup>
 
-                  <FormGroup>
-                    <LabelWithIcon>
-                      <>
-                        <FiMap size={16} />
-                        {t("origin")}
-                      </>
-                    </LabelWithIcon>
-                    <Select
-                      name="country_of_origin"
-                      value={formData.country_of_origin}
-                      onChange={handleInputChange}
-                      onInput={handleInputChange}
-                      hasError={!!errors.country_of_origin}
-                    >
-                      <option value="">{t("select_country")}</option>
-                      <option value="US">{t("country_us")}</option>
-                      <option value="UK">{t("country_uk")}</option>
-                      <option value="CA">{t("country_ca")}</option>
-                      <option value="AU">{t("country_au")}</option>
-                      <option value="DE">{t("country_de")}</option>
-                      <option value="FR">{t("country_fr")}</option>
-                      <option value="IT">{t("country_it")}</option>
-                      <option value="ES">{t("country_es")}</option>
-                      <option value="JP">{t("country_jp")}</option>
-                      <option value="CN">{t("country_cn")}</option>
-                      <option value="IN">{t("country_in")}</option>
-                      <option value="BR">{t("country_br")}</option>
-                      <option value="MX">{t("country_mx")}</option>
-                      <option value="ZA">{t("country_za")}</option>
-                      <option value="OTHER">{t("country_other")}</option>
-                    </Select>
-                    {errors.country_of_origin && (
-                      <ErrorMessage>{t(errors.country_of_origin)}</ErrorMessage>
-                    )}
-                  </FormGroup>
-                  <ButtonGroup>
-                    <CancelButton type="button" onClick={onClose}>
-                      {t("cancel_button")}
-                    </CancelButton>
-                    <SubmitButton
-                      type="submit"
-                      disabled={isPersisting || isSubmitting || !itinerary.id}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader />
-                          {`${t("booking")}...`}
-                        </>
-                      ) : (
-                        t("book_button")
-                      )}
-                    </SubmitButton>
-                  </ButtonGroup>
-                </form>
-              )}
-            </ModalContent>
+                      <FormGroup>
+                        <LabelWithIcon>
+                          <>
+                            <FiMap size={16} />
+                            {t("origin")}
+                          </>
+                        </LabelWithIcon>
+                        <Select
+                          name="country_of_origin"
+                          value={formData.country_of_origin}
+                          onChange={handleInputChange}
+                          onInput={handleInputChange}
+                          hasError={!!errors.country_of_origin}
+                        >
+                          <option value="">{t("select_country")}</option>
+                          <option value="US">{t("country_us")}</option>
+                          <option value="UK">{t("country_uk")}</option>
+                          <option value="CA">{t("country_ca")}</option>
+                          <option value="AU">{t("country_au")}</option>
+                          <option value="DE">{t("country_de")}</option>
+                          <option value="FR">{t("country_fr")}</option>
+                          <option value="IT">{t("country_it")}</option>
+                          <option value="ES">{t("country_es")}</option>
+                          <option value="JP">{t("country_jp")}</option>
+                          <option value="CN">{t("country_cn")}</option>
+                          <option value="IN">{t("country_in")}</option>
+                          <option value="BR">{t("country_br")}</option>
+                          <option value="MX">{t("country_mx")}</option>
+                          <option value="ZA">{t("country_za")}</option>
+                          <option value="OTHER">{t("country_other")}</option>
+                        </Select>
+                        {errors.country_of_origin && (
+                          <ErrorMessage>{t(errors.country_of_origin)}</ErrorMessage>
+                        )}
+                      </FormGroup>
+                      <ButtonGroup>
+                        <CancelButton type="button" onClick={onClose}>
+                          {t("cancel_button")}
+                        </CancelButton>
+                        <SubmitButton
+                          type="submit"
+                          disabled={isPersisting || isSubmitting || !itinerary.id}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader />
+                              {`${t("booking")}...`}
+                            </>
+                          ) : (
+                            t("book_button")
+                          )}
+                        </SubmitButton>
+                      </ButtonGroup>
+                    </form>
+                  )}
+                </ModalContent>
+              </>
+            )}
           </>
-        )}
+        )
+        }
       </ModalContainer>
     </ModalOverlay>
   );
