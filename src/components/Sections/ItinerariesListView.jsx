@@ -3,27 +3,18 @@ import {
   ActivitiesList,
   ActivitiesSection,
   ActivitiesTitle,
-  ActivityContent,
-  ActivityDescription,
-  ActivityHeader,
-  ActivityItem,
   AddActivityIcon,
   AddActivityItem,
   AddActivityText,
   CardFooter,
   CardHeader,
-  DayBadge,
   DurationIcon,
   DurationInfo,
   DurationText,
-  EditIconWrapper,
-  HeaderLeft,
-  IconButton,
   ItinerariesGrid,
   ItineraryCard,
   ItineraryName,
   SeasonBadge,
-  TimeTag,
 } from "../../style/itineraries.list.view.styles";
 import { sortItineraryActivities } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
@@ -32,9 +23,9 @@ import { useEffect, useState } from "react";
 import { isUserLoggedIn } from "../../utils/AuthHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
 import { logger } from "../../utils/logger";
-import { intelligenceUrl } from "../../utils/RequestHandler";
-import { FaEdit } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
+import { fetchEntityTranslatedData, intelligenceUrl } from "../../utils/RequestHandler";
+
+import ItineraryListViewItem from "../Elements/ItineraryListViewItem";
 
 const ItinerariesListView = ({
   inItineraries = [],
@@ -43,6 +34,7 @@ const ItinerariesListView = ({
   formData,
   allActivities,
   toggleView,
+  language
 }) => {
   const { t } = useTranslation("itineraries");
   const [itineraries, setItineraries] = useState(inItineraries);
@@ -53,9 +45,38 @@ const ItinerariesListView = ({
   const [isAskingAgent, setIsAskingAgent] = useState(false);
   const [errorOccured, setErrorOccured] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [editingId, setEditingId] = useState(null);
+  const [isAdding, setIsAdding] = useState(false);
+  const [newItineraryActivity, setNewItineraryActivity] = useState(null);
+  const [activityRecommendedTimes, setActivityRecommendedTimes] = useState([]);
   const [needToAskAgent, setNeedToAskAgent] = useState(
     itineraries?.length === 0
   );
+
+  useEffect(() => {
+    const loadRecommendedTimes = async () => {
+      try {
+        const recommendedTimesResponse = await fetchEntityTranslatedData(
+          "activity_recommended_times",
+          language
+        );
+        if (!recommendedTimesResponse.success) return;
+        setActivityRecommendedTimes(recommendedTimesResponse.result);
+      } catch (error) {
+        logger.error(error);
+      }
+    }
+    loadRecommendedTimes();
+  }, [language]);
+
+  // TODO: Need to pull this information from the backend
+  const activityOptions = [
+    "Hiking Bisoke",
+    "Gorilla Trekking",
+    "Late activities",
+    "Nature Walk",
+    "Cultural Dance",
+  ];
 
   useEffect(() => {
     const loginStatus = isUserLoggedIn();
@@ -144,10 +165,46 @@ const ItinerariesListView = ({
     setItineraryActivities((prev) => prev.filter((activity) => activity.id !== item.id));
   }
 
-  const handleEditActivity = (activity) => {
-    console.log(activity);
-    alert(`Activity editted ${activity.name}`);
+  const handleEditActivity = (item) => {
+    setEditingId((prev) => (prev === item.id ? null : item.id));
   }
+
+  const confirmEditActivity = () => {
+    console.log(`Confirmed edit activity`);
+    setEditingId(null);
+  }
+
+  const cancelEditActivity = () => {
+    console.log(`Cancel edit activity`);
+    if (isAdding) setIsAdding(false);
+    setEditingId(null);
+  }
+
+  const handleChange = (id, field, value) => {
+    // setActivities((prev) =>
+    //   prev.map((activity) =>
+    //     activity.id === id ? { ...activity, [field]: value } : activity
+    //   )
+    // );
+  };
+
+  const handleAddActivity = (activities) => {
+    const nextDay =
+      activities.length > 0
+        ? Math.max(...activities.map((a) => a.day)) + 1
+        : 1;
+
+    const newActivity = {
+      id: Date.now(),
+      day: nextDay,
+      time: activityRecommendedTimes[0],
+      activity: activityOptions[0],
+    };
+
+    setNewItineraryActivity(newActivity);
+    setEditingId(newActivity.id);
+    setIsAdding(true);
+  };
 
   if ((itineraries?.length === 0 && !isLoggedIn) || errorOccured) {
     return (
@@ -191,42 +248,39 @@ const ItinerariesListView = ({
               <ActivitiesTitle>{t("what_you_will_do")}</ActivitiesTitle>
               <ActivitiesList>
                 {activities?.map((item, index) => (
-                  <ActivityItem key={index}>
-                    <ActivityContent>
-                      <ActivityHeader>
-                        <HeaderLeft>
-                          <DayBadge>{t("day")} {item?.day}</DayBadge>
-                          <TimeTag>{item?.time}</TimeTag>
-                        </HeaderLeft>
-
-
-                        <EditIconWrapper>
-                          <IconButton
-                            color="#2d5a2d"
-                            onClick={() => handleEditActivity(item)}
-                          >
-                            <FaEdit />
-                          </IconButton>
-
-                          <IconButton
-                            color="#c0392b"
-                            onClick={() => handleDeleteActivity(item)}
-                          >
-                            <FaXmark />
-                          </IconButton>
-                        </EditIconWrapper>
-                      </ActivityHeader>
-                      <ActivityDescription>
-                        {item?.activity}
-                      </ActivityDescription>
-                    </ActivityContent>
-                  </ActivityItem>
+                  <ItineraryListViewItem
+                    item={item}
+                    index={index}
+                    editingId={editingId}
+                    handleChange={handleChange}
+                    timeOptions={activityRecommendedTimes}
+                    confirmEditActivity={confirmEditActivity}
+                    cancelEditActivity={cancelEditActivity}
+                    handleEditActivity={handleEditActivity}
+                    handleDeleteActivity={handleDeleteActivity}
+                    activityOptions={activityOptions}
+                  />
                 ))}
-
-                <AddActivityItem onClick={() => console.log("Add Activity clicked")}>
-                  <AddActivityIcon />
-                  <AddActivityText>Add Activity</AddActivityText>
-                </AddActivityItem>
+                {isAdding ? (
+                  <ItineraryListViewItem
+                    item={newItineraryActivity}
+                    index={activities.length}
+                    editingId={editingId}
+                    handleChange={handleChange}
+                    timeOptions={activityRecommendedTimes}
+                    confirmEditActivity={confirmEditActivity}
+                    cancelEditActivity={cancelEditActivity}
+                    handleEditActivity={handleEditActivity}
+                    handleDeleteActivity={handleDeleteActivity}
+                    activityOptions={activityOptions}
+                  />
+                ) : (
+                  <AddActivityItem onClick={() => handleAddActivity(activities)}>
+                    <AddActivityIcon />
+                    <AddActivityText>Add Activity</AddActivityText>
+                  </AddActivityItem>
+                )
+                }
               </ActivitiesList>
             </ActivitiesSection>
 
@@ -238,7 +292,7 @@ const ItinerariesListView = ({
           </ItineraryCard>
         );
       })}
-    </ItinerariesGrid>
+    </ItinerariesGrid >
   );
 };
 

@@ -8,7 +8,6 @@ import {
   HeaderTitle,
   ViewWrapper,
 } from "../../style/itinerary.view.styles";
-import { useEffect } from "react";
 
 export default function ItineraryView({
   formData,
@@ -16,15 +15,11 @@ export default function ItineraryView({
   itineraryActivities,
   openBookTripModal,
   allActivities,
-  toggleView
+  toggleView,
+  language
 }) {
-  // const { t } = useTranslation("itineraries");
-
-  const { t, i18n } = useTranslation("itineraries");
-  useEffect(() => {
-    const detectedLang = i18n.language || window.navigator.language;
-    console.log(`Detected language: ${detectedLang}`);
-  }, [i18n.language]);
+  
+  const { t } = useTranslation("itineraries");
   
   if (!itineraries) {
     return <AdventuresView formData={formData} />;
@@ -47,6 +42,7 @@ export default function ItineraryView({
         formData={formData}
         allActivities={allActivities}
         toggleView={toggleView}
+        language={language}
       />
     </ViewWrapper>
   );

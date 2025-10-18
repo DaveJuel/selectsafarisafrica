@@ -109,6 +109,7 @@ export default function MainView() {
               openBookTripModal={onBookItinerary}
               toggleView={toggleView}
               allActivities={allActivities}
+              language={language}
             />
           )}
         </ViewSection>

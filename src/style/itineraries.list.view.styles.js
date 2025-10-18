@@ -293,6 +293,19 @@ export const ActivityDescription = styled.span`
   font-weight: 400;
 `;
 
+export const Select = styled.select`
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  &:focus {
+    outline: none;
+    border-color: #2d5a2d;
+  }
+`;
+
 export const AddActivityItem = styled(ActivityItem)`
   justify-content: center;
   align-items: center;
