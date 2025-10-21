@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+
 import {
   ModalOverlay,
   ModalContent,
@@ -22,7 +22,7 @@ const PreBookingConfirmationModal = ({
   onBookNow,
   onBookLater
 }) => {
-  const { t } = useTranslation("booking_form");
+
   if (!isOpen) return null;
 
   return (

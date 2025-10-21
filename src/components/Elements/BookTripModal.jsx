@@ -191,7 +191,7 @@ const BookTripModal = ({
         const data = await response.json();
         if (data.success) {
           setBookingData(requestData);
-          // await notifyCustomerSuccess(requestData);
+          await notifyCustomerSuccess(requestData);
           setFormData({
             client_name: "",
             client_contact: "",
