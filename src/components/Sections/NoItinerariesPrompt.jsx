@@ -83,14 +83,14 @@ const NoItinerariesPrompt = ({
             {errorOccured && (
               <ContactSupportButton onClick={() => toggleView("contact-us")}>
                 <FcOnlineSupport size={20} />
-                Contact Us
+                {t("contact_us")}
               </ContactSupportButton>
             )}
           </AuthPrompt>
         </ActionSection>
         {formStatus.message && (
           <StatusMessage type={formStatus.type}>
-            {formStatus.message}
+            {t(formStatus.message)}
           </StatusMessage>
         )}
       </PromptCard>

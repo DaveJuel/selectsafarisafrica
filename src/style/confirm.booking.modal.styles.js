@@ -336,3 +336,26 @@ export const BookingCodeNote = styled.div`
     font-size: 11px;
   }
 `;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+`;
+
+export const PaymentButton = styled.button`
+  background: ${(props) => (props.$primary ? "linear-gradient(135deg, #10b981, #059669)" : "#f1f5f9")};
+  color: ${(props) => (props.$primary ? "white" : "#1e293b")};
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    background: ${(props) => (props.$primary ? "linear-gradient(135deg, #059669, #047857)" : "#e2e8f0")};
+  }
+`;

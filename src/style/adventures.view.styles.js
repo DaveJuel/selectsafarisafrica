@@ -81,7 +81,7 @@ export const VideoGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 7px;
   padding: 40px 20px;
-  height: calc(120vh - 370px);
+  height: calc(75vh);
 
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);

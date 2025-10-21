@@ -16,12 +16,11 @@ export const MainWrapper = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  max-width: 1400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 10px;
-  height: calc(80vh - 20px);
+  height: calc(95vh);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

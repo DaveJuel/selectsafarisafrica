@@ -118,5 +118,6 @@
   "register_with_google": "Register with Google",
   "continue_with_google": "Continue with Google",
   "ask_prompt": "Ask here",
-  "missing_premade_itineraries": "We don't have any pre-made itineraries for this trip at the moment, at the moment, but our front desk are here to help you create the perfect personalized experience."
+  "missing_premade_itineraries": "We don't have any pre-made itineraries for this trip at the moment, at the moment, but our front desk are here to help you create the perfect personalized experience.",
+  "contact_us": "Contact Us"
 }

@@ -11,6 +11,8 @@ import {
 } from "../../style/main.view.styles";
 import { filterItineraries } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
+import PreBookingConfirmationModal from "../Elements/PreBookingConfirmationModal";
+import PaymentFormModal from "../Elements/PaymentFormModal";
 
 export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
@@ -29,6 +31,8 @@ export default function MainView() {
   const [bookingData, setBookingData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isPreConfirmModalOpen, setIsPreConfirmModalOpen] = useState(false);
+  const [isPaymentFormModalOpen, setIsPaymentFormModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState("itiniraries");
   const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
@@ -80,6 +84,7 @@ export default function MainView() {
 
 
   const handleConfirm = () => {
+    setIsPreConfirmModalOpen(false);
     setIsConfirmModalOpen(true);
   };
 
@@ -125,7 +130,8 @@ export default function MainView() {
         itinerary={itinerary}
         itineraryActivities={itineraryActivities}
         allActivities={allActivities}
-        handlePreview={() => handleConfirm()}
+        // handlePreview={() => handleConfirm()}
+        handlePreview={() => setIsPreConfirmModalOpen(true)}
         bookingData={bookingData}
         setBookingData={setBookingData}
         tripData={formData}
@@ -137,6 +143,8 @@ export default function MainView() {
         itinerary={itinerary}
         bookingData={bookingData}
       />
+      <PreBookingConfirmationModal isOpen={isPreConfirmModalOpen} onClose={() => setIsPreConfirmModalOpen(false)} itinerary={itinerary} bookingFee={50} onBookNow={()=>setIsPaymentFormModalOpen(true)} onBookLater={handleConfirm}  />
+      <PaymentFormModal isOpen={isPaymentFormModalOpen} onClose={()=>setIsPaymentFormModalOpen(false)} itinerary={itinerary} bookingData={bookingData} onPaymentSuccess={handleConfirm} />
     </MainWrapper>
   );
 }
