@@ -4,13 +4,14 @@ import {
   ModalContent,
   ModalHeader,
   ModalTitle,
-  CloseButton,
   ModalBody,
   InfoSection,
   InfoText,
   ButtonGroup,
   PaymentButton
 } from "../../style/confirm.booking.modal.styles";
+import { FormGroup, HeaderContent, Input, LabelWithIcon, ModalContainer } from "../../style/book.trip.modal.styles";
+import { FiCalendar, FiCreditCard, FiUser } from "react-icons/fi";
 
 const PaymentFormModal = ({ isOpen, onClose, bookingData, itinerary, onPaymentSuccess }) => {
   const [formData, setFormData] = useState({
@@ -46,8 +47,7 @@ const PaymentFormModal = ({ isOpen, onClose, bookingData, itinerary, onPaymentSu
       // });
       // const result = await response.json();
 
-      onPaymentSuccess?.();
-      alert("Payment successful!");
+      onPaymentSuccess();
       onClose();
     } catch (error) {
       console.error("Payment failed:", error);
@@ -59,85 +59,107 @@ const PaymentFormModal = ({ isOpen, onClose, bookingData, itinerary, onPaymentSu
 
   return (
     <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+      <ModalContainer onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Complete Your Payment</ModalTitle>
-          <CloseButton onClick={onClose}>×</CloseButton>
+          <HeaderContent>
+            <ModalTitle>Complete Your Payment</ModalTitle>
+          </HeaderContent>
         </ModalHeader>
+        <ModalContent>
+          <ModalBody>
+            <InfoSection>
+              <InfoText>
+                Booking Code: <strong>{bookingData?.booking_code}</strong>
+                <br />
+                Trip: <strong>{itinerary?.name}</strong>
+                <br />
+                Amount: <strong>${bookingData?.amount || 50}</strong>
+              </InfoText>
 
-        <ModalBody>
-          <InfoSection>
-            <InfoText>
-              Booking Code: <strong>{bookingData?.booking_code}</strong>
-              <br />
-              Trip: <strong>{itinerary?.name}</strong>
-              <br />
-              Amount: <strong>${bookingData?.amount || 50}</strong>
-            </InfoText>
+              <form onSubmit={handlePayment} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 
-            <form onSubmit={handlePayment} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-                style={inputStyle}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-                style={inputStyle}
-              />
-              <input
-                type="text"
-                name="cardNumber"
-                placeholder="Card Number"
-                value={formData.cardNumber}
-                onChange={handleInputChange}
-                required
-                maxLength="16"
-                style={inputStyle}
-              />
-              <div style={{ display: "flex", gap: "10px" }}>
-                <input
-                  type="text"
-                  name="expiry"
-                  placeholder="MM/YY"
-                  value={formData.expiry}
-                  onChange={handleInputChange}
-                  required
-                  style={{ ...inputStyle, flex: 1 }}
-                />
-                <input
-                  type="password"
-                  name="cvv"
-                  placeholder="CVV"
-                  value={formData.cvv}
-                  onChange={handleInputChange}
-                  required
-                  maxLength="4"
-                  style={{ ...inputStyle, flex: 1 }}
-                />
-              </div>
+                <FormGroup>
+                  <LabelWithIcon>
+                    <>
+                      <FiUser size={16} />
+                      Full Name
+                    </>
+                  </LabelWithIcon>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    value={formData.client_name}
+                    onChange={handleInputChange}
+                    required
+                    style={inputStyle}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <LabelWithIcon>
+                    <>
+                      <FiCreditCard />
+                      Card Number
+                    </>
+                  </LabelWithIcon>
+                  <Input
+                    type="text"
+                    name="cardNumber"
+                    placeholder="Card Number"
+                    value={formData.client_name}
+                    onChange={handleInputChange}
+                    required
+                    style={inputStyle}
+                  />
+                </FormGroup>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <FormGroup>
+                    <LabelWithIcon>
+                      <>
+                        <FiCalendar />
+                        Expiry
+                      </>
+                    </LabelWithIcon>
+                    <Input
+                      type="text"
+                      name="expiry"
+                      placeholder="MM/YY"
+                      value={formData.expiry}
+                      onChange={handleInputChange}
+                      required
+                      style={{ ...inputStyle, flex: 1 }}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <LabelWithIcon>
+                      <>
+                        <FiCalendar />
+                        CVV
+                      </>
+                    </LabelWithIcon>
+                    <Input
+                      type="password"
+                      name="cvv"
+                      placeholder="CVV"
+                      value={formData.cvv}
+                      onChange={handleInputChange}
+                      required
+                      maxLength="4"
+                      style={{ ...inputStyle, flex: 1 }}
+                    />
+                  </FormGroup>
+                </div>
 
-              <ButtonGroup>
-                <PaymentButton type="submit" $primary disabled={isProcessing}>
-                  {isProcessing ? "Processing..." : "Pay Now"}
-                </PaymentButton>
-                <PaymentButton type="button" onClick={onClose}>
-                  Cancel
-                </PaymentButton>
-              </ButtonGroup>
-            </form>
-          </InfoSection>
-        </ModalBody>
-      </ModalContent>
+                <ButtonGroup>
+                  <PaymentButton type="submit" $primary disabled={isProcessing}>
+                    {isProcessing ? "Processing..." : "Process Payment"}
+                  </PaymentButton>
+                </ButtonGroup>
+              </form>
+            </InfoSection>
+          </ModalBody>
+        </ModalContent>
+      </ModalContainer>
     </ModalOverlay>
   );
 };

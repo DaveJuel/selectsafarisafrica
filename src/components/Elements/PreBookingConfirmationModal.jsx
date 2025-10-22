@@ -29,7 +29,6 @@ const PreBookingConfirmationModal = ({
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          {/* <ModalTitle>{t("confirm_your_booking") || "Confirm Your Booking"}</ModalTitle> */}
           <ModalTitle>Confirm Your Booking</ModalTitle>
           <CloseButton onClick={onClose}>×</CloseButton>
         </ModalHeader>
@@ -37,13 +36,14 @@ const PreBookingConfirmationModal = ({
         <ModalBody>
           <InfoSection>
             <InfoText>
-             Before finalizing your booking for ${itinerary?.name || "this trip"}, please review the payment options below.
+             Before finalizing your booking for {itinerary?.name || "this trip"}, please review the payment options below.
             </InfoText>
 
             <div
               style={{
                 background: "#f8fafc",
                 borderLeft: "4px solid #10b981",
+                borderRight: "4px solid #10b981",
                 borderRadius: "8px",
                 padding: "16px 20px",
                 color: "#334155",
@@ -68,24 +68,20 @@ const PreBookingConfirmationModal = ({
                 </li>
                 <li>
                   <strong>Pay Later:</strong> Your booking will remain <em>reserved for {validityHours} hours</em>.
-                  If payment is not completed within that period, it may expire.
+                  If payment is not completed within that period, it will expire.
                 </li>
               </ul>
             </div>
 
             <InfoText>
-              {/* {t("choose_how_to_proceed") ||
-                "Choose how you would like to proceed with your booking."} */}
                 Choose how you would like to proceed with your booking.
             </InfoText>
 
             <ButtonGroup>
               <PaymentButton $primary onClick={() => onBookNow()}>
-                {/* {t("pay_now") || "Pay Now"} */}
                 Pay Now
               </PaymentButton>
               <PaymentButton onClick={() => onBookLater()}>
-                {/* {t("pay_later") || "Pay Later"} */}
                 Pay Later
               </PaymentButton>
             </ButtonGroup>
