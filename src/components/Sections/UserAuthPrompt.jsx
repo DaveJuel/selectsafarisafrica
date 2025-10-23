@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const UserAuthPrompt = ({ setIsLoggedIn }) => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
+  const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation("adventures");
 
@@ -31,6 +32,8 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
             error.message || t("error_occurred"),
           type: "error",
         });
+      }finally{
+        setLoading(false);
       }
     };
 
@@ -49,9 +52,9 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
         <img src="/icons/customer-service.png" alt="Mountain" />
       </LoginIcon>
       <LoginMessage>
-       {t("sign_in_prompt")}
+        {t("sign_in_prompt")}
       </LoginMessage>
-      <GoogleSSOButton onSuccess={handleGoogleAuthSuccess} authType="login" />
+      <GoogleSSOButton onSuccess={handleGoogleAuthSuccess} loading={loading} setLoading={setLoading} authType="login" />
       {formStatus.message && (
         <StatusMessage type={formStatus.type}>
           {formStatus.message}

@@ -452,6 +452,17 @@ export const GoogleButton = styled.button`
     border-color: #49cb86;
   }
 
+  /* Disabled state */
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: rgba(228, 188, 135, 0.1);
+    border-color: rgba(228, 188, 135, 0.2);
+    color: #999;
+    transform: none;
+  }
+
   /* Medium screens */
   @media (max-width: 768px) {
     padding: 12px;
