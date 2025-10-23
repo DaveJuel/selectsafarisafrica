@@ -29,6 +29,12 @@ import {
 import UserAuthPrompt from "../Sections/UserAuthPrompt";
 import { getLoggedInUser, isUserLoggedIn } from "../../utils/AuthHandler";
 
+const agents = [
+  { name: "Dora", weight: 0.5 },
+  { name: "Philip", weight: 0.3 },
+  { name: "Erin", weight: 0.2 }
+];
+
 const SSAIntelligenceOverlay = ({
   video,
   isVisible,
@@ -43,8 +49,24 @@ const SSAIntelligenceOverlay = ({
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
+  const [helpDeskAgent, setHelpDeskAgent] = useState(agents[0].name);
 
   const { t } = useTranslation("adventures");
+
+  function getRandomAgent() {
+
+    const totalWeight = agents.reduce((sum, agent) => sum + agent.weight, 0);
+    const random = Math.random() * totalWeight;
+    let cumulative = 0;
+    for (const agent of agents) {
+      cumulative += agent.weight;
+      if (random <= cumulative) {
+        console.log(`Redirected to agent: ${agent.name}`);
+        return agent.name;
+      }
+    }
+  }
+
   const SHORT_YES = new Set([
     "yes",
     "y",
@@ -134,6 +156,7 @@ const SSAIntelligenceOverlay = ({
       setIsLoggedIn(true);
       setUser(getLoggedInUser());
     }
+    setHelpDeskAgent(getRandomAgent());
   }, []);
 
   useEffect(() => {
@@ -166,11 +189,10 @@ const SSAIntelligenceOverlay = ({
       try {
         setAwaitingReply(true);
         const { caption, country, city } = video;
-        const greetingMessage = `Hello! I'm ${
-          user?.user_names || "a traveler"
-        } and I'd like to know about ${t(
-          caption
-        )} in ${country}. details I want: budget, recommended visit time, what I need to carry and other details you find relevant.`;
+        const greetingMessage = `Hello! I'm ${user?.user_names || "a traveler"
+          } and I'd like to know about ${t(
+            caption
+          )} in ${country}. details I want: budget, recommended visit time, what I need to carry and other details you find relevant.`;
         const aiReply = await sendMessageToAgent({
           message: greetingMessage,
           topic: t(caption),
@@ -287,7 +309,8 @@ const SSAIntelligenceOverlay = ({
     <SidePanelOverlay isLeftSide={isLeftSide}>
       <SidePanelContent>
         <OverlayHeader>
-          <HeaderTitle>{t("expert_guidance")}</HeaderTitle>
+          {/* <HeaderTitle>{t("expert_guidance")}</HeaderTitle> */}
+          <HeaderTitle>{helpDeskAgent}</HeaderTitle>
           {isClosing ? (
             <ButtonContainer>
               <Spinner />
@@ -327,7 +350,7 @@ const SSAIntelligenceOverlay = ({
                     </MessageBubble>
                   ))}
                   {awaitingReply && (
-                    <TypingIndicator>{t("expert_typing")}...</TypingIndicator>
+                    <TypingIndicator>{`${helpDeskAgent} ${t("expert_typing")}...`}</TypingIndicator>
                   )}
                   <div ref={chatEndRef} />
                 </ChatHistory>
