@@ -263,34 +263,24 @@ const ContactInfoSection = () => {
           </CardIcon>
           <CardText>
             <ContactLink
-              href="https://wa.me/250792883548?text=Hello, I'd like to get in touch with you."
+              href="https://wa.me/14807169630?text=Hello, I'd like to get in touch with you."
               target="_blank"
             >
-              +250 792 883 548
+              +1 (480) 716-9630
             </ContactLink>
           </CardText>
         </CardHeader>
       </ContactCard>
 
-      {/* Visit Us */}
-      <ContactCard>
-        <CardHeader>
-          <CardIcon>
-            <img src="/icons/map.png" alt="WhatsApp" />
-          </CardIcon>
-          <CardText>Kigali, Rwanda</CardText>
-        </CardHeader>
-      </ContactCard>
-
       {/* Social Links */}
       <SocialLinks>
-        <SocialLink href="#" target="_blank" title="Facebook">
+        {/* <SocialLink href="#" target="_blank" title="Facebook">
           f
-        </SocialLink>
-        <SocialLink href="#" target="_blank" title="x">
+        </SocialLink> */}
+        <SocialLink href="https://x.com/selectsafaris" target="_blank" title="x">
           𝕏
         </SocialLink>
-        <SocialLink href="#" target="_blank" title="LinkedIn">
+        <SocialLink href="https://www.linkedin.com/in/select-safaris-africa-346087395/" target="_blank" title="LinkedIn">
           in
         </SocialLink>
       </SocialLinks>
