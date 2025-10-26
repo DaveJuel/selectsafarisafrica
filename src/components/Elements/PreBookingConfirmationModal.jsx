@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from "react";
 import {
   ModalOverlay,
   ModalContent,
@@ -15,15 +16,77 @@ import {
 const PreBookingConfirmationModal = ({
   isOpen,
   onClose,
+  bookingData,
   itinerary,
   bookingFee,
   currency = "USD",
   validityHours = 48,
-  onBookNow,
+  onPaymentSuccess,
   onBookLater
 }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = process.env.REACT_APP_IREMBO_INLINE_URL;
+    script.onload = () => setLoaded(true);
+    document.body.appendChild(script);
+  }, []);
 
   if (!isOpen) return null;
+
+  function makePayment(invoiceID) {
+    if (!loaded || !window.IremboPay) return;
+    window.IremboPay.initiate({
+      publicKey: process.env.REACT_APP_IREMBO_PUBLIC_KEY,
+      invoiceNumber: invoiceID,
+      locale: window.IremboPay.locale.EN,
+      callback: (err, resp) => {
+        if (!err) { onPaymentSuccess(); }
+        else { console.error("Error:", err); }
+      },
+    });
+  }
+
+  const createInvoice = async () => {
+    try {
+      const requestBody = {
+        client_email: bookingData.client_contact,
+        client_name: bookingData.client_name,
+        amount: bookingFee,
+        description: `${bookingData.booking_code} - ${itinerary.name}`,
+      };
+      const response = await fetch(`${process.env.REACT_APP_INTELLIGENCE_URL}/api/payments/invoice/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody)
+      });
+      const data = await response.json();
+      if (data.success) {
+        return data.invoiceNumber;
+      } else {
+        console.error("Invoice creation failed:", data);
+      }
+    } catch (error) {
+      console.error("Error creating invoice:", error);
+    }
+  }
+
+  const processPayment = async () => {
+    try {
+      setIsProcessingPayment(true);
+      const invoiceNumber = await createInvoice();
+      makePayment(invoiceNumber);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsProcessingPayment(false);
+    }
+  }
 
   return (
     <ModalOverlay onClick={onClose}>
@@ -36,7 +99,7 @@ const PreBookingConfirmationModal = ({
         <ModalBody>
           <InfoSection>
             <InfoText>
-             Before finalizing your booking for {itinerary?.name || "this trip"}, please review the payment options below.
+              Before finalizing your booking for {itinerary?.name || "this trip"}, please review the payment options below.
             </InfoText>
 
             <div
@@ -74,14 +137,14 @@ const PreBookingConfirmationModal = ({
             </div>
 
             <InfoText>
-                Choose how you would like to proceed with your booking.
+              Choose how you would like to proceed with your booking.
             </InfoText>
 
             <ButtonGroup>
-              <PaymentButton $primary onClick={() => onBookNow()}>
+              <PaymentButton disabled={isProcessingPayment} $primary onClick={() => processPayment()}>
                 Pay Now
               </PaymentButton>
-              <PaymentButton onClick={() => onBookLater()}>
+              <PaymentButton disabled={isProcessingPayment} onClick={() => onBookLater()}>
                 Pay Later
               </PaymentButton>
             </ButtonGroup>

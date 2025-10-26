@@ -358,4 +358,11 @@ export const PaymentButton = styled.button`
     transform: scale(1.03);
     background: ${(props) => (props.$primary ? "linear-gradient(135deg, #059669, #047857)" : "#e2e8f0")};
   }
+
+  &:disabled {
+    background: ${(props) => (props.$primary ? "#6ee7b7" : "#e2e8f0")};
+    color: ${(props) => (props.$primary ? "#d1fae5" : "#94a3b8")};
+    cursor: not-allowed;
+    transform: none;
+  }
 `;
