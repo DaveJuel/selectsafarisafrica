@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { apiKey, makeApiRequest } from "../../utils/RequestHandler";
 import { ContactSupportButton, StatusMessage } from "../../style/view.styles";
 import GoogleSSOButton from "../Buttons/GoogleSSOButton";
 import { logger } from "../../utils/logger";
@@ -13,6 +12,7 @@ import {
 } from "../../style/no.itineraries.prompt.styles";
 import { FcOnlineSupport } from "react-icons/fc";
 import { useTranslation } from "react-i18next";
+import { validateGToken } from "../../utils/AuthHandler";
 
 const NoItinerariesPrompt = ({
   formData,
@@ -51,10 +51,7 @@ const NoItinerariesPrompt = ({
     };
 
     await handleAuth(async () => {
-      const response = await makeApiRequest("/google/sso/login/", "POST", {
-        token: credential,
-        api_key: apiKey,
-      });
+      const response = await validateGToken(credential);
       return response.success ? response.result : null;
     }, "Google authentication successful, redirecting...");
   };

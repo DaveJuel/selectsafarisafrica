@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { apiKey, makeApiRequest } from "../../utils/RequestHandler";
 import { StatusMessage } from "../../style/view.styles";
 import GoogleSSOButton from "../Buttons/GoogleSSOButton";
 import { useTranslation } from "react-i18next";
+import { validateGToken } from "../../utils/AuthHandler";
 
 const UserAuthPrompt = ({ setIsLoggedIn }) => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
@@ -38,10 +38,7 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
     };
 
     await handleAuth(async () => {
-      const response = await makeApiRequest("/google/sso/login/", "POST", {
-        token: credential,
-        api_key: apiKey
-      });
+      const response = await validateGToken(credential);
       return response.success ? response.result : null;
     }, t("google_auth_success"));
   };
