@@ -18,7 +18,6 @@ import {
 } from "../../style/adventures.view.styles";
 import VideoDetailOverlay from "../Elements/VideoDetailOverlay";
 import SSAIntelligenceOverlay from "../Elements/SSAIntelligenceOverlay";
-import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
 
 export default function AdventuresView({ formData }) {
   const [currentLayout, setCurrentLayout] = useState(0);
@@ -30,8 +29,6 @@ export default function AdventuresView({ formData }) {
   const [overlayLocked, setOverlayLocked] = useState(false);
   const [videoPosition, setVideoPosition] = useState(null);
   const [activeOverlay, setActiveOverlay] = useState(null);
-
-  const isSmallScreen = useIsSmallScreen();
 
   const { t } = useTranslation("adventures");
 
@@ -90,6 +87,17 @@ export default function AdventuresView({ formData }) {
       height: rect.height,
     };
   };
+  
+  const handleOverlayTrigger = (event, videoData, videoIndex) => {
+    if (activeOverlay) return;
+    setHoveredVideo(videoData);
+    setHoveredVideoIndex(videoIndex);
+    setVideoPosition(getVideoPosition(event));
+    if (!overlayLocked) {
+      setOverlayLocked(true);
+      setActiveOverlay("videoDetail");
+    }
+  }
 
   return (
     <ViewWrapper>
@@ -129,16 +137,8 @@ export default function AdventuresView({ formData }) {
                       onLoadedData={() => setIsLoaded(true)}
                     />
                     <CaptionOverlay
-                      onMouseEnter={(event) => {
-                        if (isSmallScreen || activeOverlay) return;
-                        setHoveredVideo(videoData);
-                        setHoveredVideoIndex(videoIndex);
-                        setVideoPosition(getVideoPosition(event));
-                        if (!overlayLocked) {
-                          setOverlayLocked(true);
-                          setActiveOverlay("videoDetail");
-                        }
-                      }}
+                      onMouseEnter={(event)=> handleOverlayTrigger(event, videoData, videoIndex)}
+                      onClick={(event)=> handleOverlayTrigger(event, videoData, videoIndex)}
                     >
                       <CaptionText>{t(videoData?.caption)}</CaptionText>
                     </CaptionOverlay>
