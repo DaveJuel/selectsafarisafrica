@@ -266,7 +266,7 @@ const ContactInfoSection = () => {
               href="https://wa.me/14807169630?text=Hello, I'd like to get in touch with you."
               target="_blank"
             >
-              +1 (480) 716-9630
+              Whatsapp
             </ContactLink>
           </CardText>
         </CardHeader>

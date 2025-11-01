@@ -16,11 +16,6 @@ export default function ContactUsView() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
-
   return (
     <ViewWrapper>
       <Header>
@@ -30,7 +25,6 @@ export default function ContactUsView() {
       <Content>
         <ContactInfoSection />
         <ContactUsForm
-          onSubmit={handleSubmit}
           handleInputChange={handleInputChange}
           formData={formData}
         />

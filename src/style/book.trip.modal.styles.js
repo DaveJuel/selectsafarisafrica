@@ -378,15 +378,47 @@ export const Select = styled.select`
   }
 `;
 
-export const ErrorMessage = styled.span`
-  color: #e74c3c;
-  font-size: 12px;
-  margin-top: 4px;
-  display: block;
-  font-weight: 500;
+// Message Base Style
+const MessageBase = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  padding: 0.65rem 1rem;
+  margin-top: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  text-align: center;
+  max-width: 100%;
+  letter-spacing: 0.4px;
+  backdrop-filter: blur(6px);
+`;
+
+// Error Message
+export const ErrorMessage = styled(MessageBase)`
+  color: #fff;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
+  border: 1px solid rgba(231, 76, 60, 0.4);
 
   @media (max-width: 480px) {
-    font-size: 11px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+`;
+
+// Success Message
+export const SuccessMessage = styled(MessageBase)`
+  color: #fff;
+  background: linear-gradient(135deg, #16a085 0%, #0e5033 100%);
+  box-shadow: 0 4px 16px rgba(14, 80, 51, 0.3);
+  border: 1px solid rgba(22, 160, 133, 0.4);
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
   }
 `;
 

@@ -1,14 +1,61 @@
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { apiKey, makeApiRequest } from "../../utils/RequestHandler";
+import { ErrorMessage, SuccessMessage } from "../../style/book.trip.modal.styles";
 
 
 // Usage Example Component
 const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
+  const [sending, setSending] = useState(false);
   const { t } = useTranslation("contact_us");
+  const [response, setResponse] = useState({
+    error: false,
+    message: null
+  });
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      const visitorMessage = {
+        full_name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      };
+
+      const requestData = {
+        chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
+        api_key: apiKey,
+        message: {
+          contact_us_message: visitorMessage,
+        },
+      };
+      const results = await makeApiRequest("/notification/notify/telegram", "POST", requestData);
+      if(results.success){
+        setResponse({
+          error: false,
+          message: 'Message sent successfully.'
+        });
+      }else{
+        setResponse({
+          error: true,
+          message: 'Failed to send message'
+        });
+      }
+    } catch (error) {
+      setResponse({
+        error: true,
+        message: 'Error occurred!'
+      });
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <FormSection>
-      <ContactForm onSubmit={onSubmit}>
+      <ContactForm onSubmit={handleSendMessage}>
         <InputGroup>
           <InputLabel htmlFor="name">{t("full_name")}</InputLabel>
           <Input
@@ -46,8 +93,13 @@ const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
             required
           />
         </InputGroup>
-
-        <SubmitButton type="submit">{t("send_message")}</SubmitButton>
+        {!response.message && (<SubmitButton disabled={sending} type="submit">{t("send_message")}</SubmitButton>)}
+        {response.error && response.message && (
+          <ErrorMessage>{t(response.message)}</ErrorMessage>
+        )}
+        {!response.error && response.message && (
+          <SuccessMessage>{t(response.message)}</SuccessMessage>
+        )}
       </ContactForm>
     </FormSection>
   );
