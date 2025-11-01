@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import {
   ModalOverlay,
   ModalContent,
@@ -26,7 +26,8 @@ const PreBookingConfirmationModal = ({
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-
+  console.log(validityHours);
+  const { t } = useTransition("booking_form");
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -92,14 +93,14 @@ const PreBookingConfirmationModal = ({
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Confirm Your Booking</ModalTitle>
+          <ModalTitle>{t("confirm_booking")}</ModalTitle>
           <CloseButton onClick={onClose}>×</CloseButton>
         </ModalHeader>
 
         <ModalBody>
           <InfoSection>
             <InfoText>
-              Before finalizing your booking for {itinerary?.name || "this trip"}, please review the payment options below.
+              {t("payment_options_review")}
             </InfoText>
 
             <div
@@ -115,37 +116,35 @@ const PreBookingConfirmationModal = ({
               }}
             >
               <p>
-                <strong>Booking Fee:</strong>{" "}
+                <strong>{t("booking_fee")}</strong>{" "}
                 <span style={{ color: "#0f766e", fontWeight: 600 }}>
                   {bookingFee?.toLocaleString()} {currency}
                 </span>
               </p>
               <p style={{ marginBottom: "10px" }}>
-                This fee secures your reservation and ensures your itinerary is held under your
-                name.
+                {t("fee_description")}
               </p>
               <ul style={{ margin: 0, paddingLeft: "20px", color: "#475569", fontSize: "14px" }}>
                 <li>
-                  <strong>Pay Now:</strong> Proceed to pay the booking fee immediately and get your
-                  reservation <em>confirmed instantly</em>.
+                  <strong>{t("pay_now")}</strong>{t("pay_now_result")}<em>{t("confirm_instantly")}</em>.
                 </li>
                 <li>
-                  <strong>Pay Later:</strong> Your booking will remain <em>reserved for {validityHours} hours</em>.
-                  If payment is not completed within that period, it will expire.
+                  <strong>{t("pay_later")}</strong> <em>{t("pay_later_results")}</em>.
+                  {t("pay_later_expiry")}
                 </li>
               </ul>
             </div>
 
             <InfoText>
-              Choose how you would like to proceed with your booking.
+              {t("choose_process")}
             </InfoText>
 
             <ButtonGroup>
               <PaymentButton disabled={isProcessingPayment} $primary onClick={() => processPayment()}>
-                Pay Now
+                {t("pay_now")}
               </PaymentButton>
               <PaymentButton disabled={isProcessingPayment} onClick={() => onBookLater()}>
-                Pay Later
+                {t("pay_later")}
               </PaymentButton>
             </ButtonGroup>
           </InfoSection>

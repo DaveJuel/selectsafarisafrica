@@ -112,7 +112,7 @@ const GoogleSSOButton = ({
         disabled={loading}
       >
         <FcGoogle size={20} />
-        {loading? 'Loading...':getButtonText()}
+        {loading ? t("loading") : getButtonText()}
       </GoogleButton>
 
     </div>
