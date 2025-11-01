@@ -133,7 +133,8 @@ const SSAIntelligenceOverlay = ({
           user_reply_type: userReplyType,
           activities: activities,
           sender_names: user?.user_names,
-          preferred_language: language
+          preferred_language: language,
+          agent_name: helpDeskAgent
         }),
       });
 
