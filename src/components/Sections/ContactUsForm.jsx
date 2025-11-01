@@ -6,7 +6,7 @@ import { ErrorMessage, SuccessMessage } from "../../style/book.trip.modal.styles
 
 
 // Usage Example Component
-const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
+const ContactUsForm = ({ formData, handleInputChange }) => {
   const [sending, setSending] = useState(false);
   const { t } = useTranslation("contact_us");
   const [response, setResponse] = useState({
@@ -35,18 +35,18 @@ const ContactUsForm = ({ onSubmit, formData, handleInputChange }) => {
       if(results.success){
         setResponse({
           error: false,
-          message: 'Message sent successfully.'
+          message: 'message_sent'
         });
       }else{
         setResponse({
           error: true,
-          message: 'Failed to send message'
+          message: 'failed_to_send_message'
         });
       }
     } catch (error) {
       setResponse({
         error: true,
-        message: 'Error occurred!'
+        message: "error_occurred"
       });
     } finally {
       setSending(false);

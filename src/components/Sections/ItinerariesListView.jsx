@@ -277,7 +277,6 @@ const ItinerariesListView = ({
   if ((itineraries?.length === 0 && !isLoggedIn) || errorOccured) {
     return (
       <NoItinerariesPrompt
-        formData={formData}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         errorOccured={errorOccured}

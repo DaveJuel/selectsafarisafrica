@@ -15,7 +15,6 @@ import { useTranslation } from "react-i18next";
 import { validateGToken } from "../../utils/AuthHandler";
 
 const NoItinerariesPrompt = ({
-  formData,
   isLoggedIn,
   setIsLoggedIn,
   errorOccured,
@@ -30,7 +29,7 @@ const NoItinerariesPrompt = ({
   const handleGoogleAuthSuccess = async (response) => {
     const { credential } = response;
 
-    const handleAuth = async (authFn, successMessage = "...") => {
+    const handleAuth = async (authFn) => {
       try {
         logger.info(isLoggedIn);
         const result = await authFn();
@@ -54,7 +53,7 @@ const NoItinerariesPrompt = ({
     await handleAuth(async () => {
       const response = await validateGToken(credential);
       return response.success ? response.result : null;
-    }, "Google authentication successful, redirecting...");
+    });
   };
 
   return (
