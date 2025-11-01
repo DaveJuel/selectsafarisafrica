@@ -3,12 +3,8 @@ import HtmlContainerView from "./HtmlContainerView";
 import {
   CloseButton,
   DetailItem,
-  DetailLabel,
   ExpertButton,
   HeaderTitle,
-  LocationItem,
-  LocationLabel,
-  LocationValue,
   OverlayBody,
   OverlayFooter,
   OverlayHeader,
@@ -54,16 +50,7 @@ const VideoDetailOverlay = ({
           </OverlayHeader>
 
           <OverlayBody>
-            <LocationItem>
-              <LocationLabel>{t("country")}:</LocationLabel>
-              <LocationValue>{t(video?.country) || "-"}</LocationValue>
-            </LocationItem>
-            <LocationItem>
-              <LocationLabel>{t("city")}:</LocationLabel>
-              <LocationValue>{video?.city || "-"}</LocationValue>
-            </LocationItem>
             <DetailItem>
-              <DetailLabel>{t("description")}:</DetailLabel>
               <ScrollableDetailValue>
                 <HtmlContainerView content={t(video?.description)} />
               </ScrollableDetailValue>
