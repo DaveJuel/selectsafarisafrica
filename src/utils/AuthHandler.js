@@ -1,4 +1,4 @@
-import { apiKey, fetchEntityData, intelligenceUrl, makeApiRequest } from "./RequestHandler";
+import { apiKey, appUrl, fetchEntityData, makeApiRequest } from "./RequestHandler";
 
 export const loginUser = async (username, password) => {
     let isLoggedIn = false;
@@ -18,11 +18,12 @@ export const loginUser = async (username, password) => {
 }
 
 export const validateGToken = async (token) => {
-    const response = await fetch(`${intelligenceUrl}/api/entity/validate/token/`, {
+    const response = await fetch(`${appUrl}/google/sso/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            "token": token
+            "token": token,
+            "api_key": apiKey
         }),
     });
     const data = await response.json();
