@@ -1,5 +1,7 @@
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   ModalOverlay,
   ModalContent,
@@ -27,7 +29,7 @@ const PreBookingConfirmationModal = ({
   const [loaded, setLoaded] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   console.log(validityHours);
-  const { t } = useTransition("booking_form");
+  const { t } = useTranslation("booking_form");
 
   useEffect(() => {
     const script = document.createElement("script");

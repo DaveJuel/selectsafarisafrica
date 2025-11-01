@@ -19,7 +19,7 @@ import {
 import VideoDetailOverlay from "../Elements/VideoDetailOverlay";
 import SSAIntelligenceOverlay from "../Elements/SSAIntelligenceOverlay";
 
-export default function AdventuresView({ formData }) {
+export default function AdventuresView({ formData , language}) {
   const [currentLayout, setCurrentLayout] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -174,6 +174,7 @@ export default function AdventuresView({ formData }) {
               setActiveOverlay(null);
             }}
             videoPosition={videoPosition}
+            language={language}
           />
         </VideoGrid>
       )}

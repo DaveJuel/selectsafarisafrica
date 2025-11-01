@@ -24,7 +24,7 @@ export default function ItineraryView({
   const { t } = useTranslation("itineraries");
   
   if (!itineraries) {
-    return <AdventuresView formData={formData} />;
+    return <AdventuresView formData={formData} language={language}/>;
   }
 
   return (

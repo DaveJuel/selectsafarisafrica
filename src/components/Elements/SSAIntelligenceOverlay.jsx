@@ -41,6 +41,7 @@ const SSAIntelligenceOverlay = ({
   videoIndex,
   onClose,
   videoPosition,
+  language
 }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -132,6 +133,7 @@ const SSAIntelligenceOverlay = ({
           user_reply_type: userReplyType,
           activities: activities,
           sender_names: user?.user_names,
+          preferred_language: language
         }),
       });
 
