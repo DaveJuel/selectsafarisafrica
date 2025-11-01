@@ -23,6 +23,7 @@ const NoItinerariesPrompt = ({
   toggleView,
 }) => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
+  const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation("adventures");
 
@@ -75,6 +76,8 @@ const NoItinerariesPrompt = ({
               <GoogleSSOButton
                 onSuccess={handleGoogleAuthSuccess}
                 authType="login"
+                loading={loading}
+                setLoading={setLoading}
               />
             )}
             {errorOccured && (
