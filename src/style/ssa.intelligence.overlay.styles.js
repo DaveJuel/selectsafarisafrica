@@ -80,23 +80,44 @@ export const SendButton = styled.button`
   background: linear-gradient(135deg, #e4bc87 0%, #d4a574 100%);
   color: #0D482E;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  padding: clamp(0.6rem, 2vw, 0.85rem) clamp(1rem, 4vw, 1.75rem);
+  border-radius: 12px;
+  font-size: clamp(0.85rem, 2vw, 1rem);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 20px rgba(228, 188, 135, 0.3);
-  
+  min-width: 120px;
+  max-width: 100%;
+  align-self: center;
+  white-space: nowrap;
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(228, 188, 135, 0.4);
     background: linear-gradient(135deg, #d4a574 0%, #e4bc87 100%);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
+
+  @media (max-width: 768px) {
+    border-radius: 10px;
+    letter-spacing: 0.4px;
+  }
+
+  @media (max-width: 480px) {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.65rem 1.25rem;
+    box-shadow: 0 3px 12px rgba(228, 188, 135, 0.25);
+
+    &:hover {
+      transform: none; /* Avoids jumpiness on touch devices */
+    }
+  }
 `;
+

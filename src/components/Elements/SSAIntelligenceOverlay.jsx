@@ -309,7 +309,6 @@ const SSAIntelligenceOverlay = ({
     <SidePanelOverlay isLeftSide={isLeftSide}>
       <SidePanelContent>
         <OverlayHeader>
-          {/* <HeaderTitle>{t("expert_guidance")}</HeaderTitle> */}
           <HeaderTitle>{helpDeskAgent}</HeaderTitle>
           {isClosing ? (
             <ButtonContainer>

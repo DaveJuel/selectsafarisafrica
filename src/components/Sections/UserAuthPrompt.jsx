@@ -61,8 +61,7 @@ const UserAuthPrompt = ({ setIsLoggedIn }) => {
   );
 };
 
-// Styled Components
-const LoginPrompt = styled.div`
+export const LoginPrompt = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -71,22 +70,52 @@ const LoginPrompt = styled.div`
   gap: 1.5rem;
   padding: 2rem;
   text-align: center;
-`;
+  min-height: 200px;
+  transition: all 0.3s ease;
 
-const LoginIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  img {
-    width: 60px;
-    height: 60px;
+  @media (max-width: 1024px) {
+    padding: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 1rem;
+    gap: 0.75rem;
   }
 `;
 
-const LoginMessage = styled.p`
-  color: rgba(228, 188, 135, 0.8);
-  font-size: 0.95rem;
-  line-height: 1.5;
+export const LoginIcon = styled.div`
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+
+  img {
+    width: clamp(45px, 10vw, 60px);
+    height: clamp(45px, 10vw, 60px);
+    object-fit: contain;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.25rem;
+    margin-bottom: 0.25rem;
+  }
+`;
+
+export const LoginMessage = styled.p`
+  color: rgba(228, 188, 135, 0.85);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  line-height: 1.6;
   max-width: 400px;
   margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 480px) {
+    max-width: 320px;
+    line-height: 1.5;
+  }
 `;
 export default UserAuthPrompt;
