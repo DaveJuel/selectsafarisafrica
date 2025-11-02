@@ -44,11 +44,11 @@
   "payment_options_review": "Before finalizing your booking, please review the payment options below.",
   "booking_fee": "Booking Fee:",
   "fee_description": "This fee secures your reservation and ensures your itinerary is held under your name.",
-  "pay_now:": "Pay Now",
+  "pay_now": "Pay Now",
   "pay_now_result": "Proceed to pay the booking fee immediately and get your reservation",
   "confirm_instantly": "confirmed instantly",
   "pay_later": "Pay Later",
-  "pay_later_results": "Your booking will remain <em>reserved for 48 hours",
+  "pay_later_results": "Your booking will remain reserved for 48 hours",
   "pay_later_expiry": "If payment is not completed within that period, it will expire.",
   "choose_process": "Choose how you would like to proceed with your booking."
 

@@ -128,10 +128,10 @@ const PreBookingConfirmationModal = ({
               </p>
               <ul style={{ margin: 0, paddingLeft: "20px", color: "#475569", fontSize: "14px" }}>
                 <li>
-                  <strong>{t("pay_now")}</strong>{t("pay_now_result")}<em>{t("confirm_instantly")}</em>.
+                  <strong>{t("pay_now")}: </strong>{t("pay_now_result")} <em>{t("confirm_instantly")}</em>.
                 </li>
                 <li>
-                  <strong>{t("pay_later")}</strong> <em>{t("pay_later_results")}</em>.
+                  <strong>{t("pay_later")}: </strong><em>{t("pay_later_results")}</em>.<br/>
                   {t("pay_later_expiry")}
                 </li>
               </ul>
