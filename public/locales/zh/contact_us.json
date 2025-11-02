@@ -7,5 +7,8 @@
   "enter_email_address": "请输入您的电子邮箱地址",
   "message": "留言",
   "message_placeholder": "请告诉我们您的想法……",
-  "send_message": "发送消息"
+  "send_message": "发送消息",
+  "failed_to_send_message": "发送信息失败。",
+  "message_sent": "信息发送成功。",
+  "error_occurred": "发生错误！"
 }

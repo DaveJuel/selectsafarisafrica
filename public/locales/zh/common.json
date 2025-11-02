@@ -9,5 +9,8 @@
   "selected": "已选择",
   "make_it_happen": "实现梦想",
   "day": "天",
-  "days": "天数"
+  "days": "天数",
+  "invoice_preparing": "准备发票",
+  "fetching_booking_details": "获取预订详情",
+  "invoice_downloaded": "发票下载成功。您可以关闭此页面。"
 }

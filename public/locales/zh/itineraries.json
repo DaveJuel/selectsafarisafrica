@@ -4,5 +4,8 @@
   "day": "第几天",
   "book_now": "立即预订",
   "lets_go_to": "出发去",
-  "incredible_days": "为你精心策划的精彩行程"
+  "incredible_days": "为你精心策划的精彩行程",
+  "unable_to_find_itineraries": "我们目前无法制定任何行程。如需进一步咨询，请联系我们。",
+  "planning_process_failed": "在计划过程中出现了一些问题，请联系我们，我们会及时回复您。",
+  "add_activity": "添加活动"
 }

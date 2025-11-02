@@ -1,0 +1,14 @@
+{
+  "reach_out": "تواصل معنا",
+  "reach_out_message": "نود أن نسمع منك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.\n في أقرب وقت ممكن.",
+  "full_name": "الاسم الكامل",
+  "enter_full_name": "أدخل اسمك بالكامل",
+  "email_address": "عنوان البريد الإلكتروني",
+  "enter_email_address": "أدخل عنوان بريدك الإلكتروني",
+  "message": "الرسالة",
+  "message_placeholder": "أخبرنا بما يدور في ذهنك...",
+  "send_message": "إرسال رسالة",
+  "failed_to_send_message": "فشل إرسال الرسالة.",
+  "message_sent": "تم إرسال الرسالة بنجاح.",
+  "error_occurred": "حدث خطأ!"
+}

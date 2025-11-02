@@ -39,5 +39,16 @@
   "booking_confirmed": "Réservation confirmée avec succès !",
   "team_will_reach_out": "Notre équipe vous contactera sous peu. Veuillez conserver votre référence de réservation pour toute correspondance future.",
   "your_booking_code": "Votre code de réservation",
-  "code_usage": "Utilisez ce code pour toute demande de suivi"
+  "code_usage": "Utilisez ce code pour toute demande de suivi",
+  "confirm_booking": "Confirmez votre réservation",
+  "payment_options_review": "Avant de finaliser votre réservation, veuillez examiner les options de paiement ci-dessous.",
+  "booking_fee": "Frais de réservation :",
+  "fee_description": "Ces frais garantissent votre réservation et assurent que votre itinéraire est réservé à votre nom.",
+  "pay_now": "Payer maintenant",
+  "pay_now_result": "Procédez au paiement immédiat des frais de réservation et obtenez votre réservation",
+  "confirm_instantly": "confirmée instantanément",
+  "pay_later": "Payer plus tard",
+  "pay_later_results": "Votre réservation restera réservée pendant 48 heures",
+  "pay_later_expiry": "Si le paiement n’est pas effectué dans ce délai, la réservation expirera.",
+  "choose_process": "Choisissez comment vous souhaitez procéder à votre réservation."
 }

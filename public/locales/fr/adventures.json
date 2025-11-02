@@ -113,5 +113,8 @@
   "continue_with_google": "Continuer avec Google",
 
   "ask_prompt": "Demande ici",
-  "missing_premade_itineraries": "Nous n'avons pas encore d'itinéraires préétablis pour ce voyage, mais notre accueil est là pour vous aider à créer l'expérience personnalisée parfaite."
+  "missing_premade_itineraries": "Nous n'avons pas encore d'itinéraires préétablis pour ce voyage, mais notre accueil est là pour vous aider à créer l'expérience personnalisée parfaite.",
+  "error_happened_contact_support": "Une erreur s'est produite. Veuillez contacter le support.",
+  "contact_us": "Contactez-nous",
+  "loading": "Chargement"
 }

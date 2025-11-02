@@ -110,15 +110,14 @@
   "expert_typing": "typing",
   "waiting": "Waiting",
   "send_button": "Send",
-
   "error_occurred": "An unexpected error occurred. Please try again.",
-  "error_happened_contact_support": "Something went wrong. Please contact support.",
   "google_auth_success": "Google authentication successful, redirecting...",
   "sign_in_prompt": "Sign in with your Gmail to get personalized travel tips from our tourism experts.",
   "register_with_google": "Register with Google",
   "continue_with_google": "Continue with Google",
   "ask_prompt": "Ask here",
   "missing_premade_itineraries": "We don't have any pre-made itineraries for this trip at the moment, at the moment, but our front desk are here to help you create the perfect personalized experience.",
+  "error_happened_contact_support": "Something went wrong. Please contact support.",
   "contact_us": "Contact Us",
   "loading": "Loading"
 }

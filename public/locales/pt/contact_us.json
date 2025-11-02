@@ -7,5 +7,8 @@
   "enter_email_address": "Digite seu endereço de e-mail",
   "message": "Mensagem",
   "message_placeholder": "Conte-nos o que você está pensando...",
-  "send_message": "Enviar Mensagem"
+  "send_message": "Enviar Mensagem",
+  "failed_to_send_message": "Failed to send message.",
+  "message_sent": "Message sent successfully.",
+  "error_occurred": "Error occurred!"
 }

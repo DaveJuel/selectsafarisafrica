@@ -9,5 +9,8 @@
   "selected": "Seleccionado",
   "make_it_happen": "Hazlo Realidad",
   "day": "Día",
-  "days": "Días"
+  "days": "Días",
+  "invoice_preparing": "Preparar la factura",
+  "fetching_booking_details": "Obtener los datos de la reserva",
+  "invoice_downloaded": "La factura se ha descargado correctamente. Puede cerrar esta página."
 }

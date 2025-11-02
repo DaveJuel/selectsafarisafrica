@@ -35,5 +35,20 @@
   "country_br": "Brasil",
   "country_mx": "México",
   "country_za": "África do Sul",
-  "country_other": "Outro"
+  "country_other": "Outro",
+  "booking_confirmed": "Booking confirmed successfully!",
+  "team_will_reach_out": "Our team will reach out to you shortly. Please save your booking reference for future correspondence.",
+  "your_booking_code": "Your Booking Code",
+  "code_usage": "Use this code for any follow-up inquiries",
+  "confirm_booking": "Confirm Your Booking",
+  "payment_options_review": "Before finalizing your booking, please review the payment options below.",
+  "booking_fee": "Booking Fee:",
+  "fee_description": "This fee secures your reservation and ensures your itinerary is held under your name.",
+  "pay_now": "Pay Now",
+  "pay_now_result": "Proceed to pay the booking fee immediately and get your reservation",
+  "confirm_instantly": "confirmed instantly",
+  "pay_later": "Pay Later",
+  "pay_later_results": "Your booking will remain reserved for 48 hours",
+  "pay_later_expiry": "If payment is not completed within that period, it will expire.",
+  "choose_process": "Choose how you would like to proceed with your booking."
 }

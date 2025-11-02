@@ -35,5 +35,20 @@
   "country_br": "巴西",
   "country_mx": "墨西哥",
   "country_za": "南非",
-  "country_other": "其他"
+  "country_other": "其他",
+  "booking_confirmed": "预订确认成功！",
+  "team_will_reach_out": "我们的团队将尽快与您联系。请保存您的预订编号，以便日后联系。",
+  "your_booking_code": "您的预订代码",
+  "code_usage": "后续查询请使用此代码",
+  "confirm_booking": "确认预订",
+  "payment_options_review": "在确定预订之前，请查看以下付款方式。",
+  "booking_fee": "预订费",
+  "fee_description": "这笔费用可确保您的预订安全，并保证您的行程以您的姓名为准。",
+  "pay_now": "立即付款",
+  "pay_now_result": "立即支付预订费并获得预订",
+  "confirm_instantly": "即刻确认",
+  "pay_later": "稍后支付",
+  "pay_later_results": "您的预订将保留 48 小时",
+  "pay_later_expiry": "如果在此期间未完成付款，则过期作废。",
+  "choose_process": "选择预订方式。"
 }

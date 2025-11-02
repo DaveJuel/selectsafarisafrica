@@ -4,5 +4,8 @@
   "day": "Dia",
   "book_now": "RESERVE AGORA",
   "lets_go_to": "Vamos para",
-  "incredible_days": "dias incríveis planejados só para você"
+  "incredible_days": "dias incríveis planejados só para você",
+  "unable_to_find_itineraries": "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry.",
+  "planning_process_failed": "Something went wrong during the planning process, please reach out to us we shall get back to you in time.",
+  "add_activity": "Add Activity"
 }

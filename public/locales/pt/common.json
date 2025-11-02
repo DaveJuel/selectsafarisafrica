@@ -9,5 +9,8 @@
   "selected": "Selecionado",
   "make_it_happen": "Faça Acontecer",
   "day": "Dia",
-  "days": "Dias"
+  "days": "Dias",
+  "invoice_preparing": "Preparing your invoice",
+  "fetching_booking_details": "Fetching booking details",
+  "invoice_downloaded": "Invoice downloaded successfully. You can close this page."
 }

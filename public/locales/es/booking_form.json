@@ -35,5 +35,20 @@
   "country_br": "Brasil",
   "country_mx": "México",
   "country_za": "Sudáfrica",
-  "country_other": "Otro"
+  "country_other": "Otro",
+  "booking_confirmed": "¡Reserva confirmada con éxito!",
+  "team_will_reach_out": "Nuestro equipo se pondrá en contacto con usted en breve. Guarde su referencia de reserva para futuras comunicaciones.",
+  "your_booking_code": "Su código de reserva",
+  "code_usage": "Utilice este código para cualquier consulta de seguimiento",
+  "confirm_booking": "Confirme su reserva",
+  "payment_options_review": "Antes de finalizar su reserva, revise las opciones de pago que se indican a continuación.",
+  "booking_fee": "Tasa de reserva:",
+  "fee_description": "Esta tasa asegura su reserva y garantiza que su itinerario esté a su nombre.",
+  "pay_now": "Pagar ahora",
+  "pay_now_result": "Proceda a pagar los gastos de reserva inmediatamente y obtenga su reserva",
+  "confirm_instantly": "confirmado al instante",
+  "pay_later": "Pague más tarde",
+  "pay_later_results": "Su reserva permanecerá reservada durante 48 horas",
+  "pay_later_expiry": "Si el pago no se completa en ese plazo, caducará.",
+  "choose_process": "Elija cómo desea proceder con su reserva."
 }
