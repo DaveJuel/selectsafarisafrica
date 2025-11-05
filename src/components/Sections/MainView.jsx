@@ -128,7 +128,6 @@ export default function MainView() {
         itinerary={itinerary}
         itineraryActivities={itineraryActivities}
         allActivities={allActivities}
-        // handlePreview={() => handleConfirm()}
         handlePreview={() => setIsPreConfirmModalOpen(true)}
         bookingData={bookingData}
         setBookingData={setBookingData}

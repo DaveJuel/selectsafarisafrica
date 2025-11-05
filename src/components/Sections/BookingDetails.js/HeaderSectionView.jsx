@@ -39,9 +39,9 @@ export default function HeaderSectionView({ itinerary, goHome, bookingData, id }
               <ContactInfo>
                 <ContactItem>
                   <ContactIcon>
-                    <img src="/icons/smartphone.png" alt="Contact" />
+                    <img src="/icons/whatsapp.png" alt="Contact" />
                   </ContactIcon>
-                  <ContactText>+250 788 995 497</ContactText>
+                  <ContactText>+1 (480) 716-9630</ContactText>
                 </ContactItem>
                 <ContactItem>
                   <ContactIcon>
