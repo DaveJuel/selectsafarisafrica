@@ -5,22 +5,43 @@ export default function Landing() {
   return (
     <>
       <SEO
-        title="Select Safaris Africa | Rwanda, Tanzania, Uganda & Burundi Adventures"
-        description="Discover East Africa’s top safari adventures with Select Safaris Africa. Experience gorilla trekking, cultural tours, wildlife safaris, and scenic landscapes across Rwanda, Tanzania, Uganda, and Burundi."
+        title="Select Safaris Africa | Safari Tours, Visa Assistance & Travel Packages in Rwanda, Tanzania, Uganda & Burundi"
+        description="Plan your African adventure with Select Safaris Africa. We arrange safaris, tours, and visa assistance for unforgettable trips across Rwanda, Tanzania, Uganda & Burundi. Explore wildlife, culture, and nature—all in one trusted travel package."
         image="https://www.selectsafarisafrica.com/assets/bg_image1.jpg"
         url="https://www.selectsafarisafrica.com/"
         schema={{
-          "@context": "https://selectsafarisafrica.com",
+          "@context": "https://schema.org",
           "@type": "TravelAgency",
           name: "Select Safaris Africa",
           url: "https://www.selectsafarisafrica.com/",
           logo: "https://www.selectsafarisafrica.com/assets/logo.webp",
           description:
-            "Select Safaris Africa is your trusted partner for unforgettable African safari experiences, offering curated tours, wildlife adventures, cultural experiences, and luxury lodges in Rwanda, Tanzania, Uganda, and Burundi.",
+            "Select Safaris Africa offers East African safari tours, visa assistance, and cultural experiences across Rwanda, Tanzania, Uganda, and Burundi.",
+          keywords:
+            "East Africa safari, Rwanda visa, Tanzania safari visa, Uganda tours, Burundi travel visa, gorilla trekking permits, East Africa Tourist Visa, safari packages, travel assistance",
+          // sameAs: [
+          //   "https://www.facebook.com/selectsafarisafrica",
+          //   "https://www.instagram.com/selectsafarisafrica",
+          //   "https://www.tripadvisor.com/Profile/selectsafarisafrica",
+          // ],
           address: {
             "@type": "PostalAddress",
             addressCountry: "RW",
             addressRegion: "East Africa",
+          },
+          makesOffer: {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Visa Assistance & Travel Planning",
+              description:
+                "We assist travelers in obtaining Rwanda, Uganda, Tanzania, and Burundi visas, including guidance on the East Africa Tourist Visa.",
+              serviceType: "Visa Consultation",
+              provider: {
+                "@type": "TravelAgency",
+                name: "Select Safaris Africa",
+              },
+            },
           },
           hasOfferCatalog: {
             "@type": "OfferCatalog",
@@ -30,14 +51,11 @@ export default function Landing() {
                 "@type": "Offer",
                 itemOffered: {
                   "@type": "TouristTrip",
-                  name: "Gorilla Trekking, Volcanoes National Park",
+                  name: "Gorilla Trekking, Volcanoes National Park (Rwanda)",
                   touristType: "Adventure Travelers",
                   description:
-                    "Encounter mountain gorillas in their natural habitat in Rwanda. Includes guided trekking, permits, and conservation contributions.",
-                  provider: {
-                    "@type": "TravelAgency",
-                    name: "Select Safaris Africa",
-                  },
+                    "Encounter mountain gorillas in their natural habitat in Rwanda. Includes guided trekking, permits, and visa assistance for East Africa Tourist Visa.",
+                  provider: { "@type": "TravelAgency", name: "Select Safaris Africa" },
                   url: "https://www.selectsafarisafrica.com",
                 },
               },
@@ -45,14 +63,11 @@ export default function Landing() {
                 "@type": "Offer",
                 itemOffered: {
                   "@type": "TouristTrip",
-                  name: "Lake Tanganyika Beach Retreat, Burundi",
+                  name: "Lake Tanganyika Beach Retreat (Burundi)",
                   touristType: "Relaxation & Nature Lovers",
                   description:
-                    "Relax on the pristine shores of Lake Tanganyika, explore local fishing villages, and enjoy cultural interactions in Burundi.",
-                  provider: {
-                    "@type": "TravelAgency",
-                    name: "Select Safaris Africa",
-                  },
+                    "Relax on the pristine shores of Lake Tanganyika, explore local fishing villages, and enjoy cultural experiences in Burundi. Visa support available.",
+                  provider: { "@type": "TravelAgency", name: "Select Safaris Africa" },
                   url: "https://www.selectsafarisafrica.com",
                 },
               },
@@ -60,14 +75,11 @@ export default function Landing() {
                 "@type": "Offer",
                 itemOffered: {
                   "@type": "TouristTrip",
-                  name: "Serengeti National Park Safari, Tanzania",
+                  name: "Serengeti National Park Safari (Tanzania)",
                   touristType: "Wildlife Enthusiasts",
                   description:
-                    "Spot the Big Five on guided game drives, enjoy scenic landscapes, and experience wildlife photography opportunities.",
-                  provider: {
-                    "@type": "TravelAgency",
-                    name: "Select Safaris Africa",
-                  },
+                    "Spot the Big Five on guided game drives, enjoy scenic landscapes, and get help with Tanzania safari visa and travel arrangements.",
+                  provider: { "@type": "TravelAgency", name: "Select Safaris Africa" },
                   url: "https://www.selectsafarisafrica.com",
                 },
               },
@@ -75,19 +87,67 @@ export default function Landing() {
                 "@type": "Offer",
                 itemOffered: {
                   "@type": "TouristTrip",
-                  name: "Bwindi Impenetrable Forest Gorilla Trek, Uganda",
+                  name: "Bwindi Impenetrable Forest Gorilla Trek (Uganda)",
                   touristType: "Adventure Travelers",
                   description:
-                    "Trek through Uganda's lush Bwindi Forest to encounter endangered mountain gorillas with experienced guides. Includes permits and conservation support.",
-                  provider: {
-                    "@type": "TravelAgency",
-                    name: "Select Safaris Africa",
-                  },
+                    "Trek through Uganda's lush Bwindi Forest to encounter endangered gorillas. Includes permits, visa assistance, and conservation contributions.",
+                  provider: { "@type": "TravelAgency", name: "Select Safaris Africa" },
                   url: "https://www.selectsafarisafrica.com",
                 },
               },
             ],
           },
+        }}
+        additionalSchemas={[
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Do I need a visa to visit Rwanda, Uganda, or Tanzania?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, most travelers need a visa. Select Safaris Africa helps you obtain the East Africa Tourist Visa that covers multiple countries in one application.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can Select Safaris Africa assist with visa applications?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we provide full visa assistance for Rwanda, Uganda, Tanzania, and Burundi, helping you simplify your safari and travel experience.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What countries are included in the East Africa Tourist Visa?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The East Africa Tourist Visa allows travel between Rwanda, Uganda, and Kenya using a single visa. Select Safaris Africa guides travelers on how to apply.",
+                },
+              },
+            ],
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          title:
+            "Select Safaris Africa | Safari Tours, Visa Assistance & East Africa Travel Packages",
+          description:
+            "Discover the best safaris and travel experiences across Rwanda, Uganda, Tanzania, and Burundi with full visa assistance from Select Safaris Africa.",
+          image: "https://www.selectsafarisafrica.com/assets/bg_image1.jpg",
+          url: "https://www.selectsafarisafrica.com/",
+          site_name: "Select Safaris Africa",
+        }}
+        twitter={{
+          card: "summary_large_image",
+          site: "@SelectSafarisAfrica",
+          title:
+            "Select Safaris Africa | Safari Tours & Visa Assistance in East Africa",
+          description:
+            "Explore East Africa’s wonders — safaris, tours, and full visa support across Rwanda, Uganda, Tanzania & Burundi.",
+          image: "https://www.selectsafarisafrica.com/assets/bg_image1.jpg",
         }}
       />
       <MainView />
