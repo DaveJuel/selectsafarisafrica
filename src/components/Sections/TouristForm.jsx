@@ -6,6 +6,8 @@ import PaginatedActivities from "../Elements/PaginatedActivities";
 import { useTranslation } from "react-i18next";
 import {
   ActivitiesFormGroupWrapper,
+  ButtonGroupWrapper,
+  CountryButton,
   DaysContainer,
   DaysDisplay,
   DaysInput,
@@ -13,7 +15,6 @@ import {
   FormGroup,
   FormWrapper,
   Label,
-  Select,
   SubmitButton,
 } from "../../style/tourism.form.styles";
 
@@ -33,7 +34,7 @@ export default function TouristForm({
   const { t } = useTranslation("common");
 
   useEffect(() => {
-    if(!language) return;
+    if (!language) return;
     const fetchCollections = async () => {
       try {
         const response = await fetchEntityTranslatedData("countries", language);
@@ -100,7 +101,27 @@ export default function TouristForm({
         <Form>
           <FormGroup>
             <Label>{t("where_to")}</Label>
-            <Select
+            <ButtonGroupWrapper>
+              {countries.map((country) => {
+                const selected = formData.country === country.name;
+
+                return (
+                  <CountryButton
+                    key={country.id}
+                    type="button"
+                    $selected={selected}
+                    onClick={() =>
+                      handleCountryChange({
+                        target: { value: country.name },
+                      })
+                    }
+                  >
+                    {country.name}
+                  </CountryButton>
+                );
+              })}
+            </ButtonGroupWrapper>
+            {/* <Select
               value={formData.country}
               onChange={handleCountryChange}
               required
@@ -111,7 +132,7 @@ export default function TouristForm({
                   {country.name}
                 </option>
               ))}
-            </Select>
+            </Select> */}
           </FormGroup>
 
           <FormGroup>

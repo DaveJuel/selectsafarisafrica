@@ -51,6 +51,74 @@ export const Label = styled.label`
   }
 `;
 
+export const ButtonGroupWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+
+  /* 4 per row */
+  & > button {
+    flex: 1 0 calc(25% - 12px);
+  }
+
+  @media (max-width: 1024px) {
+    /* 3 per row on medium screens */
+    & > button {
+      flex: 1 0 calc(33.33% - 12px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* 2 per row on tablets */
+    & > button {
+      flex: 1 0 calc(50% - 12px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* 1 per row on small phones */
+    & > button {
+      flex: 1 0 100%;
+    }
+  }
+`;
+
+
+export const CountryButton = styled.button`
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid ${({ $selected }) => ($selected ? "#7e5b40" : "#e1e8ed")};
+  background: ${({ $selected }) => ($selected ? "#7e5b40" : "#ffffff")};
+  color: ${({ $selected }) => ($selected ? "#ffffff" : "#333")};
+  transition: all 0.25s ease;
+  width: 100%; /* ensures correct flex-basis scaling */
+
+  &:hover {
+    border-color: #7e5b40;
+    box-shadow: 0 2px 8px rgba(126, 91, 64, 0.18);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    padding: 9px 10px;
+    border-radius: 10px;
+  }
+`;
+
+
 export const Select = styled.select`
   padding: 6px 6px;
   border: 1px solid #e1e8ed;
