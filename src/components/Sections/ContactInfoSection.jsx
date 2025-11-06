@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 // Animations
 const fadeInUp = keyframes`
@@ -274,11 +275,14 @@ const ContactInfoSection = () => {
 
       {/* Social Links */}
       <SocialLinks>
-        {/* <SocialLink href="#" target="_blank" title="Facebook">
-          f
-        </SocialLink> */}
         <SocialLink href="https://x.com/selectsafaris" target="_blank" title="x">
           𝕏
+        </SocialLink>
+        <SocialLink href="https://www.instagram.com/selectsafarisafrica/" target="_blank" title="IG">
+          <FaInstagram />
+        </SocialLink>
+        <SocialLink href="https://www.tiktok.com/@selectsafarisafrica" target="_blank" title="IG">
+          <FaTiktok />
         </SocialLink>
         <SocialLink href="https://www.linkedin.com/in/select-safaris-africa-346087395/" target="_blank" title="LinkedIn">
           in
