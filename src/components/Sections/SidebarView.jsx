@@ -26,7 +26,8 @@ export default function SidebarView({
   loadingSidebar,
   setLoadingSidebar,
   hidePlanForm,
-  language
+  language,
+  showLanguageModal
 }) {
   const { t } = useTranslation("common");
 
@@ -80,6 +81,7 @@ export default function SidebarView({
           loadingSidebar={loadingSidebar}
           setLoadingSidebar={setLoadingSidebar}
           language={language}
+          showLanguageModal={showLanguageModal}
         />
       )}
     </SidebarSection>

@@ -12,5 +12,10 @@
   "days": "Days",
   "invoice_preparing": "Preparing your invoice",
   "fetching_booking_details": "Fetching booking details",
-  "invoice_downloaded": "Invoice downloaded successfully. You can close this page."
+  "invoice_downloaded": "Invoice downloaded successfully. You can close this page.",
+  "select_language": "Configure Language",
+  "region_americas": "America",
+  "region_europe": "Europe",
+  "region_middle_east": "Middle East",
+  "region_asia": "Asia"
 }

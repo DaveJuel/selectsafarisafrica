@@ -12,6 +12,7 @@ import {
 import { filterItineraries } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
 import PreBookingConfirmationModal from "../Elements/PreBookingConfirmationModal";
+import SetLanguageModal from "../Elements/SetLanguageModal";
 
 export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
@@ -21,7 +22,7 @@ export default function MainView() {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [loadingMainView, setLoadingMainView] = useState(false);
   const [loadingSidebar, setLoadingSidebar] = useState(true);
-  const [language, setLanguage] = useState(null);
+  const [language, setLanguage] = useState("en");
   const [formData, setFormData] = useState({
     country: null,
     days: 3,
@@ -30,6 +31,7 @@ export default function MainView() {
   const [bookingData, setBookingData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isSetLanguageModalOpen, setIsSetLanguageModalOpen] = useState(false);
   const [isPreConfirmModalOpen, setIsPreConfirmModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState("itiniraries");
   const [hidePlanForm, setHidePlanForm] = useState(false);
@@ -38,6 +40,7 @@ export default function MainView() {
   const { i18n } = useTranslation("common");
 
   useEffect(() => {
+
     if (i18n.isInitialized) {
       const detectedLang = i18n.language || window.navigator.language;
       setLanguage(detectedLang);
@@ -86,6 +89,11 @@ export default function MainView() {
     setIsConfirmModalOpen(true);
   };
 
+  const handleSelectLanguage = (langCode) => {
+    setLanguage(langCode);
+    setIsSetLanguageModalOpen(false);
+  }
+
   return (
     <MainWrapper>
       <ContentContainer>
@@ -103,6 +111,7 @@ export default function MainView() {
           setActivities={setActivities}
           hidePlanForm={hidePlanForm}
           language={language}
+          showLanguageModal={() => setIsSetLanguageModalOpen(true)}
         />
         <ViewSection>
           {loadingMainView && <LoadingSpinner />}
@@ -140,7 +149,12 @@ export default function MainView() {
         itinerary={itinerary}
         bookingData={bookingData}
       />
-      <PreBookingConfirmationModal bookingData={bookingData} isOpen={isPreConfirmModalOpen} onClose={() => setIsPreConfirmModalOpen(false)} itinerary={itinerary} bookingFee={50} onPaymentSuccess={handleConfirm} onBookLater={handleConfirm}  />
+      <SetLanguageModal
+        isOpen={isSetLanguageModalOpen}
+        onClose={() => setIsSetLanguageModalOpen(false)}
+        onLanguageSelect={handleSelectLanguage}
+      />
+      <PreBookingConfirmationModal bookingData={bookingData} isOpen={isPreConfirmModalOpen} onClose={() => setIsPreConfirmModalOpen(false)} itinerary={itinerary} bookingFee={50} onPaymentSuccess={handleConfirm} onBookLater={handleConfirm} />
     </MainWrapper>
   );
 }

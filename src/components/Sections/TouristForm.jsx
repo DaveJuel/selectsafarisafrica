@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { fetchEntityTranslatedData } from "../../utils/RequestHandler";
 import LoadingSpinner from "../Elements/LoadingSpinner";
@@ -13,10 +13,14 @@ import {
   DaysInput,
   Form,
   FormGroup,
+  FormGroupHeader,
+  FormGroupHeaderButton,
+  FormGroupIconWrapper,
   FormWrapper,
   Label,
   SubmitButton,
 } from "../../style/tourism.form.styles";
+import { FaGlobe } from "react-icons/fa";
 
 export default function TouristForm({
   formData,
@@ -28,7 +32,8 @@ export default function TouristForm({
   setActivities,
   loadingSidebar,
   setLoadingSidebar,
-  language
+  language,
+  showLanguageModal
 }) {
   const [countries, setCountries] = useState([]);
   const { t } = useTranslation("common");
@@ -100,7 +105,13 @@ export default function TouristForm({
       {!loadingSidebar && (
         <Form>
           <FormGroup>
-            <Label>{t("where_to")}</Label>
+            <FormGroupHeader>
+              <Label>{t("where_to")}</Label>
+
+              <FormGroupHeaderButton type="button" onClick={() => showLanguageModal()}>
+                <FormGroupIconWrapper><FaGlobe /></FormGroupIconWrapper>
+              </FormGroupHeaderButton>
+            </FormGroupHeader>
             <ButtonGroupWrapper>
               {countries.map((country) => {
                 const selected = formData.country === country.name;
@@ -121,18 +132,6 @@ export default function TouristForm({
                 );
               })}
             </ButtonGroupWrapper>
-            {/* <Select
-              value={formData.country}
-              onChange={handleCountryChange}
-              required
-            >
-              <option value="">{t("select_country")}</option>
-              {countries.map((country) => (
-                <option key={country.id} value={country.name}>
-                  {country.name}
-                </option>
-              ))}
-            </Select> */}
           </FormGroup>
 
           <FormGroup>

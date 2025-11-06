@@ -29,6 +29,38 @@ export const ActivitiesFormGroupWrapper = styled.div`
   }
 `;
 
+export const FormGroupHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const FormGroupHeaderButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: #ffffff15;
+  color: #ffffff;
+  border: 1px solid #ffffff30;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #ffffff25;
+    border-color: #ffffff55;
+  }
+`;
+
+export const FormGroupIconWrapper = styled.span`
+  font-size: 14px;
+  display: flex;
+`;
+
 
 export const FormGroup = styled.div`
   display: flex;
