@@ -37,20 +37,25 @@ export default function MainView() {
   const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
 
+  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt"];
+
   const { i18n } = useTranslation("common");
 
   useEffect(() => {
+    const savedLang = localStorage.getItem("app_language");
 
-    if (i18n.isInitialized) {
-      const detectedLang = i18n.language || window.navigator.language;
-      setLanguage(detectedLang);
+    if (savedLang) {
+      i18n.changeLanguage(savedLang);
+      setLanguage(savedLang);
     } else {
-      i18n.on("initialized", () => {
-        const detectedLang = i18n.language || window.navigator.language;
-        setLanguage(detectedLang);
-      });
+      const defaultLang = i18n.language || window.navigator.language || "en";
+      const normalized = defaultLang.split("-")[0];
+      const finalLang = supportedLanguages.includes(normalized) ? normalized : "en";
+      i18n.changeLanguage(finalLang);
+      setLanguage(finalLang);
     }
-  }, [i18n]);
+    // eslint-disable-next-line
+  }, []);
 
   const handleItineraryFiltering = async () => {
     toggleView("itiniraries");
@@ -91,7 +96,10 @@ export default function MainView() {
 
   const handleSelectLanguage = (langCode) => {
     setLanguage(langCode);
+    i18n.changeLanguage(langCode);
+    localStorage.setItem("app_language", langCode);
     setIsSetLanguageModalOpen(false);
+    window.location.reload();
   }
 
   return (
