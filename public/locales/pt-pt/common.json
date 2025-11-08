@@ -12,5 +12,10 @@
   "days": "Dias",
   "invoice_preparing": "Preparar a sua fatura",
   "fetching_booking_details": "Obtenção de detalhes da reserva",
-  "invoice_downloaded": "A fatura foi descarregada com sucesso. Pode fechar esta página."
+  "invoice_downloaded": "A fatura foi descarregada com sucesso. Pode fechar esta página.",
+  "select_language": "Configurar o idioma",
+  "region_americas": "América",
+  "region_europe": "Europa",
+  "region_middle_east": "Médio Oriente",
+  "region_asia": "Ásia"
 }

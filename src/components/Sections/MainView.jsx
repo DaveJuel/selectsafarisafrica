@@ -37,7 +37,7 @@ export default function MainView() {
   const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
 
-  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt"];
+  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt-pt"];
 
   const { i18n } = useTranslation("common");
 
@@ -161,6 +161,7 @@ export default function MainView() {
         isOpen={isSetLanguageModalOpen}
         onClose={() => setIsSetLanguageModalOpen(false)}
         onLanguageSelect={handleSelectLanguage}
+        language={language}
       />
       <PreBookingConfirmationModal bookingData={bookingData} isOpen={isPreConfirmModalOpen} onClose={() => setIsPreConfirmModalOpen(false)} itinerary={itinerary} bookingFee={50} onPaymentSuccess={handleConfirm} onBookLater={handleConfirm} />
     </MainWrapper>

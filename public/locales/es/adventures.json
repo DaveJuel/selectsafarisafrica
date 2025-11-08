@@ -87,5 +87,6 @@
   "missing_premade_itineraries": "De momento no disponemos de itinerarios preestablecidos para este viaje, pero en recepción estamos a su disposición para ayudarle a crear la experiencia personalizada perfecta.",
   "error_happened_contact_support": "Algo ha ido mal. Póngase en contacto con el servicio de asistencia.",
   "contact_us": "Contacte con nosotros",
-  "loading": "Cargando"
+  "loading": "Cargando",
+  "unable_to_find_itineraries": "De momento no podemos hacer ningún itinerario. Póngase en contacto con nosotros para cualquier consulta."
 }

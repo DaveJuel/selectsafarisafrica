@@ -16,7 +16,7 @@ import {
     LanguagesList
 } from "../../style/set.language.modal.styles";
 
-const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect }) => {
+const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect, language }) => {
     const { t } = useTranslation("common");
 
     if (!isOpen) return null;
@@ -34,7 +34,7 @@ const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect }) => {
             region: "region_europe",
             languages: [
                 { code: "fr", label: "Français" },
-                { code: "pt", label: "Português" }
+                { code: "pt-pt", label: "Português" }
             ]
         },
         {
@@ -69,6 +69,7 @@ const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect }) => {
                                     {group.languages.map((lang) => (
                                         <LanguageButton
                                             key={lang.code}
+                                            active={language === lang.code}
                                             onClick={() => onLanguageSelect(lang.code)}
                                         >
                                             {lang.label}

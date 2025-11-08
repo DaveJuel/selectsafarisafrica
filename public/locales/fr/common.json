@@ -12,5 +12,10 @@
   "days": "Jours",
   "invoice_preparing": "Préparation de votre facture en cours",
   "fetching_booking_details": "Récupération des détails de la réservation en cours",
-  "invoice_downloaded": "Facture téléchargée avec succès. Vous pouvez fermer cette page."
+  "invoice_downloaded": "Facture téléchargée avec succès. Vous pouvez fermer cette page.",
+  "select_language": "Configurer la langue",
+  "region_americas": "Amérique",
+  "region_europe": "L'Europe",
+  "region_middle_east": "Moyen-Orient",
+  "region_asia": "Asie"
 }

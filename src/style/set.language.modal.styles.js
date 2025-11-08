@@ -36,15 +36,16 @@ export const LanguagesList = styled.div`
 export const LanguageButton = styled.button`
   padding: 10px 14px;
   border-radius: 10px;
-  background: #ffffff10;
-  border: 1px solid #4a4a4a40; /* matches RegionLabel color */
-  color: #000000ff;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
   text-align: left;
   transition: all 0.2s ease;
   width: 100%;
+
+  background: ${({ active }) => active ? "#0E5D3B" : "#f4f4f4"};
+  color: ${({ active }) => active ? "white" : "black"};
+  border-color: ${({ active }) => active ? "#0E5D3B" : "transparent"};
 
   &:hover {
     background: #ffffff20;

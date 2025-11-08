@@ -119,5 +119,6 @@
   "missing_premade_itineraries": "We don't have any pre-made itineraries for this trip at the moment, at the moment, but our front desk are here to help you create the perfect personalized experience.",
   "error_happened_contact_support": "Something went wrong. Please contact support.",
   "contact_us": "Contact Us",
-  "loading": "Loading"
+  "loading": "Loading",
+  "unable_to_find_itineraries": "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry."
 }

@@ -12,5 +12,10 @@
   "days": "天数",
   "invoice_preparing": "准备发票",
   "fetching_booking_details": "获取预订详情",
-  "invoice_downloaded": "发票下载成功。您可以关闭此页面。"
+  "invoice_downloaded": "发票下载成功。您可以关闭此页面。",
+  "select_language": "配置语言",
+  "region_americas": "美国",
+  "region_europe": "欧洲",
+  "region_middle_east": "中东",
+  "region_asia": "亚洲"
 }

@@ -1,0 +1,14 @@
+{
+  "reach_out": "Entre em contacto connosco",
+  "reach_out_message": "Gostaríamos de o ouvir. Envie-nos uma mensagem e responderemos o mais\n o mais rapidamente possível.",
+  "full_name": "Nome completo",
+  "enter_full_name": "Introduza o seu nome completo",
+  "email_address": "Endereço de correio eletrónico",
+  "enter_email_address": "Introduza o seu endereço de correio eletrónico",
+  "message": "Mensagem",
+  "message_placeholder": "Diga-nos o que lhe vai na alma...",
+  "send_message": "Enviar mensagem",
+  "failed_to_send_message": "Falha no envio da mensagem.",
+  "message_sent": "Mensagem enviada com sucesso.",
+  "error_occurred": "Ocorreu um erro!"
+}
