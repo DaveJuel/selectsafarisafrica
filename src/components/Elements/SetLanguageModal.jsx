@@ -46,7 +46,9 @@ const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect, language }) => {
         {
             region: "region_asia",
             languages: [
-                { code: "zh", label: "中文" }
+                { code: "zh", label: "中文" },
+                { code: "ja", label: "標準語" },
+                { code: "ko", label: "표준어" }
             ]
         }
     ];

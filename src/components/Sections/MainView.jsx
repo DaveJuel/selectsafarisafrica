@@ -37,7 +37,7 @@ export default function MainView() {
   const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
 
-  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt-pt"];
+  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt-pt", "ja", "ko"];
 
   const { i18n } = useTranslation("common");
 

@@ -1,0 +1,14 @@
+{
+  "reach_out": "문의하기",
+  "reach_out_message": "여러분의 의견을 듣고 싶습니다. 메시지를 보내주시면 최대한 빨리\n 최대한 빨리 답변해 드리겠습니다.",
+  "full_name": "전체 이름",
+  "enter_full_name": "성명을 입력하세요.",
+  "email_address": "이메일 주소",
+  "enter_email_address": "이메일 주소 입력",
+  "message": "메시지",
+  "message_placeholder": "무슨 생각을 하고 계신지 알려주세요...",
+  "send_message": "메시지 보내기",
+  "failed_to_send_message": "메시지를 보내지 못했습니다.",
+  "message_sent": "메시지가 성공적으로 전송되었습니다.",
+  "error_occurred": "오류가 발생했습니다!"
+}

@@ -1,0 +1,14 @@
+{
+  "reach_out": "お問い合わせ",
+  "reach_out_message": "ご連絡をお待ちしております。メッセージをお送りください。\n できるだけ早くお返事いたします。",
+  "full_name": "氏名",
+  "enter_full_name": "フルネームを入力",
+  "email_address": "メールアドレス",
+  "enter_email_address": "Eメールアドレスを入力してください。",
+  "message": "メッセージ",
+  "message_placeholder": "あなたの心の内をお聞かせください...",
+  "send_message": "メッセージを送る",
+  "failed_to_send_message": "メッセージの送信に失敗しました。",
+  "message_sent": "メッセージは正常に送信されました。",
+  "error_occurred": "エラーが発生しました！"
+}

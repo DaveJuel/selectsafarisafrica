@@ -1,0 +1,21 @@
+{
+  "home": "ホーム",
+  "about_us": "会社概要",
+  "contact_us": "お問い合わせ",
+  "where_to": "どこへ？",
+  "select_country": "国を選択",
+  "days_away": "デイズ・アウェイ",
+  "choose_adventure": "冒険を選ぼう",
+  "selected": "厳選された",
+  "make_it_happen": "実現させる",
+  "day": "日",
+  "days": "日数",
+  "invoice_preparing": "請求書の作成",
+  "fetching_booking_details": "予約詳細の取得",
+  "invoice_downloaded": "請求書は正常にダウンロードされました。このページを閉じることができます。",
+  "select_language": "言語の設定",
+  "region_americas": "アメリカ",
+  "region_europe": "ヨーロッパ",
+  "region_middle_east": "中東",
+  "region_asia": "アジア"
+}
