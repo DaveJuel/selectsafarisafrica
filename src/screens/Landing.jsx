@@ -19,11 +19,11 @@ export default function Landing() {
             "Select Safaris Africa offers East African safari tours, visa assistance, and cultural experiences across Rwanda, Tanzania, Uganda, and Burundi.",
           keywords:
             "East Africa safari, Rwanda visa, Tanzania safari visa, Uganda tours, Burundi travel visa, gorilla trekking permits, East Africa Tourist Visa, safari packages, travel assistance",
-          // sameAs: [
-          //   "https://www.facebook.com/selectsafarisafrica",
-          //   "https://www.instagram.com/selectsafarisafrica",
-          //   "https://www.tripadvisor.com/Profile/selectsafarisafrica",
-          // ],
+          sameAs: [
+            "https://x.com/selectsafaris",
+            "https://www.instagram.com/selectsafarisafrica/",
+            "https://www.tiktok.com/@selectsafarisafrica",
+          ],
           address: {
             "@type": "PostalAddress",
             addressCountry: "RW",
