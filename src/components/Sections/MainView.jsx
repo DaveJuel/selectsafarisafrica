@@ -52,6 +52,7 @@ export default function MainView() {
       const normalized = defaultLang.split("-")[0];
       const finalLang = supportedLanguages.includes(normalized) ? normalized : "en";
       i18n.changeLanguage(finalLang);
+      localStorage.setItem("app_language", finalLang);
       setLanguage(finalLang);
     }
     // eslint-disable-next-line

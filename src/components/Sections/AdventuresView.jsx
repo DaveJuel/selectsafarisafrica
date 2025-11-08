@@ -47,12 +47,13 @@ export default function AdventuresView({ formData , language}) {
       const videosList = adventuresVideos
         .filter(
           (item) =>
-            item.country.toLowerCase() === formData.country.toLowerCase()
+            t(item.country).toLowerCase() === formData.country.toLowerCase()
         )
         ?.flatMap((item) => item?.videos);
       setVideos(videosList);
       setHasLoaded(true);
     }
+    // eslint-disable-next-line
   }, [formData.country]);
 
   useEffect(() => {

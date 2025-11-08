@@ -102,10 +102,7 @@ const ItinerariesListView = ({
     const askAgent = async () => {
       try {
         setIsAskingAgent(true);
-        const countryActivities = allActivities.filter(
-          (item) =>
-            item.country.toLowerCase() === formData.country.toLowerCase()
-        );
+
         const response = await fetch(
           `${intelligenceUrl}/api/chat/generate/itinerary/`,
           {
@@ -117,7 +114,7 @@ const ItinerariesListView = ({
               country: formData?.country,
               days: formData?.days,
               selected_activities: formData?.activities || [],
-              all_activities: countryActivities,
+              language,
             }),
           }
         );
@@ -164,7 +161,7 @@ const ItinerariesListView = ({
     if (isLoggedIn && needToAskAgent) {
       askAgent();
     }
-  }, [isLoggedIn, needToAskAgent, formData, allActivities]);
+  }, [isLoggedIn, needToAskAgent, formData, allActivities, language]);
 
   const persistItineraryDetails = async (itinerary, itineraryActivities) => {
     try {

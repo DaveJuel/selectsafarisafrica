@@ -42,12 +42,11 @@ export default function TouristForm({
     if (!language) return;
     const fetchCollections = async () => {
       try {
-        const response = await fetchEntityTranslatedData("countries", language);
+        const landCode = localStorage.getItem("app_language");
+        const response = await fetchEntityTranslatedData("countries", landCode);
         if (response.success) {
           setCountries(response.result);
-          const defaultCountry = response.result.find(
-            (country) => country.name.toLowerCase() === "rwanda"
-          );
+          const defaultCountry = response.result[0];
           if (defaultCountry) {
             setFormData((prev) => ({
               ...prev,

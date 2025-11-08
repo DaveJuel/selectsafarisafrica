@@ -1,6 +1,6 @@
 export const adventuresVideos = [
   {
-    country: "Rwanda",
+    country: "country_rw",
     videos: [
       {
         video: "https://res.cloudinary.com/addax/video/upload/v1758372478/ssa-videos/rw/fkcuonhqylevm09igxtl.mp4",
@@ -63,7 +63,7 @@ export const adventuresVideos = [
     ]
   },
   {
-  country: "Tanzania",
+  country: "country_tz",
   videos: [
       {
         video: "https://res.cloudinary.com/addax/video/upload/v1758372248/ssa-videos/tz/havdpbzzs4jcvy52j66t.mp4",
@@ -124,7 +124,7 @@ export const adventuresVideos = [
     ]
   },
   {
-  country: "Uganda",
+  country: "country_ug",
   videos: [
       {
         video: "https://res.cloudinary.com/addax/video/upload/v1758371932/ssa-videos/ug/qcxb35z5bacipdezsgtp.mp4",
@@ -185,7 +185,7 @@ export const adventuresVideos = [
     ]
   },
   {
-  country: "Burundi",
+  country: "country_bi",
   videos: [
       {
         video: "https://res.cloudinary.com/addax/video/upload/v1758372052/ssa-videos/bn/kt6tpjgqdid5jyqwsuvt.mp4",
