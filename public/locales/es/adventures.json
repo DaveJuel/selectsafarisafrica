@@ -88,5 +88,6 @@
   "error_happened_contact_support": "Algo ha ido mal. Póngase en contacto con el servicio de asistencia.",
   "contact_us": "Contacte con nosotros",
   "loading": "Cargando",
-  "unable_to_find_itineraries": "De momento no podemos hacer ningún itinerario. Póngase en contacto con nosotros para cualquier consulta."
+  "unable_to_find_itineraries": "De momento no podemos hacer ningún itinerario. Póngase en contacto con nosotros para cualquier consulta.",
+  "planning_process_failed": "Algo ha ido mal durante el proceso de planificación, póngase en contacto con nosotros y le responderemos a tiempo."
 }

@@ -88,5 +88,6 @@
   "error_happened_contact_support": "Algo correu mal. Por favor, contacte a assistência.",
   "contact_us": "Contactar-nos",
   "loading": "Carregamento",
-  "unable_to_find_itineraries": "De momento, não é possível elaborar itinerários. Por favor, contacte-nos para mais informações."
+  "unable_to_find_itineraries": "De momento, não é possível elaborar itinerários. Por favor, contacte-nos para mais informações.",
+  "planning_process_failed": "Algo correu mal durante o processo de planeamento. Entre em contacto connosco e responderemos atempadamente."
 }

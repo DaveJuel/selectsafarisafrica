@@ -88,5 +88,6 @@
   "error_happened_contact_support": "出错了。请联系技术支持。",
   "contact_us": "联系我们",
   "loading": "加载中",
-  "unable_to_find_itineraries": "我们目前无法制定任何行程。如需进一步咨询，请联系我们。"
+  "unable_to_find_itineraries": "我们目前无法制定任何行程。如需进一步咨询，请联系我们。",
+  "planning_process_failed": "在计划过程中出现了一些问题，请联系我们，我们会及时回复您。"
 }

@@ -88,5 +88,6 @@
   "error_happened_contact_support": "Une erreur s'est produite. Veuillez contacter le support.",
   "contact_us": "Contactez-nous",
   "loading": "Chargement",
-  "unable_to_find_itineraries": "Nous n'avons pas pu établir d'itinéraires pour le moment. N'hésitez pas à nous contacter pour de plus amples informations."
+  "unable_to_find_itineraries": "Nous n'avons pas pu établir d'itinéraires pour le moment. N'hésitez pas à nous contacter pour de plus amples informations.",
+  "planning_process_failed": "Un problème s'est produit au cours du processus de planification. N'hésitez pas à nous contacter, nous vous répondrons dans les plus brefs délais."
 }

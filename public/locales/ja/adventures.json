@@ -88,5 +88,6 @@
   "error_happened_contact_support": "何か問題が発生しました。サポートにご連絡ください。",
   "contact_us": "お問い合わせ",
   "loading": "ローディング",
-  "unable_to_find_itineraries": "現在、旅程を組むことができません。詳しくはお問い合わせください。"
+  "unable_to_find_itineraries": "現在、旅程を組むことができません。詳しくはお問い合わせください。",
+  "planning_process_failed": "プランニングの過程で何か問題が発生しました。"
 }

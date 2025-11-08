@@ -120,5 +120,6 @@
   "error_happened_contact_support": "Something went wrong. Please contact support.",
   "contact_us": "Contact Us",
   "loading": "Loading",
-  "unable_to_find_itineraries": "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry."
+  "unable_to_find_itineraries": "We couldn't make any itineraries at the moment. Please reach out to us for further inquiry.",
+  "planning_process_failed": "Something went wrong during the planning process, please reach out to us we shall get back to you in time."
 }
