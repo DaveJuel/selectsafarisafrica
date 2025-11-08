@@ -49,6 +49,6 @@ export const LanguageButton = styled.button`
 
   &:hover {
     background: #ffffff20;
-    border-color: #4a4a4a80;
+    border-color: #0E5D3B;
   }
 `;
