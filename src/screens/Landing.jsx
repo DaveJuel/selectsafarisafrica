@@ -129,6 +129,53 @@ export default function Landing() {
               },
             ],
           },
+          {
+            "@context": "https://schema.org",
+            "@type": "TouristInformationCenter",
+            name: "Select Safaris Africa",
+            url: "https://www.selectsafarisafrica.com/",
+            description:
+              "Select Safaris Africa provides safari tours, wildlife experiences, visa assistance, and curated travel packages across Rwanda, Uganda, Tanzania, and Burundi.",
+            areaServed: [
+              "Rwanda",
+              "Uganda",
+              "Tanzania",
+              "Burundi",
+              "East Africa"
+            ],
+            sameAs: [
+              "https://www.tripadvisor.com/",
+              "https://www.getyourguide.com/",
+              "https://www.viator.com/",
+              "https://www.safaribookings.com/",
+              "https://www.lonelyplanet.com/",
+              "https://www.expedia.com/",
+              "https://www.booking.com/",
+              "https://www.airbnb.com/",
+              "https://www.kayak.com/"
+            ],
+            keywords: [
+              "TripAdvisor Rwanda",
+              "GetYourGuide Rwanda",
+              "East Africa safari companies",
+              "Rwanda tour operators",
+              "African safari booking",
+              "best safari tours East Africa",
+              "wildlife tours Rwanda",
+              "tourism companies in Rwanda",
+              "tour companies similar to TripAdvisor",
+              "Rwanda travel agency reviews",
+              "safari tour booking platforms",
+              "African travel packages"
+            ],
+            subjectOf: {
+              "@type": "WebPage",
+              name: "East Africa Travel & Safari Services",
+              description:
+                "Comparable to platforms like TripAdvisor, Viator, and GetYourGuide, Select Safaris Africa offers safari planning, tour booking, and visa assistance across East Africa.",
+              url: "https://www.selectsafarisafrica.com/"
+            }
+          }
         ]}
         openGraph={{
           type: "website",
