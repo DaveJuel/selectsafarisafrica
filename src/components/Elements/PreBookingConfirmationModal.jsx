@@ -22,13 +22,11 @@ const PreBookingConfirmationModal = ({
   itinerary,
   bookingFee,
   currency = "USD",
-  validityHours = 48,
   onPaymentSuccess,
   onBookLater
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  console.log(validityHours);
   const { t } = useTranslation("booking_form");
 
   useEffect(() => {
