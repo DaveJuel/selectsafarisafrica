@@ -54,7 +54,7 @@ export default function BookingDetails() {
         setLoading(true);
         const bookingResponse = await fetchEntityTranslatedData(
           "bookings",
-          language
+          'en'
         );
         if (!bookingResponse.success) return;
         const booking = bookingResponse.result?.find(
@@ -71,9 +71,9 @@ export default function BookingDetails() {
           itineraryActivitiesResponse,
           activitiesResponse,
         ] = await Promise.all([
-          fetchEntityTranslatedData("itineraries", language),
-          fetchEntityTranslatedData("itinirary_activities", language),
-          fetchEntityTranslatedData("activities", language),
+          fetchEntityTranslatedData("itineraries", 'en'),
+          fetchEntityTranslatedData("itinirary_activities", 'en'),
+          fetchEntityTranslatedData("activities", 'en'),
         ]);
 
         if (itineraryResponse.success) {

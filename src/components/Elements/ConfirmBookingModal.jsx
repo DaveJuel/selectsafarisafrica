@@ -43,7 +43,9 @@ const ConfirmBookingModal = ({ isOpen, onClose, itinerary, bookingData }) => {
 
             <BookingCodeContainer>
               <BookingCodeLabel>{t("your_booking_code")}</BookingCodeLabel>
-              <BookingCodeValue onClick={() => window.open(`/booking/${bookingData.booking_code}`, "_blank")}>{bookingData.booking_code}</BookingCodeValue>
+              <BookingCodeValue onClick={() => {
+                navigator.clipboard.writeText(bookingData.booking_code);
+              }}>{bookingData.booking_code}</BookingCodeValue>
               <BookingCodeNote>
                 {t("code_usage")}
               </BookingCodeNote>
