@@ -151,3 +151,14 @@ export const PageDot = styled.button`
     height: 6px;
   }
 `;
+
+export const Ellipsis = styled.div`
+  font-size: 14px;
+  color: #7e5b40;
+  padding: 0 4px;
+  user-select: none;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+`;

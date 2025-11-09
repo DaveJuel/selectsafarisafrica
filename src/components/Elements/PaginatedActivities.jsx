@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchEntityTranslatedData } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
-import { ActivitiesContainer, ActivitiesGrid, ActivityChip, PageDot, PageIndicators, PaginationButton, PaginationContainer } from "../../style/paginated.activities.styles";
+import { ActivitiesContainer, ActivitiesGrid, ActivityChip, Ellipsis, PageDot, PageIndicators, PaginationButton, PaginationContainer } from "../../style/paginated.activities.styles";
 import useItemsPerPage from "../../utils/UserItemsPerPage";
 
 const PaginatedActivities = ({
@@ -10,7 +10,7 @@ const PaginatedActivities = ({
   handleActivityToggle,
   allActivities,
   setAllActivities,
-  activities, 
+  activities,
   setActivities,
   language
 }) => {
@@ -39,7 +39,7 @@ const PaginatedActivities = ({
       }
     };
     fetchActivities();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const PaginatedActivities = ({
       }
     };
     filterCountryActivities();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.country]);
 
   const goToPrevPage = () => {
@@ -67,6 +67,31 @@ const PaginatedActivities = ({
 
   const goToNextPage = () => {
     setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+  };
+
+  const getVisiblePages = (totalPages, currentPage) => {
+    const pages = [];
+
+    if (totalPages <= 7) {
+      return [...Array(totalPages)].map((_, i) => i);
+    }
+
+    pages.push(0);
+
+    if (currentPage > 2) pages.push("left-ellipsis");
+
+    const start = Math.max(1, currentPage - 1);
+    const end = Math.min(totalPages - 2, currentPage + 1);
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (currentPage < totalPages - 3) pages.push("right-ellipsis");
+
+    pages.push(totalPages - 1);
+
+    return pages;
   };
 
   return (
@@ -98,13 +123,18 @@ const PaginatedActivities = ({
               </PaginationButton>
 
               <PageIndicators>
-                {Array.from({ length: totalPages }, (_, index) => (
-                  <PageDot
-                    type="button"
-                    key={index}
-                    active={index === currentPage}
-                  />
-                ))}
+                {getVisiblePages(totalPages, currentPage).map((p, index) =>
+                  p === "left-ellipsis" || p === "right-ellipsis" ? (
+                    <Ellipsis key={index}>…</Ellipsis>
+                  ) : (
+                    <PageDot
+                      key={index}
+                      type="button"
+                      active={p === currentPage}
+                      // onClick={() => goToPage(p)}
+                    />
+                  )
+                )}
               </PageIndicators>
 
               <PaginationButton
