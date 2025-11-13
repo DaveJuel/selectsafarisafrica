@@ -95,21 +95,28 @@ export const ButtonGroupWrapper = styled.div`
   }
 
   @media (max-width: 1024px) {
-    /* 3 per row on medium screens */
+    /* 3 per row */
     & > button {
       flex: 1 0 calc(33.33% - 12px);
     }
   }
 
   @media (max-width: 768px) {
-    /* 2 per row on tablets */
+    /* 2 per row */
     & > button {
       flex: 1 0 calc(50% - 12px);
     }
   }
 
   @media (max-width: 480px) {
-    /* 1 per row on small phones */
+    /* still 2 per row instead of 1 */
+    & > button {
+      flex: 1 0 calc(50% - 12px);
+    }
+  }
+
+  @media (max-width: 360px) {
+    /* 1 per row for very small phones */
     & > button {
       flex: 1 0 100%;
     }
