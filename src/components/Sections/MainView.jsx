@@ -151,6 +151,7 @@ export default function MainView() {
         setBookingData={setBookingData}
         tripData={formData}
         isPersisting={isPersisting}
+        language={language}
       />
       <ConfirmBookingModal
         isOpen={isConfirmModalOpen}

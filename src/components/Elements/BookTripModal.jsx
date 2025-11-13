@@ -4,6 +4,7 @@ import {
   fetchEntityTranslatedData,
   intelligenceUrl,
   makeApiRequest,
+  refreshTranslatedData,
 } from "../../utils/RequestHandler";
 import LoadingSpinner from "./LoadingSpinner";
 import EmptyStateView from "./EmptyStateView";
@@ -41,7 +42,8 @@ const BookTripModal = ({
   itinerary,
   handlePreview,
   setBookingData,
-  isPersisting
+  isPersisting,
+  language
 }) => {
   const [loading, setLoading] = useState(true);
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
@@ -202,6 +204,7 @@ const BookTripModal = ({
             booking_code: "",
           });
           setErrors({});
+          refreshTranslatedData("bookings", language);
           onClose();
           handlePreview();
         }
