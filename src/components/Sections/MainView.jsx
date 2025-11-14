@@ -13,6 +13,7 @@ import { filterItineraries } from "../../utils/DataHandler";
 import { useTranslation } from "react-i18next";
 import PreBookingConfirmationModal from "../Elements/PreBookingConfirmationModal";
 import SetLanguageModal from "../Elements/SetLanguageModal";
+import { supportedLanguages } from "../../utils/RequestHandler";
 
 export default function MainView() {
   const [itineraries, setItineraries] = useState(null);
@@ -37,7 +38,7 @@ export default function MainView() {
   const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
 
-  const supportedLanguages = ["en", "fr", "zh", "ar", "es", "pt-pt", "ja", "ko"];
+  
 
   const { i18n } = useTranslation("common");
 
