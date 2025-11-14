@@ -65,7 +65,7 @@ const BookTripModal = ({
   useEffect(() => {
     const fetchBookingStatus = async () => {
       try {
-        const response = await fetchEntityTranslatedData("booking_statuses");
+        const response = await fetchEntityTranslatedData("booking_statuses", language);
         if (response.success) {
           const defaultStatus = response.result?.find(
             (item) => item.status.toLowerCase() === "pending"
