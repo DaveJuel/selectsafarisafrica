@@ -81,6 +81,7 @@ const BookTripModal = ({
 
     setFormStatus({ message: "", type: "" });
     fetchBookingStatus();
+    // eslint-disable-next-line
   }, [itinerary?.id]);
 
   const [errors, setErrors] = useState({});

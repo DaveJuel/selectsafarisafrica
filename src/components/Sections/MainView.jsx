@@ -50,8 +50,7 @@ export default function MainView() {
       setLanguage(savedLang);
     } else {
       const defaultLang = i18n.language || window.navigator.language || "en";
-      const normalized = defaultLang.split("-")[0];
-      const finalLang = supportedLanguages.includes(normalized) ? normalized : "en";
+      const finalLang = supportedLanguages.includes(defaultLang) ? defaultLang : "en";
       i18n.changeLanguage(finalLang);
       localStorage.setItem("app_language", finalLang);
       setLanguage(finalLang);

@@ -75,10 +75,7 @@ export const fetchEntityData = async (entityName, isProtected = false) => {
 
 export const normalizeLang = (lang = "en") => {
   if (!lang) return "en";
-
-  const baseLang = lang.toLowerCase().split("-")[0];
-
-  return supportedLanguages.includes(baseLang) ? baseLang : "en";
+  return supportedLanguages.includes(lang) ? lang : "en";
 };
 
 /**
