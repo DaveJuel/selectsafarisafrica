@@ -50,5 +50,6 @@
   "pay_later": "Pagar depois",
   "pay_later_results": "A sua reserva permanecerá reservada durante 48 horas",
   "pay_later_expiry": "Se o pagamento não for efectuado dentro desse prazo, o contrato caducará.",
-  "choose_process": "Escolha como pretende proceder à sua reserva."
+  "choose_process": "Escolha como pretende proceder à sua reserva.",
+  "pending": "Pendente"
 }

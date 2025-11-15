@@ -1,0 +1,21 @@
+{
+  "home": "Главная",
+  "about_us": "О нас",
+  "contact_us": "Свяжитесь с нами",
+  "where_to": "Куда?",
+  "select_country": "Выберите страну",
+  "days_away": "Дни напролет",
+  "choose_adventure": "Выбери свое приключение",
+  "selected": "Избранное",
+  "make_it_happen": "Сделайте это",
+  "day": "День",
+  "days": "Дни",
+  "invoice_preparing": "Подготовка счета-фактуры",
+  "fetching_booking_details": "Получение информации о бронировании",
+  "invoice_downloaded": "Счет-фактура успешно загружен. Вы можете закрыть эту страницу.",
+  "select_language": "Настройка языка",
+  "region_americas": "Америка",
+  "region_europe": "Европа",
+  "region_middle_east": "Ближний Восток",
+  "region_asia": "Азия"
+}

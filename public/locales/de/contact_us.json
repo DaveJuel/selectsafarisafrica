@@ -1,0 +1,14 @@
+{
+  "reach_out": "Sprechen Sie uns an",
+  "reach_out_message": "Wir würden uns freuen, von Ihnen zu hören. Schicken Sie uns eine Nachricht und wir werden so\n so schnell wie möglich.",
+  "full_name": "Vollständiger Name",
+  "enter_full_name": "Geben Sie Ihren vollständigen Namen ein",
+  "email_address": "E-Mail Adresse",
+  "enter_email_address": "Geben Sie Ihre E-Mail Adresse ein",
+  "message": "Nachricht",
+  "message_placeholder": "Sagen Sie uns, was Sie auf dem Herzen haben...",
+  "send_message": "Nachricht senden",
+  "failed_to_send_message": "Nachricht konnte nicht gesendet werden.",
+  "message_sent": "Nachricht erfolgreich gesendet.",
+  "error_occurred": "Fehler aufgetreten!"
+}

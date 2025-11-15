@@ -1,0 +1,21 @@
+{
+  "home": "Startseite",
+  "about_us": "Über uns",
+  "contact_us": "Kontakt",
+  "where_to": "Wohin?",
+  "select_country": "Wählen Sie ein Land",
+  "days_away": "Auswärtige Tage",
+  "choose_adventure": "Wählen Sie Ihr Abenteuer",
+  "selected": "Ausgewählte",
+  "make_it_happen": "Machen Sie es möglich",
+  "day": "Tag",
+  "days": "Tage",
+  "invoice_preparing": "Ihre Rechnung vorbereiten",
+  "fetching_booking_details": "Abrufen von Buchungsdetails",
+  "invoice_downloaded": "Die Rechnung wurde erfolgreich heruntergeladen. Sie können diese Seite schließen.",
+  "select_language": "Sprache konfigurieren",
+  "region_americas": "Amerika",
+  "region_europe": "Europa",
+  "region_middle_east": "Naher Osten",
+  "region_asia": "Asien"
+}

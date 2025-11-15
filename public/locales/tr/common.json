@@ -1,0 +1,21 @@
+{
+  "home": "Ev",
+  "about_us": "Hakkımızda",
+  "contact_us": "Bize Ulaşın",
+  "where_to": "Nereye?",
+  "select_country": "Bir ülke seçin",
+  "days_away": "Uzak Günler",
+  "choose_adventure": "Maceranızı seçin",
+  "selected": "Seçilmiş",
+  "make_it_happen": "Bunu Gerçekleştirin",
+  "day": "Gün",
+  "days": "Günler",
+  "invoice_preparing": "Faturanızı hazırlama",
+  "fetching_booking_details": "Rezervasyon ayrıntılarını getirme",
+  "invoice_downloaded": "Fatura başarıyla indirildi. Bu sayfayı kapatabilirsiniz.",
+  "select_language": "Dili Yapılandır",
+  "region_americas": "Amerika",
+  "region_europe": "Avrupa",
+  "region_middle_east": "Orta Doğu",
+  "region_asia": "Asya"
+}

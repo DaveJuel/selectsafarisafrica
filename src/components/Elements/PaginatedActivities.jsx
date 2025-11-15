@@ -29,8 +29,9 @@ const PaginatedActivities = ({
       try {
         const response = await fetchEntityTranslatedData("activities", language);
         if (response.success) {
-          setActivities(response.result);
-          setAllActivities(response.result);
+          const data = Array.isArray(response.result) ? response.result : [];
+          setActivities(data);
+          setAllActivities(data);
         }
       } catch (error) {
         console.error(`Failed to fetch activities`, error);
@@ -131,7 +132,7 @@ const PaginatedActivities = ({
                       key={index}
                       type="button"
                       active={p === currentPage}
-                      // onClick={() => goToPage(p)}
+                    // onClick={() => goToPage(p)}
                     />
                   )
                 )}

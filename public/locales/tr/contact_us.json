@@ -1,0 +1,14 @@
+{
+  "reach_out": "Bize Ulaşın",
+  "reach_out_message": "Sizden haber almak isteriz. Bize bir mesaj gönderin, size şu şekilde yanıt verelim\n mümkün olduğunca çabuk.",
+  "full_name": "Tam adınız",
+  "enter_full_name": "Tam adınızı girin",
+  "email_address": "E-posta Adresi",
+  "enter_email_address": "E-posta adresinizi girin",
+  "message": "Mesaj",
+  "message_placeholder": "Bize aklından geçenleri anlat.",
+  "send_message": "Mesaj Gönder",
+  "failed_to_send_message": "Mesaj gönderilemedi.",
+  "message_sent": "Mesaj başarıyla gönderildi.",
+  "error_occurred": "Hata oluştu!"
+}

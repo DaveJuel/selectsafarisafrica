@@ -27,20 +27,24 @@ const SetLanguageModal = ({ isOpen, onClose, onLanguageSelect, language }) => {
             region: "region_americas",
             languages: [
                 { code: "en", label: "English" },
-                { code: "es", label: "Español" }
+                { code: "es", label: "Español" },
+                { code: "pt-br", label: "Português (Brasil)" }
             ]
         },
         {
             region: "region_europe",
             languages: [
                 { code: "fr", label: "Français" },
-                { code: "pt-pt", label: "Português" }
+                { code: "pt-pt", label: "Português" },
+                { code: "ru", label: "Русский" },
+                { code: "de", label: "Deutsch" }
             ]
         },
         {
             region: "region_middle_east",
             languages: [
-                { code: "ar", label: "العربية" }
+                { code: "ar", label: "العربية" },
+                { code: "tr", label: "Türkçe" }
             ]
         },
         {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchEntityTranslatedData } from "../utils/RequestHandler";
+import { fetchEntityTranslatedData, supportedLanguages } from "../utils/RequestHandler";
 import {
   getFormattedTripDate,
   sortItineraryActivities,
@@ -32,16 +32,20 @@ export default function BookingDetails() {
   const { t, i18n } = useTranslation("booking_details");
 
   useEffect(() => {
-    if (i18n.isInitialized) {
-      const detectedLang = i18n.language || window.navigator.language;
-      setLanguage(detectedLang);
+    const savedLang = localStorage.getItem("app_language");
+
+    if (savedLang) {
+      i18n.changeLanguage(savedLang);
+      setLanguage(savedLang);
     } else {
-      i18n.on("initialized", () => {
-        const detectedLang = i18n.language || window.navigator.language;
-        setLanguage(detectedLang);
-      });
+      const defaultLang = i18n.language || window.navigator.language || "en";
+      const finalLang = supportedLanguages.includes(defaultLang) ? defaultLang : "en";
+      i18n.changeLanguage(finalLang);
+      localStorage.setItem("app_language", finalLang);
+      setLanguage(finalLang);
     }
-  }, [i18n]);
+    // eslint-disable-next-line
+  }, []);
 
   const goHome = () => {
     navigate("/");
@@ -113,12 +117,18 @@ export default function BookingDetails() {
 
     try {
       setIsPrinting(true);
+      const emergencies = getEmergencyContacts(itinerary.country).map((emergencyContact)=>{
+        return {
+          ...emergencyContact,
+          service: t(emergencyContact.service)
+        }
+      });
       const payload = {
         bookingData,
         itinerary,
         activities: itiniraryActivities,
         activitiesDetails,
-        emergencyContacts: getEmergencyContacts(itinerary.country),
+        emergencyContacts: emergencies,
       };
 
       const response = await fetch(

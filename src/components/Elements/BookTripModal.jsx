@@ -68,7 +68,7 @@ const BookTripModal = ({
         const response = await fetchEntityTranslatedData("booking_statuses", language);
         if (response.success) {
           const defaultStatus = response.result?.find(
-            (item) => item.status.toLowerCase() === "pending"
+            (item) => item.status.toLowerCase() === t("pending").toLowerCase()
           );
           setDefaultBookingStatus(defaultStatus);
         }

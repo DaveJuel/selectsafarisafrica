@@ -50,5 +50,6 @@
   "pay_later": "稍后支付",
   "pay_later_results": "您的预订将保留 48 小时",
   "pay_later_expiry": "如果在此期间未完成付款，则过期作废。",
-  "choose_process": "选择预订方式。"
+  "choose_process": "选择预订方式。",
+  "pending": "待定"
 }

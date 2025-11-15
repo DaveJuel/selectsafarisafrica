@@ -45,7 +45,7 @@ export default function TouristForm({
         const landCode = localStorage.getItem("app_language");
         const response = await fetchEntityTranslatedData("countries", landCode);
         if (response.success) {
-          setCountries(response.result);
+          setCountries(Array.isArray(response.result) ? response.result : []);
           const defaultCountry = response.result[0];
           if (defaultCountry) {
             setFormData((prev) => ({

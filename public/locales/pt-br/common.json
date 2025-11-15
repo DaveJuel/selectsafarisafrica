@@ -1,0 +1,21 @@
+{
+  "home": "Início",
+  "about_us": "Sobre nós",
+  "contact_us": "Entre em contato conosco",
+  "where_to": "Para onde?",
+  "select_country": "Selecione um país",
+  "days_away": "Dias de folga",
+  "choose_adventure": "Escolha sua aventura",
+  "selected": "Selecionado",
+  "make_it_happen": "Faça acontecer",
+  "day": "Dia",
+  "days": "Dias",
+  "invoice_preparing": "Preparação de sua fatura",
+  "fetching_booking_details": "Obtenção de detalhes da reserva",
+  "invoice_downloaded": "A fatura foi baixada com sucesso. Você pode fechar esta página.",
+  "select_language": "Configurar idioma",
+  "region_americas": "América",
+  "region_europe": "Europa",
+  "region_middle_east": "Oriente Médio",
+  "region_asia": "Ásia"
+}
