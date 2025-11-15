@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchEntityData } from "../utils/RequestHandler";
+import { fetchEntityTranslatedData, supportedLanguages } from "../utils/RequestHandler";
 import { getEmergencyContacts } from "../data/emergency.contacts";
 import LoadingSpinner from "../components/Elements/LoadingSpinner";
 import { useTranslation } from "react-i18next";
@@ -15,14 +15,31 @@ export default function InvoiceDownloadPage() {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [activitiesDetails, setActivitiesDetails] = useState([]);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [language, setLanguage] = useState(null);
 
-  const { t } = useTranslation("common");
+  const { t , i18n} = useTranslation("common");
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem("app_language");
+
+    if (savedLang) {
+      i18n.changeLanguage(savedLang);
+      setLanguage(savedLang);
+    } else {
+      const defaultLang = i18n.language || window.navigator.language || "en";
+      const finalLang = supportedLanguages.includes(defaultLang) ? defaultLang : "en";
+      i18n.changeLanguage(finalLang);
+      localStorage.setItem("app_language", finalLang);
+      setLanguage(finalLang);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   // 1️⃣ Fetch all required data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const bookingResponse = await fetchEntityData("bookings");
+        const bookingResponse = await fetchEntityTranslatedData("bookings", language);
         if (!bookingResponse.success) return;
 
         const booking = bookingResponse.result?.find(
@@ -38,9 +55,9 @@ export default function InvoiceDownloadPage() {
           itineraryActivitiesResponse,
           activitiesResponse,
         ] = await Promise.all([
-          fetchEntityData("itineraries"),
-          fetchEntityData("itinirary_activities"),
-          fetchEntityData("activities"),
+          fetchEntityTranslatedData("itineraries", language),
+          fetchEntityTranslatedData("itinirary_activities", language),
+          fetchEntityTranslatedData("activities", language),
         ]);
 
         if (itineraryResponse.success) {
@@ -69,7 +86,7 @@ export default function InvoiceDownloadPage() {
     };
 
     fetchData();
-  }, [bookingCode]);
+  }, [bookingCode, language]);
 
   // 3️⃣ Handle invoice download
   const handleDownloadInvoice = async () => {
@@ -82,6 +99,7 @@ export default function InvoiceDownloadPage() {
         activities: itineraryActivities,
         activitiesDetails,
         emergencyContacts: getEmergencyContacts(itinerary.country),
+        language: language
       };
 
       const response = await fetch(

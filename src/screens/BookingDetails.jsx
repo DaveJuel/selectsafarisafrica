@@ -129,6 +129,7 @@ export default function BookingDetails() {
         activities: itiniraryActivities,
         activitiesDetails,
         emergencyContacts: emergencies,
+        language: language
       };
 
       const response = await fetch(
