@@ -23,8 +23,8 @@ export default function App() {
           <Route path="/home" element={<Landing />} />
           <Route path="/booking/:bookingCode" element={<BookingDetails />} />
           <Route path="/invoice/:bookingCode" element={<InvoiceDownloadPage />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
-          <Route path="/cancellation" element={<CancellationPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/cancellation-policy" element={<CancellationPolicy />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
         </Route>
       </Routes>

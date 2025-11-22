@@ -51,5 +51,10 @@
   "pay_later_results": "您的预订将保留 48 小时",
   "pay_later_expiry": "如果在此期间未完成付款，则过期作废。",
   "choose_process": "选择预订方式。",
-  "pending": "待定"
+  "pending": "待定",
+  "accept_terms_prefix": "我接受",
+  "terms_and_conditions": "条款和条件",
+  "accept_terms_and": "和",
+  "cancellation_policy": "取消政策",
+  "coming_soon": "即将推出"
 }

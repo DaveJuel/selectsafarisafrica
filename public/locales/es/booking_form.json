@@ -51,5 +51,10 @@
   "pay_later_results": "Su reserva permanecerá reservada durante 48 horas",
   "pay_later_expiry": "Si el pago no se completa en ese plazo, caducará.",
   "choose_process": "Elija cómo desea proceder con su reserva.",
-  "pending": "Pendiente"
+  "pending": "Pendiente",
+  "accept_terms_prefix": "Acepto",
+  "terms_and_conditions": "Condiciones generales",
+  "accept_terms_and": "y",
+  "cancellation_policy": "Política de cancelación",
+  "coming_soon": "próximamente"
 }

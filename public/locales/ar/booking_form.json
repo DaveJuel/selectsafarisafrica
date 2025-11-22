@@ -51,5 +51,10 @@
   "pay_later_results": "سيظل حجزك محجوزاً لمدة 48 ساعة",
   "pay_later_expiry": "إذا لم تكتمل عملية الدفع خلال تلك الفترة، فستنتهي صلاحيتها.",
   "choose_process": "اختر الطريقة التي ترغب في متابعة حجزك بها.",
-  "pending": "قيد الانتظار"
+  "pending": "قيد الانتظار",
+  "accept_terms_prefix": "أقبل",
+  "terms_and_conditions": "الشروط والأحكام",
+  "accept_terms_and": "و",
+  "cancellation_policy": "سياسة الإلغاء",
+  "coming_soon": "قريباً"
 }

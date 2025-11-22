@@ -51,5 +51,10 @@
   "pay_later_results": "Rezervasyonunuz 48 saat boyunca saklı kalacaktır",
   "pay_later_expiry": "Ödeme bu süre içinde tamamlanmazsa, sona erecektir.",
   "choose_process": "Rezervasyonunuza nasıl devam etmek istediğinizi seçin.",
-  "pending": "Beklemede"
+  "pending": "Beklemede",
+  "accept_terms_prefix": "Kabul ediyorum.",
+  "terms_and_conditions": "Şartlar ve Koşullar",
+  "accept_terms_and": "ve",
+  "cancellation_policy": "İptal Politikası",
+  "coming_soon": "çok yakında"
 }

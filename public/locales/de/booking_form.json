@@ -51,5 +51,10 @@
   "pay_later_results": "Ihre Buchung bleibt für 48 Stunden reserviert.",
   "pay_later_expiry": "Wenn die Zahlung nicht innerhalb dieser Frist erfolgt, verfällt sie.",
   "choose_process": "Wählen Sie, wie Sie mit Ihrer Buchung fortfahren möchten.",
-  "pending": "Anhängig"
+  "pending": "Anhängig",
+  "accept_terms_prefix": "Ich akzeptiere",
+  "terms_and_conditions": "Bedingungen und Konditionen",
+  "accept_terms_and": "und",
+  "cancellation_policy": "Stornierungspolitik",
+  "coming_soon": "demnächst"
 }

@@ -51,5 +51,10 @@
   "pay_later_results": "Your booking will remain reserved for 48 hours",
   "pay_later_expiry": "If payment is not completed within that period, it will expire.",
   "choose_process": "Choose how you would like to proceed with your booking.",
-  "pending": "Pending"
+  "pending": "Pending",
+  "accept_terms_prefix": "I accept",
+  "terms_and_conditions": "Terms & Conditions",
+  "accept_terms_and": "and",
+  "cancellation_policy": "Cancellation Policy",
+  "coming_soon": "coming soon"
 }

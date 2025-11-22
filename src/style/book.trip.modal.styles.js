@@ -244,7 +244,7 @@ export const Input = styled.input`
     border-color: ${(props) => (props.hasError ? "#e74c3c" : "#10A969")};
     box-shadow: 0 0 0 3px
       ${(props) =>
-        props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(102, 126, 234, 0.1)"};
+    props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(102, 126, 234, 0.1)"};
   }
 
   &::placeholder {
@@ -309,7 +309,7 @@ export const ToggleButton = styled.button`
 
   &:hover {
     background-color: ${(props) =>
-      !props.active ? "#f0f0f0" : props.backgroundColor};
+    !props.active ? "#f0f0f0" : props.backgroundColor};
   }
 
   @media (max-width: 768px) {
@@ -348,6 +348,55 @@ export const LabelWithIcon = styled.label`
 `;
 
 
+export const LabelWithCheckbox = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  a {
+    color: #3366ff;
+    text-decoration: underline;
+
+    &:hover {
+      color: #1a44cc;
+    }
+  }
+
+  span {
+    display: inline;
+  }
+
+  @media (max-width: 768px) {
+    gap: 6px;
+    font-size: 13px;
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
+    font-size: 12px;
+
+    input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+    }
+  }
+`;
+
 export const Select = styled.select`
   width: 100%;
   padding: 12px;
@@ -364,7 +413,7 @@ export const Select = styled.select`
     border-color: ${(props) => (props.hasError ? "#e74c3c" : "#10A969")};
     box-shadow: 0 0 0 3px
       ${(props) =>
-        props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(102, 126, 234, 0.1)"};
+    props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(102, 126, 234, 0.1)"};
   }
 
   @media (max-width: 768px) {

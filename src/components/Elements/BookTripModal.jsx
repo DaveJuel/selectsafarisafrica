@@ -20,6 +20,7 @@ import {
   HeaderContent,
   Input,
   InputWrapper,
+  LabelWithCheckbox,
   LabelWithIcon,
   Loader,
   ModalContainer,
@@ -50,6 +51,7 @@ const BookTripModal = ({
   const [defaultBookingStatus, setDefaultBookingStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [contactMethod, setContactMethod] = useState("email");
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [formData, setFormData] = useState({
     client_name: "",
     client_contact: "",
@@ -232,6 +234,11 @@ const BookTripModal = ({
     setErrors({});
   };
 
+  const handleCheckboxChange = (e) => {
+    setTermsAccepted(e.target.checked);
+  };
+
+
   if (!isOpen) return null;
 
   return (
@@ -403,13 +410,40 @@ const BookTripModal = ({
                           <ErrorMessage>{t(errors.country_of_origin)}</ErrorMessage>
                         )}
                       </FormGroup>
+                      <FormGroup>
+                        <LabelWithCheckbox>
+                          <input
+                            type="checkbox"
+                            checked={termsAccepted}
+                            onChange={handleCheckboxChange}
+                          />
+                          <span>
+                            {t("accept_terms_prefix")}{" "}
+                            <a
+                              href="/terms-and-conditions"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {t("terms_and_conditions")}
+                            </a>{" "}
+                            {t("accept_terms_and")}{" "}
+                            <a
+                              href="/cancellation-policy"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {t("cancellation_policy")}
+                            </a>
+                          </span>
+                        </LabelWithCheckbox>
+                      </FormGroup>
                       <ButtonGroup>
                         <CancelButton type="button" onClick={onClose}>
                           {t("cancel_button")}
                         </CancelButton>
                         <SubmitButton
                           type="submit"
-                          disabled={isPersisting || isSubmitting || !itinerary.id}
+                          disabled={!termsAccepted || isPersisting || isSubmitting || !itinerary.id}
                         >
                           {isSubmitting ? (
                             <>

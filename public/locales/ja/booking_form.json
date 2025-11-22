@@ -51,5 +51,10 @@
   "pay_later_results": "ご予約は48時間有効です。",
   "pay_later_expiry": "その期間内に支払いが完了しなければ、失効する。",
   "choose_process": "予約の進め方を選択してください。",
-  "pending": "申請中"
+  "pending": "申請中",
+  "accept_terms_prefix": "私は受け入れる",
+  "terms_and_conditions": "ご利用条件",
+  "accept_terms_and": "そして",
+  "cancellation_policy": "キャンセルポリシー",
+  "coming_soon": "近日公開"
 }

@@ -51,5 +51,10 @@
   "pay_later_results": "예약은 48시간 동안 예약 상태로 유지됩니다.",
   "pay_later_expiry": "해당 기간 내에 결제가 완료되지 않으면 만료됩니다.",
   "choose_process": "예약 진행 방법을 선택하세요.",
-  "pending": "보류 중"
+  "pending": "보류 중",
+  "accept_terms_prefix": "동의합니다.",
+  "terms_and_conditions": "이용 약관",
+  "accept_terms_and": "그리고",
+  "cancellation_policy": "취소 정책",
+  "coming_soon": "곧 출시 예정"
 }
