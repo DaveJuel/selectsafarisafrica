@@ -35,7 +35,6 @@ export default function InvoiceDownloadPage() {
     // eslint-disable-next-line
   }, []);
 
-  // 1️⃣ Fetch all required data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,7 +87,6 @@ export default function InvoiceDownloadPage() {
     fetchData();
   }, [bookingCode, language]);
 
-  // 3️⃣ Handle invoice download
   const handleDownloadInvoice = async () => {
     try {
       setIsDownloading(true);
@@ -120,8 +118,6 @@ export default function InvoiceDownloadPage() {
       link.download = `invoice-${bookingCode}.pdf`;
       link.click();
       window.URL.revokeObjectURL(url);
-
-      // Optional: navigate away after a few seconds
       setTimeout(() => navigate("/"), 1500);
     } catch (error) {
       console.error("Invoice generation failed:", error);
@@ -130,7 +126,6 @@ export default function InvoiceDownloadPage() {
     }
   };
 
-  // 2️⃣ Automatically trigger invoice download after data is ready
   useEffect(() => {
     if (!loading && bookingData && itinerary) {
       handleDownloadInvoice();
@@ -138,7 +133,6 @@ export default function InvoiceDownloadPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, bookingData, itinerary]);
 
-  // 4️⃣ Show loading or downloading state
   if (loading || isDownloading) {
     return (
       <div

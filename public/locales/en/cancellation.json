@@ -1,0 +1,37 @@
+{
+  "cancellation_title": "CANCELLATION & REFUND POLICY",
+  "effective_date": "Effective Date: November 22nd, 2025",
+  "company": "Company: Peak Ventures LTD",
+  "brand": "Brand: Select Safaris Africa",
+  "welcome_text": "This Cancellation & Refund Policy (“Policy”) governs all cancellations, amendments, and refund requests relating to bookings made through Select Safaris Africa (“the Platform,” “we,” “us,” “our”). By confirming a booking, the Client (“you,” “your”) acknowledges and agrees to be bound by the provisions set forth herein.",
+
+  "general_title": "1. General Principles",
+  "general_text": "Peak Ventures LTD is committed to providing fair, transparent, and predictable cancellation terms while ensuring the sustainability of the tourism experiences we offer. Because safari and travel arrangements involve advance payments to accommodation providers, park authorities, and service partners, certain components of your booking may be partially or entirely non-refundable. This Policy applies to all travel packages, accommodations, transport arrangements, guided tours, and ancillary services booked through Select Safaris Africa.",
+
+  "client_cancellation_title": "2. Client-Initiated Cancellations",
+  "client_cancellation_text": "All cancellation requests must be submitted in writing to our official communication channels (email or customer portal). The date of receipt will determine refund eligibility.",
+  "standard_terms": "Standard Cancellation Terms:\n- Cancellations more than 60 days before travel: Eligible for a refund minus administrative fees and any non-refundable supplier costs.\n- Cancellations 31–60 days before travel: Up to 50% refund, subject to supplier terms.\n- Cancellations 15–30 days before travel: Up to 25% refund, subject to supplier terms.\n- Cancellations 14 days or less before travel: No refund is available.",
+  "non_refundable_title": "Non-Refundable Components",
+  "non_refundable_text": "Certain services cannot be refunded once booked, including but not limited to:\n- Park entrance permits\n- Gorilla and chimpanzee trekking permits\n- Domestic flights booked as part of your itinerary\n- Hotel or lodge rooms designated as “non-refundable”\n- Third-party activities or services with strict supplier contracts\nThese amounts will be fully deducted from any eligible refund.",
+
+  "amendments_title": "3. Amendments & Rescheduling",
+  "amendments_text": "Requests to modify travel dates, accommodations, or participant details must be submitted in writing. Approval is subject to:\n- Availability\n- Supplier amendment policies\n- Applicable amendment fees\nIf amended bookings incur higher costs, the Client is responsible for the price difference. Some bookings cannot be amended and may require cancellation under the terms above.",
+
+  "no_show_title": "4. No-Show Policy",
+  "no_show_text": "A “no-show” occurs when a Client fails to arrive or participate in a scheduled activity, check-in, or departure without prior notice. No-shows are not eligible for refunds under any circumstance. Missed transfers, activities, or safari days due to late arrival cannot be rescheduled or refunded.",
+
+  "company_cancellation_title": "5. Company-Initiated Cancellations",
+  "company_cancellation_text": "Peak Ventures LTD reserves the right to cancel or modify an itinerary due to circumstances beyond our reasonable control (“Force Majeure”), including:\n- Severe weather\n- Natural disasters\n- Political instability or civil unrest\n- Acts of government or park authorities\n- Strikes, epidemics, or public health threats\n- Operational disruptions affecting service partners\nIn such cases:\n- We will make reasonable efforts to offer alternative dates or comparable arrangements.\n- Refunds may be partially granted only to the extent recoverable from suppliers.\n- The Company is not liable for compensation beyond the amounts recovered from third-party service providers.",
+
+  "processing_title": "6. Processing of Refunds",
+  "processing_text": "Refunds, where applicable, will be processed within 14–30 business days, depending on supplier response times. All refunds will be issued through the original payment method unless otherwise arranged. Administrative fees, bank charges, and unrecoverable supplier expenses will be deducted from all eligible refunds.",
+
+  "insurance_title": "7. Travel Insurance Requirement",
+  "insurance_text": "We strongly advise all Clients to secure comprehensive travel insurance that covers:\n- Trip cancellations\n- Medical emergencies\n- Lost baggage\n- Travel interruptions\nInsurance claims must be handled directly with the insurance provider.",
+
+  "liability_title": "8. Limitation of Liability",
+  "liability_text": "Peak Ventures LTD shall not be held liable for losses arising from cancellations due to:\n- Visa denials\n- Failure to meet health requirements\n- Personal emergencies\n- Changes in personal circumstances\nOur liability, in all cases, is limited to the amount paid for the affected portion of the booking, minus non-refundable components.",
+
+  "acceptance_title": "9. Acceptance of Policy",
+  "acceptance_text": "By selecting “I accept the Cancellation & Refund Policy” during the booking process, you confirm that you have read, understood, and agreed to be bound by the terms of this Policy."
+}
