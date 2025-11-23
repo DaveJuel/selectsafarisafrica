@@ -17,5 +17,8 @@
   "region_americas": "Amérique",
   "region_europe": "L'Europe",
   "region_middle_east": "Moyen-Orient",
-  "region_asia": "Asie"
+  "region_asia": "Asie",
+  "product_of": "Un produit de",
+  "whatsapp_label": "Whatsapp",
+  "email_label": "Courriel"
 }

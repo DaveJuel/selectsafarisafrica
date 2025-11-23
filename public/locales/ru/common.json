@@ -17,5 +17,8 @@
   "region_americas": "Америка",
   "region_europe": "Европа",
   "region_middle_east": "Ближний Восток",
-  "region_asia": "Азия"
+  "region_asia": "Азия",
+  "product_of": "Продукт",
+  "whatsapp_label": "Whatsapp",
+  "email_label": "Электронная почта"
 }

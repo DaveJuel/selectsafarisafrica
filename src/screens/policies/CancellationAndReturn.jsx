@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/Elements/LoadingSpinner";
-import { ContentContainer, Section, SectionTitle, SectionText } from "../../style/policies.styles";
+import { ContentContainer, Section, SectionTitle, SectionText, FileTitle } from "../../style/policies.styles";
+import PolicyHeader from "../../components/Elements/PolicyHeader";
 
 export default function CancellationPolicy() {
     const { t } = useTranslation("cancellation");
@@ -25,11 +26,11 @@ export default function CancellationPolicy() {
 
     return (
         <ContentContainer>
+            <PolicyHeader />
+            <FileTitle>
+                {t("cancellation_title")}
+            </FileTitle>
             <Section>
-                <SectionTitle>{t("cancellation_title")}</SectionTitle>
-                <SectionText>{t("effective_date")}</SectionText>
-                <SectionText>{t("company")}</SectionText>
-                <SectionText>{t("brand")}</SectionText>
                 <SectionText>{t("welcome_text")}</SectionText>
             </Section>
 
@@ -79,6 +80,7 @@ export default function CancellationPolicy() {
             <Section>
                 <SectionTitle>{t("acceptance_title")}</SectionTitle>
                 <SectionText>{t("acceptance_text")}</SectionText>
+                <SectionText>{t("effective_date")}</SectionText>
             </Section>
         </ContentContainer>
     );

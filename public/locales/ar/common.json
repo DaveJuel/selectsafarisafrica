@@ -17,5 +17,8 @@
   "region_americas": "أمريكا",
   "region_europe": "أوروبا",
   "region_middle_east": "الشرق الأوسط",
-  "region_asia": "آسيا"
+  "region_asia": "آسيا",
+  "product_of": "منتج من",
+  "whatsapp_label": "واتس آب",
+  "email_label": "البريد الإلكتروني"
 }

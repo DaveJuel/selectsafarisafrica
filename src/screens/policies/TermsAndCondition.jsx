@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/Elements/LoadingSpinner";
-import { ContentContainer, Section, SectionTitle, SectionText } from "../../style/policies.styles";
+import { ContentContainer, Section, SectionTitle, SectionText, FileTitle } from "../../style/policies.styles";
+import PolicyHeader from "../../components/Elements/PolicyHeader";
 
 export default function TermsAndConditions() {
     const { t } = useTranslation("terms");
@@ -26,11 +27,11 @@ export default function TermsAndConditions() {
 
     return (
         <ContentContainer >
+            <PolicyHeader />
+            <FileTitle>
+                {t("terms_title")}
+            </FileTitle>
             <Section>
-                <SectionTitle>{t("terms_title")}</SectionTitle>
-                <SectionText>{t("effective_date")}</SectionText>
-                <SectionText>{t("company")}</SectionText>
-                <SectionText>{t("brand")}</SectionText>
                 <SectionText>{t("welcome_text")}</SectionText>
             </Section>
 
@@ -107,6 +108,7 @@ export default function TermsAndConditions() {
             <Section>
                 <SectionTitle>{t("acceptance_title")}</SectionTitle>
                 <SectionText>{t("acceptance_text")}</SectionText>
+                <SectionText>{t("effective_date")}</SectionText>
             </Section>
         </ContentContainer>
     );

@@ -17,5 +17,8 @@
   "region_americas": "미국",
   "region_europe": "유럽",
   "region_middle_east": "중동",
-  "region_asia": "아시아"
+  "region_asia": "아시아",
+  "product_of": "의 제품",
+  "whatsapp_label": "Whatsapp",
+  "email_label": "이메일"
 }

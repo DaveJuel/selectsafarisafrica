@@ -28,8 +28,25 @@ export const ContentContainer = styled.div`
 `;
 
 export const Section = styled.section`
-  margin-bottom: 32px;
-  page-break-inside: avoid; /* prevents section break in print */
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-bottom: 10px;
+  page-break-inside: avoid;
+`;
+
+export const FileTitle = styled.h1`
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+  color: #000000ff; /* eye-catching red highlight */
+  margin: 30px 0 25px 0;
+  padding: 12px 0;
+
+  background: rgba(255, 145, 0, 0.08); /* soft red highlight background */
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 export const SectionTitle = styled.h2`

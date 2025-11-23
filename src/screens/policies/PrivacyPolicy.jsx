@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/Elements/LoadingSpinner";
-import { ContentContainer, Section, SectionTitle, SectionText } from "../../style/policies.styles";
+import { ContentContainer, Section, SectionTitle, SectionText, FileTitle } from "../../style/policies.styles";
+import PolicyHeader from "../../components/Elements/PolicyHeader";
 
 export default function PrivacyPolicy() {
     const { t } = useTranslation("privacy_policy");
@@ -25,11 +26,11 @@ export default function PrivacyPolicy() {
 
     return (
         <ContentContainer>
+            <PolicyHeader />
+            <FileTitle>
+                {t("privacy_title")}
+            </FileTitle>
             <Section>
-                <SectionTitle>{t("privacy_title")}</SectionTitle>
-                <SectionText>{t("effective_date")}</SectionText>
-                <SectionText>{t("company")}</SectionText>
-                <SectionText>{t("brand")}</SectionText>
                 <SectionText>{t("welcome_text")}</SectionText>
             </Section>
 
@@ -89,6 +90,7 @@ export default function PrivacyPolicy() {
             <Section>
                 <SectionTitle>{t("contact_title")}</SectionTitle>
                 <SectionText>{t("contact_text")}</SectionText>
+                <SectionText>{t("effective_date")}</SectionText>
             </Section>
         </ContentContainer>
     );
