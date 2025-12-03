@@ -151,39 +151,55 @@ const BookTripModal = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  const notifyCustomerSuccess = async (booking) => {
-    const appUrl = process.env.REACT_APP_APP_URL;
-    const bookingRequest = {
-      booking_code: booking.booking_code,
-      itinerary: itinerary.name,
-      names: booking.client_name,
-      contact: booking.client_contact,
-      preview_link: `${appUrl}/booking/${booking.booking_code}`,
-      invoice_link: `${appUrl}/invoice/${booking.booking_code}`,
-    };
+  const notifyCustomerSuccess = async (booking, isPosted = true) => {
+    try {
+      const appUrl = process.env.REACT_APP_APP_URL;
+      let bookingRequest = {
+        booking_code: booking.booking_code,
+        itinerary: itinerary.name,
+        names: booking.client_name,
+        contact: booking.client_contact,
+        is_posted: isPosted
+      };
 
-    const requestData = {
-      chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
-      api_key: apiKey,
-      message: {
-        booking: bookingRequest,
-      },
-    };
-    await makeApiRequest("/notification/notify/telegram", "POST", requestData);
+      if (isPosted) {
+        bookingRequest = {
+          ...bookingRequest,
+          preview_link: `${appUrl}/booking/${booking.booking_code}`,
+          invoice_link: `${appUrl}/invoice/${booking.booking_code}`,
+        }
+      } else {
+        bookingRequest = {
+          ...bookingRequest,
+          error: 'An error occured: Booking not posted in the database. But you can follow up with the customer.',
+        }
+      }
+
+      const requestData = {
+        chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
+        api_key: apiKey,
+        message: {
+          booking: bookingRequest,
+        },
+      };
+      await makeApiRequest("/notification/notify/telegram", "POST", requestData);
+    } catch (error) {
+      console.error("Failed to submit notification", error);
+    }
   };
 
   const handleBookTrip = async (e) => {
     e.preventDefault();
+    const requestData = {
+      ...formData,
+      status: defaultBookingStatus?.id,
+      itinerary: itinerary?.id,
+      booking_code: generateBookingCode(formData),
+    };
+    let isPosted = false;
     try {
       if (validateForm()) {
         setIsSubmitting(true);
-        const requestData = {
-          ...formData,
-          status: defaultBookingStatus.id,
-          itinerary: itinerary.id,
-          booking_code: generateBookingCode(formData),
-        };
-
         const response = await fetch(`${intelligenceUrl}/api/entity/save/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -196,30 +212,27 @@ const BookTripModal = ({
         const data = await response.json();
         if (data.success) {
           setBookingData(requestData);
-          await notifyCustomerSuccess(requestData);
-          setFormData({
-            client_name: "",
-            client_contact: "",
-            trip_start_date: "",
-            country_of_origin: "",
-            preferred_language: "",
-            notes: "",
-            booking_code: "",
-          });
-          setErrors({});
+          isPosted = true;
           refreshTranslatedData("bookings", language);
-          onClose();
-          handlePreview();
         }
       }
     } catch (error) {
       console.error("Error saving data:", error);
-      setFormStatus({
-        message: "booking_error",
-        type: "error",
-      });
     } finally {
+      await notifyCustomerSuccess(requestData, isPosted);
+      setFormData({
+        client_name: "",
+        client_contact: "",
+        trip_start_date: "",
+        country_of_origin: "",
+        preferred_language: "",
+        notes: "",
+        booking_code: "",
+      });
       setIsSubmitting(false);
+      setErrors({});
+      onClose();
+      handlePreview();
     }
   };
 
