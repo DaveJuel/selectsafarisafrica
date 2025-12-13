@@ -8,9 +8,9 @@ import InvoiceDownloadPage from "./screens/InvoiceDownload.jsx";
 import TermsAndConditions from "./screens/policies/TermsAndCondition.jsx";
 import CancellationPolicy from "./screens/policies/CancellationAndReturn.jsx";
 import PrivacyPolicy from "./screens/policies/PrivacyPolicy.jsx";
-import Itineraries from "./screens/Itineraries.jsx";
-import ItineraryActivities from "./screens/ItineraryActivities.jsx";
-import Activities from "./screens/Activities.jsx";
+// import Itineraries from "./screens/Itineraries.jsx";
+// import ItineraryActivities from "./screens/ItineraryActivities.jsx";
+// import Activities from "./screens/Activities.jsx";
 
 export default function App() {
   return (
