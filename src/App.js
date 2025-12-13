@@ -8,6 +8,9 @@ import InvoiceDownloadPage from "./screens/InvoiceDownload.jsx";
 import TermsAndConditions from "./screens/policies/TermsAndCondition.jsx";
 import CancellationPolicy from "./screens/policies/CancellationAndReturn.jsx";
 import PrivacyPolicy from "./screens/policies/PrivacyPolicy.jsx";
+import Itineraries from "./screens/Itineraries.jsx";
+import ItineraryActivities from "./screens/ItineraryActivities.jsx";
+import Activities from "./screens/Activities.jsx";
 
 export default function App() {
   return (
@@ -21,6 +24,9 @@ export default function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Landing />} />
           <Route path="/home" element={<Landing />} />
+          {/* <Route path="/itineraries" element={<Itineraries />} />
+          <Route path="/itinerary-activities/:itinerary" element={<ItineraryActivities />} />
+          <Route path="/activities" element={<Activities />} /> */}
           <Route path="/booking/:bookingCode" element={<BookingDetails />} />
           <Route path="/invoice/:bookingCode" element={<InvoiceDownloadPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
