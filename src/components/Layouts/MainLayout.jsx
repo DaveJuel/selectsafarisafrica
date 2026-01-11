@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import BookTripModal from "../Elements/BookTripModal";
@@ -27,18 +27,11 @@ export default function MainLayout() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isSetLanguageModalOpen, setIsSetLanguageModalOpen] = useState(false);
   const [isPreConfirmModalOpen, setIsPreConfirmModalOpen] = useState(false);
-
-  const [currentView, setCurrentView] = useState("itiniraries");
-  const [hidePlanForm, setHidePlanForm] = useState(false);
   const [isPersisting, setIsPersisting] = useState(false);
 
-  const toggleView = (view) => {
-    setCurrentView(view);
-    setHidePlanForm(view !== "itiniraries");
-  };
+  const navigate = useNavigate();
 
   const handleItineraryFiltering = async () => {
-    toggleView("itiniraries");
     const result = await filterItineraries(
       formData.country,
       formData.days,
@@ -46,8 +39,16 @@ export default function MainLayout() {
       setLoadingMainView,
       language
     );
+
     setItineraries(result.itineraries);
     setItineraryActivities(result.itineraryActivities);
+
+    const params = new URLSearchParams({
+      country: formData.country,
+      days: formData.days,
+    });
+
+    navigate(`/itineraries?${params.toString()}`);
   };
 
   const handleConfirm = () => {
@@ -70,15 +71,12 @@ export default function MainLayout() {
           formData={formData}
           setFormData={setFormData}
           handleItineraryFiltering={handleItineraryFiltering}
-          toggleView={toggleView}
           loadingSidebar={loadingSidebar}
           setLoadingSidebar={setLoadingSidebar}
-          currentView={currentView}
           allActivities={allActivities}
           setAllActivities={setAllActivities}
           activities={activities}
           setActivities={setActivities}
-          hidePlanForm={hidePlanForm}
           language={language}
           showLanguageModal={() => setIsSetLanguageModalOpen(true)}
         />
@@ -92,9 +90,7 @@ export default function MainLayout() {
             setItineraryActivities,
             loadingMainView,
             allActivities,
-            currentView,
             formData,
-            toggleView,
             setIsPersisting,
             setIsModalOpen,
             language

@@ -17,8 +17,6 @@ export default function SidebarView({
   formData,
   setFormData,
   handleItineraryFiltering,
-  toggleView,
-  currentView,
   loading,
   allActivities,
   setAllActivities,
@@ -26,7 +24,6 @@ export default function SidebarView({
   setActivities,
   loadingSidebar,
   setLoadingSidebar,
-  hidePlanForm,
   language,
   showLanguageModal
 }) {
@@ -34,7 +31,7 @@ export default function SidebarView({
   const navigate = useNavigate();
 
   const isSmallScreen = useIsSmallScreen();
-  const shouldHideForm = isSmallScreen && hidePlanForm;
+  const shouldHideForm = isSmallScreen;
 
   const menuItems = [
     {
@@ -63,7 +60,6 @@ export default function SidebarView({
             <NavLink
               key={item.key}
               onClick={() => navigate(`/${item.key}`)}
-              active={item.key === currentView}
             >
               {t(item.menuKey)}
             </NavLink>
