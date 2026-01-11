@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardIcon, CardText, CardTitle, Content, GridSection, Header, HeaderTitle, Section, SectionText, SectionTitle, ViewWrapper } from "../../style/about.us.view.styles";
 
-export default function AboutUsView({ toggleView }) {
+export default function AboutUsView() {
   const { t } = useTranslation("about_us");
 
   return (

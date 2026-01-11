@@ -11,6 +11,7 @@ import {
   SidebarTitle,
 } from "../../style/sidebar.view.styles";
 import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
+import { useNavigate } from "react-router-dom";
 
 export default function SidebarView({
   formData,
@@ -30,6 +31,7 @@ export default function SidebarView({
   showLanguageModal
 }) {
   const { t } = useTranslation("common");
+  const navigate = useNavigate();
 
   const isSmallScreen = useIsSmallScreen();
   const shouldHideForm = isSmallScreen && hidePlanForm;
@@ -37,7 +39,7 @@ export default function SidebarView({
   const menuItems = [
     {
       menuKey: "home",
-      key: "itiniraries",
+      key: "home",
     },
     {
       menuKey: "about_us",
@@ -60,7 +62,7 @@ export default function SidebarView({
           {menuItems.map((item) => (
             <NavLink
               key={item.key}
-              onClick={() => toggleView(item.key)}
+              onClick={() => navigate(`/${item.key}`)}
               active={item.key === currentView}
             >
               {t(item.menuKey)}
