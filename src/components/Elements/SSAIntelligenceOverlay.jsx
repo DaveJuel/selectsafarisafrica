@@ -207,6 +207,7 @@ const SSAIntelligenceOverlay = ({
         fetchActivities();
       } catch (e) {
         console.error(`Something went wrong ${e}`);
+        setMessages((prev) => [...prev, { sender: "ai", content: t("error_happened_contact_support")}]);
       } finally {
         setAwaitingReply(false);
       }

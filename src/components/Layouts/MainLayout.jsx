@@ -98,6 +98,11 @@ export default function MainLayout() {
         />
       </ContentContainer>
 
+
+      {/* <FloatingChatButton onClick={() => alert("Chat feature coming soon!")}>
+        💬
+      </FloatingChatButton> */}
+
       {/* Modals */}
       <BookTripModal
         isOpen={isModalOpen}

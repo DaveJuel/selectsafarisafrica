@@ -68,3 +68,39 @@ export const ViewSection = styled.div`
     overflow-y: visible;
   }
 `;
+
+
+export const FloatingChatButton = styled.button`
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+
+  z-index: 9999;
+
+  &:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  @media (max-width: 480px) {
+    bottom: 16px;
+    right: 16px;
+  }
+`;
