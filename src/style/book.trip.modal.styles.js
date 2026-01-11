@@ -585,3 +585,122 @@ export const Loader = styled.div`
     border-width: 1.2px;
   }
 `;
+
+export const HotelGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+`;
+
+export const HotelCard = styled.button`
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  border: 2px solid
+    ${({ active }) => (active ? "#0E5033" : "rgba(14, 80, 51, 0.2)")};
+
+  box-shadow: ${({ active }) =>
+    active ? "0 6px 18px rgba(14, 80, 51, 0.15)" : "none"};
+
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: #0e5033;
+  }
+`;
+
+export const HotelTitle = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  color: #0e5033;
+  margin-bottom: 4px;
+`;
+
+export const HotelStars = styled.div`
+  font-size: 14px;
+  margin-bottom: 6px;
+`;
+
+export const HotelDescription = styled.div`
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+`;
+
+export const MealGrid = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+export const MealToggle = styled.button`
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: white;
+  border: 2px solid
+    ${({ active }) => (active ? "#0E5033" : "rgba(14, 80, 51, 0.25)")};
+  color: #0e5033;
+  font-weight: 500;
+  cursor: pointer;
+
+  box-shadow: ${({ active }) =>
+    active ? "0 4px 12px rgba(14, 80, 51, 0.15)" : "none"};
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #0e5033;
+  }
+`;
+
+export const TransportGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+`;
+
+export const TransportCard = styled.button`
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  border: 2px solid
+    ${({ active }) => (active ? "#0E5033" : "rgba(14, 80, 51, 0.2)")};
+
+  box-shadow: ${({ active }) =>
+    active ? "0 6px 18px rgba(14, 80, 51, 0.15)" : "none"};
+
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: #0e5033;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  width: 42px;
+  height: 42px;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+export const TransportTitle = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  color: #0e5033;
+  margin-bottom: 4px;
+`;
+
+export const TransportDescription = styled.div`
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+`;

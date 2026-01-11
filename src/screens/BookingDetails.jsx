@@ -12,9 +12,9 @@ import {
   ContentContainer,
   ExportButton,
 } from "../style/booking.details.styles";
-import HeaderSectionView from "../components/Sections/BookingDetails.js/HeaderSectionView";
-import BodySectionView from "../components/Sections/BookingDetails.js/BodySectionView";
-import FooterSectionView from "../components/Sections/BookingDetails.js/FooterSection";
+import HeaderSectionView from "../components/Sections/BookingDetails/HeaderSectionView";
+import BodySectionView from "../components/Sections/BookingDetails/BodySectionView";
+import FooterSectionView from "../components/Sections/BookingDetails/FooterSection";
 import { useTranslation } from "react-i18next";
 
 export default function BookingDetails() {
