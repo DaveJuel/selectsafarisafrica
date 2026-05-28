@@ -6,7 +6,7 @@ export default function Landing() {
     <>
       <SEO
         title="Select Safaris Africa | Safari Tours, Visa Assistance & Travel Packages in Rwanda, Tanzania, Uganda & Burundi"
-        description="Plan your African adventure with Select Safaris Africa. We arrange safaris, tours, and visa assistance for unforgettable trips across Rwanda, Tanzania, Uganda & Burundi. Explore wildlife, culture, and nature—all in one trusted travel package."
+        description="Explore gorilla trekking, safari tours, visa assistance, and East Africa travel packages across Rwanda, Uganda, Tanzania, and Burundi."
         image="https://www.selectsafarisafrica.com/assets/bg_image1.jpg"
         url="https://www.selectsafarisafrica.com/"
         schema={{
@@ -144,15 +144,11 @@ export default function Landing() {
               "East Africa"
             ],
             sameAs: [
-              "https://www.tripadvisor.com/",
-              "https://www.getyourguide.com/",
-              "https://www.viator.com/",
-              "https://www.safaribookings.com/",
-              "https://www.lonelyplanet.com/",
-              "https://www.expedia.com/",
-              "https://www.booking.com/",
-              "https://www.airbnb.com/",
-              "https://www.kayak.com/"
+              // Need to put social media links here
+              "https://x.com/selectsafaris",
+              "https://www.instagram.com/selectsafarisafrica/",
+              "https://www.tiktok.com/@selectsafarisafrica",
+              "https://www.linkedin.com/in/select-safaris-africa-346087395/"
             ],
             keywords: [
               "TripAdvisor Rwanda",
