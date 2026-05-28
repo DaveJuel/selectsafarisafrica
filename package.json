@@ -33,13 +33,19 @@
   },
   "scripts": {
     "start": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build": "react-scripts build",
     "postbuild": "react-snap"
   },
   "reactSnap": {
-    "inlineCss": true
+    "inlineCss": false,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "skipThirdPartyRequests": true,
+    "crawl": true
   },
   "eslintConfig": {
     "extends": [
