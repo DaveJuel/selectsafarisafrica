@@ -62,7 +62,7 @@ export default function AdventuresView({ formData , language}) {
         return;
       }
       setCurrentLayout((prev) => (prev + 1) % 2);
-    }, 8000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [overlayLocked, hoveredVideoIndex]);
