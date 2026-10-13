@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   min-height: 100vh;
   background: rgba(0, 0, 0, 0.3);
-  background-image: url("/bg_image2.jpg");
+  background-image: url("https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1791899929/bg_image2_gwlvws.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -8,7 +8,7 @@ export const ContentContainer = styled.div`
   justify-content: space-between;
 
   background: rgba(255, 255, 255, 0);
-  background-image: url("/bg_image2.jpg");
+  background-image: url("https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1791899929/bg_image2_gwlvws.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
