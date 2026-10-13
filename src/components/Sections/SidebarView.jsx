@@ -10,7 +10,6 @@ import {
   SidebarSection,
   SidebarTitle,
 } from "../../style/sidebar.view.styles";
-import { useIsSmallScreen } from "../../utils/UseIsSmallScreen";
 import { useNavigate } from "react-router-dom";
 
 export default function SidebarView({
@@ -29,9 +28,6 @@ export default function SidebarView({
 }) {
   const { t } = useTranslation("common");
   const navigate = useNavigate();
-
-  const isSmallScreen = useIsSmallScreen();
-  const shouldHideForm = isSmallScreen;
 
   const menuItems = [
     {
@@ -67,7 +63,7 @@ export default function SidebarView({
         </NavigationLinks>
       </SidebarHeaderSection>
       {loading && <LoadingSpinner />}
-      {!loading && !shouldHideForm && language && (
+      {!loading && language && (
         <TouristForm
           formData={formData}
           setFormData={setFormData}

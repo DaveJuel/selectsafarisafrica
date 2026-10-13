@@ -264,6 +264,11 @@ export const DaysInput = styled.input`
       height: 14px;
     }
   }
+
+  @media (max-width: 480px) {
+    flex: none;
+    width: 100%;
+  }
 `;
 
 export const DaysDisplay = styled.div`
@@ -289,31 +294,60 @@ export const DaysDisplay = styled.div`
   }
 `;
 
+// export const SubmitButton = styled.button`
+//   padding: 14px 24px;
+//   border: none;
+//   border-radius: 12px;
+//   font-size: 16px;
+//   font-weight: 600;
+//   cursor: ${(props) => (props.valid ? "pointer" : "not-allowed")};
+//   background: ${(props) =>
+//     props.valid ? "linear-gradient(135deg, #10A969 0%, #0E5033 100%)" : "#ccc"};
+//   color: white;
+//   transition: all 0.3s ease;
+
+//   &:hover {
+//     transform: ${(props) => (props.valid ? "translateY(-2px)" : "none")};
+//     box-shadow: ${(props) =>
+//       props.valid ? "0 8px 25px rgba(234, 177, 102, 0.3)" : "none"};
+//   }
+
+//   /* Medium screens */
+//   @media (max-width: 768px) {
+//     padding: 12px 20px;
+//     font-size: 15px;
+//   }
+
+//   /* Small screens */
+//   @media (max-width: 480px) {
+//     padding: 10px 16px;
+//     font-size: 14px;
+//   }
+// `;
+
 export const SubmitButton = styled.button`
   padding: 14px 24px;
   border: none;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
-  cursor: ${(props) => (props.valid ? "pointer" : "not-allowed")};
+  cursor: ${(props) => (props.$valid ? "pointer" : "not-allowed")};
   background: ${(props) =>
-    props.valid ? "linear-gradient(135deg, #10A969 0%, #0E5033 100%)" : "#ccc"};
+    props.$valid ? "linear-gradient(135deg, #10A969 0%, #0E5033 100%)" : "#ccc"};
   color: white;
   transition: all 0.3s ease;
 
   &:hover {
-    transform: ${(props) => (props.valid ? "translateY(-2px)" : "none")};
+    transform: ${(props) => (props.$valid ? "translateY(-2px)" : "none")};
     box-shadow: ${(props) =>
-      props.valid ? "0 8px 25px rgba(234, 177, 102, 0.3)" : "none"};
+    props.$valid ? "0 8px 25px rgba(234, 177, 102, 0.3)" : "none"};
   }
 
-  /* Medium screens */
   @media (max-width: 768px) {
     padding: 12px 20px;
     font-size: 15px;
   }
 
-  /* Small screens */
   @media (max-width: 480px) {
     padding: 10px 16px;
     font-size: 14px;
