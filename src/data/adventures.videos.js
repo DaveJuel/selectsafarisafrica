@@ -3,7 +3,7 @@ export const adventuresVideos = [
     country: "country_rw",
     videos: [
       {
-        video: "/videos/rw/safari_localmarket.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899733/safari_localmarket_osb29k.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372481/ssa-videos/rw/wmuulvdkwctexsoqzs7n.jpg",
         caption: "rw_local_markets",
         country: "country_rw",
@@ -11,7 +11,7 @@ export const adventuresVideos = [
         description: "rw_local_markets_desc"
       },
       {
-        video: "/videos/rw/safari_kingpalce.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899735/safari_kingpalce_acrtqt.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372456/ssa-videos/rw/vtsxujp693qapbutz7av.jpg",
         caption: "rw_kings_palace",
         country: "country_rw",
@@ -19,7 +19,7 @@ export const adventuresVideos = [
         description: "rw_kings_palace_desc"
       },
       {
-        video: "/videos/rw/safari_gorilla2.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899712/safari_gorilla2_eewur0.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372418/ssa-videos/rw/ewzpftjikvwl0rshs6jk.jpg",
         caption: "rw_mountain_gorillas",
         country: "country_rw",
@@ -27,7 +27,7 @@ export const adventuresVideos = [
         description: "rw_mountain_gorillas_desc"
       },
       {
-        video: "/videos/rw/safari_lakes2.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899722/safari_lakes2_eo9h8q.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372351/ssa-videos/rw/hda52yukz2sg4sveif9g.jpg",
         caption: "rw_lakes",
         country: "country_rw",
@@ -35,7 +35,7 @@ export const adventuresVideos = [
         description: "rw_lakes_desc"
       },
       {
-        video: "/videos/rw/safari_memorial.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899724/safari_memorial_gs4oj0.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372299/ssa-videos/rw/ailhovvft8xpryvurfz6.jpg",
         caption: "rw_memorial_sites",
         country: "country_rw",
@@ -43,7 +43,7 @@ export const adventuresVideos = [
         description: "rw_memorial_sites_desc"
       },
       {
-        video: "/videos/rw/safari_inyambo.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899721/safari_inyambo_wtpfoc.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372365/ssa-videos/rw/t4ulv81jgo4fldwiqa8u.jpg",
         caption: "rw_inyambo",
         country: "country_rw",
@@ -51,7 +51,7 @@ export const adventuresVideos = [
         description: "rw_inyambo_desc"
       },
       {
-        video: "/videos/rw/safari_canopy_walk.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899712/safari_canopy_yw7tqx.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372427/ssa-videos/rw/tgdqj9ynzfbpsmk5z8az.jpg",
         caption: "rw_canopy_walk",
         country: "country_rw",
@@ -59,7 +59,7 @@ export const adventuresVideos = [
         description: "rw_canopy_walk_desc"
       },
       {
-        video: "/videos/rw/safari_rhino.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899745/safari_rhino_sqxe0g.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372336/ssa-videos/rw/e2upb2htv6wpey6cqfyo.jpg",
         caption: "rw_safari_game_drive",
         country: "country_rw",
