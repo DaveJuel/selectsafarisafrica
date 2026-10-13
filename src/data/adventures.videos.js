@@ -72,7 +72,7 @@ export const adventuresVideos = [
     country: "country_tz",
     videos: [
       {
-        video: "/videos/tz/safari_ballons.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899801/safari_ballons_bn9pio.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372252/ssa-videos/tz/vy45o5bq2jrnugdpbjpr.jpg",
         caption: "tz_hot_air_balloon",
         country: "country_tz",
@@ -80,7 +80,7 @@ export const adventuresVideos = [
         description: "tz_hot_air_balloon_desc"
       },
       {
-        video: "/videos/tz/safari_canoe.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899808/safari_canoe_uqopl7.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372216/ssa-videos/tz/zpei3iogwinv7ds25tgz.jpg",
         caption: "tz_canoeing",
         country: "country_tz",
@@ -88,7 +88,7 @@ export const adventuresVideos = [
         description: "tz_canoeing_desc"
       },
       {
-        video: "/videos/tz/safari_oldcity.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899814/safari_oldcity_gcl8tc.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372149/ssa-videos/tz/rt4scbfl2wbqlydu10r1.jpg",
         caption: "tz_stone_town",
         country: "country_tz",
@@ -96,7 +96,7 @@ export const adventuresVideos = [
         description: "tz_stone_town_desc"
       },
       {
-        video: "/videos/tz/safari_ngorongoro.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899804/safari_ngorongoro_cnv7ia.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372130/ssa-videos/tz/epa4glkota8ciafbetfw.jpg",
         caption: "tz_ngorongoro",
         country: "country_tz",
@@ -104,7 +104,7 @@ export const adventuresVideos = [
         description: "tz_ngorongoro_desc"
       },
       {
-        video: "/videos/tz/safari_snorkel.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899820/safari_snockel_ygu9wm.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372242/ssa-videos/tz/curoft0um0p6maozzyzt.jpg",
         caption: "tz_snorkeling",
         country: "country_tz",
@@ -112,7 +112,7 @@ export const adventuresVideos = [
         description: "tz_snorkeling_desc"
       },
       {
-        video: "/videos/tz/safari_maasai.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899813/safari_massai_lycqjl.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372178/ssa-videos/tz/w3a94xnkmhdd2w1yi2in.jpg",
         caption: "tz_maasai_village",
         country: "country_tz",
@@ -120,7 +120,7 @@ export const adventuresVideos = [
         description: "tz_maasai_village_desc"
       },
       {
-        video: "/videos/tz/safari_kilimandjaro.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899807/safari_kilimandjaro_f6wljo.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372160/ssa-videos/tz/qa8kdyxp7wqswvdousxh.jpg",
         caption: "tz_kilimanjaro",
         country: "country_tz",
@@ -128,7 +128,7 @@ export const adventuresVideos = [
         description: "tz_kilimanjaro_desc"
       },
       {
-        video: "/videos/tz/safari_serengeti.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899821/safari_serengeti_jvu4cc.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372201/ssa-videos/tz/mkkmkak0us4ic71iyswy.jpg",
         caption: "tz_serengeti",
         country: "country_tz",
@@ -141,7 +141,7 @@ export const adventuresVideos = [
     country: "country_ug",
     videos: [
       {
-        video: "/videos/ug/safari_rafting.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899776/safari_rafting_apwzwv.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371935/ssa-videos/ug/fd5btfuz7ee0gbpwidkf.jpg",
         caption: "ug_rafting",
         country: "country_ug",
@@ -149,7 +149,7 @@ export const adventuresVideos = [
         description: "ug_rafting_desc"
       },
       {
-        video: "/videos/ug/safari_birds.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899774/safari_birds_omzmez.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371961/ssa-videos/ug/ta5lvaqszizwyxzdq8ir.jpg",
         caption: "ug_bird_watching",
         country: "country_ug",
@@ -157,7 +157,7 @@ export const adventuresVideos = [
         description: "ug_bird_watching_desc"
       },
       {
-        video: "/videos/ug/safari_gorilla3.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_gorilla3_co5lwc.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371945/ssa-videos/ug/uukxrovtqb1yizy2uinq.jpg",
         caption: "ug_gorilla_trekking",
         country: "country_ug",
@@ -165,7 +165,7 @@ export const adventuresVideos = [
         description: "ug_gorilla_trekking_desc"
       },
       {
-        video: "/videos/ug/safari_kampala.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899771/safari_kampala_rcwz9t.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371913/ssa-videos/ug/ej0szddaav0gsajnzcos.jpg",
         caption: "ug_city_center",
         country: "country_ug",
@@ -173,7 +173,7 @@ export const adventuresVideos = [
         description: "ug_city_center_desc"
       },
       {
-        video: "/videos/ug/safari_nile.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899775/safari_nile_zf82gk.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371897/ssa-videos/ug/ryzhbnpilc20h0yn6qwr.jpg",
         caption: "ug_nile_source",
         country: "country_ug",
@@ -181,7 +181,7 @@ export const adventuresVideos = [
         description: "ug_nile_source_desc"
       },
       {
-        video: "/videos/ug/safari_owino.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_owino_ycqvqu.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371969/ssa-videos/ug/xvd8qlshqp5ziokobocc.jpg",
         caption: "ug_local_market",
         country: "country_ug",
@@ -189,7 +189,7 @@ export const adventuresVideos = [
         description: "ug_local_market_desc"
       },
       {
-        video: "/videos/ug/safari_treelions.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899776/safari_treelions_b95p37.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371907/ssa-videos/ug/tvzndigtc7tp4dcvhxzk.jpg",
         caption: "ug_tree_lions",
         country: "country_ug",
@@ -197,7 +197,7 @@ export const adventuresVideos = [
         description: "ug_tree_lions_desc"
       },
       {
-        video: "/videos/ug/safari_dance.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_dance_v3gadq.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371923/ssa-videos/ug/kvp7kjrhil45pj3oenhb.jpg",
         caption: "ug_dance_experience",
         country: "country_ug",
@@ -210,7 +210,7 @@ export const adventuresVideos = [
     country: "country_bi",
     videos: [
       {
-        video: "/videos/bn/safari_beach.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899844/safari_beach_rciowq.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372057/ssa-videos/bn/r65nnjc1txzpaadsvnh2.jpg",
         caption: "bi_saga_beach",
         country: "country_bi",
@@ -218,7 +218,7 @@ export const adventuresVideos = [
         description: "bi_saga_beach_desc"
       },
       {
-        video: "/videos/bn/safari_drums.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899857/safari_drums_brfbkg.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372014/ssa-videos/bn/a1f8f1jcwkrm1osslzcl.jpg",
         caption: "bi_gishora_drums",
         country: "country_bi",
@@ -226,7 +226,7 @@ export const adventuresVideos = [
         description: "bi_gishora_drums_desc"
       },
       {
-        video: "/videos/bn/safari_waterfalls.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899857/safari_waterfalls_v0cvmj.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372077/ssa-videos/bn/vnvnwq2xcl1zibppx4f5.jpg",
         caption: "bi_karera_waterfalls",
         country: "country_bi",
@@ -234,7 +234,7 @@ export const adventuresVideos = [
         description: "bi_karera_waterfalls_desc"
       },
       {
-        video: "/videos/bn/safari_nilesource.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899844/safari_nilesource_m7euwj.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371974/ssa-videos/bn/xsrwjwlaurdvyqiyziw9.jpg",
         caption: "bi_nile_source_monument",
         country: "country_bi",
@@ -242,7 +242,7 @@ export const adventuresVideos = [
         description: "bi_nile_source_monument_desc"
       },
       {
-        video: "/videos/bn/safari_kibira.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899852/safari_kibira_ndtd3v.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371989/ssa-videos/bn/ratuwcksu8ljh2tcyfjh.jpg",
         caption: "bi_kibira_trek",
         country: "country_bi",
@@ -250,7 +250,7 @@ export const adventuresVideos = [
         description: "bi_kibira_trek_desc"
       },
       {
-        video: "/videos/bn/safari_kirundo.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899855/safari_kirundo_vbnbia.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372097/ssa-videos/bn/gji5lsrqdujm9ieoi273.jpg",
         caption: "bi_rwihinda_birdwatch",
         country: "country_bi",
@@ -258,7 +258,7 @@ export const adventuresVideos = [
         description: "bi_rwihinda_birdwatch_desc"
       },
       {
-        video: "/videos/bn/safari_boating.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899851/safari_boating_bhsxp6.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372119/ssa-videos/bn/ttqvxaeljm2h6f2wkbbm.jpg",
         caption: "bi_rusizi_boat",
         country: "country_bi",
@@ -266,7 +266,7 @@ export const adventuresVideos = [
         description: "bi_rusizi_boat_desc"
       },
       {
-        video: "/videos/bn/safari_ruvubu.mp4",
+        video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899860/safari_ruvubu_fndwja.mp4",
         thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372044/ssa-videos/bn/g5trjd8cjqnap99rhprb.jpg",
         caption: "bi_ruvubu_park",
         country: "country_bi",
