@@ -73,7 +73,7 @@ export const adventuresVideos = [
     videos: [
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899801/safari_ballons_bn9pio.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372252/ssa-videos/tz/vy45o5bq2jrnugdpbjpr.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778223636/serengeti-migration_oj8mfp.jpg",
         caption: "tz_hot_air_balloon",
         country: "country_tz",
         city: "Serengeti",
@@ -81,7 +81,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899808/safari_canoe_uqopl7.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372216/ssa-videos/tz/zpei3iogwinv7ds25tgz.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779134470/kilimandjaro_hike_and_zanzibar_relax_l1bhmi.png",
         caption: "tz_canoeing",
         country: "country_tz",
         city: "Arusha",
@@ -89,7 +89,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899814/safari_oldcity_gcl8tc.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372149/ssa-videos/tz/rt4scbfl2wbqlydu10r1.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779037262/stone-town-slavery-trail_gtqbgh.jpg",
         caption: "tz_stone_town",
         country: "country_tz",
         city: "Zanzibar",
@@ -97,7 +97,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899804/safari_ngorongoro_cnv7ia.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372130/ssa-videos/tz/epa4glkota8ciafbetfw.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777734238/ngorongoro_crater_wfbhro.jpg",
         caption: "tz_ngorongoro",
         country: "country_tz",
         city: "Ngorongoro",
@@ -105,7 +105,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899820/safari_snockel_ygu9wm.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372242/ssa-videos/tz/curoft0um0p6maozzyzt.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777734660/stone_island_zlqrmr.jpg",
         caption: "tz_snorkeling",
         country: "country_tz",
         city: "Zanzibar",
@@ -113,7 +113,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899813/safari_massai_lycqjl.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372178/ssa-videos/tz/w3a94xnkmhdd2w1yi2in.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779038302/maasai-tribe_eqif0q.jpg",
         caption: "tz_maasai_village",
         country: "country_tz",
         city: "Arusha",
@@ -121,7 +121,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899807/safari_kilimandjaro_f6wljo.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372160/ssa-videos/tz/qa8kdyxp7wqswvdousxh.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777734478/kilimanjaro_hy0bg3.jpg",
         caption: "tz_kilimanjaro",
         country: "country_tz",
         city: "Moshi",
@@ -129,7 +129,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899821/safari_serengeti_jvu4cc.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372201/ssa-videos/tz/mkkmkak0us4ic71iyswy.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777733572/serengeti_a3pwu2.jpg",
         caption: "tz_serengeti",
         country: "country_tz",
         city: "Serengeti",
