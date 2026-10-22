@@ -4,7 +4,7 @@ export const adventuresVideos = [
     videos: [
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899733/safari_localmarket_osb29k.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372481/ssa-videos/rw/wmuulvdkwctexsoqzs7n.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779014938/kigali_car_free_zone_iuljt2.jpg",
         caption: "rw_local_markets",
         country: "country_rw",
         city: "Kigali",
@@ -12,7 +12,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899735/safari_kingpalce_acrtqt.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372456/ssa-videos/rw/vtsxujp693qapbutz7av.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1782245533/Rwanda-Ethnographic-Museum-_lo2oct.jpg",
         caption: "rw_kings_palace",
         country: "country_rw",
         city: "Nyanza",
@@ -20,7 +20,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899712/safari_gorilla2_eewur0.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372418/ssa-videos/rw/ewzpftjikvwl0rshs6jk.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779016988/gorilla_scenic_o88uhp.png",
         caption: "rw_mountain_gorillas",
         country: "country_rw",
         city: "Musanze",
@@ -28,7 +28,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899722/safari_lakes2_eo9h8q.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372351/ssa-videos/rw/hda52yukz2sg4sveif9g.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778223025/Rwandas-twin-lakes_rbva1s.gif",
         caption: "rw_lakes",
         country: "country_rw",
         city: "Rwamagana",
@@ -36,7 +36,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899724/safari_memorial_gs4oj0.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372299/ssa-videos/rw/ailhovvft8xpryvurfz6.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778223347/rwanda-genocide-memorial_iboujz.jpg",
         caption: "rw_memorial_sites",
         country: "country_rw",
         city: "Kigali",
@@ -44,7 +44,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899721/safari_inyambo_wtpfoc.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372365/ssa-videos/rw/t4ulv81jgo4fldwiqa8u.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1782245533/Rwanda-Ethnographic-Museum-_lo2oct.jpg",
         caption: "rw_inyambo",
         country: "country_rw",
         city: "Nyanza",
@@ -52,7 +52,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899712/safari_canopy_yw7tqx.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372427/ssa-videos/rw/tgdqj9ynzfbpsmk5z8az.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777731321/canopy_2_detqqd.jpg",
         caption: "rw_canopy_walk",
         country: "country_rw",
         city: "Nyungwe",
@@ -60,7 +60,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899745/safari_rhino_sqxe0g.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372336/ssa-videos/rw/e2upb2htv6wpey6cqfyo.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779015355/rhinos_brmlth.jpg",
         caption: "rw_safari_game_drive",
         country: "country_rw",
         city: "Akagera",
