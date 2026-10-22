@@ -211,7 +211,7 @@ export const adventuresVideos = [
     videos: [
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899844/safari_beach_rciowq.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372057/ssa-videos/bn/r65nnjc1txzpaadsvnh2.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778222449/lake_tanganyika_bj_v3kts7.png",
         caption: "bi_saga_beach",
         country: "country_bi",
         city: "Bujumbura",
@@ -219,7 +219,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899857/safari_drums_brfbkg.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372014/ssa-videos/bn/a1f8f1jcwkrm1osslzcl.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778222822/gishora_drums__1114946_pgk4kh.png",
         caption: "bi_gishora_drums",
         country: "country_bi",
         city: "Gishora",
@@ -227,7 +227,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899857/safari_waterfalls_v0cvmj.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372077/ssa-videos/bn/vnvnwq2xcl1zibppx4f5.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777732851/murchisson-falls_pdzfch.jpg",
         caption: "bi_karera_waterfalls",
         country: "country_bi",
         city: "Ngozi",
@@ -235,7 +235,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899844/safari_nilesource_m7euwj.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371974/ssa-videos/bn/xsrwjwlaurdvyqiyziw9.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779288341/stanley-livingstone_dvtnx8.jpg",
         caption: "bi_nile_source_monument",
         country: "country_bi",
         city: "Bururi",
@@ -243,7 +243,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899852/safari_kibira_ndtd3v.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371989/ssa-videos/bn/ratuwcksu8ljh2tcyfjh.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779287939/kibira-rainforest_hqdrhy.jpg",
         caption: "bi_kibira_trek",
         country: "country_bi",
         city: "Cibitoke",
@@ -251,7 +251,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899855/safari_kirundo_vbnbia.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372097/ssa-videos/bn/gji5lsrqdujm9ieoi273.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779288543/Kibira-National-Park-cover_prhj55.jpg",
         caption: "bi_rwihinda_birdwatch",
         country: "country_bi",
         city: "Kirundo",
@@ -259,7 +259,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899851/safari_boating_bhsxp6.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372119/ssa-videos/bn/ttqvxaeljm2h6f2wkbbm.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778222613/rusizi-national-park_wpsiqs.jpg",
         caption: "bi_rusizi_boat",
         country: "country_bi",
         city: "Bujumbura",
@@ -267,7 +267,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899860/safari_ruvubu_fndwja.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758372044/ssa-videos/bn/g5trjd8cjqnap99rhprb.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779287939/kibira-rainforest_hqdrhy.jpg",
         caption: "bi_ruvubu_park",
         country: "country_bi",
         city: "Ruyigi",
