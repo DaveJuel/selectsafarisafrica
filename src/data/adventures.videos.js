@@ -142,7 +142,7 @@ export const adventuresVideos = [
     videos: [
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899776/safari_rafting_apwzwv.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371935/ssa-videos/ug/fd5btfuz7ee0gbpwidkf.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777732851/murchisson-falls_pdzfch.jpg",
         caption: "ug_rafting",
         country: "country_ug",
         city: "Jinja",
@@ -150,7 +150,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899774/safari_birds_omzmez.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371961/ssa-videos/ug/ta5lvaqszizwyxzdq8ir.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779030951/uganda-bird-watching_uhdc6x.jpg",
         caption: "ug_bird_watching",
         country: "country_ug",
         city: "Mabamba",
@@ -158,7 +158,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_gorilla3_co5lwc.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371945/ssa-videos/ug/uukxrovtqb1yizy2uinq.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779029553/bwindi-impenetrable_jplljz.jpg",
         caption: "ug_gorilla_trekking",
         country: "country_ug",
         city: "Bwindi",
@@ -166,7 +166,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899771/safari_kampala_rcwz9t.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371913/ssa-videos/ug/ej0szddaav0gsajnzcos.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779029919/owino-market-kampala_cehorg.jpg",
         caption: "ug_city_center",
         country: "country_ug",
         city: "Kampala",
@@ -174,7 +174,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899775/safari_nile_zf82gk.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371897/ssa-videos/ug/ryzhbnpilc20h0yn6qwr.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779030216/jinja-boat-cruise_gonl8a.webp",
         caption: "ug_nile_source",
         country: "country_ug",
         city: "Jinja",
@@ -182,7 +182,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_owino_ycqvqu.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371969/ssa-videos/ug/xvd8qlshqp5ziokobocc.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1779029919/owino-market-kampala_cehorg.jpg",
         caption: "ug_local_market",
         country: "country_ug",
         city: "Kampala",
@@ -190,7 +190,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899776/safari_treelions_b95p37.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371907/ssa-videos/ug/tvzndigtc7tp4dcvhxzk.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1777732605/queen_elizabeth_bssclm.jpg",
         caption: "ug_tree_lions",
         country: "country_ug",
         city: "Queen Elizabeth Park",
@@ -198,7 +198,7 @@ export const adventuresVideos = [
       },
       {
         video: "https://res.cloudinary.com/dht699doy/video/upload/c_limit,w_1920,q_auto,f_auto/v1791899772/safari_dance_v3gadq.mp4",
-        thumbnail: "https://res.cloudinary.com/addax/image/upload/f_auto,q_auto,w_auto,dpr_auto,c_fill/v1758371923/ssa-videos/ug/kvp7kjrhil45pj3oenhb.jpg",
+        thumbnail: "https://res.cloudinary.com/dht699doy/image/upload/c_limit,w_1920,q_auto,f_auto/v1778221957/lake-bunyonyi_hlrkuw.jpg",
         caption: "ug_dance_experience",
         country: "country_ug",
         city: "Kampala",
