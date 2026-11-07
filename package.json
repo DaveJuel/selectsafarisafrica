@@ -25,27 +25,16 @@
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.4",
     "react-slick": "^0.28.1",
-    "react-snap": "^1.23.0",
     "react-spinners": "^0.17.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "inlineCss": false,
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "skipThirdPartyRequests": true,
-    "crawl": true
+    "postbuild": "node scripts/generate-routes.js && node scripts/prerender.js && node scripts/verify-prerender.js",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -64,5 +53,8 @@
       "last 1 chrome version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
   }
 }

@@ -104,7 +104,7 @@ export default function AdventuresView({ formData , language}) {
     <ViewWrapper>
       <Header>
         <HeaderContent animate={hasLoaded}>
-          <HeaderTitle>{t("elevate_experience")}</HeaderTitle>
+          <HeaderTitle as="h1">{t("elevate_experience")}</HeaderTitle>
           <HeaderSubtitle>{t("elevate_experience_message")}</HeaderSubtitle>
         </HeaderContent>
       </Header>

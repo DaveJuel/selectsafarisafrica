@@ -1,68 +1,39 @@
+// src/components/Seo.jsx
+import React from "react";
 import { Helmet } from "react-helmet-async";
-import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-export default function SEO({
-  title,
-  description,
-  image,
-  url,
-  schema,
-  additionalSchemas = [],
-  openGraph = {},
-  twitter = {},
-}) {
-  const allSchemas = [schema, ...additionalSchemas].filter(Boolean);
+const SITE = (process.env.REACT_APP_SITE_URL || "https://www.selectsafarisafrica.com").replace(/\/$/, "");
+const DEFAULT_IMAGE = `${SITE}/og-default.jpg`; // 1200x630 in /public
+
+export default function Seo({ title, description, image = DEFAULT_IMAGE, type = "website", canonicalPath, noindex = false, jsonLd }) {
+  const { pathname } = useLocation();
+  const { i18n } = useTranslation();
+  const raw = canonicalPath ?? pathname;
+  const path = raw === "/" ? "/" : raw.replace(/\/+$/, "") + "/";
+  const url = `${SITE}${path}`;
 
   return (
-    <Helmet prioritizeSeoTags>
+    <Helmet htmlAttributes={{ lang: i18n.language || "en" }}>
       <title>{title}</title>
-
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* Open Graph */}
-      <meta property="og:type" content={openGraph.type || "website"} />
-      <meta property="og:title" content={openGraph.title || title} />
-      <meta property="og:description" content={openGraph.description || description} />
-      <meta property="og:url" content={openGraph.url || url} />
-      <meta property="og:image" content={openGraph.image || image} />
-      <meta property="og:site_name" content={openGraph.site_name} />
+      <meta property="og:site_name" content="Select Safaris Africa" />
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:image" content={image} />
 
-      {/* Twitter */}
-      <meta name="twitter:card" content={twitter.card || "summary_large_image"} />
-      <meta name="twitter:title" content={twitter.title || title} />
-      <meta name="twitter:description" content={twitter.description || description} />
-      <meta name="twitter:image" content={twitter.image || image} />
-      <meta name="twitter:site" content={twitter.site} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
-      {allSchemas.map((item, i) => (
-        <script key={i} type="application/ld+json">
-          {JSON.stringify(item)}
-        </script>
-      ))}
+      {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
     </Helmet>
   );
 }
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  url: PropTypes.string,
-  schema: PropTypes.object,
-  additionalSchemas: PropTypes.array,
-  openGraph: PropTypes.object,
-  twitter: PropTypes.object,
-};
-
-SEO.defaultProps = {
-  title: "",
-  description: "",
-  image: "",
-  url: "",
-  schema: null,
-  additionalSchemas: [],
-  openGraph: {},
-  twitter: {},
-};

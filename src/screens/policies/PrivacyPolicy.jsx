@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/Elements/LoadingSpinner";
 import { ContentContainer, Section, SectionTitle, SectionText, FileTitle } from "../../style/policies.styles";
 import PolicyHeader from "../../components/Elements/PolicyHeader";
+import PageSeo from "../../components/Elements/PageSeo";
 
 export default function PrivacyPolicy() {
     const { t } = useTranslation("privacy_policy");
@@ -25,73 +26,80 @@ export default function PrivacyPolicy() {
     if (loading) return <LoadingSpinner />;
 
     return (
-        <ContentContainer>
-            <PolicyHeader />
-            <FileTitle>
-                {t("privacy_title")}
-            </FileTitle>
-            <Section>
-                <SectionText>{t("welcome_text")}</SectionText>
-            </Section>
+        <>
+            <PageSeo
+                path="/privacy/"
+                title="Privacy Policy | Select Safaris Africa"
+                description="Learn how Select Safaris Africa collects, uses and protects your personal data when you browse or book with us."
+            />
+            <ContentContainer>
+                <PolicyHeader />
+                <FileTitle>
+                    {t("privacy_title")}
+                </FileTitle>
+                <Section>
+                    <SectionText>{t("welcome_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("information_title")}</SectionTitle>
-                <SectionTitle>{t("personal_info_title")}</SectionTitle>
-                <SectionText>{t("personal_info_text")}</SectionText>
-                <SectionTitle>{t("non_personal_info_title")}</SectionTitle>
-                <SectionText>{t("non_personal_info_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("information_title")}</SectionTitle>
+                    <SectionTitle>{t("personal_info_title")}</SectionTitle>
+                    <SectionText>{t("personal_info_text")}</SectionText>
+                    <SectionTitle>{t("non_personal_info_title")}</SectionTitle>
+                    <SectionText>{t("non_personal_info_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("usage_title")}</SectionTitle>
-                <SectionText>{t("usage_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("usage_title")}</SectionTitle>
+                    <SectionText>{t("usage_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("sharing_title")}</SectionTitle>
-                <SectionTitle>{t("third_party_title")}</SectionTitle>
-                <SectionText>{t("third_party_text")}</SectionText>
-                <SectionTitle>{t("legal_title")}</SectionTitle>
-                <SectionText>{t("legal_text")}</SectionText>
-                <SectionTitle>{t("business_title")}</SectionTitle>
-                <SectionText>{t("business_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("sharing_title")}</SectionTitle>
+                    <SectionTitle>{t("third_party_title")}</SectionTitle>
+                    <SectionText>{t("third_party_text")}</SectionText>
+                    <SectionTitle>{t("legal_title")}</SectionTitle>
+                    <SectionText>{t("legal_text")}</SectionText>
+                    <SectionTitle>{t("business_title")}</SectionTitle>
+                    <SectionText>{t("business_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("children_title")}</SectionTitle>
-                <SectionText>{t("children_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("children_title")}</SectionTitle>
+                    <SectionText>{t("children_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("security_title")}</SectionTitle>
-                <SectionText>{t("security_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("security_title")}</SectionTitle>
+                    <SectionText>{t("security_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("international_title")}</SectionTitle>
-                <SectionText>{t("international_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("international_title")}</SectionTitle>
+                    <SectionText>{t("international_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("rights_title")}</SectionTitle>
-                <SectionText>{t("rights_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("rights_title")}</SectionTitle>
+                    <SectionText>{t("rights_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("cookies_title")}</SectionTitle>
-                <SectionText>{t("cookies_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("cookies_title")}</SectionTitle>
+                    <SectionText>{t("cookies_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("changes_title")}</SectionTitle>
-                <SectionText>{t("changes_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("changes_title")}</SectionTitle>
+                    <SectionText>{t("changes_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("contact_title")}</SectionTitle>
-                <SectionText>{t("contact_text")}</SectionText>
-                <SectionText>{t("effective_date")}</SectionText>
-            </Section>
-        </ContentContainer>
+                <Section>
+                    <SectionTitle>{t("contact_title")}</SectionTitle>
+                    <SectionText>{t("contact_text")}</SectionText>
+                    <SectionText>{t("effective_date")}</SectionText>
+                </Section>
+            </ContentContainer>
+        </>
     );
 }

@@ -7,7 +7,7 @@ export default function AboutUsView() {
   return (
     <ViewWrapper>
       <Header>
-        <HeaderTitle>{t("who_we_are")}</HeaderTitle>
+        <HeaderTitle as="h1">{t("who_we_are")}</HeaderTitle>
       </Header>
 
       <Content>

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/Elements/LoadingSpinner";
 import { ContentContainer, Section, SectionTitle, SectionText, FileTitle } from "../../style/policies.styles";
 import PolicyHeader from "../../components/Elements/PolicyHeader";
+import PageSeo from "../../components/Elements/PageSeo";
 
 export default function CancellationPolicy() {
     const { t } = useTranslation("cancellation");
@@ -25,63 +26,70 @@ export default function CancellationPolicy() {
     if (loading) return <LoadingSpinner />;
 
     return (
-        <ContentContainer>
-            <PolicyHeader />
-            <FileTitle>
-                {t("cancellation_title")}
-            </FileTitle>
-            <Section>
-                <SectionText>{t("welcome_text")}</SectionText>
-            </Section>
+        <>
+            <PageSeo
+                path="/cancellation-policy/"
+                title="Cancellation & Refund Policy | Select Safaris Africa"
+                description="Understand how cancellations, changes and refunds work for safari bookings made with Select Safaris Africa."
+            />
+            <ContentContainer>
+                <PolicyHeader />
+                <FileTitle as="h1">
+                    {t("cancellation_title")}
+                </FileTitle>
+                <Section>
+                    <SectionText>{t("welcome_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("general_title")}</SectionTitle>
-                <SectionText>{t("general_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("general_title")}</SectionTitle>
+                    <SectionText>{t("general_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("client_cancellation_title")}</SectionTitle>
-                <SectionText>{t("client_cancellation_text")}</SectionText>
-                <SectionText>{t("standard_terms")}</SectionText>
-                <SectionTitle>{t("non_refundable_title")}</SectionTitle>
-                <SectionText>{t("non_refundable_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("client_cancellation_title")}</SectionTitle>
+                    <SectionText>{t("client_cancellation_text")}</SectionText>
+                    <SectionText>{t("standard_terms")}</SectionText>
+                    <SectionTitle>{t("non_refundable_title")}</SectionTitle>
+                    <SectionText>{t("non_refundable_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("amendments_title")}</SectionTitle>
-                <SectionText>{t("amendments_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("amendments_title")}</SectionTitle>
+                    <SectionText>{t("amendments_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("no_show_title")}</SectionTitle>
-                <SectionText>{t("no_show_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("no_show_title")}</SectionTitle>
+                    <SectionText>{t("no_show_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("company_cancellation_title")}</SectionTitle>
-                <SectionText>{t("company_cancellation_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("company_cancellation_title")}</SectionTitle>
+                    <SectionText>{t("company_cancellation_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("processing_title")}</SectionTitle>
-                <SectionText>{t("processing_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("processing_title")}</SectionTitle>
+                    <SectionText>{t("processing_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("insurance_title")}</SectionTitle>
-                <SectionText>{t("insurance_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("insurance_title")}</SectionTitle>
+                    <SectionText>{t("insurance_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("liability_title")}</SectionTitle>
-                <SectionText>{t("liability_text")}</SectionText>
-            </Section>
+                <Section>
+                    <SectionTitle>{t("liability_title")}</SectionTitle>
+                    <SectionText>{t("liability_text")}</SectionText>
+                </Section>
 
-            <Section>
-                <SectionTitle>{t("acceptance_title")}</SectionTitle>
-                <SectionText>{t("acceptance_text")}</SectionText>
-                <SectionText>{t("effective_date")}</SectionText>
-            </Section>
-        </ContentContainer>
+                <Section>
+                    <SectionTitle>{t("acceptance_title")}</SectionTitle>
+                    <SectionText>{t("acceptance_text")}</SectionText>
+                    <SectionText>{t("effective_date")}</SectionText>
+                </Section>
+            </ContentContainer>
+        </>
     );
 }
