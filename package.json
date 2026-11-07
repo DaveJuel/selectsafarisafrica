@@ -32,7 +32,7 @@
   },
   "scripts": {
     "dev": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npx playwright install chromium && node scripts/generate-routes.js && node scripts/prerender.js && node scripts/verify-prerender.js",
     "postbuild": "node scripts/generate-routes.js && node scripts/prerender.js && node scripts/verify-prerender.js",
     "test": "react-scripts test"
   },
