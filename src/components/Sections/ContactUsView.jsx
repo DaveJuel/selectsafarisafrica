@@ -19,7 +19,7 @@ export default function ContactUsView() {
   return (
     <ViewWrapper>
       <Header>
-        <HeaderTitle>{t("reach_out")}</HeaderTitle>
+        <HeaderTitle as="h1">{t("reach_out")}</HeaderTitle>
       </Header>
 
       <Content>
